@@ -161,17 +161,25 @@ const server = createServer(async (req, res) => {
         return;
       }
 
-      await mkdir(requestsDir, { recursive: true });
       const now = new Date();
       const stamp = now.toISOString().replace(/[-:]/g, "").replace(/\..+/, "");
       const filename = `${stamp}-${sanitizeFilePart(customer.prefix)}-${sanitizeFilePart(customer.name)}.txt`;
       const text = buildQuoteText({ customer, items });
-      await writeFile(path.join(requestsDir, filename), text, "utf8");
+      let downloadUrl = null;
+
+      try {
+        await mkdir(requestsDir, { recursive: true });
+        await writeFile(path.join(requestsDir, filename), text, "utf8");
+        downloadUrl = `/api/requests/${filename}`;
+      } catch {
+        // Serverless hosts such as Vercel expose a read-only app directory.
+        // The browser still receives the TXT content and downloads it locally.
+      }
 
       sendJson(res, 201, {
         ok: true,
         filename,
-        downloadUrl: `/api/requests/${filename}`,
+        downloadUrl,
         text
       });
       return;

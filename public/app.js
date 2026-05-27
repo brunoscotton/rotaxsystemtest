@@ -73,9 +73,42 @@ function itemsFor(engineId, sectionId) {
 }
 
 function routeForEngine(engineId) {
-  const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
-  if (sections.length === 1) return `#/section/${engineId}/${sections[0].id}`;
   return `#/engine/${engineId}`;
+}
+
+function categoriesForEngine(engineId) {
+  const templates = [
+    { label: "Alternators" },
+    { label: "Carburetors" },
+    { label: "Crankcase" },
+    { label: "Cylinder Head" },
+    { label: "Double Ignition Assembly" },
+    { label: "Exhaust" },
+    { label: "Fuel Pump Assembly-Fuel Hose Assembly-Airbox Assembly" },
+    { label: "Governors" },
+    { label: "Intake Manifold" },
+    { label: "Magneto" },
+    { label: "Oil Systems" },
+    { label: "Overload Clutch" },
+    { label: "Piston" },
+    { label: "Propeller Gear" },
+    { label: "Radiator" },
+    { label: "Starters" },
+    { label: "Suspension Frame" },
+    { label: "Tools" }
+  ];
+  const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
+
+  return templates.map((template) => {
+    const section = sections.find((entry) => entry.label.toLowerCase() === template.label.toLowerCase());
+    return section || {
+      id: `placeholder-${template.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+      label: template.label,
+      title: "Secao em preparacao",
+      thumb: "/assets/rotax-ignition-thumb.png",
+      placeholder: true
+    };
+  });
 }
 
 function selectedCount() {
@@ -176,28 +209,40 @@ function renderEngine(engineId) {
     return;
   }
   const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
+  const categories = categoriesForEngine(engineId);
   shell(`
     <main class="page">
       <section class="page-header">
         <div>
           <p class="eyebrow">Motor selecionado</p>
-          <h1>Secoes para ${escapeHtml(engine.name)}</h1>
+          <h1>Categories For ${escapeHtml(engine.name)}</h1>
           <p class="lead">Escolha a secao do manual para abrir a figura e a tabela de PNs.</p>
         </div>
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
-      <section class="section-grid">
-        ${sections.map((section) => `
-          <button class="section-card" type="button" data-route="#/section/${engineId}/${section.id}">
-            <span class="card-ribbon">${escapeHtml(section.chapter)}</span>
-            <img class="card-media" src="${section.thumb}" alt="${escapeHtml(section.label)}">
-            <span class="card-body">
-              <span class="card-title">${escapeHtml(section.label)}</span>
-              <span class="card-copy">${escapeHtml(section.title)}</span>
-              <span class="status-pill">${itemsFor(engineId, section.id).length} PNs</span>
-            </span>
-          </button>
-        `).join("")}
+      <section class="catalog-layout">
+        <nav class="catalog-sidebar" aria-label="Categorias">
+          <button type="button" disabled>ON SPECIAL</button>
+          <button type="button" disabled>ALL TOOLS</button>
+          <button type="button" disabled>CONSUMABLE</button>
+          ${state.catalog.engines.map((entry) => `
+            <button type="button" class="${entry.id === engineId ? "active" : ""}" ${entry.active ? `data-route="#/engine/${entry.id}"` : "disabled"}>
+              ${escapeHtml(entry.name)}
+            </button>
+          `).join("")}
+        </nav>
+        <div class="category-grid">
+          ${categories.map((section) => {
+            const available = !section.placeholder && itemsFor(engineId, section.id).length > 0;
+            return `
+              <button class="category-card ${available ? "" : "disabled"}" type="button" ${available ? `data-route="#/section/${engineId}/${section.id}"` : "disabled"}>
+                <span class="category-title">${escapeHtml(section.label)}</span>
+                <img class="category-media" src="${section.thumb}" alt="${escapeHtml(section.label)}">
+                <span class="category-status">${available ? `${itemsFor(engineId, section.id).length} PNs` : "Em breve"}</span>
+              </button>
+            `;
+          }).join("")}
+        </div>
       </section>
     </main>
   `);
@@ -257,7 +302,7 @@ function renderSection(engineId, sectionId) {
           <h1>${escapeHtml(section.label)}</h1>
           <p class="lead">${escapeHtml(section.title)}. Clique no numero da figura ou no ADD da tabela para incluir o PN na lista.</p>
         </div>
-        <button class="secondary-button" type="button" data-route="${routeForEngine(engineId) === `#/section/${engineId}/${sectionId}` ? "#/" : `#/engine/${engineId}`}">Voltar</button>
+        <button class="secondary-button" type="button" data-route="#/engine/${engineId}">Voltar</button>
       </section>
       <section class="detail-layout">
         <article class="diagram-panel">

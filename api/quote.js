@@ -47,7 +47,13 @@ export default async function handler(req, res) {
     return;
   }
 
-  const payload = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+  let payload;
+  try {
+    payload = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+  } catch {
+    res.status(400).json({ ok: false, message: "JSON invalido." });
+    return;
+  }
   const customer = payload.customer || {};
   const items = Array.isArray(payload.items) ? payload.items : [];
   const missing = ["name", "prefix", "phone", "email"].filter((field) => !requiredText(customer[field]));
