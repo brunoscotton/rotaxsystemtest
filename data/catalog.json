@@ -24,9 +24,9 @@
     {
       "id": "912is",
       "name": "ROTAX 912 iS",
-      "subtitle": "Aguardando capitulos do manual",
+      "subtitle": "Catalogo de pecas para linha 912 iS",
       "image": "/assets/engine-912is.png",
-      "active": false
+      "active": true
     }
   ],
   "sections": [
@@ -3101,6 +3101,429 @@
           "y": 58.0
         }
       ]
+    },
+    {
+      "id": "912is-ignition-housing",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Ignition Housing",
+      "chapter": "24-20-00",
+      "figure": "24-20-00",
+      "title": "IGNITION HOUSING, STATOR, RECTIFIER REGULATOR, CRANKSHAFT POSITION SENSOR ASSY.",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-ignition-housing-page.png",
+      "thumb": "/assets/rotax-912is-ignition-housing-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-external-generator-f3a",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Alternators",
+      "chapter": "24-30-00",
+      "figure": "24-30-00",
+      "title": "EXTERNAL GENERATOR F3A",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-external-generator-f3a-page.png",
+      "thumb": "/assets/rotax-912is-external-generator-f3a-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Vacuum Pump",
+      "chapter": "37-10-00",
+      "figure": "37-10-00",
+      "title": "VACUUM PUMP WITH DRIVE",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-vacuum-pump-with-drive-page.png",
+      "thumb": "/assets/rotax-912is-vacuum-pump-with-drive-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-governor-arrangement",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Governors",
+      "chapter": "61-20-00",
+      "figure": "61-20-00",
+      "title": "HYDR. GOVERNOR ARRANGEMENT FOR CONSTANT SPEED PROPELLER",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-governor-arrangement-page.png",
+      "thumb": "/assets/rotax-912is-governor-arrangement-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-engine-suspension-frame",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Engine Suspension Frame",
+      "chapter": "71-20-00",
+      "figure": "71-20-00",
+      "title": "ENGINE SUSPENSION FRAME",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-engine-suspension-frame-page.png",
+      "thumb": "/assets/rotax-912is-engine-suspension-frame-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-propeller-gear-overload",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Propeller Gear",
+      "chapter": "72-10-00",
+      "figure": "72-10-00",
+      "title": "PROPELLER GEAR ASSY. WITH OVERLOAD CLUTCH",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-propeller-gear-overload-page.png",
+      "thumb": "/assets/rotax-912is-propeller-gear-overload-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-crankcase",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Crankcase",
+      "chapter": "72-20-00",
+      "figure": "72-20-00",
+      "title": "CRANKCASE",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-crankcase-page.png",
+      "thumb": "/assets/rotax-912is-crankcase-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Piston",
+      "chapter": "72-20-00",
+      "figure": "72-20-00",
+      "title": "CRANKSHAFT, PISTON, CYLINDER, SPRAG CLUTCH",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-crankshaft-piston-cylinder-page.png",
+      "thumb": "/assets/rotax-912is-crankshaft-piston-cylinder-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-cylinder-head-valve-train",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Cylinder Head",
+      "chapter": "72-20-00",
+      "figure": "72-20-00",
+      "title": "CAMSHAFT, VALVE TRAIN, CYLINDERHEAD, VALVE COVER",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-cylinder-head-valve-train-page.png",
+      "thumb": "/assets/rotax-912is-cylinder-head-valve-train-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-intake-manifold-standard",
+      "categoryId": "intake-manifold-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Intake Manifold - 912 iS",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "INTAKE MANIFOLD, AIRBOX, THROTTLE BODY SOCKET - 912 iS",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-intake-manifold-standard-page.png",
+      "thumb": "/assets/rotax-912is-intake-manifold-standard-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-intake-manifold-sport",
+      "categoryId": "intake-manifold-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Intake Manifold - 912 iS Sport",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "INTAKE MANIFOLD, AIRBOX, THROTTLE BODY SOCKET - 912 iS Sport",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-intake-manifold-sport-page.png",
+      "thumb": "/assets/rotax-912is-intake-manifold-sport-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-fuel-injector",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Fuel Injector",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "FUEL INJECTOR, FUEL RAIL, PRESSURE REGULATOR, FUEL RAIL COVER",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-fuel-injector-page.png",
+      "thumb": "/assets/rotax-912is-fuel-injector-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-fuel-pump-cover",
+      "categoryId": "fuel-pump-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Fuel Pump Assy. Cover",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "FUEL PUMP ASSY. COVER",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-fuel-pump-cover-page.png",
+      "thumb": "/assets/rotax-912is-fuel-pump-cover-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-fuel-pump-assy",
+      "categoryId": "fuel-pump-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Fuel Pump Assy.",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "FUEL PUMP ASSY.",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-fuel-pump-assy-page.png",
+      "thumb": "/assets/rotax-912is-fuel-pump-assy-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-ignition-coils-old",
+      "categoryId": "ignition-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Ignition Coils - Old Version",
+      "chapter": "74-20-00",
+      "figure": "74-20-00",
+      "title": "IGNITION COILS, IGNITION CABLE SPARK, SPARK PLUG CONNECTOR (old version)",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-ignition-coils-old-page.png",
+      "thumb": "/assets/rotax-912is-ignition-coils-old-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-ignition-coils-faston",
+      "categoryId": "ignition-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Ignition Coils - Faston Connectors",
+      "chapter": "74-20-00",
+      "figure": "74-20-00",
+      "title": "IGNITION COILS, IGNITION CABLE, SPARK PLUG CONNECTOR, SPARK PLUG (Faston connectors)",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-ignition-coils-faston-page.png",
+      "thumb": "/assets/rotax-912is-ignition-coils-faston-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-ignition-coils-tyco",
+      "categoryId": "ignition-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Ignition Coils - Tyco Connectors",
+      "chapter": "74-20-00",
+      "figure": "74-20-00",
+      "title": "IGNITION COILS, IGNITION CABLE, SPARK PLUG CONNECTOR, SPARK PLUG (Tyco connectors)",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-ignition-coils-tyco-page.png",
+      "thumb": "/assets/rotax-912is-ignition-coils-tyco-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-water-pump-with-drive",
+      "categoryId": "water-circuits",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Water Pump With Drive",
+      "chapter": "75-20-00",
+      "figure": "75-20-00",
+      "title": "WATER PUMP WITH DRIVE",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-water-pump-with-drive-page.png",
+      "thumb": "/assets/rotax-912is-water-pump-with-drive-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-expansion-tank-hoses",
+      "categoryId": "water-circuits",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Expansion Tank With Hoses And Connections",
+      "chapter": "75-20-00",
+      "figure": "75-20-00",
+      "title": "EXPANSION TANK WITH HOSES AND CONNECTIONS",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-expansion-tank-hoses-page.png",
+      "thumb": "/assets/rotax-912is-expansion-tank-hoses-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator",
+      "categoryId": "radiator",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Cooling Air Baffle, Overflow Bottle With Cap, Radiator",
+      "chapter": "75-20-00",
+      "figure": "75-20-00",
+      "title": "COOLING AIR BAFFLE, OVERFLOW BOTTLE WITH CAP, RADIATOR",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-cooling-air-baffle-radiator-page.png",
+      "thumb": "/assets/rotax-912is-cooling-air-baffle-radiator-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-engine-control-unit",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Engine Control Unit",
+      "chapter": "76-10-00",
+      "figure": "76-10-00",
+      "title": "ENGINE CONTROL UNIT, FUSE BOX REGULATOR",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-engine-control-unit-page.png",
+      "thumb": "/assets/rotax-912is-engine-control-unit-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-wiring-harness-faston",
+      "categoryId": "wiring-harness-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Wiring Harness - Faston Connectors",
+      "chapter": "76-50-00",
+      "figure": "76-50-00",
+      "title": "WIRING HARNESS (Faston connectors for ignition coils)",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-wiring-harness-faston-page.png",
+      "thumb": "/assets/rotax-912is-wiring-harness-faston-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-wiring-harness-tyco",
+      "categoryId": "wiring-harness-912is",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Wiring Harness - Tyco Connectors",
+      "chapter": "76-50-00",
+      "figure": "76-50-00",
+      "title": "WIRING HARNESS (Tyco connectors for ignition coils)",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-wiring-harness-tyco-page.png",
+      "thumb": "/assets/rotax-912is-wiring-harness-tyco-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-exhaust-system-sensor",
+      "categoryId": "exhaust",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Exhaust System, Exhaust Temperature Sensor",
+      "chapter": "78-10-00",
+      "figure": "78-10-00",
+      "title": "EXHAUST SYSTEM, EXHAUST TEMPERATURE SENSOR",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-exhaust-system-sensor-page.png",
+      "thumb": "/assets/rotax-912is-exhaust-system-sensor-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-exhaust-system-standard",
+      "categoryId": "exhaust",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Exhaust System Standard",
+      "chapter": "78-10-00",
+      "figure": "78-10-00",
+      "title": "EXHAUST SYSTEM (STANDARD)",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-exhaust-system-standard-page.png",
+      "thumb": "/assets/rotax-912is-exhaust-system-standard-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-oil-tank",
+      "categoryId": "oil-systems",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Oil Tank",
+      "chapter": "79-20-00",
+      "figure": "79-20-00",
+      "title": "OIL TANK",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-oil-tank-page.png",
+      "thumb": "/assets/rotax-912is-oil-tank-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-oil-pump-assy",
+      "categoryId": "oil-systems",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Oil Pump Assy.",
+      "chapter": "79-20-00",
+      "figure": "79-20-00",
+      "title": "OIL PUMP ASSY., OIL FILTER, OIL TEMPERATURE SENSOR, OIL PRESSURE SENSOR",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-oil-pump-assy-page.png",
+      "thumb": "/assets/rotax-912is-oil-pump-assy-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-oil-radiator",
+      "categoryId": "radiator",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Oil Radiator",
+      "chapter": "79-20-00",
+      "figure": "79-20-00",
+      "title": "OIL RADIATOR",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-oil-radiator-page.png",
+      "thumb": "/assets/rotax-912is-oil-radiator-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "912is-starters",
+      "engineIds": [
+        "912is"
+      ],
+      "label": "Starters",
+      "chapter": "80-10-00",
+      "figure": "80-10-00",
+      "title": "ELECTRIC STARTER, STARTER RELAY",
+      "source": "912 iS IPC - Edition 04, Revision 02, 2024",
+      "image": "/assets/rotax-912is-starters-page.png",
+      "thumb": "/assets/rotax-912is-starters-thumb.png",
+      "hotspots": []
     }
   ],
   "items": [
@@ -14463,6 +14886,6706 @@
         "914ul": 1
       },
       "note": "For retrofitting. same as part no. 881702 but without propeller shaft. as required optional"
+    },
+    {
+      "id": "912is-ignition-housing-001-01-611594",
+      "sectionId": "912is-ignition-housing",
+      "figure": "01",
+      "partNumber": "611594",
+      "description": "IGNITION HOUSING ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid with sprag clutch housing 852407"
+    },
+    {
+      "id": "912is-ignition-housing-002-01-912415",
+      "sectionId": "912is-ignition-housing",
+      "figure": "01",
+      "partNumber": "912415",
+      "description": "IGNITION HOUSING ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-912i-028 with sprag clutch housing 852409 and oil nozzle 456540"
+    },
+    {
+      "id": "912is-ignition-housing-003-01-912416",
+      "sectionId": "912is-ignition-housing",
+      "figure": "01",
+      "partNumber": "912416",
+      "description": "IGNITION HOUSING ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-912i-028 with sprag clutch housing 852409 and oil nozzle 456540 holes for e-starter mounting 7 degree turned. corresponding crankcase see OHM"
+    },
+    {
+      "id": "912is-ignition-housing-004-02-827220",
+      "sectionId": "912is-ignition-housing",
+      "figure": "02",
+      "partNumber": "827220",
+      "description": "WASHER 32/38/1.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-005-03-230429",
+      "sectionId": "912is-ignition-housing",
+      "figure": "03",
+      "partNumber": "230429",
+      "description": "OIL SEAL GPRE 28x38 x7 FKM",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-006-04-966572",
+      "sectionId": "912is-ignition-housing",
+      "figure": "04",
+      "partNumber": "966572",
+      "description": "CRANKSHAFT POSITION SENSOR",
+      "qty": {
+        "912is": 2
+      },
+      "note": "Ill. no. 4-5"
+    },
+    {
+      "id": "912is-ignition-housing-007-05-431580",
+      "sectionId": "912is-ignition-housing",
+      "figure": "05",
+      "partNumber": "431580",
+      "description": "O-RING 17.17X1.78 FPM 70",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-housing-008-06-945831",
+      "sectionId": "912is-ignition-housing",
+      "figure": "06",
+      "partNumber": "945831",
+      "description": "LOCK WASHER",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-ignition-housing-009-07-241935",
+      "sectionId": "912is-ignition-housing",
+      "figure": "07",
+      "partNumber": "241935",
+      "description": "ALLEN SCREW - M6x20",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-housing-010-08-853412",
+      "sectionId": "912is-ignition-housing",
+      "figure": "08",
+      "partNumber": "853412",
+      "description": "CABLE CLAMP",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-ignition-housing-011-09-889562",
+      "sectionId": "912is-ignition-housing",
+      "figure": "09",
+      "partNumber": "889562",
+      "description": "STATOR ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N with round Amphenol connector for regulator B SI-912i-024"
+    },
+    {
+      "id": "912is-ignition-housing-012-09-685067",
+      "sectionId": "912is-ignition-housing",
+      "figure": "09",
+      "partNumber": "685067",
+      "description": "STATOR ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with round Amphenol connector for regulator B SI-912i-024 still valid"
+    },
+    {
+      "id": "912is-ignition-housing-013-10-840792",
+      "sectionId": "912is-ignition-housing",
+      "figure": "10",
+      "partNumber": "840792",
+      "description": "STUD M5X44",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-014-11-947510",
+      "sectionId": "912is-ignition-housing",
+      "figure": "11",
+      "partNumber": "947510",
+      "description": "DISTANCE SLEEVE",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-015-12-938080",
+      "sectionId": "912is-ignition-housing",
+      "figure": "12",
+      "partNumber": "938080",
+      "description": "DISK SPRING 15X5.2X0.7",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-ignition-housing-016-13-827240",
+      "sectionId": "912is-ignition-housing",
+      "figure": "13",
+      "partNumber": "827240",
+      "description": "WASHER 5.1/15.5/2.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-017-14-842033",
+      "sectionId": "912is-ignition-housing",
+      "figure": "14",
+      "partNumber": "842033",
+      "description": "LOCK NUT M5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-018-15-840820",
+      "sectionId": "912is-ignition-housing",
+      "figure": "15",
+      "partNumber": "840820",
+      "description": "ADJUSTMENT SCREW M4X8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-019-16-685070",
+      "sectionId": "912is-ignition-housing",
+      "figure": "16",
+      "partNumber": "685070",
+      "description": "MAGNETO FLYWHEEL ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-housing-020-17-827801",
+      "sectionId": "912is-ignition-housing",
+      "figure": "17",
+      "partNumber": "827801",
+      "description": "WASHER - N - 6",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-ignition-housing-021-18-940882",
+      "sectionId": "912is-ignition-housing",
+      "figure": "18",
+      "partNumber": "940882",
+      "description": "ALLEN SCREW - M5x30",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-ignition-housing-022-19-840036",
+      "sectionId": "912is-ignition-housing",
+      "figure": "19",
+      "partNumber": "840036",
+      "description": "ALLEN SCREW M6X12",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-ignition-housing-023-20-831929",
+      "sectionId": "912is-ignition-housing",
+      "figure": "20",
+      "partNumber": "831929",
+      "description": "O-RING - 5X2",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-20-00"
+    },
+    {
+      "id": "912is-ignition-housing-024-21-827962",
+      "sectionId": "912is-ignition-housing",
+      "figure": "21",
+      "partNumber": "827962",
+      "description": "WASHER -A 6.4 - St",
+      "qty": {
+        "912is": 7
+      }
+    },
+    {
+      "id": "912is-ignition-housing-025-22-840888",
+      "sectionId": "912is-ignition-housing",
+      "figure": "22",
+      "partNumber": "840888",
+      "description": "ALLEN SCREW - M6x30",
+      "qty": {
+        "912is": 5
+      }
+    },
+    {
+      "id": "912is-ignition-housing-026-23-241762",
+      "sectionId": "912is-ignition-housing",
+      "figure": "23",
+      "partNumber": "241762",
+      "description": "ALLEN SCREW - M6x50",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-housing-027-24-941792",
+      "sectionId": "912is-ignition-housing",
+      "figure": "24",
+      "partNumber": "941792",
+      "description": "ALLEN SCREW - M5x45",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-housing-028-25-942311",
+      "sectionId": "912is-ignition-housing",
+      "figure": "25",
+      "partNumber": "942311",
+      "description": "HEX. NUT M5",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-housing-029-26-866420",
+      "sectionId": "912is-ignition-housing",
+      "figure": "26",
+      "partNumber": "866420",
+      "description": "CONNECTOR SET BLACK",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 76-10-00 non certified"
+    },
+    {
+      "id": "912is-ignition-housing-030-27-866422",
+      "sectionId": "912is-ignition-housing",
+      "figure": "27",
+      "partNumber": "866422",
+      "description": "CONNECTOR SET GREY",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 76-10-00 non certified"
+    },
+    {
+      "id": "912is-ignition-housing-031-28-481510",
+      "sectionId": "912is-ignition-housing",
+      "figure": "28",
+      "partNumber": "481510",
+      "description": "CONNECTOR SET STATOR GEN B",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 76-10-00 non certified"
+    },
+    {
+      "id": "912is-ignition-housing-032-29-966260",
+      "sectionId": "912is-ignition-housing",
+      "figure": "29",
+      "partNumber": "966260",
+      "description": "LITHIUM-BATTERY 12V 16AH",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-025 optional"
+    },
+    {
+      "id": "912is-ignition-housing-033-29-966265",
+      "sectionId": "912is-ignition-housing",
+      "figure": "29",
+      "partNumber": "966265",
+      "description": "LITHIUM-BATTERY 12V 12AH",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-025 optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-001-01-887254",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "01",
+      "partNumber": "887254",
+      "description": "ALTERNATORSET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-22 optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-002-02-980590",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "02",
+      "partNumber": "980590",
+      "description": "V-BELT PULLEY",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-003-03-980400",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "03",
+      "partNumber": "980400",
+      "description": "V-BELT 9.5X675",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-004-04-980605",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "04",
+      "partNumber": "980605",
+      "description": "PULLEY CARRIER",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-005-05-840514",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "05",
+      "partNumber": "840514",
+      "description": "ALLEN SCREW - M5x16",
+      "qty": {
+        "912is": 8
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-006-06-945750",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "06",
+      "partNumber": "945750",
+      "description": "LOCK WASHER A5",
+      "qty": {
+        "912is": 8
+      },
+      "note": "not available"
+    },
+    {
+      "id": "912is-external-generator-f3a-007-06-945830",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "06",
+      "partNumber": "945830",
+      "description": "LOCK WASHER -A5-FST",
+      "qty": {
+        "912is": 8
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-008-07-953223",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "07",
+      "partNumber": "953223",
+      "description": "ALTERNATOR BRACKET ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-009-08-240072",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "08",
+      "partNumber": "240072",
+      "description": "ALLEN SCREW - M8x20",
+      "qty": {
+        "912is": 2
+      },
+      "note": "not available optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-010-09-845310",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "09",
+      "partNumber": "845310",
+      "description": "LOCK WASHER VHZ 8",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-011-10-953233",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "10",
+      "partNumber": "953233",
+      "description": "ALTERNATOR SUPPORT ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-012-11-241762",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "11",
+      "partNumber": "241762",
+      "description": "ALLEN SCREW - M6x50",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-013-12-945831",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "12",
+      "partNumber": "945831",
+      "description": "LOCK WASHER -A6-FST",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-014-13-827962",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "13",
+      "partNumber": "827962",
+      "description": "WASHER -A 6.4 - St",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-015-14-887251",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "14",
+      "partNumber": "887251",
+      "description": "ALTERNATOR F3A",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-016-15-927952",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "15",
+      "partNumber": "927952",
+      "description": "THRUST WASHER 10.1/20/0.5",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-017-16-941637",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "16",
+      "partNumber": "941637",
+      "description": "HEX. SCREW M10X45",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with bore for safety wire optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-018-17-953241",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "17",
+      "partNumber": "953241",
+      "description": "TENSION BAR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-019-18-940596",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "18",
+      "partNumber": "940596",
+      "description": "HEX. SCREW M8X20",
+      "qty": {
+        "912is": 2
+      },
+      "note": "with bore for safety wire optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-020-19-945832",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "19",
+      "partNumber": "945832",
+      "description": "LOCK WASHER -A8-FST",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-021-20-227936",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "20",
+      "partNumber": "227936",
+      "description": "WASHER 1 - 8 - 200 HV",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-022-21-864011",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "21",
+      "partNumber": "864011",
+      "description": "FASTON CONNECTOR 6.3X0.8",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-external-generator-f3a-023-22-265255",
+      "sectionId": "912is-external-generator-f3a",
+      "figure": "22",
+      "partNumber": "265255",
+      "description": "CONNECTOR HOUSING 2-POLE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-001-01-881690",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "01",
+      "partNumber": "881690",
+      "description": "VACUUM PUMP DRIVE RETROFIT KIT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-10 as required optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-002-02-832363",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "02",
+      "partNumber": "832363",
+      "description": "BALL BEARING 16002 C3 PAB4F",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-003-03-232925",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "03",
+      "partNumber": "232925",
+      "description": "NEEDLE SLEEVE 22X28X12",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-004-04-831265",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "04",
+      "partNumber": "831265",
+      "description": "OIL SEAL AS 22X32X7",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-005-05-847771",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "05",
+      "partNumber": "847771",
+      "description": "DRIVE SLEEVE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-006-06-834245",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "06",
+      "partNumber": "834245",
+      "description": "VACUUM PUMP GEAR 22 T",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-007-07-941527",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "07",
+      "partNumber": "941527",
+      "description": "ALLEN SCREW M8X14",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-008-08-810170",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "08",
+      "partNumber": "810170",
+      "description": "ATTACHMENT FLANGE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-009-09-941080",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "09",
+      "partNumber": "941080",
+      "description": "STUD M6X20/10",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-010-10-945831",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "10",
+      "partNumber": "945831",
+      "description": "LOCK WASHER -A6-FST",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-011-11-242214",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "11",
+      "partNumber": "242214",
+      "description": "HEX.NUT M6 8.8",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-012-14-227280",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "14",
+      "partNumber": "227280",
+      "description": "THRUST WASHER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-20-00 optional"
+    },
+    {
+      "id": "912is-vacuum-pump-with-drive-013-15-940316",
+      "sectionId": "912is-vacuum-pump-with-drive",
+      "figure": "15",
+      "partNumber": "940316",
+      "description": "COUNTERSUNK SCREW M5X12-5.8",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-20-00 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-001-01-810301",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "01",
+      "partNumber": "810301",
+      "description": "OIL INLET FLANGE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-10-00 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-002-02-430175",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "02",
+      "partNumber": "430175",
+      "description": "O-RING - 46X3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-10-00 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-003-03-830415",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "03",
+      "partNumber": "830415",
+      "description": "O-RING -7X2",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-004-04-232246",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "04",
+      "partNumber": "232246",
+      "description": "ROLLER BEARING RNU 205 ECP/PAB4L",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-10-00 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-005-05-945820",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "05",
+      "partNumber": "945820",
+      "description": "RETAINING RING 52X2",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-10-00 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-006-06-832363",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "06",
+      "partNumber": "832363",
+      "description": "BALL BEARING 16002 C3 PAB4F",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-007-07-227280",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "07",
+      "partNumber": "227280",
+      "description": "THRUST WASHER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-20-00 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-008-08-940316",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "08",
+      "partNumber": "940316",
+      "description": "COUNTERSUNK SCREW M5X12",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 72-20-00 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-009-09-834245",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "09",
+      "partNumber": "834245",
+      "description": "VACUUM PUMP GEAR 22 T",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-010-10-941522",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "10",
+      "partNumber": "941522",
+      "description": "ALLEN SCREW - M8x16",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-011-11-232925",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "11",
+      "partNumber": "232925",
+      "description": "NEEDLE SLEEVE 22X28X12",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-012-12-847773",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "12",
+      "partNumber": "847773",
+      "description": "DRIVE SLEEVE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-013-13-847802",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "13",
+      "partNumber": "847802",
+      "description": "SPACER 25/31.95/13",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-014-14-950380",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "14",
+      "partNumber": "950380",
+      "description": "O-RING - 32X4",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-015-15-810294",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "15",
+      "partNumber": "810294",
+      "description": "GOVERNOR FLANGE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-016-16-941611",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "16",
+      "partNumber": "941611",
+      "description": "PLUG SCREW M8X1",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-017-17-241935",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "17",
+      "partNumber": "241935",
+      "description": "ALLEN SCREW - M6x20",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-018-18-241237",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "18",
+      "partNumber": "241237",
+      "description": "ALLEN SCREW - M6x16",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-019-19-956460",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "19",
+      "partNumber": "956460",
+      "description": "PRESSURE OIL LINE ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-020-20-940876",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "20",
+      "partNumber": "940876",
+      "description": "BANJO BOLT M10X1X23",
+      "qty": {
+        "912is": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-021-21-230150",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "21",
+      "partNumber": "230150",
+      "description": "SEALING RING A 10X14",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-022-22-847223",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "22",
+      "partNumber": "847223",
+      "description": "DISTANCE SLEEVE 8.4/15/6",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-023-23-853418",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "23",
+      "partNumber": "853418",
+      "description": "CABLE CLAMP",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-024-24-945832",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "24",
+      "partNumber": "945832",
+      "description": "LOCK WASHER - A8",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-025-25-240277",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "25",
+      "partNumber": "240277",
+      "description": "HEX. SCREW - M8X25",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-026-26-840711",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "26",
+      "partNumber": "840711",
+      "description": "STUD M8X21/20",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-027-27-945832",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "27",
+      "partNumber": "945832",
+      "description": "LOCK WASHER - A8",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-028-28-942674",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "28",
+      "partNumber": "942674",
+      "description": "HEX. NUT M8 (WS 11mm)",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-029-29-931372",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "29",
+      "partNumber": "931372",
+      "description": "GASKET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-030-30-481485",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "30",
+      "partNumber": "481485",
+      "description": "GOVERNOR CABLE KIT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-003 optional"
+    },
+    {
+      "id": "912is-governor-arrangement-031-31-440867",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "31",
+      "partNumber": "440867",
+      "description": "HEX./TORX-FLANGE SCREW M8X35-SW10/T40",
+      "qty": {
+        "912is": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-032-32-881702",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "32",
+      "partNumber": "881702",
+      "description": "PROP:SHAFT CONFIGURAT 3 RETROFIT KIT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-governor-arrangement-033-33-881700",
+      "sectionId": "912is-governor-arrangement",
+      "figure": "33",
+      "partNumber": "881700",
+      "description": "GOVERNOR DRIVE RETROFIT KIT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "same as 881702 but without propeller shaft optional"
+    },
+    {
+      "id": "912is-engine-suspension-frame-001-01-886565",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "01",
+      "partNumber": "886565",
+      "description": "ENGINE SUSPENSION FRAME ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-engine-suspension-frame-002-01-886563",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "01",
+      "partNumber": "886563",
+      "description": "ENGINE SUSPENSION FRAME ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-engine-suspension-frame-003-02-941487",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "02",
+      "partNumber": "941487",
+      "description": "ALLEN SCREW M10X110",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-suspension-frame-004-03-945753",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "03",
+      "partNumber": "945753",
+      "description": "LOCK WASHER A10",
+      "qty": {
+        "912is": 4
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-engine-suspension-frame-005-03-945833",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "03",
+      "partNumber": "945833",
+      "description": "LOCK WASHER A10",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-engine-suspension-frame-006-04-840948",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "04",
+      "partNumber": "840948",
+      "description": "ALLEN SCREW - M10X35",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-engine-suspension-frame-007-05-927952",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "05",
+      "partNumber": "927952",
+      "description": "THRUST WASHER 10.1/20/0.5",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "912is-engine-suspension-frame-008-05-927953",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "05",
+      "partNumber": "927953",
+      "description": "THRUST WASHER 10.1/20/1.0",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "912is-engine-suspension-frame-009-05-927954",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "05",
+      "partNumber": "927954",
+      "description": "THRUST WASHER 10.1/20/1.5",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required optional"
+    },
+    {
+      "id": "912is-engine-suspension-frame-010-06-860695",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "06",
+      "partNumber": "860695",
+      "description": "SHOCK MOUNT SET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 6-7 SI-PAC-004 optional"
+    },
+    {
+      "id": "912is-engine-suspension-frame-011-06-944240",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "06",
+      "partNumber": "944240",
+      "description": "CUP WASHER",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-engine-suspension-frame-012-07-860690",
+      "sectionId": "912is-engine-suspension-frame",
+      "figure": "07",
+      "partNumber": "860690",
+      "description": "SHOCK MOUNT",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-001-01-893341",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "01",
+      "partNumber": "893341",
+      "description": "GEARBOX WITH CLUTCH I 2.43-2 600NM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-29 Version 2 break away torque 700-900 Nm (516-663 ft lb.)"
+    },
+    {
+      "id": "912is-propeller-gear-overload-002-01-893346",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "01",
+      "partNumber": "893346",
+      "description": "GEARBOX WITH CLUTCH I 2.43-3 600NM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-29 Version 3 break away torque 700-900 Nm (516-663 ft lb.)"
+    },
+    {
+      "id": "912is-propeller-gear-overload-003-01-893340",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "01",
+      "partNumber": "893340",
+      "description": "GEARBOX WITH CLUTCH I 2.43-2 500NM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-29 Version 2 break away torque 600-800 Nm (442-590 ft. lb.)"
+    },
+    {
+      "id": "912is-propeller-gear-overload-004-01-893345",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "01",
+      "partNumber": "893345",
+      "description": "GEARBOX WITH CLUTCH I 2.43-3 500NM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-29 Version 3 break away torque 600-800 Nm (442-590 ft. lb.)"
+    },
+    {
+      "id": "912is-propeller-gear-overload-005-02-926035",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "02",
+      "partNumber": "926035",
+      "description": "RING HALF",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-006-03-834233",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "03",
+      "partNumber": "834233",
+      "description": "DRIVE GEAR 29 T.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-007-04-827992",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "04",
+      "partNumber": "827992",
+      "description": "THRUST WASHER 33.2/51/1.2",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-008-05-886548",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "05",
+      "partNumber": "886548",
+      "description": "GEAR SET I 2.43",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-009-06-933362",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "06",
+      "partNumber": "933362",
+      "description": "BUSHING 31X33X29.8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-010-07-845431",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "07",
+      "partNumber": "845431",
+      "description": "FRICTION WASHER VS30",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-011-08-842579",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "08",
+      "partNumber": "842579",
+      "description": "HEX. NUT M30X1.5 12MM. LH",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-012-09-996916",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "09",
+      "partNumber": "996916",
+      "description": "OVERLOAD CLUTCH ASSY. 600NM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "break away torque 700-900 Nm (516-663 ft lb.) consists of 09 and 34"
+    },
+    {
+      "id": "912is-propeller-gear-overload-013-09-996915",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "09",
+      "partNumber": "996915",
+      "description": "OVERLOAD CLUTCH ASSY. 500NM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "break away torque 600-800 Nm (442-590 ft. lb.) consists of 09 and 34"
+    },
+    {
+      "id": "912is-propeller-gear-overload-014-10-847787",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "10",
+      "partNumber": "847787",
+      "description": "STEP COLLAR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Gearbox with oil spray nozzle. starting with gearbox S/N 74000 including 811954 and 456520"
+    },
+    {
+      "id": "912is-propeller-gear-overload-015-11-838216",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "11",
+      "partNumber": "838216",
+      "description": "DISK SPRING B80. 80X41X3",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-016-12-927401",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "12",
+      "partNumber": "927401",
+      "description": "SHIM 35.4/43/0.2",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "912is-propeller-gear-overload-017-12-927402",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "12",
+      "partNumber": "927402",
+      "description": "SHIM 35.4/43/0.5",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "912is-propeller-gear-overload-018-12-927403",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "12",
+      "partNumber": "927403",
+      "description": "SHIM 35.4/43/1.0",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "912is-propeller-gear-overload-019-13-847687",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "13",
+      "partNumber": "847687",
+      "description": "SPACER 35.2/42/8",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-020-14-832587",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "14",
+      "partNumber": "832587",
+      "description": "B. BEARING 6207 ETN9 C3 35-72-17",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-021-14-832578",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "14",
+      "partNumber": "832578",
+      "description": "BALL BEARING 6207E TN9. 35-72-17",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-propeller-gear-overload-022-15-944320",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "15",
+      "partNumber": "944320",
+      "description": "WASHER 7.2/18.8/3",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-023-16-941760",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "16",
+      "partNumber": "941760",
+      "description": "HEX. SCREW M7X16",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-024-17-926022",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "17",
+      "partNumber": "926022",
+      "description": "SPACER RING 36/50/5.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-025-18-950470",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "18",
+      "partNumber": "950470",
+      "description": "OIL SEAL AS 40X55X7 FPM",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-026-19-937047",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "19",
+      "partNumber": "937047",
+      "description": "PROPELLER SHAFT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Version 2"
+    },
+    {
+      "id": "912is-propeller-gear-overload-027-19-937041",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "19",
+      "partNumber": "937041",
+      "description": "PROPELLER SHAFT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Version 3"
+    },
+    {
+      "id": "912is-propeller-gear-overload-028-20-811959",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "20",
+      "partNumber": "811959",
+      "description": "GEAR COVER ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "912is-propeller-gear-overload-029-20-610362",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "20",
+      "partNumber": "610362",
+      "description": "GEAR COVER ASSY.PACKED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 20. 32 Gearbox with oil spray nozzle. starting with gearbox S/N 74000 including 811959 or 811954 and 456520"
+    },
+    {
+      "id": "912is-propeller-gear-overload-030-20-811954",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "20",
+      "partNumber": "811954",
+      "description": "GEAR COVER ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N not available"
+    },
+    {
+      "id": "912is-propeller-gear-overload-031-21-827962",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "21",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-032-22-241823",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "22",
+      "partNumber": "241823",
+      "description": "ALLEN SCREW - M6x45",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-033-23-940077",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "23",
+      "partNumber": "940077",
+      "description": "HEX./TORX-FLANGE SCREW M8X45-SW10/T40",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-034-24-926151",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "24",
+      "partNumber": "926151",
+      "description": "COVER",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-035-25-945832",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "25",
+      "partNumber": "945832",
+      "description": "LOCK WASHER - A8",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-036-26-940592",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "26",
+      "partNumber": "940592",
+      "description": "HEX.SCREW - M8X20",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-037-27-232246",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "27",
+      "partNumber": "232246",
+      "description": "ROLLER BEARING RNU 205 ECP/PAB4L",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-038-27-232241",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "27",
+      "partNumber": "232241",
+      "description": "ROLLER BEARING NJ 205 ECP/C3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "912is-propeller-gear-overload-039-28-945820",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "28",
+      "partNumber": "945820",
+      "description": "RETAINING RING 52X2",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-040-29-950200",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "29",
+      "partNumber": "950200",
+      "description": "OIL SEAL AS 30X52X7 FPM",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-041-30-810301",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "30",
+      "partNumber": "810301",
+      "description": "OIL INLET FLANGE",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-042-31-430175",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "31",
+      "partNumber": "430175",
+      "description": "O-RING - 46X3",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-043-32-456520",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "32",
+      "partNumber": "456520",
+      "description": "OIL SPRAY NOZZLE ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-propeller-gear-overload-044-33-842634",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "33",
+      "partNumber": "842634",
+      "description": "ROUND-NECK NUT SET M8",
+      "qty": {
+        "912is": 1
+      },
+      "note": "do not use with auxiliary alternator. only available as set"
+    },
+    {
+      "id": "912is-propeller-gear-overload-045-34-958528",
+      "sectionId": "912is-propeller-gear-overload",
+      "figure": "34",
+      "partNumber": "958528",
+      "description": "DOG HUB 0 DEGREE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-crankcase-001-01-300091210",
+      "sectionId": "912is-crankcase",
+      "figure": "01",
+      "partNumber": "300091210",
+      "description": "ENGINE BLOCK",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1. 4. 5. 7. 8. 9. 10"
+    },
+    {
+      "id": "912is-crankcase-002-02-429230",
+      "sectionId": "912is-crankcase",
+      "figure": "02",
+      "partNumber": "429230",
+      "description": "DOWEL 6X20",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-crankcase-003-03-431570",
+      "sectionId": "912is-crankcase",
+      "figure": "03",
+      "partNumber": "431570",
+      "description": "O-RING -10.82X1.78-",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-crankcase-004-04-950141",
+      "sectionId": "912is-crankcase",
+      "figure": "04",
+      "partNumber": "950141",
+      "description": "SEALING RING A 8X13",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankcase-005-05-240072",
+      "sectionId": "912is-crankcase",
+      "figure": "05",
+      "partNumber": "240072",
+      "description": "ALLEN SCREW - M8x20",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankcase-006-06-831929",
+      "sectionId": "912is-crankcase",
+      "figure": "06",
+      "partNumber": "831929",
+      "description": "O-RING - 5X2",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankcase-007-07-940316",
+      "sectionId": "912is-crankcase",
+      "figure": "07",
+      "partNumber": "940316",
+      "description": "COUNTERSUNK SCREW M5X12",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankcase-008-08-227280",
+      "sectionId": "912is-crankcase",
+      "figure": "08",
+      "partNumber": "227280",
+      "description": "THRUST WASHER",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankcase-009-09-944222",
+      "sectionId": "912is-crankcase",
+      "figure": "09",
+      "partNumber": "944222",
+      "description": "BLINDING SHIM",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankcase-010-10-430061",
+      "sectionId": "912is-crankcase",
+      "figure": "10",
+      "partNumber": "430061",
+      "description": "O-RING - 26.7X1.8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-001-01-250057",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "01",
+      "partNumber": "250057",
+      "description": "O-RING - 18X2.5",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-002-02-940520",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "02",
+      "partNumber": "940520",
+      "description": "PLUG SCREW M22X1.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-003-03-246055",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "03",
+      "partNumber": "246055",
+      "description": "WOODRUFF KEY 3X3.7",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-004-04-852409",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "04",
+      "partNumber": "852409",
+      "description": "SPRAG CLUTCH HOUSING",
+      "qty": {
+        "912is": 1
+      },
+      "note": "assemble together with 456540 oil spray nozzle and ignition cover 912248. 912415 or 912416 SI-912i-028"
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-005-04-852407",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "04",
+      "partNumber": "852407",
+      "description": "SPRAG CLUTCH HOUSING",
+      "qty": {
+        "912is": 1
+      },
+      "note": "not available assemble 852407 only with 611954"
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-006-05-958856",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "05",
+      "partNumber": "958856",
+      "description": "SPRAG CLUTCH 51.710X68.377X13",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-007-06-845425",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "06",
+      "partNumber": "845425",
+      "description": "CIRCLIP 70",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-008-07-942250",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "07",
+      "partNumber": "942250",
+      "description": "HEX. NUT M32X1.5-LH",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-009-08-888382",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "08",
+      "partNumber": "888382",
+      "description": "PISTON ASSY. 84/84.01 MM",
+      "qty": {
+        "912is": 4
+      },
+      "note": "Ill. no. 8-11 red 84 mm. green 84.01 mm"
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-010-09-815230",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "09",
+      "partNumber": "815230",
+      "description": "OIL SCRAPER RING 84X76.5X3",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-011-10-815280",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "10",
+      "partNumber": "815280",
+      "description": "TAPERED COMPRESSION RING 84",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-012-11-815257",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "11",
+      "partNumber": "815257",
+      "description": "RECTANGULAR RING 84/77X1.5",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-013-11-815251",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "11",
+      "partNumber": "815251",
+      "description": "RECTANGULAR RING 84/77X1.5",
+      "qty": {
+        "912is": 4
+      },
+      "note": "not available"
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-014-12-916356",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "12",
+      "partNumber": "916356",
+      "description": "PISTON PIN 20X12X55.3",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-015-13-845106",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "13",
+      "partNumber": "845106",
+      "description": "MONOHOOK CIRCLIP 20",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-016-14-913229",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "14",
+      "partNumber": "913229",
+      "description": "CYLINDER",
+      "qty": {
+        "912is": 4
+      },
+      "note": "Status N A: 84.000 - 84.012 mm B: 84.012 - 84.024 mm"
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-017-14-913226",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "14",
+      "partNumber": "913226",
+      "description": "CYLINDER",
+      "qty": {
+        "912is": 4
+      },
+      "note": "A: 84.000 - 84.012 mm B: 84.012 - 84.024 mm still valid"
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-018-15-250510",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "15",
+      "partNumber": "250510",
+      "description": "O-RING - 87X2",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-crankshaft-piston-cylinder-019-16-456540",
+      "sectionId": "912is-crankshaft-piston-cylinder",
+      "figure": "16",
+      "partNumber": "456540",
+      "description": "OIL SPRAY NOZZLE ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "assemble 852409 together with 456540 oil spray nozzle and ignition cover 912248. 912415 or 912416 SI-912i-028"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-001-01-881832",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "01",
+      "partNumber": "881832",
+      "description": "HYDRAULIC VALVE TAPPET SET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "consists of 8 pcs. 854099"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-002-02-850930",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "02",
+      "partNumber": "850930",
+      "description": "O-RING -16X5-N. FPM 75 GREEN",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-003-03-924440",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "03",
+      "partNumber": "924440",
+      "description": "OIL RETURN TUBE",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-004-04-840171",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "04",
+      "partNumber": "840171",
+      "description": "STUD M8X200",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-005-05-840141",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "05",
+      "partNumber": "840141",
+      "description": "STUD M8X186",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-006-06-842476",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "06",
+      "partNumber": "842476",
+      "description": "COLLAR CAP NUT M8",
+      "qty": {
+        "912is": 8
+      },
+      "note": "Width A/F 11"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-007-07-942302",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "07",
+      "partNumber": "942302",
+      "description": "COLLAR NUT M8",
+      "qty": {
+        "912is": 8
+      },
+      "note": "Width A/F 11"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-008-08-623774",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "08",
+      "partNumber": "623774",
+      "description": "CYLINDERHEAD 2/3 ASSY.",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-009-08-623775",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "08",
+      "partNumber": "623775",
+      "description": "CYLINDERHEAD 2/3 ASSY.",
+      "qty": {
+        "912is": 2
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-010-09-623784",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "09",
+      "partNumber": "623784",
+      "description": "CYLINDERHEAD 1/4 ASSY.",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-011-09-623785",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "09",
+      "partNumber": "623785",
+      "description": "CYLINDERHEAD 1/4 ASSY.",
+      "qty": {
+        "912is": 2
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-012-10-854101",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "10",
+      "partNumber": "854101",
+      "description": "INTAKE VALVE 38 MM",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-013-11-854111",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "11",
+      "partNumber": "854111",
+      "description": "EXHAUST VALVE 32MM",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-014-12-926210",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "12",
+      "partNumber": "926210",
+      "description": "SHIM 16/27.4/1",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-015-13-230810",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "13",
+      "partNumber": "230810",
+      "description": "VALVE STEM SEAL",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-016-14-838156",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "14",
+      "partNumber": "838156",
+      "description": "VALVE SPRING",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-017-15-854188",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "15",
+      "partNumber": "854188",
+      "description": "VALVE SPRING RETAINER",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-018-16-253092",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "16",
+      "partNumber": "253092",
+      "description": "VALVE COTTER",
+      "qty": {
+        "912is": 16
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-019-17-854862",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "17",
+      "partNumber": "854862",
+      "description": "VALVE PUSH-ROD ASSY.",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-020-18-854387",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "18",
+      "partNumber": "854387",
+      "description": "ROCKER ARM LEFT",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-021-19-854397",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "19",
+      "partNumber": "854397",
+      "description": "ROCKER ARM RIGHT",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-022-20-933396",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "20",
+      "partNumber": "933396",
+      "description": "BUSHING",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-023-21-854193",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "21",
+      "partNumber": "854193",
+      "description": "ROCKER ARM SHAFT",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-024-22-250016",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "22",
+      "partNumber": "250016",
+      "description": "SEALING RING A12X18",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-025-23-841923",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "23",
+      "partNumber": "841923",
+      "description": "PLUG SCREW M12X1.5",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-026-24-250285",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "24",
+      "partNumber": "250285",
+      "description": "O-RING - 105X2.5",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-027-25-430205",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "25",
+      "partNumber": "430205",
+      "description": "O-RING - 6.4X1.8",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-028-26-612267",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "26",
+      "partNumber": "612267",
+      "description": "VALVE COVER BLACK",
+      "qty": {
+        "912is": 4
+      },
+      "note": "without ROTAX logo optional"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-029-26-612260",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "26",
+      "partNumber": "612260",
+      "description": "VALVE COVER GREEN",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-030-27-927941",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "27",
+      "partNumber": "927941",
+      "description": "WASHER 6.0/12/1",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-031-28-840887",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "28",
+      "partNumber": "840887",
+      "description": "ALLEN SCREW M6X30",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-032-29-866270",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "29",
+      "partNumber": "866270",
+      "description": "KNOCK SENSOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-033-30-940483",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "30",
+      "partNumber": "940483",
+      "description": "HEX. SCREW - M8X30",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-034-31-866714",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "31",
+      "partNumber": "866714",
+      "description": "TIE WRAP 142x3.2 MM",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-035-32-431570",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "32",
+      "partNumber": "431570",
+      "description": "O-RING - 10.82X1.78",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-cylinder-head-valve-train-036-33-881920",
+      "sectionId": "912is-cylinder-head-valve-train",
+      "figure": "33",
+      "partNumber": "881920",
+      "description": "O-RING SET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 24. 25 consists of 4 pcs. 430205 and 4 pcs. 250285"
+    },
+    {
+      "id": "912is-intake-manifold-standard-001-01-667403",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "01",
+      "partNumber": "667403",
+      "description": "INTAKE MANIFOLD 1/3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-intake-manifold-standard-002-01-667401",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "01",
+      "partNumber": "667401",
+      "description": "INTAKE MANIFOLD 1/3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-intake-manifold-standard-003-02-667405",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "02",
+      "partNumber": "667405",
+      "description": "INTAKE MANIFOLD 2/4",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-intake-manifold-standard-004-02-667408",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "02",
+      "partNumber": "667408",
+      "description": "INTAKE MANIFOLD 2/4",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-intake-manifold-standard-005-03-850091",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "03",
+      "partNumber": "850091",
+      "description": "ISOLATING FLANGE",
+      "qty": {
+        "912is": 2
+      },
+      "note": "Double flange"
+    },
+    {
+      "id": "912is-intake-manifold-standard-006-04-440207",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "04",
+      "partNumber": "440207",
+      "description": "HEX./TORX-FLANGE SCREW M6X20-SW8/T30",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-007-05-460420",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "05",
+      "partNumber": "460420",
+      "description": "CONNECTING SOCKET",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-008-06-853028",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "06",
+      "partNumber": "853028",
+      "description": "1-EAR-CLAMP 48.3-51.5 MM",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-009-07-667410",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "07",
+      "partNumber": "667410",
+      "description": "AIRBOX",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-010-08-440164",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "08",
+      "partNumber": "440164",
+      "description": "HEX./TORX-FLANGE SCREW M6X16-SW8/T30 MK",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-011-09-230415",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "09",
+      "partNumber": "230415",
+      "description": "SEALING RING A 6X10",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-012-10-840670",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "10",
+      "partNumber": "840670",
+      "description": "HOSE NIPPLE M6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-013-11-860700",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "11",
+      "partNumber": "860700",
+      "description": "RUBBER 20X10XM6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-014-12-827968",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "12",
+      "partNumber": "827968",
+      "description": "WASHER 6.4",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-015-13-842042",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "13",
+      "partNumber": "842042",
+      "description": "LOCK NUT M6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-016-14-850020",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "14",
+      "partNumber": "850020",
+      "description": "RUBBER RING",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-017-15-685055",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "15",
+      "partNumber": "685055",
+      "description": "THROTTLE BODY SOCKET ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-intake-manifold-standard-018-15-685056",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "15",
+      "partNumber": "685056",
+      "description": "THROTTLE BODY SOCKET ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-019-16-953020",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "16",
+      "partNumber": "953020",
+      "description": "SEPARATING PLATE",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-020-17-440147",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "17",
+      "partNumber": "440147",
+      "description": "HEX./TORX-FLANGE SCREW M6X12-SW8/T30",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-021-18-250016",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "18",
+      "partNumber": "250016",
+      "description": "SEALING RING A12X18",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-022-19-222421",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "19",
+      "partNumber": "222421",
+      "description": "TEMPERATURE SENSOR",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-023-20-664364",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "20",
+      "partNumber": "664364",
+      "description": "PRESSURE SENSOR 2.0",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-024-21-951560",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "21",
+      "partNumber": "951560",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-standard-025-22-825751",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "22",
+      "partNumber": "825751",
+      "description": "AIR FILTER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Air filter incl. hose clamp optional"
+    },
+    {
+      "id": "912is-intake-manifold-standard-026-23-975100",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "23",
+      "partNumber": "975100",
+      "description": "HEAT SHIELD",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-intake-manifold-standard-027-24-874654",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "24",
+      "partNumber": "874654",
+      "description": "PRESSURE-/TEMP. SENSOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ambient pressure and temperature"
+    },
+    {
+      "id": "912is-intake-manifold-standard-028-25-951500",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "25",
+      "partNumber": "951500",
+      "description": "CLAMP 381X4.8 MM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-intake-manifold-standard-029-26-651780",
+      "sectionId": "912is-intake-manifold-standard",
+      "figure": "26",
+      "partNumber": "651780",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-001-01-667401",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "01",
+      "partNumber": "667401",
+      "description": "INTAKE MANIFOLD 1/3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-intake-manifold-sport-002-01-667403",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "01",
+      "partNumber": "667403",
+      "description": "INTAKE MANIFOLD 1/3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-intake-manifold-sport-003-02-667406",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "02",
+      "partNumber": "667406",
+      "description": "INTAKE MANIFOLD 2/4",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-intake-manifold-sport-004-02-667408",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "02",
+      "partNumber": "667408",
+      "description": "INTAKE MANIFOLD 2/4",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-intake-manifold-sport-005-03-850091",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "03",
+      "partNumber": "850091",
+      "description": "ISOLATING FLANGE",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-006-04-440207",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "04",
+      "partNumber": "440207",
+      "description": "HEX./TORX-FLANGE SCREW M6X20-SW8/T30",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-007-05-460421",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "05",
+      "partNumber": "460421",
+      "description": "CONNECTING SOCKET",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-008-06-953093",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "06",
+      "partNumber": "953093",
+      "description": "1-EAR-CLAMP 66.3-69.5 MM",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-009-07-667418",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "07",
+      "partNumber": "667418",
+      "description": "AIRBOX",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with additional cable support bracket. 651942 becomes obsolete with 667418 (see chapter 74-20-00)"
+    },
+    {
+      "id": "912is-intake-manifold-sport-010-07-667419",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "07",
+      "partNumber": "667419",
+      "description": "AIRBOX",
+      "qty": {
+        "912is": 1
+      },
+      "note": "without ROTAX logo optional"
+    },
+    {
+      "id": "912is-intake-manifold-sport-011-08-440164",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "08",
+      "partNumber": "440164",
+      "description": "HEX./TORX-FLANGE SCREW M6X16-SW8/T30 MK",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-012-09-230415",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "09",
+      "partNumber": "230415",
+      "description": "SEALING RING A 6X10",
+      "qty": {
+        "912is": 2
+      },
+      "note": "not available 840671 + 230415 is replaced by 840672"
+    },
+    {
+      "id": "912is-intake-manifold-sport-013-10-840672",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "10",
+      "partNumber": "840672",
+      "description": "HOSE NIPPLE M6 MK",
+      "qty": {
+        "912is": 1
+      },
+      "note": "840671 + 230415 is replaced by 840672"
+    },
+    {
+      "id": "912is-intake-manifold-sport-014-11-860700",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "11",
+      "partNumber": "860700",
+      "description": "RUBBER 20X10XM6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-015-12-827968",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "12",
+      "partNumber": "827968",
+      "description": "WASHER 6.4",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-016-13-842042",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "13",
+      "partNumber": "842042",
+      "description": "LOCK NUT M6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-017-14-850020",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "14",
+      "partNumber": "850020",
+      "description": "RUBBER RING",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-018-15-685055",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "15",
+      "partNumber": "685055",
+      "description": "THROTTLE BODY SOCKET ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "912is-intake-manifold-sport-019-15-685056",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "15",
+      "partNumber": "685056",
+      "description": "THROTTLE BODY SOCKET ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-020-16-953020",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "16",
+      "partNumber": "953020",
+      "description": "SEPARATING PLATE",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-021-17-440147",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "17",
+      "partNumber": "440147",
+      "description": "HEX./TORX-FLANGE SCREW M6X12-SW8/T30",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-022-18-250016",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "18",
+      "partNumber": "250016",
+      "description": "SEALING RING A12X18",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-023-19-222421",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "19",
+      "partNumber": "222421",
+      "description": "TEMPERATURE SENSOR",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-024-20-664364",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "20",
+      "partNumber": "664364",
+      "description": "PRESSURE SENSOR 2.0",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-025-21-951562",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "21",
+      "partNumber": "951562",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-026-22-825751",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "22",
+      "partNumber": "825751",
+      "description": "AIR FILTER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Air filter incl. hose clamp optional"
+    },
+    {
+      "id": "912is-intake-manifold-sport-027-23-975100",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "23",
+      "partNumber": "975100",
+      "description": "HEAT SHIELD",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-intake-manifold-sport-028-24-874654",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "24",
+      "partNumber": "874654",
+      "description": "PRESSURE-/TEMP. SENSOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ambient pressure and temperature"
+    },
+    {
+      "id": "912is-intake-manifold-sport-029-25-951500",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "25",
+      "partNumber": "951500",
+      "description": "CLAMP 381X4.8 MM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-intake-manifold-sport-030-26-651780",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "26",
+      "partNumber": "651780",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-031-27-638140",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "27",
+      "partNumber": "638140",
+      "description": "CLAMP",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-intake-manifold-sport-032-28-440000",
+      "sectionId": "912is-intake-manifold-sport",
+      "figure": "28",
+      "partNumber": "440000",
+      "description": "FIXING SCREW ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Screw. nut and washers"
+    },
+    {
+      "id": "912is-fuel-injector-001-01-874795",
+      "sectionId": "912is-fuel-injector",
+      "figure": "01",
+      "partNumber": "874795",
+      "description": "FUELRAIL 1/3 UNF",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Thread 9/16 18 UNF"
+    },
+    {
+      "id": "912is-fuel-injector-002-02-874799",
+      "sectionId": "912is-fuel-injector",
+      "figure": "02",
+      "partNumber": "874799",
+      "description": "FUELRAIL 1/3 METRIC",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Thread M14x1.5"
+    },
+    {
+      "id": "912is-fuel-injector-003-03-874797",
+      "sectionId": "912is-fuel-injector",
+      "figure": "03",
+      "partNumber": "874797",
+      "description": "FUELRAIL 2/4",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-004-04-945830",
+      "sectionId": "912is-fuel-injector",
+      "figure": "04",
+      "partNumber": "945830",
+      "description": "LOCK WASHER - A5",
+      "qty": {
+        "912is": 11
+      }
+    },
+    {
+      "id": "912is-fuel-injector-005-05-640542",
+      "sectionId": "912is-fuel-injector",
+      "figure": "05",
+      "partNumber": "640542",
+      "description": "ALLEN SCREW - M5x12",
+      "qty": {
+        "912is": 11
+      }
+    },
+    {
+      "id": "912is-fuel-injector-006-06-874780",
+      "sectionId": "912is-fuel-injector",
+      "figure": "06",
+      "partNumber": "874780",
+      "description": "FUEL INJECTOR",
+      "qty": {
+        "912is": 8
+      },
+      "note": "Ill. no. 6-8"
+    },
+    {
+      "id": "912is-fuel-injector-007-07-831060",
+      "sectionId": "912is-fuel-injector",
+      "figure": "07",
+      "partNumber": "831060",
+      "description": "O-RING 7.52X3.51 VITON B BLACK",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-fuel-injector-008-08-831050",
+      "sectionId": "912is-fuel-injector",
+      "figure": "08",
+      "partNumber": "831050",
+      "description": "O-RING 8.30X3.05 VITON B BROWN",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-fuel-injector-009-09-860042",
+      "sectionId": "912is-fuel-injector",
+      "figure": "09",
+      "partNumber": "860042",
+      "description": "DAMPER LEFT",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-fuel-injector-010-10-860040",
+      "sectionId": "912is-fuel-injector",
+      "figure": "10",
+      "partNumber": "860040",
+      "description": "DAMPER RIGHT",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-fuel-injector-011-11-250646",
+      "sectionId": "912is-fuel-injector",
+      "figure": "11",
+      "partNumber": "250646",
+      "description": "SEALING RING - A 12X18-CU",
+      "qty": {
+        "912is": 7
+      }
+    },
+    {
+      "id": "912is-fuel-injector-012-11-250640",
+      "sectionId": "912is-fuel-injector",
+      "figure": "11",
+      "partNumber": "250640",
+      "description": "SEALING RING A 12X18-CU",
+      "qty": {
+        "912is": 7
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-fuel-injector-013-12-641541",
+      "sectionId": "912is-fuel-injector",
+      "figure": "12",
+      "partNumber": "641541",
+      "description": "BANJO BOLT - 8 - 3",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-fuel-injector-014-13-874802",
+      "sectionId": "912is-fuel-injector",
+      "figure": "13",
+      "partNumber": "874802",
+      "description": "FUEL LINE ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-015-14-853412",
+      "sectionId": "912is-fuel-injector",
+      "figure": "14",
+      "partNumber": "853412",
+      "description": "CABLE CLAMP",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-016-15-827962",
+      "sectionId": "912is-fuel-injector",
+      "figure": "15",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4 - St",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-017-16-241239",
+      "sectionId": "912is-fuel-injector",
+      "figure": "16",
+      "partNumber": "241239",
+      "description": "ALLEN SCREW M6X16",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-018-17-874770",
+      "sectionId": "912is-fuel-injector",
+      "figure": "17",
+      "partNumber": "874770",
+      "description": "PRESSURE REGULATOR HOUSING",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-019-18-889262",
+      "sectionId": "912is-fuel-injector",
+      "figure": "18",
+      "partNumber": "889262",
+      "description": "FUEL PRESSURE REGULATOR ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-020-19-845650",
+      "sectionId": "912is-fuel-injector",
+      "figure": "19",
+      "partNumber": "845650",
+      "description": "RETAINING RING 36X1.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-021-20-941792",
+      "sectionId": "912is-fuel-injector",
+      "figure": "20",
+      "partNumber": "941792",
+      "description": "ALLEN SCREW - M5x45",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-022-21-841502",
+      "sectionId": "912is-fuel-injector",
+      "figure": "21",
+      "partNumber": "841502",
+      "description": "ALLEN SCREW - M5x35",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-023-22-840700",
+      "sectionId": "912is-fuel-injector",
+      "figure": "22",
+      "partNumber": "840700",
+      "description": "ADAPTER 9/16 UNF/M12x1.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-024-22-856821",
+      "sectionId": "912is-fuel-injector",
+      "figure": "22",
+      "partNumber": "856821",
+      "description": "ADAPTER M14x1.5/M12x1.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-025-23-960631",
+      "sectionId": "912is-fuel-injector",
+      "figure": "23",
+      "partNumber": "960631",
+      "description": "TUBE 60 MM",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-fuel-injector-026-24-866718",
+      "sectionId": "912is-fuel-injector",
+      "figure": "24",
+      "partNumber": "866718",
+      "description": "TIE WRAP 94x2.5 MM",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-fuel-injector-027-25-975090",
+      "sectionId": "912is-fuel-injector",
+      "figure": "25",
+      "partNumber": "975090",
+      "description": "HEAT SHIELD",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-fuel-injector-028-26-975060",
+      "sectionId": "912is-fuel-injector",
+      "figure": "26",
+      "partNumber": "975060",
+      "description": "COVERING FUELRAIL",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-fuel-injector-029-26-975068",
+      "sectionId": "912is-fuel-injector",
+      "figure": "26",
+      "partNumber": "975068",
+      "description": "COVERING FUELRAIL",
+      "qty": {
+        "912is": 2
+      },
+      "note": "without ROTAX logo optional"
+    },
+    {
+      "id": "912is-fuel-injector-030-27-939445",
+      "sectionId": "912is-fuel-injector",
+      "figure": "27",
+      "partNumber": "939445",
+      "description": "SPRING WASHER 12X5.2X0.5",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-fuel-injector-031-28-640542",
+      "sectionId": "912is-fuel-injector",
+      "figure": "28",
+      "partNumber": "640542",
+      "description": "ALLEN SCREW - M5x12",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-fuel-injector-032-29-841131",
+      "sectionId": "912is-fuel-injector",
+      "figure": "29",
+      "partNumber": "841131",
+      "description": "SENSOR BANJO BOLT - M12X1.5",
+      "qty": {
+        "912is": 1
+      },
+      "note": "for fuel pressure sensor connection M12x1.5 SI-PAC-024 optional"
+    },
+    {
+      "id": "912is-fuel-pump-cover-001-01-889697",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "01",
+      "partNumber": "889697",
+      "description": "FUEL PUMP ASSY. UNF - PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-7 (889696 + packaging) Thread 9/16 18 UNF with gaskets for connectors SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-002-01-889699",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "01",
+      "partNumber": "889699",
+      "description": "FUEL PUMP ASSY. METRIC - PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-7 (889698 + packaging) Thread M14x1.5 with gaskets for connectors SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-003-02-640542",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "02",
+      "partNumber": "640542",
+      "description": "ALLEN SCREW - M5x12",
+      "qty": {
+        "912is": 4
+      },
+      "note": "SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-004-03-911790",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "03",
+      "partNumber": "911790",
+      "description": "COVER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-005-04-975055",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "04",
+      "partNumber": "975055",
+      "description": "HEAT PROTECTION MAT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-006-05-201160",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "05",
+      "partNumber": "201160",
+      "description": "RUBBER GROMMET",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-007-06-911700",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "06",
+      "partNumber": "911700",
+      "description": "HOUSING",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-008-07-242213",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "07",
+      "partNumber": "242213",
+      "description": "HEX.NUT M6",
+      "qty": {
+        "912is": 8
+      },
+      "note": "SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-009-08-874060",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "08",
+      "partNumber": "874060",
+      "description": "FUEL FILTER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Fine filter SI-PAC-007 optional"
+    },
+    {
+      "id": "912is-fuel-pump-cover-010-09-889537",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "09",
+      "partNumber": "889537",
+      "description": "Fuel pump service kit",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-008 SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-cover-011-10-850620",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "10",
+      "partNumber": "850620",
+      "description": "CONNECTOR GASKET",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-fuel-pump-cover-012-11-874532",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "11",
+      "partNumber": "874532",
+      "description": "CHECK VALVE",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-fuel-pump-cover-013-12-481378",
+      "sectionId": "912is-fuel-pump-cover",
+      "figure": "12",
+      "partNumber": "481378",
+      "description": "REPLACEMENT KIT - FUEL PUMP",
+      "qty": {
+        "912is": 2
+      },
+      "note": "for replacement of 1 pump including all clamps and hoses SI-PAC-016"
+    },
+    {
+      "id": "912is-fuel-pump-assy-001-01-889732",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "01",
+      "partNumber": "889732",
+      "description": "FUEL PUMP - PACKAGED",
+      "qty": {
+        "912is": 2
+      },
+      "note": "Status N (889731 certified + packaging) SI-PAC-026"
+    },
+    {
+      "id": "912is-fuel-pump-assy-002-02-481481",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "02",
+      "partNumber": "481481",
+      "description": "PARTS KIT FUEL PUMP",
+      "qty": {
+        "912is": 2
+      },
+      "note": "Status N consists of position 3-10 non certified"
+    },
+    {
+      "id": "912is-fuel-pump-assy-003-03-875018",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "03",
+      "partNumber": "875018",
+      "description": "CHECK VALVE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N non certified not available"
+    },
+    {
+      "id": "912is-fuel-pump-assy-004-04-250735",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "04",
+      "partNumber": "250735",
+      "description": "GASKET RING A 14X20",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N non certified not available"
+    },
+    {
+      "id": "912is-fuel-pump-assy-005-05-875017",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "05",
+      "partNumber": "875017",
+      "description": "CONNECTION M14X1.5-AN6",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N non certified not available"
+    },
+    {
+      "id": "912is-fuel-pump-assy-006-06-951590",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "06",
+      "partNumber": "951590",
+      "description": "CLAMP MS 21919 W DG 32",
+      "qty": {
+        "912is": 2
+      },
+      "note": "Status N non certified not available"
+    },
+    {
+      "id": "912is-fuel-pump-assy-007-07-881305",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "07",
+      "partNumber": "881305",
+      "description": "CONNECTOR SET FUEL PUMP",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N non certified not available consists of: 1 x Connector housing 3 x Flat pin terminal 3 x Cable grommet"
+    },
+    {
+      "id": "912is-fuel-pump-assy-008-08-481471",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "08",
+      "partNumber": "481471",
+      "description": "CABLE LUG KIT FUEL PUMP",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N non certified not available consists of: 2 x Protective cap 1 x Lock nut M4 1 x Lock nut M5 1 x Washer 4.3 1 x Washer 5.3 1 x Ring terminal M4 1 x Ring terminal M5"
+    },
+    {
+      "id": "912is-fuel-pump-assy-009-09-875016",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "09",
+      "partNumber": "875016",
+      "description": "CONNECTION M10X1-AN6",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N non certified not available"
+    },
+    {
+      "id": "912is-fuel-pump-assy-010-10-250425",
+      "sectionId": "912is-fuel-pump-assy",
+      "figure": "10",
+      "partNumber": "250425",
+      "description": "GASKET RING 10.2/15/1.5",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N non certified not available"
+    },
+    {
+      "id": "912is-ignition-coils-old-001-01-665610",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "01",
+      "partNumber": "665610",
+      "description": "DOUBLE IGNITION COIL",
+      "qty": {
+        "912is": 4
+      },
+      "note": "not available Double ignition coil and cable with plug connection"
+    },
+    {
+      "id": "912is-ignition-coils-old-002-02-951490",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "02",
+      "partNumber": "951490",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-coils-old-003-03-945830",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "03",
+      "partNumber": "945830",
+      "description": "LOCK WASHER - A5",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-old-004-04-441341",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "04",
+      "partNumber": "441341",
+      "description": "ALLEN SCREW M5X20",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-old-005-05-265249",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "05",
+      "partNumber": "265249",
+      "description": "SPARK PLUG CONNECTOR",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-old-006-06-297656",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "06",
+      "partNumber": "297656",
+      "description": "SPARK PLUG 12",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-old-007-07-866718",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "07",
+      "partNumber": "866718",
+      "description": "TIE WRAP 94x2.5 MM",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-old-008-08-866714",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "08",
+      "partNumber": "866714",
+      "description": "TIE WRAP 142x3.2 MM",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-ignition-coils-old-009-09-860734",
+      "sectionId": "912is-ignition-coils-old",
+      "figure": "09",
+      "partNumber": "860734",
+      "description": "GLASS FIBER-SILICON SHEATING 120",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-001-01-665613",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "01",
+      "partNumber": "665613",
+      "description": "DOUBLE IGNITION COIL",
+      "qty": {
+        "912is": 4
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-ignition-coils-faston-002-02-951490",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "02",
+      "partNumber": "951490",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-003-03-945830",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "03",
+      "partNumber": "945830",
+      "description": "LOCK WASHER - A5",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-004-04-441341",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "04",
+      "partNumber": "441341",
+      "description": "ALLEN SCREW M5X20",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-005-05-665558",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "05",
+      "partNumber": "665558",
+      "description": "IGNITION CABLE SET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 5-12 still valid Set for double ignition coil with high tension connector wood screw included: 8 pcs. ignition cable assy. 8 pcs. protective cap 8 pcs. protection hose"
+    },
+    {
+      "id": "912is-ignition-coils-faston-006-06-265249",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "06",
+      "partNumber": "265249",
+      "description": "SPARK PLUG CONNECTOR",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-007-07-297656",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "07",
+      "partNumber": "297656",
+      "description": "SPARK PLUG 12",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-008-08-866718",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "08",
+      "partNumber": "866718",
+      "description": "TIE WRAP 94x2.5 MM",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-009-09-866716",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "09",
+      "partNumber": "866716",
+      "description": "TIE WRAP 203x7.6 MM",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-010-10-866714",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "10",
+      "partNumber": "866714",
+      "description": "TIE WRAP 142x3.2 MM",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-011-11-860734",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "11",
+      "partNumber": "860734",
+      "description": "GLASS FIBER-SILICON SHEATING 120",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-012-12-860736",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "12",
+      "partNumber": "860736",
+      "description": "GLASS FIBER-SILICON SHEATING 75",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-coils-faston-013-13-651942",
+      "sectionId": "912is-ignition-coils-faston",
+      "figure": "13",
+      "partNumber": "651942",
+      "description": "PROTECTION SHIELD",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-001-01-864661",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "01",
+      "partNumber": "864661",
+      "description": "DOUBLE IGNITION COIL 2 ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with TYCO connector. including 2 ignition cables. 2 protective caps and 2 protection hoses"
+    },
+    {
+      "id": "912is-ignition-coils-tyco-002-01-864660",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "01",
+      "partNumber": "864660",
+      "description": "DOUBLE IGNITION COIL 1 ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with TYCO connector. including 2 ignition cables. 2 protective caps and 2 protection hoses"
+    },
+    {
+      "id": "912is-ignition-coils-tyco-003-01-864662",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "01",
+      "partNumber": "864662",
+      "description": "DOUBLE IGNITION COIL 3 ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with TYCO connector. including 2 ignition cables. 2 protective caps and 2 protection hoses"
+    },
+    {
+      "id": "912is-ignition-coils-tyco-004-01-864663",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "01",
+      "partNumber": "864663",
+      "description": "DOUBLE IGNITION COIL 4 ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with TYCO connector. including 2 ignition cables. 2 protective caps and 2 protection hoses"
+    },
+    {
+      "id": "912is-ignition-coils-tyco-005-02-951490",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "02",
+      "partNumber": "951490",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-006-03-945750",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "03",
+      "partNumber": "945750",
+      "description": "LOCK WASHER A5",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-007-04-441341",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "04",
+      "partNumber": "441341",
+      "description": "ALLEN SCREW M5X20",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-008-05-864688",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "05",
+      "partNumber": "864688",
+      "description": "IGNITION CABLE SET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "8 ignition cable assy.. 8 protective cap and 8 protection hoses"
+    },
+    {
+      "id": "912is-ignition-coils-tyco-009-06-265249",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "06",
+      "partNumber": "265249",
+      "description": "SPARK PLUG CONNECTOR",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-010-07-297656",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "07",
+      "partNumber": "297656",
+      "description": "SPARK PLUG 12",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-011-08-866718",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "08",
+      "partNumber": "866718",
+      "description": "TIE WRAP 94x2.5 MM",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-012-09-866714",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "09",
+      "partNumber": "866714",
+      "description": "TIE WRAP 142x3.2 MM",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-013-10-860734",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "10",
+      "partNumber": "860734",
+      "description": "GLASS FIBER-SILICON SHEATING 120",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-014-11-860736",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "11",
+      "partNumber": "860736",
+      "description": "GLASS FIBER-SILICON SHEATING 75",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-ignition-coils-tyco-015-12-866716",
+      "sectionId": "912is-ignition-coils-tyco",
+      "figure": "12",
+      "partNumber": "866716",
+      "description": "TIE WRAP 203x7.6 MM",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-001-01-834136",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "01",
+      "partNumber": "834136",
+      "description": "WATER PUMP GEAR 15 T",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-002-02-850978",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "02",
+      "partNumber": "850978",
+      "description": "OIL SEAL BAUM1X7 12X30X7 FPM",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-003-03-850946",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "03",
+      "partNumber": "850946",
+      "description": "ROTARY SEAL",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-004-04-837112",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "04",
+      "partNumber": "837112",
+      "description": "PUMP SHAFT",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-005-05-926274",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "05",
+      "partNumber": "926274",
+      "description": "WASHER 8.2/12.5/1.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-006-06-922224",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "06",
+      "partNumber": "922224",
+      "description": "IMPELLER",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-007-07-922202",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "07",
+      "partNumber": "922202",
+      "description": "WATER PUMP HOUSING",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-008-08-922238",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "08",
+      "partNumber": "922238",
+      "description": "BENT SOCKET 45 DEGREES",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-009-09-922239",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "09",
+      "partNumber": "922239",
+      "description": "BENT SOCKET 20 DEGREES",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-010-10-230020",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "10",
+      "partNumber": "230020",
+      "description": "O-RING - 32X2-N",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-011-11-922218",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "11",
+      "partNumber": "922218",
+      "description": "WATER INLET ELBOW",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-012-12-827962",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "12",
+      "partNumber": "827962",
+      "description": "WASHER -A 6.4 - St",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-013-13-241935",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "13",
+      "partNumber": "241935",
+      "description": "ALLEN SCREW - M6x20",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-014-14-850981",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "14",
+      "partNumber": "850981",
+      "description": "GASKET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-water-pump-with-drive-015-14-850983",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "14",
+      "partNumber": "850983",
+      "description": "GASKET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-water-pump-with-drive-016-15-241482",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "15",
+      "partNumber": "241482",
+      "description": "ALLEN SCREW - M6x90",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-017-16-241814",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "16",
+      "partNumber": "241814",
+      "description": "ALLEN SCREW M6X35",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-018-17-230415",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "17",
+      "partNumber": "230415",
+      "description": "SEALING RING A 6X10",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-water-pump-with-drive-019-18-241813",
+      "sectionId": "912is-water-pump-with-drive",
+      "figure": "18",
+      "partNumber": "241813",
+      "description": "ALLEN SCREW M6X35. STAINLESS",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-001-01-950180",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "01",
+      "partNumber": "950180",
+      "description": "O-RING -19X2",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-002-02-922303",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "02",
+      "partNumber": "922303",
+      "description": "FLANGE",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-003-03-827962",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "03",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-004-04-241935",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "04",
+      "partNumber": "241935",
+      "description": "ALLEN SCREW - M6x20",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-005-05-922236",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "05",
+      "partNumber": "922236",
+      "description": "BENT SOCKET 80 DEGREES",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-006-06-851645",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "06",
+      "partNumber": "851645",
+      "description": "SELF COMPENSATING CLAMP 25",
+      "qty": {
+        "912is": 12
+      },
+      "note": "for silicone hoses 851641 expansion tank side"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-007-06-851645",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "06",
+      "partNumber": "851645",
+      "description": "SELF COMPENSATING CLAMP 25 FORM",
+      "qty": {
+        "912is": 16
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-008-07-822423",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "07",
+      "partNumber": "822423",
+      "description": "HOSE 1",
+      "qty": {
+        "912is": 1
+      },
+      "note": "silicone"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-009-07-822420",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "07",
+      "partNumber": "822420",
+      "description": "FORM HOSE 1",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-010-08-822430",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "08",
+      "partNumber": "822430",
+      "description": "FORM HOSE 2",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-011-08-822433",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "08",
+      "partNumber": "822433",
+      "description": "FORM HOSE 2",
+      "qty": {
+        "912is": 1
+      },
+      "note": "silicone"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-012-09-822443",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "09",
+      "partNumber": "822443",
+      "description": "FORM HOSE CYL.3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "silicone"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-013-09-822440",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "09",
+      "partNumber": "822440",
+      "description": "FORM HOSE 3",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-014-10-822448",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "10",
+      "partNumber": "822448",
+      "description": "FORM HOSE 4",
+      "qty": {
+        "912is": 1
+      },
+      "note": "silicone"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-015-10-822445",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "10",
+      "partNumber": "822445",
+      "description": "FORM HOSE 4",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-016-11-822454",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "11",
+      "partNumber": "822454",
+      "description": "FORM HOSE 378 MM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "silicone"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-017-11-822450",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "11",
+      "partNumber": "822450",
+      "description": "FORM HOSE",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-018-12-951350",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "12",
+      "partNumber": "951350",
+      "description": "SELF COMPENSATING CLAMP 35",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-019-13-922360",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "13",
+      "partNumber": "922360",
+      "description": "WATER TUBE 180 +/-3 MM",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-020-13-922368",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "13",
+      "partNumber": "922368",
+      "description": "WATER TUBE 180 +/-3 MM",
+      "qty": {
+        "912is": 2
+      },
+      "note": "silicone"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-021-14-922369",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "14",
+      "partNumber": "922369",
+      "description": "WATER TUBE 280 +/-3 MM",
+      "qty": {
+        "912is": 2
+      },
+      "note": "silicone"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-022-14-922362",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "14",
+      "partNumber": "922362",
+      "description": "WATER TUBE 280 +/-3 MM",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-023-15-965537",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "15",
+      "partNumber": "965537",
+      "description": "TEMPERATURE SENSOR",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-024-16-922668",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "16",
+      "partNumber": "922668",
+      "description": "EXPANSION TANK ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 16-19"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-025-17-922072",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "17",
+      "partNumber": "922072",
+      "description": "RADIATOR CAP WITH GASKET 1.2 BAR",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-026-18-860828",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "18",
+      "partNumber": "860828",
+      "description": "RUBBER PLATE",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-027-18-860827",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "18",
+      "partNumber": "860827",
+      "description": "RUBBER PLATE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "912is-expansion-tank-hoses-028-19-897506",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "19",
+      "partNumber": "897506",
+      "description": "WARNING LABEL",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-029-20-951490",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "20",
+      "partNumber": "951490",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-030-21-898490",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "21",
+      "partNumber": "898490",
+      "description": "WARNING LABEL EVANS COOLANT",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-expansion-tank-hoses-031-22-851641",
+      "sectionId": "912is-expansion-tank-hoses",
+      "figure": "22",
+      "partNumber": "851641",
+      "description": "SELF COMPENSATING CLAMP 26",
+      "qty": {
+        "912is": 4
+      },
+      "note": "for silicone hoses 851641 expansion tank side"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-001-01-975794",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "01",
+      "partNumber": "975794",
+      "description": "COOLING AIR BAFFLE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "TRACTOR BLACK not applicable with vacuum pump optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-002-01-975798",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "01",
+      "partNumber": "975798",
+      "description": "COOLING AIR BAFFLE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "PUSHER BLACK Ill. no. 1-2 non certified not applicable with vacuum pump optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-003-01-975793",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "01",
+      "partNumber": "975793",
+      "description": "COOLING AIR BAFFLE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "TRACTOR WHITE not applicable with vacuum pump optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-004-01-975792",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "01",
+      "partNumber": "975792",
+      "description": "COOLING AIR BAFFLE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "PUSHER WHITE Ill. no. 1-2 non certified still valid not applicable with vaccum pump optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-005-02-201160",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "02",
+      "partNumber": "201160",
+      "description": "RUBBER GROMMET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-006-03-922327",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "03",
+      "partNumber": "922327",
+      "description": "OVERFLOW BOTTLE WITH CAP",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-009 non certified optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-007-04-997084",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "04",
+      "partNumber": "997084",
+      "description": "RADIATOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-008-05-881530",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "05",
+      "partNumber": "881530",
+      "description": "RADIATOR RETROFIT KIT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified optional"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-009-06-922582",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "06",
+      "partNumber": "922582",
+      "description": "WATER DISTRIBUTOR ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified SI-PAC-022 if water radiator is installed higher than expansion tank"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-010-07-622052",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "07",
+      "partNumber": "622052",
+      "description": "EXPANSION TANK 90 DEGREE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified SI-PAC-022 if water radiator is installed higher than expansion tank"
+    },
+    {
+      "id": "912is-cooling-air-baffle-radiator-011-08-622053",
+      "sectionId": "912is-cooling-air-baffle-radiator",
+      "figure": "08",
+      "partNumber": "622053",
+      "description": "EXPANSION TANK 180 DEGREE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified SI-PAC-022 if water radiator is installed higher than expansion tank"
+    },
+    {
+      "id": "912is-engine-control-unit-001-01-881252",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "01",
+      "partNumber": "881252",
+      "description": "ENGINE CONTROL UNIT ASSY. PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "(665568 + packaging) SI-912i-018"
+    },
+    {
+      "id": "912is-engine-control-unit-002-02-881321",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "02",
+      "partNumber": "881321",
+      "description": "FUSE BOX PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid (665646 + packaging) with M6 thread at regulator B"
+    },
+    {
+      "id": "912is-engine-control-unit-003-02-881325",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "02",
+      "partNumber": "881325",
+      "description": "FUSE BOX PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "(665648 + packaging) with Amphenol connector SI-912i-024"
+    },
+    {
+      "id": "912is-engine-control-unit-004-03-866422",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "03",
+      "partNumber": "866422",
+      "description": "CONNECTOR SET GREY",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Connector set consisting of all parts for regulator and stator side non certified"
+    },
+    {
+      "id": "912is-engine-control-unit-005-04-866420",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "04",
+      "partNumber": "866420",
+      "description": "CONNECTOR SET BLACK",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Connector set consisting of all parts for regulator and stator side non certified"
+    },
+    {
+      "id": "912is-engine-control-unit-006-05-864397",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "05",
+      "partNumber": "864397",
+      "description": "REGULATOR WITH AMPHENOL CONNECTOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with Amphenol connector SI-912i-024"
+    },
+    {
+      "id": "912is-engine-control-unit-007-05-864395",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "05",
+      "partNumber": "864395",
+      "description": "REGULATOR B WITH CONNECTOR GREY",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-008-06-864392",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "06",
+      "partNumber": "864392",
+      "description": "REGULATOR A WITH CONNECTOR BLACK",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-009-07-866440",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "07",
+      "partNumber": "866440",
+      "description": "MASS CABLE ASSY.",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-010-08-201370",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "08",
+      "partNumber": "201370",
+      "description": "SKINTOP CLICK 20",
+      "qty": {
+        "912is": 1
+      },
+      "note": "only gasket"
+    },
+    {
+      "id": "912is-engine-control-unit-011-09-201375",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "09",
+      "partNumber": "201375",
+      "description": "SKINTOP CLICK 25",
+      "qty": {
+        "912is": 1
+      },
+      "note": "only gasket"
+    },
+    {
+      "id": "912is-engine-control-unit-012-10-840763",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "10",
+      "partNumber": "840763",
+      "description": "ALLEN SCREW M4X16",
+      "qty": {
+        "912is": 9
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-013-11-827230",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "11",
+      "partNumber": "827230",
+      "description": "PLASTIC WASHER M4",
+      "qty": {
+        "912is": 9
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-014-12-842044",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "12",
+      "partNumber": "842044",
+      "description": "LOCK NUT - M6",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-015-13-244214",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "13",
+      "partNumber": "244214",
+      "description": "WASHER 6.4",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-016-14-927573",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "14",
+      "partNumber": "927573",
+      "description": "WASHER 5.3",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-017-15-842033",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "15",
+      "partNumber": "842033",
+      "description": "LOCK NUT M5",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-018-16-242539",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "16",
+      "partNumber": "242539",
+      "description": "LOCK NUT - M4",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-019-17-244078",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "17",
+      "partNumber": "244078",
+      "description": "WASHER 4.3",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-020-18-866450",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "18",
+      "partNumber": "866450",
+      "description": "MINI-FUSE 2A",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-021-19-866452",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "19",
+      "partNumber": "866452",
+      "description": "MINI-FUSE 5A",
+      "qty": {
+        "912is": 10
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-022-20-866454",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "20",
+      "partNumber": "866454",
+      "description": "MINI-FUSE 7.5A",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-023-21-866456",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "21",
+      "partNumber": "866456",
+      "description": "MINI-FUSE 10A",
+      "qty": {
+        "912is": 5
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-024-22-866490",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "22",
+      "partNumber": "866490",
+      "description": "ATO-FUSE 20A",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-025-23-866492",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "23",
+      "partNumber": "866492",
+      "description": "ATO-FUSE 35A",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-026-24-931110",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "24",
+      "partNumber": "931110",
+      "description": "SEALING RING",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-027-25-201460",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "25",
+      "partNumber": "201460",
+      "description": "RUBBER SLEEVE",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-028-26-947540",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "26",
+      "partNumber": "947540",
+      "description": "SPACER",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-029-27-282870",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "27",
+      "partNumber": "282870",
+      "description": "HEAT TRANSFER PAD 65x80x0.5MM",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-030-28-864021",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "28",
+      "partNumber": "864021",
+      "description": "B.U.D.S. SET LEVEL 1",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Aircraft Viewer for pilots/user"
+    },
+    {
+      "id": "912is-engine-control-unit-031-28-864022",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "28",
+      "partNumber": "864022",
+      "description": "B.U.D.S. SET LEVEL 2",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Aircraft Service for maintenance personnel"
+    },
+    {
+      "id": "912is-engine-control-unit-032-28-864023",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "28",
+      "partNumber": "864023",
+      "description": "B.U.D.S. SET LEVEL 3",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Aircraft Maintenance for distributors/OEM"
+    },
+    {
+      "id": "912is-engine-control-unit-033-29-864280",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "29",
+      "partNumber": "864280",
+      "description": "SERVICE WIRING HARNESS ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-034-30-201690",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "30",
+      "partNumber": "201690",
+      "description": "COVER. FUSE BOX",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-035-31-881555",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "31",
+      "partNumber": "881555",
+      "description": "NUT SET FUSE BOX",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Consists of: 6 x 242539 (lock nut M4) 6 x 244078 (washer 4.3) 3 x 244214 (washer 6.4) 3 x 842044 (lock nut M6)"
+    },
+    {
+      "id": "912is-engine-control-unit-036-32-481510",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "32",
+      "partNumber": "481510",
+      "description": "CONNECTOR SET STATOR GEN B",
+      "qty": {
+        "912is": 1
+      },
+      "note": "(PAC part. available as accessory) with Amphenol connector SI-912i-024 optional"
+    },
+    {
+      "id": "912is-engine-control-unit-037-33-951983",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "33",
+      "partNumber": "951983",
+      "description": "CONNECTOR BRACKET ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-011"
+    },
+    {
+      "id": "912is-engine-control-unit-038-34-951981",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "34",
+      "partNumber": "951981",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "with Amphenol connector SI-PAC-011 SI-912i-024"
+    },
+    {
+      "id": "912is-engine-control-unit-039-35-481490",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "35",
+      "partNumber": "481490",
+      "description": "HEAT SINK SET",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-019"
+    },
+    {
+      "id": "912is-engine-control-unit-040-36-866150",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "36",
+      "partNumber": "866150",
+      "description": "SWITCH RELAY 12V DC",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-041-37-651970",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "37",
+      "partNumber": "651970",
+      "description": "SUPPORT PLATE REG.A",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-engine-control-unit-042-38-651975",
+      "sectionId": "912is-engine-control-unit",
+      "figure": "38",
+      "partNumber": "651975",
+      "description": "SUPPORT PLATE REG.B",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-001-01-665584",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "01",
+      "partNumber": "665584",
+      "description": "WIRING HARNESS SPECIAL PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-25 (665574 + packaging)"
+    },
+    {
+      "id": "912is-wiring-harness-faston-002-01-665582",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "01",
+      "partNumber": "665582",
+      "description": "WIRING HARNESS SHORT PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-25 (665573 + packaging)"
+    },
+    {
+      "id": "912is-wiring-harness-faston-003-01-665580",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "01",
+      "partNumber": "665580",
+      "description": "WIRING HARNESS STANDARD PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-25 (665578 + packaging)"
+    },
+    {
+      "id": "912is-wiring-harness-faston-004-05-881312",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "05",
+      "partNumber": "881312",
+      "description": "CONNECTOR SET FUSE BOX",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 5-6"
+    },
+    {
+      "id": "912is-wiring-harness-faston-005-07-881306",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "07",
+      "partNumber": "881306",
+      "description": "CONNECTOR SET AAPTS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-006-08-964059",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "08",
+      "partNumber": "964059",
+      "description": "RING TERMINAL M6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-007-09-864011",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "09",
+      "partNumber": "864011",
+      "description": "FASTON CONNECTOR 6.3X0.8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-008-10-881298",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "10",
+      "partNumber": "881298",
+      "description": "CONNECTOR SET CPS",
+      "qty": {
+        "912is": 2
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-009-11-881302",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "11",
+      "partNumber": "881302",
+      "description": "CONNECTOR SET OPS AND MAPS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-010-12-881296",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "12",
+      "partNumber": "881296",
+      "description": "CONNECTOR SET CTS A OTS A KNOCK",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-011-15-881292",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "15",
+      "partNumber": "881292",
+      "description": "CONNECTOR SET MATS",
+      "qty": {
+        "912is": 2
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-012-16-881290",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "16",
+      "partNumber": "881290",
+      "description": "CONNECTOR SET EGT",
+      "qty": {
+        "912is": 4
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-013-18-881308",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "18",
+      "partNumber": "881308",
+      "description": "CONNECTOR SET TPS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-014-19-881300",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "19",
+      "partNumber": "881300",
+      "description": "CONNECTOR SET INJ",
+      "qty": {
+        "912is": 8
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-015-20-881304",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "20",
+      "partNumber": "881304",
+      "description": "CONNECTOR SET FUEL PUMP",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-016-21-881310",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "21",
+      "partNumber": "881310",
+      "description": "CONNECTOR SET IGNITION COIL",
+      "qty": {
+        "912is": 4
+      },
+      "note": "Ill. no. 21-22 non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-017-22-965701",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "22",
+      "partNumber": "965701",
+      "description": "RING TERMINAL M4",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-018-23-881294",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "23",
+      "partNumber": "881294",
+      "description": "CONNECTOR SET HIC A AND HIC B",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 23-24 includes connectors and pins of both sides non certified"
+    },
+    {
+      "id": "912is-wiring-harness-faston-019-25-251692",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "25",
+      "partNumber": "251692",
+      "description": "CABLE CLAMP 12/M6",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-020-26-827962",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "26",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4 - St",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-021-27-840392",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "27",
+      "partNumber": "840392",
+      "description": "ALLEN SCREW - M6x14",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-022-28-866716",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "28",
+      "partNumber": "866716",
+      "description": "TIE WRAP 203x7.6 MM",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-023-29-866714",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "29",
+      "partNumber": "866714",
+      "description": "TIE WRAP 142x3.2 MM",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-wiring-harness-faston-024-30-881240",
+      "sectionId": "912is-wiring-harness-faston",
+      "figure": "30",
+      "partNumber": "881240",
+      "description": "CONNECTOR SET AIRFRAME SIDE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified SI-PAC-012"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-001-01-665583",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "01",
+      "partNumber": "665583",
+      "description": "WIRING HARNESS SHORT PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-24 (665623 + packaging) for double ignition coil with TYCO connector. without knock sensor connector"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-002-01-665581",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "01",
+      "partNumber": "665581",
+      "description": "WIRING HARNESS STANDARD PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-24 (665621 + packaging) for double ignition coil with TYCO connector. without knock sensor connector"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-003-01-665585",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "01",
+      "partNumber": "665585",
+      "description": "WIRING HARNESS SPECIAL PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-24 (665622 + packaging) for double ignition coil with TYCO connector. without knock sensor connector"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-004-05-881312",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "05",
+      "partNumber": "881312",
+      "description": "CONNECTOR SET FUSE BOX",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 5-6"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-005-07-881306",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "07",
+      "partNumber": "881306",
+      "description": "CONNECTOR SET AAPTS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-006-08-964059",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "08",
+      "partNumber": "964059",
+      "description": "RING TERMINAL M6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-007-09-864011",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "09",
+      "partNumber": "864011",
+      "description": "FASTON CONNECTOR 6.3X0.8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-008-10-881298",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "10",
+      "partNumber": "881298",
+      "description": "CONNECTOR SET CPS",
+      "qty": {
+        "912is": 2
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-009-11-881302",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "11",
+      "partNumber": "881302",
+      "description": "CONNECTOR SET OPS AND MAPS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-010-12-881296",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "12",
+      "partNumber": "881296",
+      "description": "CONNECTOR SET CTS A OTS A KNOCK",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-011-14-881292",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "14",
+      "partNumber": "881292",
+      "description": "CONNECTOR SET MATS",
+      "qty": {
+        "912is": 2
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-012-15-881290",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "15",
+      "partNumber": "881290",
+      "description": "CONNECTOR SET EGT",
+      "qty": {
+        "912is": 4
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-013-17-881308",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "17",
+      "partNumber": "881308",
+      "description": "CONNECTOR SET TPS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-014-18-881300",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "18",
+      "partNumber": "881300",
+      "description": "CONNECTOR SET INJ",
+      "qty": {
+        "912is": 8
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-015-19-881304",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "19",
+      "partNumber": "881304",
+      "description": "CONNECTOR SET FUEL PUMP",
+      "qty": {
+        "912is": 2
+      },
+      "note": "includes male and female connectors and pins. both sides"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-016-20-881316",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "20",
+      "partNumber": "881316",
+      "description": "CONNECTOR SET DOUBLE IGNITION COIL",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-017-20-881310",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "20",
+      "partNumber": "881310",
+      "description": "CONNECTOR SET IGNITION COIL",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 20-21 non certified still valid not available"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-018-22-965701",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "22",
+      "partNumber": "965701",
+      "description": "RING TERMINAL M4",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-019-23-881294",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "23",
+      "partNumber": "881294",
+      "description": "CONNECTOR SET HIC A AND HIC B",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 23-24 non certified includes male and female connectors and pins. both sides"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-020-25-251692",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "25",
+      "partNumber": "251692",
+      "description": "CABLE CLAMP 12/M6",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-021-26-827962",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "26",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-022-27-840392",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "27",
+      "partNumber": "840392",
+      "description": "ALLEN SCREW - M6x14",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-023-28-866716",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "28",
+      "partNumber": "866716",
+      "description": "TIE WRAP 203x7.6 MM",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-024-29-866714",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "29",
+      "partNumber": "866714",
+      "description": "TIE WRAP 142x3.2 MM",
+      "qty": {
+        "912is": 6
+      }
+    },
+    {
+      "id": "912is-wiring-harness-tyco-025-30-881240",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "30",
+      "partNumber": "881240",
+      "description": "CONNECTOR SET AIRFRAME SIDE",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified SI-PAC-012"
+    },
+    {
+      "id": "912is-wiring-harness-tyco-026-31-851110",
+      "sectionId": "912is-wiring-harness-tyco",
+      "figure": "31",
+      "partNumber": "851110",
+      "description": "CABLE CLAMP 8/M5",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-exhaust-system-sensor-001-01-973676",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "01",
+      "partNumber": "973676",
+      "description": "EXHAUST ASSORTMENT STAINLESS STEEL",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-8 non certified not available"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-002-01-973677",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "01",
+      "partNumber": "973677",
+      "description": "EXHAUST ASSORTMENT STAINLESS STEEL",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N Ill. no. 1-8. 13 non certified"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-003-02-973673",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "02",
+      "partNumber": "973673",
+      "description": "MUFFLER ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified only with 973389"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-004-02-973674",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "02",
+      "partNumber": "973674",
+      "description": "MUFFLER ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified only with 978605 not available"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-005-03-973389",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "03",
+      "partNumber": "973389",
+      "description": "EXHAUST ELBOW. STAINLESS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N diameter 42 mm"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-006-03-978605",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "03",
+      "partNumber": "978605",
+      "description": "EXHAUST ELBOW. STAINLESS",
+      "qty": {
+        "912is": 1
+      },
+      "note": "diameter 40 mm non certified not available"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-007-04-978521",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "04",
+      "partNumber": "978521",
+      "description": "BALL JOINT. MALE STAINLESS",
+      "qty": {
+        "912is": 4
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-008-05-978998",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "05",
+      "partNumber": "978998",
+      "description": "EXHAUST TUBE 800 MM. STAINLESS",
+      "qty": {
+        "912is": 4
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-009-06-978500",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "06",
+      "partNumber": "978500",
+      "description": "EXH.ELBOW ASSY. 360 DEGR.STAINL.",
+      "qty": {
+        "912is": 2
+      },
+      "note": "360 degree circular ring non certified"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-010-07-853356",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "07",
+      "partNumber": "853356",
+      "description": "HOOK. STAINLESS",
+      "qty": {
+        "912is": 8
+      },
+      "note": "non certified"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-011-08-938796",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "08",
+      "partNumber": "938796",
+      "description": "SPRING 66 MM",
+      "qty": {
+        "912is": 8
+      },
+      "note": "stainless"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-012-09-978246",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "09",
+      "partNumber": "978246",
+      "description": "EXHAUST FLANGE",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-exhaust-system-sensor-013-10-978252",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "10",
+      "partNumber": "978252",
+      "description": "EXHAUST SOCKET",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-exhaust-system-sensor-014-11-940368",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "11",
+      "partNumber": "940368",
+      "description": "STUD M8X23/20",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-exhaust-system-sensor-015-12-842950",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "12",
+      "partNumber": "842950",
+      "description": "LOCK NUT M8-SW12",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-exhaust-system-sensor-016-13-951552",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "13",
+      "partNumber": "951552",
+      "description": "EXHAUST PIPE CLAMP ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-exhaust-system-sensor-017-14-297556",
+      "sectionId": "912is-exhaust-system-sensor",
+      "figure": "14",
+      "partNumber": "297556",
+      "description": "SAFETY WIRE 0.8 2000MM",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-exhaust-system-standard-001-01-973380",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "01",
+      "partNumber": "973380",
+      "description": "EXHAUST ASSORTMENT STAINLESS STEEL",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-9. 13"
+    },
+    {
+      "id": "912is-exhaust-system-standard-002-02-973385",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "02",
+      "partNumber": "973385",
+      "description": "MUFFLER ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-003-03-973010",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "03",
+      "partNumber": "973010",
+      "description": "EXHAUST PIPE ASSY. CYL. 1",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-004-04-973020",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "04",
+      "partNumber": "973020",
+      "description": "EXHAUST PIPE ASSY. CYL. 2",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-005-05-973030",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "05",
+      "partNumber": "973030",
+      "description": "EXHAUST PIPE ASSY. CYL. 3",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-006-06-973040",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "06",
+      "partNumber": "973040",
+      "description": "EXHAUST PIPE ASSY. CYL. 4",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-007-07-973390",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "07",
+      "partNumber": "973390",
+      "description": "EXHAUST ELBOW. STAINLESS",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-008-08-938796",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "08",
+      "partNumber": "938796",
+      "description": "SPRING 66 MM",
+      "qty": {
+        "912is": 9
+      },
+      "note": "stainless"
+    },
+    {
+      "id": "912is-exhaust-system-standard-009-09-951550",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "09",
+      "partNumber": "951550",
+      "description": "EXHAUST PIPE CLAMP ASSY.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-010-10-297555",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "10",
+      "partNumber": "297555",
+      "description": "SAFETY WIRE 0.8",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "912is-exhaust-system-standard-011-11-940368",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "11",
+      "partNumber": "940368",
+      "description": "STUD M8X23/20",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-012-12-842950",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "12",
+      "partNumber": "842950",
+      "description": "LOCK NUT M8-SW12",
+      "qty": {
+        "912is": 8
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-013-13-841115",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "13",
+      "partNumber": "841115",
+      "description": "HEX. SCREW M8X1X10",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-exhaust-system-standard-014-14-866261",
+      "sectionId": "912is-exhaust-system-standard",
+      "figure": "14",
+      "partNumber": "866261",
+      "description": "TEMPERATURE SENSOR",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-oil-tank-001-01-656865",
+      "sectionId": "912is-oil-tank",
+      "figure": "01",
+      "partNumber": "656865",
+      "description": "OIL TANK ASSY. METRIC",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-13 metric thread M18 x 1.5 mm"
+    },
+    {
+      "id": "912is-oil-tank-002-01-656860",
+      "sectionId": "912is-oil-tank",
+      "figure": "01",
+      "partNumber": "656860",
+      "description": "OIL TANK ASSY. UNF",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-13 UNF thread size 3/4 inch - 16 UNF"
+    },
+    {
+      "id": "912is-oil-tank-003-02-956426",
+      "sectionId": "912is-oil-tank",
+      "figure": "02",
+      "partNumber": "956426",
+      "description": "OIL TANK ASSY WITH BAFFLE INSERT",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-004-03-250010",
+      "sectionId": "912is-oil-tank",
+      "figure": "03",
+      "partNumber": "250010",
+      "description": "GASKET RING C 12X18",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-005-04-241408",
+      "sectionId": "912is-oil-tank",
+      "figure": "04",
+      "partNumber": "241408",
+      "description": "PLUG SCREW - M12X12",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-006-06-956204",
+      "sectionId": "912is-oil-tank",
+      "figure": "06",
+      "partNumber": "956204",
+      "description": "BAFFLE INSERT",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-007-07-850491",
+      "sectionId": "912is-oil-tank",
+      "figure": "07",
+      "partNumber": "850491",
+      "description": "O-RING - 145X6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-008-09-951817",
+      "sectionId": "912is-oil-tank",
+      "figure": "09",
+      "partNumber": "951817",
+      "description": "PROFILE CLAMP 163",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-009-10-230150",
+      "sectionId": "912is-oil-tank",
+      "figure": "10",
+      "partNumber": "230150",
+      "description": "SEALING RING A 10X14",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-010-11-641733",
+      "sectionId": "912is-oil-tank",
+      "figure": "11",
+      "partNumber": "641733",
+      "description": "PLUG SCREW M10X1",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-011-12-956151",
+      "sectionId": "912is-oil-tank",
+      "figure": "12",
+      "partNumber": "956151",
+      "description": "OIL DIPSTICK",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-012-13-974647",
+      "sectionId": "912is-oil-tank",
+      "figure": "13",
+      "partNumber": "974647",
+      "description": "OIL TANK COVER. WITHOUT VENTING",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-013-14-297555",
+      "sectionId": "912is-oil-tank",
+      "figure": "14",
+      "partNumber": "297555",
+      "description": "SAFETY WIRE 0.8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-tank-014-15-956610",
+      "sectionId": "912is-oil-tank",
+      "figure": "15",
+      "partNumber": "956610",
+      "description": "HOSE NIPPLE WITH UNION NUT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required metric thread M18 x 1.5 mm"
+    },
+    {
+      "id": "912is-oil-tank-015-16-956580",
+      "sectionId": "912is-oil-tank",
+      "figure": "16",
+      "partNumber": "956580",
+      "description": "BENT SOCKET ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required metric thread M18 x 1.5 mm"
+    },
+    {
+      "id": "912is-oil-tank-016-17-951826",
+      "sectionId": "912is-oil-tank",
+      "figure": "17",
+      "partNumber": "951826",
+      "description": "HOSE CLAMP - 2-B1-19x9",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-oil-tank-017-18-956394",
+      "sectionId": "912is-oil-tank",
+      "figure": "18",
+      "partNumber": "956394",
+      "description": "OIL TUBE M4M-2 12X19",
+      "qty": {
+        "912is": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "912is-oil-pump-assy-001-01-811463",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "01",
+      "partNumber": "811463",
+      "description": "OIL PUMP HOUSING",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-002-02-856330",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "02",
+      "partNumber": "856330",
+      "description": "REGULATING PISTON",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-003-03-838125",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "03",
+      "partNumber": "838125",
+      "description": "COMPRESSION SPRING L65.6",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-004-04-640850",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "04",
+      "partNumber": "640850",
+      "description": "PLUG SCREW M22x1.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-005-05-430622",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "05",
+      "partNumber": "430622",
+      "description": "SEALING RING A 16X22",
+      "qty": {
+        "912is": 5
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-006-06-240234",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "06",
+      "partNumber": "240234",
+      "description": "PLUG SCREW A M16X1.5",
+      "qty": {
+        "912is": 3
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-007-07-956655",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "07",
+      "partNumber": "956655",
+      "description": "ADAPTER M18X1.5/ M16X1.5",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-008-07-956652",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "07",
+      "partNumber": "956652",
+      "description": "ADAPTER 3/4-16 UNF/ M16 X 1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-oil-pump-assy-009-07-956651",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "07",
+      "partNumber": "956651",
+      "description": "ADAPTER 3/4-16 UNF/ M16 X 1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-oil-pump-assy-010-08-230150",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "08",
+      "partNumber": "230150",
+      "description": "SEALING RING A 10X14",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-011-09-641733",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "09",
+      "partNumber": "641733",
+      "description": "PLUG SCREW M10X1",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-012-10-924424",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "10",
+      "partNumber": "924424",
+      "description": "OIL FILTER NIPPLE",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-013-11-430102",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "11",
+      "partNumber": "430102",
+      "description": "OIL SEAL A 14X22X4 FPM",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-014-12-837292",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "12",
+      "partNumber": "837292",
+      "description": "OIL PUMP SHAFT",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-015-13-246580",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "13",
+      "partNumber": "246580",
+      "description": "KEY A 4X4X8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-016-14-888821",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "14",
+      "partNumber": "888821",
+      "description": "PRESSURE INNER AND OUTER ROTOR",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-017-15-830372",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "15",
+      "partNumber": "830372",
+      "description": "O-RING - 63X2.5",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-018-16-911713",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "16",
+      "partNumber": "911713",
+      "description": "OIL PUMP COVER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "912is-oil-pump-assy-019-16-911717",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "16",
+      "partNumber": "911717",
+      "description": "OIL PUMP COVER",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "912is-oil-pump-assy-020-17-250460",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "17",
+      "partNumber": "250460",
+      "description": "O-RING -11X2.7-N. FPM 75 BLACK",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-021-18-950410",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "18",
+      "partNumber": "950410",
+      "description": "O-RING -30X2.5-N. FPM 75",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-022-19-827962",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "19",
+      "partNumber": "827962",
+      "description": "WASHER -A 6.4 - St",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-023-20-241762",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "20",
+      "partNumber": "241762",
+      "description": "ALLEN SCREW - M6x50",
+      "qty": {
+        "912is": 4
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-024-21-825016",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "21",
+      "partNumber": "825016",
+      "description": "OIL FILTER PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified (825014 + packaging)"
+    },
+    {
+      "id": "912is-oil-pump-assy-025-22-640866",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "22",
+      "partNumber": "640866",
+      "description": "MAGNETIC DRAIN PLUG M12X1.5 PACKAGED",
+      "qty": {
+        "912is": 1
+      },
+      "note": "non certified (241785 + packaging)"
+    },
+    {
+      "id": "912is-oil-pump-assy-026-23-831929",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "23",
+      "partNumber": "831929",
+      "description": "O-RING - 5X2",
+      "qty": {
+        "912is": 1
+      },
+      "note": "see chapter 24-20-00"
+    },
+    {
+      "id": "912is-oil-pump-assy-027-24-664365",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "24",
+      "partNumber": "664365",
+      "description": "PRESSURE SENSOR 10",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-pump-assy-028-25-965537",
+      "sectionId": "912is-oil-pump-assy",
+      "figure": "25",
+      "partNumber": "965537",
+      "description": "TEMPERATURE SENSOR",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-oil-radiator-001-01-886013",
+      "sectionId": "912is-oil-radiator",
+      "figure": "01",
+      "partNumber": "886013",
+      "description": "OIL RADIATOR SET METRIC",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-5 Big Cooling area 234 cm2/36.27 sq in SI-PAC-014 optional"
+    },
+    {
+      "id": "912is-oil-radiator-002-01-886015",
+      "sectionId": "912is-oil-radiator",
+      "figure": "01",
+      "partNumber": "886015",
+      "description": "OIL RADIATOR SET UNF",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-4. 10 Big Cooling area 234 cm2/36.27 sq in Connection UNF SI-PAC-014 optional"
+    },
+    {
+      "id": "912is-oil-radiator-003-01-886011",
+      "sectionId": "912is-oil-radiator",
+      "figure": "01",
+      "partNumber": "886011",
+      "description": "OIL RADIATOR SET METRIC",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-5 Small Cooling area 125 cm2/19.38 sq in SI-PAC-014 optional"
+    },
+    {
+      "id": "912is-oil-radiator-004-01-886012",
+      "sectionId": "912is-oil-radiator",
+      "figure": "01",
+      "partNumber": "886012",
+      "description": "OIL RADIATOR SET METRIC",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-5 Middle Cooling area 142 cm2/22 sq in SI-PAC-014 optional"
+    },
+    {
+      "id": "912is-oil-radiator-005-02-886005",
+      "sectionId": "912is-oil-radiator",
+      "figure": "02",
+      "partNumber": "886005",
+      "description": "OIL RADIATOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Big Cooling area 234 cm2/36.27 sq in height of cennectors reduced for 5 mm. no hex SI-PAC-014 optional"
+    },
+    {
+      "id": "912is-oil-radiator-006-02-886003",
+      "sectionId": "912is-oil-radiator",
+      "figure": "02",
+      "partNumber": "886003",
+      "description": "OIL RADIATOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Middle Cooling area 142 cm2/22 sq in height of connectors reduced for 5 mm. no hex. SI-PAC-014 optional"
+    },
+    {
+      "id": "912is-oil-radiator-007-02-886001",
+      "sectionId": "912is-oil-radiator",
+      "figure": "02",
+      "partNumber": "886001",
+      "description": "OIL RADIATOR",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Small Cooling area 125 cm2/19.38 sq in height of connectors reduced for 5 mm. no hex. SI-PAC-014 optional"
+    },
+    {
+      "id": "912is-oil-radiator-008-03-956645",
+      "sectionId": "912is-oil-radiator",
+      "figure": "03",
+      "partNumber": "956645",
+      "description": "SCREW CONNECTION SET UNF",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 3. 4. 10 SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-009-03-242873",
+      "sectionId": "912is-oil-radiator",
+      "figure": "03",
+      "partNumber": "242873",
+      "description": "HEX.NUT M22X1.5 H=6",
+      "qty": {
+        "912is": 4
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-010-04-956615",
+      "sectionId": "912is-oil-radiator",
+      "figure": "04",
+      "partNumber": "956615",
+      "description": "SCREW CONNECTION SET STRAIGHT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 4. 6. 9 SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-011-04-956585",
+      "sectionId": "912is-oil-radiator",
+      "figure": "04",
+      "partNumber": "956585",
+      "description": "SCREW CONNECTION SET BENT",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 4. 6. 7 SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-012-04-230387",
+      "sectionId": "912is-oil-radiator",
+      "figure": "04",
+      "partNumber": "230387",
+      "description": "GASKET RING 14.2/18/2",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-013-05-840461",
+      "sectionId": "912is-oil-radiator",
+      "figure": "05",
+      "partNumber": "840461",
+      "description": "NIPPLE 13.2/9.5-M14X1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-014-06-956577",
+      "sectionId": "912is-oil-radiator",
+      "figure": "06",
+      "partNumber": "956577",
+      "description": "ADAPTER M18x1.5/M14x1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-015-07-956580",
+      "sectionId": "912is-oil-radiator",
+      "figure": "07",
+      "partNumber": "956580",
+      "description": "BENT SOCKET ASSY.",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-016-08-924585",
+      "sectionId": "912is-oil-radiator",
+      "figure": "08",
+      "partNumber": "924585",
+      "description": "ANGULAR TUBE M14X1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-017-09-956610",
+      "sectionId": "912is-oil-radiator",
+      "figure": "09",
+      "partNumber": "956610",
+      "description": "HOSE NIPPLE WITH UNION NUT",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-018-10-956643",
+      "sectionId": "912is-oil-radiator",
+      "figure": "10",
+      "partNumber": "956643",
+      "description": "ADAPTER 3/4-16 UNF/ M14 X 1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-019-11-250735",
+      "sectionId": "912is-oil-radiator",
+      "figure": "11",
+      "partNumber": "250735",
+      "description": "GASKET RING A 14X20",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-020-12-956685",
+      "sectionId": "912is-oil-radiator",
+      "figure": "12",
+      "partNumber": "956685",
+      "description": "ADAPTER M22X1.5 / M22X1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-021-13-956681",
+      "sectionId": "912is-oil-radiator",
+      "figure": "13",
+      "partNumber": "956681",
+      "description": "ADAPTER 7/8-14 UNF / M22X1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-022-14-956648",
+      "sectionId": "912is-oil-radiator",
+      "figure": "14",
+      "partNumber": "956648",
+      "description": "ADAPTER 7/8-14 UNF/ M14 X 1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-oil-radiator-023-15-956572",
+      "sectionId": "912is-oil-radiator",
+      "figure": "15",
+      "partNumber": "956572",
+      "description": "ADAPTER M22X1.5/ M14X1.5",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-013 optional"
+    },
+    {
+      "id": "912is-starters-001-01-685667",
+      "sectionId": "912is-starters",
+      "figure": "01",
+      "partNumber": "685667",
+      "description": "ELECTRIC STARTER ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "Ill. no. 1-4"
+    },
+    {
+      "id": "912is-starters-002-02-250140",
+      "sectionId": "912is-starters",
+      "figure": "02",
+      "partNumber": "250140",
+      "description": "O-RING - 24.4X3.1",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-starters-003-03-240457",
+      "sectionId": "912is-starters",
+      "figure": "03",
+      "partNumber": "240457",
+      "description": "TERMINAL SCREW M5X8",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-starters-004-04-241132",
+      "sectionId": "912is-starters",
+      "figure": "04",
+      "partNumber": "241132",
+      "description": "SET BOLT M5X143",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-starters-005-05-837102",
+      "sectionId": "912is-starters",
+      "figure": "05",
+      "partNumber": "837102",
+      "description": "IDLE GEAR SHAFT",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-starters-006-06-834157",
+      "sectionId": "912is-starters",
+      "figure": "06",
+      "partNumber": "834157",
+      "description": "IDLE GEAR 50/11 T.",
+      "qty": {
+        "912is": 1
+      }
+    },
+    {
+      "id": "912is-starters-007-07-942311",
+      "sectionId": "912is-starters",
+      "figure": "07",
+      "partNumber": "942311",
+      "description": "HEX. NUT M5",
+      "qty": {
+        "912is": 2
+      }
+    },
+    {
+      "id": "912is-starters-008-08-992818",
+      "sectionId": "912is-starters",
+      "figure": "08",
+      "partNumber": "992818",
+      "description": "STARTER RELAY ASSY.",
+      "qty": {
+        "912is": 1
+      },
+      "note": "SI-PAC-017 non certified"
+    },
+    {
+      "id": "912is-starters-009-09-945831",
+      "sectionId": "912is-starters",
+      "figure": "09",
+      "partNumber": "945831",
+      "description": "LOCK WASHER - A6",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-017"
+    },
+    {
+      "id": "912is-starters-010-10-242214",
+      "sectionId": "912is-starters",
+      "figure": "10",
+      "partNumber": "242214",
+      "description": "HEX.NUT M6",
+      "qty": {
+        "912is": 2
+      },
+      "note": "SI-PAC-017"
     }
   ]
 }

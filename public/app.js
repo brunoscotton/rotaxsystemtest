@@ -122,6 +122,24 @@ const nestedCategories = [
     thumb: "/assets/rotax-oil-pump-912-thumb.png"
   },
   {
+    id: "fuel-pump-912is",
+    label: "Fuel Pump Assembly",
+    title: "Bomba de combustivel",
+    thumb: "/assets/rotax-912is-fuel-pump-assy-thumb.png"
+  },
+  {
+    id: "ignition-912is",
+    label: "Ignition",
+    title: "Ignicao",
+    thumb: "/assets/rotax-912is-ignition-coils-faston-thumb.png"
+  },
+  {
+    id: "intake-manifold-912is",
+    label: "Intake Manifold",
+    title: "Coletor de admissao",
+    thumb: "/assets/rotax-912is-intake-manifold-standard-thumb.png"
+  },
+  {
     id: "radiator",
     label: "Radiators",
     title: "Radiadores",
@@ -138,6 +156,12 @@ const nestedCategories = [
     label: "Water Circuits",
     title: "Circuitos de agua",
     thumb: "/assets/rotax-water-pump-thumb.png"
+  },
+  {
+    id: "wiring-harness-912is",
+    label: "Wiring Harness",
+    title: "Chicote eletrico",
+    thumb: "/assets/rotax-912is-wiring-harness-faston-thumb.png"
   }
 ];
 
@@ -185,27 +209,37 @@ function itemCountForCategory(engineId, categoryId) {
 }
 
 function categoriesForEngine(engineId) {
+  const legacyEngines = ["912uls", "912ul", "914ul"];
   const templates = [
     { label: "Alternators" },
-    { label: "Carburetors" },
+    { label: "Carburetors", engineIds: legacyEngines },
     { label: "Crankcase" },
     { label: "Cylinder Head" },
-    { label: "Double Ignition Assembly" },
+    { label: "Double Ignition Assembly", engineIds: legacyEngines },
+    { label: "Engine Control Unit", engineIds: ["912is"] },
     { label: "Exhaust", categoryId: "exhaust" },
-    { label: "Flydat, Sensor Set" },
-    { label: "Fuel Pump Assembly-Fuel Hose Assembly-Airbox Assembly" },
+    { label: "Flydat, Sensor Set", engineIds: legacyEngines },
+    { label: "Fuel Injector", engineIds: ["912is"] },
+    { label: "Fuel Pump Assembly-Fuel Hose Assembly-Airbox Assembly", engineIds: legacyEngines },
+    { label: "Fuel Pump Assembly", categoryId: "fuel-pump-912is", engineIds: ["912is"] },
     { label: "Governors" },
-    { label: "Intake Manifold" },
-    { label: "Magnetic pickup Assy" },
+    { label: "Ignition", categoryId: "ignition-912is", engineIds: ["912is"] },
+    { label: "Ignition Housing", engineIds: ["912is"] },
+    { label: "Intake Manifold", engineIds: legacyEngines },
+    { label: "Intake Manifold", categoryId: "intake-manifold-912is", engineIds: ["912is"] },
+    { label: "Magnetic pickup Assy", engineIds: legacyEngines },
     { label: "Oil Systems", categoryId: "oil-systems" },
-    { label: "Overload Clutch" },
+    { label: "Overload Clutch", engineIds: legacyEngines },
     { label: "Piston" },
     { label: "Propeller Gear" },
     { label: "Radiators", categoryId: "radiator" },
     { label: "Water Circuits", categoryId: "water-circuits" },
-    { label: "Starters", categoryId: "starters" },
+    { label: "Starters", categoryId: "starters", engineIds: legacyEngines },
+    { label: "Starters", engineIds: ["912is"] },
     { label: "Engine Suspension Frame" },
     { label: "Turbocharger Control Unit", engineIds: ["914ul"] },
+    { label: "Vacuum Pump", engineIds: ["912is"] },
+    { label: "Wiring Harness", categoryId: "wiring-harness-912is", engineIds: ["912is"] },
     { label: "Tools" }
   ];
   const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
