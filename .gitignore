@@ -1,0 +1,5 @@
+node_modules/
+.codex-pydeps/
+server.log
+server.err.log
+requests/*.txt
