@@ -1,3 +1,5 @@
+import nodemailer from "nodemailer";
+
 function sanitizeFilePart(value) {
   return String(value || "")
     .normalize("NFD")
@@ -48,40 +50,35 @@ function buildQuoteText({ customer, items }) {
 }
 
 async function sendQuoteEmail({ customer, filename, text }) {
-  const apiKey = process.env.RESEND_API_KEY;
+  const host = process.env.SMTP_HOST;
+  const port = Number(process.env.SMTP_PORT || 587);
+  const secure = String(process.env.SMTP_SECURE || "false").toLowerCase() === "true";
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
   const to = process.env.QUOTE_TO_EMAIL || "apicotacao@cdsav.com.br";
-  const from = process.env.QUOTE_FROM_EMAIL || "Rotax System <apicotacao@cdsav.com.br>";
+  const from = process.env.SMTP_FROM || user;
 
-  if (!apiKey) {
-    throw new Error("Envio de e-mail nao configurado. Defina RESEND_API_KEY na Vercel.");
+  if (!host || !user || !pass) {
+    throw new Error("Envio de e-mail nao configurado. Defina SMTP_HOST, SMTP_USER e SMTP_PASS na Vercel.");
   }
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      subject: `Cotacao Rotax - ${customer.prefix.trim()} - ${customer.name.trim()}`,
-      text,
-      attachments: [
-        {
-          filename,
-          content: Buffer.from(text, "utf8").toString("base64")
-        }
-      ]
-    })
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure,
+    auth: { user, pass }
   });
 
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new Error(result.message || "Nao foi possivel enviar o e-mail.");
-  }
+  const info = await transporter.sendMail({
+    from,
+    to,
+    replyTo: customer.email.trim(),
+    subject: `Cotacao Rotax - ${customer.prefix.trim()} - ${customer.name.trim()}`,
+    text,
+    attachments: [{ filename, content: text, contentType: "text/plain; charset=utf-8" }]
+  });
 
-  return { id: result.id, to };
+  return { id: info.messageId, to };
 }
 
 export default async function handler(req, res) {
