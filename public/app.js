@@ -134,6 +134,12 @@ const nestedCategories = [
     thumb: "/assets/rotax-fuel-system-1-12-thumb.png"
   },
   {
+    id: "instruments-air-filter",
+    label: "Instruments, Air filter",
+    title: "Instrumentos e filtro de ar",
+    thumb: "/assets/rotax-instruments-air-filter-thumb.png"
+  },
+  {
     id: "ignition-912is",
     label: "Ignition",
     title: "Ignicao",
@@ -231,6 +237,7 @@ function categoriesForEngine(engineId) {
     { label: "Governors" },
     { label: "Ignition", categoryId: "ignition-912is", engineIds: ["912is"] },
     { label: "Ignition Housing", engineIds: ["912is"] },
+    { label: "Instruments, Air filter", categoryId: "instruments-air-filter" },
     { label: "Intake Manifold", engineIds: legacyEngines },
     { label: "Intake Manifold", categoryId: "intake-manifold-912is", engineIds: ["912is"] },
     { label: "Magnetic pickup Assy", engineIds: legacyEngines },
@@ -286,9 +293,7 @@ function categoriesForEngine(engineId) {
 function renderCatalogSidebar(engineId) {
   return `
     <nav class="catalog-sidebar" aria-label="Categorias">
-      <button type="button" disabled>ON SPECIAL</button>
       <button type="button" disabled>ALL TOOLS</button>
-      <button type="button" disabled>CONSUMABLE</button>
       ${state.catalog.engines.map((entry) => `
         <button type="button" class="${entry.id === engineId ? "active" : ""}" ${entry.active ? `data-route="#/engine/${entry.id}"` : "disabled"}>
           ${escapeHtml(entry.name)}

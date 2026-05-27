@@ -3,29 +3,50 @@
     {
       "id": "912uls",
       "name": "ROTAX 912 ULS",
-      "subtitle": "Catalogo inicial com secao de ignicao",
+      "subtitle": "Catalogo de pecas 912 ULS",
       "image": "/assets/engine-912uls.png",
       "active": true
     },
     {
       "id": "912ul",
       "name": "ROTAX 912 UL",
-      "subtitle": "Estrutura pronta para proximas secoes",
+      "subtitle": "Catalogo de pecas 912 UL",
       "image": "/assets/engine-912ul.png",
       "active": true
     },
     {
       "id": "914ul",
       "name": "ROTAX 914 UL",
-      "subtitle": "Estrutura pronta para proximas secoes",
+      "subtitle": "Catalogo de pecas 914 UL",
       "image": "/assets/engine-914ul.png",
       "active": true
     },
     {
       "id": "912is",
       "name": "ROTAX 912 iS",
-      "subtitle": "Catalogo de pecas para linha 912 iS",
+      "subtitle": "Catalogo de pecas 912 iS",
       "image": "/assets/engine-912is.png",
+      "active": true
+    },
+    {
+      "id": "915is",
+      "name": "ROTAX 915 iS",
+      "subtitle": "Catalogo de pecas 915 iS",
+      "image": "/assets/engine-915is.png",
+      "active": true
+    },
+    {
+      "id": "916is",
+      "name": "ROTAX 916 iS",
+      "subtitle": "Catalogo de pecas 916 iS",
+      "image": "/assets/engine-916is.png",
+      "active": true
+    },
+    {
+      "id": "582ul",
+      "name": "ROTAX 582 UL",
+      "subtitle": "Catalogo de pecas 582 UL",
+      "image": "/assets/engine-582ul.png",
       "active": true
     }
   ],
@@ -3546,8 +3567,7 @@
       "categoryId": "fuel-system-legacy",
       "engineIds": [
         "912ul",
-        "912uls",
-        "914ul"
+        "912uls"
       ],
       "label": "Fuel Hose Assembly / Airbox Assembly",
       "chapter": "73-10-00",
@@ -3556,6 +3576,38 @@
       "source": "Fuel System IPC - Edition 05, Revision 01, 2024",
       "image": "/assets/rotax-fuel-system-13-plus-page.png",
       "thumb": "/assets/rotax-fuel-system-13-plus-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "fuel-system-914",
+      "categoryId": "fuel-system-legacy",
+      "engineIds": [
+        "914ul"
+      ],
+      "label": "Airbox / 3-Way Solenoid / Fuel Pressure Regulator",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "AIRBOX ASSY., 3-WAY SOLENOID VALVE ASSY., FUEL PRESSURE REGULATOR ASSY.",
+      "source": "Fuel System 914 IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-fuel-system-914-page.png",
+      "thumb": "/assets/rotax-fuel-system-914-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "instruments-air-filter",
+      "categoryId": "instruments-air-filter",
+      "engineIds": [
+        "912ul",
+        "912uls",
+        "914ul"
+      ],
+      "label": "Instruments, Air filter",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "INSTRUMENTS, AIR FILTER",
+      "source": "Instruments, Air Filter IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-instruments-air-filter-page.png",
+      "thumb": "/assets/rotax-instruments-air-filter-thumb.png",
       "hotspots": []
     }
   ],
@@ -21935,7 +21987,7 @@
       "qty": {
         "912ul": 1,
         "912uls": 1,
-        "914ul": 1
+        "914ul": 0
       },
       "note": "not available"
     },
@@ -22321,6 +22373,866 @@
         "914ul": 0
       },
       "note": "optional"
+    },
+    {
+      "id": "fuel-system-914-001-01-667574",
+      "sectionId": "fuel-system-914",
+      "figure": "01",
+      "partNumber": "667574",
+      "description": "AIRBOX ASSY.",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "Ill. no. 1-33; Marked with S/N"
+    },
+    {
+      "id": "fuel-system-914-002-02-860985",
+      "sectionId": "fuel-system-914",
+      "figure": "02",
+      "partNumber": "860985",
+      "description": "CONNECTING HOSE 35 MM",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-003-03-853595",
+      "sectionId": "fuel-system-914",
+      "figure": "03",
+      "partNumber": "853595",
+      "description": "CLAMP 59",
+      "qty": {
+        "914ul": 6
+      }
+    },
+    {
+      "id": "fuel-system-914-004-04-940551",
+      "sectionId": "fuel-system-914",
+      "figure": "04",
+      "partNumber": "940551",
+      "description": "HOSE NIPPLE M6",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-005-05-242032",
+      "sectionId": "fuel-system-914",
+      "figure": "05",
+      "partNumber": "242032",
+      "description": "HEX.NUT BM6 6.6",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-006-06-940555",
+      "sectionId": "fuel-system-914",
+      "figure": "06",
+      "partNumber": "940555",
+      "description": "HOSE NIPPLE M6",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-007-07-240481",
+      "sectionId": "fuel-system-914",
+      "figure": "07",
+      "partNumber": "240481",
+      "description": "PLUG SCREW 1/8-27NPT",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-008-08-230415",
+      "sectionId": "fuel-system-914",
+      "figure": "08",
+      "partNumber": "230415",
+      "description": "SEALING RING A 6X10",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-009-09-641071",
+      "sectionId": "fuel-system-914",
+      "figure": "09",
+      "partNumber": "641071",
+      "description": "HEX.SCREW - M6X6",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-010-10-966502",
+      "sectionId": "fuel-system-914",
+      "figure": "10",
+      "partNumber": "966502",
+      "description": "AIRBOX PRESSURE SENSOR",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "see chapter 76-10-00"
+    },
+    {
+      "id": "fuel-system-914-011-11-430205",
+      "sectionId": "fuel-system-914",
+      "figure": "11",
+      "partNumber": "430205",
+      "description": "O-RING - 6.4X1.8",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-012-12-244216",
+      "sectionId": "fuel-system-914",
+      "figure": "12",
+      "partNumber": "244216",
+      "description": "WASHER 6.2/14/1",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-013-13-840392",
+      "sectionId": "fuel-system-914",
+      "figure": "13",
+      "partNumber": "840392",
+      "description": "ALLEN SCREW- M6x14",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-014-14-960151",
+      "sectionId": "fuel-system-914",
+      "figure": "14",
+      "partNumber": "960151",
+      "description": "RUBBER BUFFER 20X15XM6",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-015-15-853010",
+      "sectionId": "fuel-system-914",
+      "figure": "15",
+      "partNumber": "853010",
+      "description": "CABLE CLAMP 32/M6",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-016-16-927941",
+      "sectionId": "fuel-system-914",
+      "figure": "16",
+      "partNumber": "927941",
+      "description": "WASHER 6.0/12/1",
+      "qty": {
+        "914ul": 3
+      }
+    },
+    {
+      "id": "fuel-system-914-017-17-842041",
+      "sectionId": "fuel-system-914",
+      "figure": "17",
+      "partNumber": "842041",
+      "description": "LOCK NUT M6",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-018-18-874270",
+      "sectionId": "fuel-system-914",
+      "figure": "18",
+      "partNumber": "874270",
+      "description": "T-PIECE 6-6-6",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-019-19-851370",
+      "sectionId": "fuel-system-914",
+      "figure": "19",
+      "partNumber": "851370",
+      "description": "CLAMP 8.1",
+      "qty": {
+        "914ul": 7
+      }
+    },
+    {
+      "id": "fuel-system-914-020-20-951595",
+      "sectionId": "fuel-system-914",
+      "figure": "20",
+      "partNumber": "951595",
+      "description": "CLAMP 7.3",
+      "qty": {
+        "914ul": 5
+      }
+    },
+    {
+      "id": "fuel-system-914-021-21-860660",
+      "sectionId": "fuel-system-914",
+      "figure": "21",
+      "partNumber": "860660",
+      "description": "HOSE 4X7",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "Ill. no. 21-26; in a roll by meter; non certified; as required"
+    },
+    {
+      "id": "fuel-system-914-022-21-860674",
+      "sectionId": "fuel-system-914",
+      "figure": "21",
+      "partNumber": "860674",
+      "description": "HOSE 4X7 270 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-023-22-860673",
+      "sectionId": "fuel-system-914",
+      "figure": "22",
+      "partNumber": "860673",
+      "description": "HOSE 4X7 235 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-024-23-860661",
+      "sectionId": "fuel-system-914",
+      "figure": "23",
+      "partNumber": "860661",
+      "description": "HOSE 4X7 35 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-025-24-860669",
+      "sectionId": "fuel-system-914",
+      "figure": "24",
+      "partNumber": "860669",
+      "description": "HOSE 4X7 145 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-026-25-860672",
+      "sectionId": "fuel-system-914",
+      "figure": "25",
+      "partNumber": "860672",
+      "description": "HOSE 4X7 160 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-027-26-860671",
+      "sectionId": "fuel-system-914",
+      "figure": "26",
+      "partNumber": "860671",
+      "description": "HOSE 4X7 190 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-028-27-966066",
+      "sectionId": "fuel-system-914",
+      "figure": "27",
+      "partNumber": "966066",
+      "description": "SPIRAL HOSE 270 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-029-27-966060",
+      "sectionId": "fuel-system-914",
+      "figure": "27",
+      "partNumber": "966060",
+      "description": "SPIRAL HOSE 6.5X8.5X0.6",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "Ill. no. 27-31; in a roll by meter; non certified; as required"
+    },
+    {
+      "id": "fuel-system-914-030-28-966065",
+      "sectionId": "fuel-system-914",
+      "figure": "28",
+      "partNumber": "966065",
+      "description": "SPIRAL HOSE 225 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-031-29-966061",
+      "sectionId": "fuel-system-914",
+      "figure": "29",
+      "partNumber": "966061",
+      "description": "HELICAL TAPE 130 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-032-30-966064",
+      "sectionId": "fuel-system-914",
+      "figure": "30",
+      "partNumber": "966064",
+      "description": "SPIRAL HOSE 165 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-033-31-966061",
+      "sectionId": "fuel-system-914",
+      "figure": "31",
+      "partNumber": "966061",
+      "description": "HELICAL TAPE 130 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-034-32-874680",
+      "sectionId": "fuel-system-914",
+      "figure": "32",
+      "partNumber": "874680",
+      "description": "DRIP TRAY SET",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-035-33-860984",
+      "sectionId": "fuel-system-914",
+      "figure": "33",
+      "partNumber": "860984",
+      "description": "AIR INTAKE HOSE 250 MM",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-036-34-966435",
+      "sectionId": "fuel-system-914",
+      "figure": "34",
+      "partNumber": "966435",
+      "description": "RESISTANCE THERMOMETER",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-037-35-874313",
+      "sectionId": "fuel-system-914",
+      "figure": "35",
+      "partNumber": "874313",
+      "description": "3-WAY SOLENOID VALVE ASSY.",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-038-36-840392",
+      "sectionId": "fuel-system-914",
+      "figure": "36",
+      "partNumber": "840392",
+      "description": "ALLEN SCREW- M6x14",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-039-37-945831",
+      "sectionId": "fuel-system-914",
+      "figure": "37",
+      "partNumber": "945831",
+      "description": "LOCK WASHER - A6",
+      "qty": {
+        "914ul": 4
+      }
+    },
+    {
+      "id": "fuel-system-914-040-38-887130",
+      "sectionId": "fuel-system-914",
+      "figure": "38",
+      "partNumber": "887130",
+      "description": "FUEL PRESSURE REGULATOR ASSY.",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-041-39-241187",
+      "sectionId": "fuel-system-914",
+      "figure": "39",
+      "partNumber": "241187",
+      "description": "HEX.SCREW - M6X16",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-042-40-874290",
+      "sectionId": "fuel-system-914",
+      "figure": "40",
+      "partNumber": "874290",
+      "description": "FUEL HOSE ASSY. 1/3",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-043-41-874280",
+      "sectionId": "fuel-system-914",
+      "figure": "41",
+      "partNumber": "874280",
+      "description": "FUEL HOSE ASSY. 2/4",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-044-42-230150",
+      "sectionId": "fuel-system-914",
+      "figure": "42",
+      "partNumber": "230150",
+      "description": "SEALING RING A 10X14",
+      "qty": {
+        "914ul": 9
+      }
+    },
+    {
+      "id": "fuel-system-914-045-43-241073",
+      "sectionId": "fuel-system-914",
+      "figure": "43",
+      "partNumber": "241073",
+      "description": "BANJO BOLT M10X1X19",
+      "qty": {
+        "914ul": 4
+      }
+    },
+    {
+      "id": "fuel-system-914-046-44-956314",
+      "sectionId": "fuel-system-914",
+      "figure": "44",
+      "partNumber": "956314",
+      "description": "HOSE NIPPLE 4/6",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-047-45-851115",
+      "sectionId": "fuel-system-914",
+      "figure": "45",
+      "partNumber": "851115",
+      "description": "CABLE CLAMP 5/M5",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-048-46-241842",
+      "sectionId": "fuel-system-914",
+      "figure": "46",
+      "partNumber": "241842",
+      "description": "ALLEN SCREW - M5X12",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-049-47-842032",
+      "sectionId": "fuel-system-914",
+      "figure": "47",
+      "partNumber": "842032",
+      "description": "LOCK NUT M5",
+      "qty": {
+        "914ul": 2
+      },
+      "note": "see chapter 73-00-00"
+    },
+    {
+      "id": "fuel-system-914-050-49-861931",
+      "sectionId": "fuel-system-914",
+      "figure": "49",
+      "partNumber": "861931",
+      "description": "ADAPTER",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "included in carburetor"
+    },
+    {
+      "id": "fuel-system-914-051-50-640181",
+      "sectionId": "fuel-system-914",
+      "figure": "50",
+      "partNumber": "640181",
+      "description": "SLOTTED HEAD SCREW M4X10 - MK",
+      "qty": {
+        "914ul": 2
+      },
+      "note": "included in carburetor"
+    },
+    {
+      "id": "fuel-system-914-052-51-966482",
+      "sectionId": "fuel-system-914",
+      "figure": "51",
+      "partNumber": "966482",
+      "description": "THROTTLE VALVE POSITION SENSOR",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "included in carburetor"
+    },
+    {
+      "id": "fuel-system-914-053-52-944152",
+      "sectionId": "fuel-system-914",
+      "figure": "52",
+      "partNumber": "944152",
+      "description": "WASHER B 4.3",
+      "qty": {
+        "914ul": 2
+      },
+      "note": "included in carburetor"
+    },
+    {
+      "id": "fuel-system-914-054-53-841030",
+      "sectionId": "fuel-system-914",
+      "figure": "53",
+      "partNumber": "841030",
+      "description": "COMBINED SCREW M4X22",
+      "qty": {
+        "914ul": 2
+      },
+      "note": "included in carburetor"
+    },
+    {
+      "id": "fuel-system-914-055-54-940873",
+      "sectionId": "fuel-system-914",
+      "figure": "54",
+      "partNumber": "940873",
+      "description": "BANJO BOLT M10X1X30",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "not available; Optional for fuel pressure gauge; connection; optional"
+    },
+    {
+      "id": "fuel-system-914-056-54-241072",
+      "sectionId": "fuel-system-914",
+      "figure": "54",
+      "partNumber": "241072",
+      "description": "BANJO BOLT M10X1X30",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "Optional for fuel pressure gauge; connection; optional"
+    },
+    {
+      "id": "fuel-system-914-057-55-956314",
+      "sectionId": "fuel-system-914",
+      "figure": "55",
+      "partNumber": "956314",
+      "description": "HOSE NIPPLE 4/6",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "Optional for fuel pressure gauge; cennection; optional"
+    },
+    {
+      "id": "fuel-system-914-058-56-963143",
+      "sectionId": "fuel-system-914",
+      "figure": "56",
+      "partNumber": "963143",
+      "description": "IDLE JET 35",
+      "qty": {
+        "914ul": 1
+      },
+      "note": "Optional for fuel pressure gauge; connection; Press into part at pos. 56; optional"
+    },
+    {
+      "id": "fuel-system-914-059-57-881365",
+      "sectionId": "fuel-system-914",
+      "figure": "57",
+      "partNumber": "881365",
+      "description": "FUEL PUMP SET PACKAGED",
+      "qty": {
+        "914ul": 2
+      },
+      "note": "Ill. no. 57-66; SI-914-035"
+    },
+    {
+      "id": "fuel-system-914-060-58-951826",
+      "sectionId": "fuel-system-914",
+      "figure": "58",
+      "partNumber": "951826",
+      "description": "HOSE CLAMP - 19x9",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-061-59-951828",
+      "sectionId": "fuel-system-914",
+      "figure": "59",
+      "partNumber": "951828",
+      "description": "HOSE CLAMP - 20x9",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-062-60-951822",
+      "sectionId": "fuel-system-914",
+      "figure": "60",
+      "partNumber": "951822",
+      "description": "HOSE CLAMP - 15x9",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-063-61-951824",
+      "sectionId": "fuel-system-914",
+      "figure": "61",
+      "partNumber": "951824",
+      "description": "HOSE CLAMP - 16x9",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-064-62-853482",
+      "sectionId": "fuel-system-914",
+      "figure": "62",
+      "partNumber": "853482",
+      "description": "CLAMP - 37x15",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-065-63-241237",
+      "sectionId": "fuel-system-914",
+      "figure": "63",
+      "partNumber": "241237",
+      "description": "ALLEN SCREW - M6x16",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-066-64-827962",
+      "sectionId": "fuel-system-914",
+      "figure": "64",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-067-65-842042",
+      "sectionId": "fuel-system-914",
+      "figure": "65",
+      "partNumber": "842042",
+      "description": "LOCK NUT M6",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-068-66-881304",
+      "sectionId": "fuel-system-914",
+      "figure": "66",
+      "partNumber": "881304",
+      "description": "CONNECTOR SET FUEL PUMP",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-069-67-881367",
+      "sectionId": "fuel-system-914",
+      "figure": "67",
+      "partNumber": "881367",
+      "description": "HOSE REDUCTION SET PACKAGED",
+      "qty": {
+        "914ul": 2
+      },
+      "note": "Ill. no. 67-72; SI-914-035"
+    },
+    {
+      "id": "fuel-system-914-070-68-974080",
+      "sectionId": "fuel-system-914",
+      "figure": "68",
+      "partNumber": "974080",
+      "description": "FUEL HOSE 9.3X3X150",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-071-69-874375",
+      "sectionId": "fuel-system-914",
+      "figure": "69",
+      "partNumber": "874375",
+      "description": "REDUCTION NIPPLE 9.8/8.5",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "fuel-system-914-072-70-951822",
+      "sectionId": "fuel-system-914",
+      "figure": "70",
+      "partNumber": "951822",
+      "description": "HOSE CLAMP - 15x9",
+      "qty": {
+        "914ul": 3
+      }
+    },
+    {
+      "id": "fuel-system-914-073-71-951824",
+      "sectionId": "fuel-system-914",
+      "figure": "71",
+      "partNumber": "951824",
+      "description": "HOSE CLAMP - 16x9",
+      "qty": {
+        "914ul": 2
+      }
+    },
+    {
+      "id": "fuel-system-914-074-72-951821",
+      "sectionId": "fuel-system-914",
+      "figure": "72",
+      "partNumber": "951821",
+      "description": "HOSE CLAMP - 14x9",
+      "qty": {
+        "914ul": 1
+      }
+    },
+    {
+      "id": "instruments-air-filter-001-01-956520",
+      "sectionId": "instruments-air-filter",
+      "figure": "01",
+      "partNumber": "956520",
+      "description": "PRESSURE GAUGE 0-10 BAR",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "For oil pressure; for old VDO sensor.; not usable with part no. 456180; optional"
+    },
+    {
+      "id": "instruments-air-filter-002-02-966408",
+      "sectionId": "instruments-air-filter",
+      "figure": "02",
+      "partNumber": "966408",
+      "description": "REV. COUNTER 0-7000 RPM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "For engine speed; optional"
+    },
+    {
+      "id": "instruments-air-filter-003-03-825750",
+      "sectionId": "instruments-air-filter",
+      "figure": "03",
+      "partNumber": "825750",
+      "description": "AIR FILTER",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "instruments-air-filter-004-03-825751",
+      "sectionId": "instruments-air-filter",
+      "figure": "03",
+      "partNumber": "825751",
+      "description": "AIR FILTER",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "instruments-air-filter-005-04-825551",
+      "sectionId": "instruments-air-filter",
+      "figure": "04",
+      "partNumber": "825551",
+      "description": "AIR FILTER",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "instruments-air-filter-006-04-825553",
+      "sectionId": "instruments-air-filter",
+      "figure": "04",
+      "partNumber": "825553",
+      "description": "AIR FILTER",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "optional"
+    },
+    {
+      "id": "instruments-air-filter-007-05-825712",
+      "sectionId": "instruments-air-filter",
+      "figure": "05",
+      "partNumber": "825712",
+      "description": "AIR FILTER",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "Following Service Instruction has to be; noticed; SI-912-017 current issue; optional"
+    },
+    {
+      "id": "instruments-air-filter-008-05-825711",
+      "sectionId": "instruments-air-filter",
+      "figure": "05",
+      "partNumber": "825711",
+      "description": "AIR FILTER",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "still valid"
     }
   ]
 }
