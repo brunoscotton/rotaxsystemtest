@@ -2393,6 +2393,122 @@
       ]
     },
     {
+      "id": "magnetic-drain-plug-plug-screw",
+      "categoryId": "oil-systems",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Magnetic Drain Plug, Plug Screw",
+      "chapter": "79-20-00",
+      "figure": "79-20-00",
+      "title": "MAGNETIC DRAIN PLUG, PLUG SCREW",
+      "source": "Magnetic drain plug IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-magnetic-drain-plug-page.png",
+      "thumb": "/assets/rotax-magnetic-drain-plug-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "overload-clutch",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Overload Clutch",
+      "chapter": "72-10-00",
+      "figure": "72-10-00",
+      "title": "OVERLOAD CLUTCH",
+      "source": "Overload clutch IPC - Edition 4, Revision 0, 2017",
+      "image": "/assets/rotax-overload-clutch-page.png",
+      "thumb": "/assets/rotax-overload-clutch-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "starter-complete-sets",
+      "categoryId": "starters",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Starter Complete Sets",
+      "chapter": "80-10-00",
+      "figure": "80-10-00",
+      "title": "ELECTRIC STARTER, STARTER RELAY",
+      "source": "Starters IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-starter-complete-sets-page.png",
+      "thumb": "/assets/rotax-starter-complete-sets-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "starter-standard",
+      "categoryId": "starters",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Starter Standard",
+      "chapter": "80-10-00",
+      "figure": "80-10-00",
+      "title": "ELECTRIC STARTER, STARTER RELAY",
+      "source": "Starters IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-starter-standard-page.png",
+      "thumb": "/assets/rotax-starter-standard-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "e-starter-single-parts",
+      "categoryId": "starters",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "E-Starter Single Parts",
+      "chapter": "80-10-00",
+      "figure": "80-10-00",
+      "title": "E-STARTER SINGLE PARTS",
+      "source": "Starters IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-e-starter-single-parts-page.png",
+      "thumb": "/assets/rotax-e-starter-single-parts-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "engine-suspension-frame",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Engine Suspension Frame",
+      "chapter": "71-20-00",
+      "figure": "71-20-00",
+      "title": "ENGINE SUSPENSION FRAME",
+      "source": "Engine suspension frame IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-engine-suspension-frame-page.png",
+      "thumb": "/assets/rotax-engine-suspension-frame-thumb.png",
+      "hotspots": []
+    },
+    {
+      "id": "governor-arrangement",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Governors",
+      "chapter": "61-20-00",
+      "figure": "61-20-00",
+      "title": "HYDR. GOVERNOR ARRANGEMENT FOR CONSTANT SPEED PROPELLER",
+      "source": "Governor IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-governor-arrangement-page.png",
+      "thumb": "/assets/rotax-governor-arrangement-thumb.png",
+      "hotspots": []
+    },
+    {
       "id": "exhaust-system",
       "categoryId": "exhaust",
       "engineIds": [
@@ -12651,6 +12767,1702 @@
         "914ul": 1
       },
       "note": "Connector cable. wiring harness part no. 966492 with sensor part no. 274051 SI-914-022"
+    },
+    {
+      "id": "magdrain-01-01-640866",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "01",
+      "partNumber": "640866",
+      "description": "MAGNETIC DRAIN PLUG M12X1.5 PACKAGED",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "(241785 + packaging)"
+    },
+    {
+      "id": "magdrain-02-01-241785",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "01",
+      "partNumber": "241785",
+      "description": "MAGNETIC DRAIN PLUG M12X1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "magdrain-03-02-240234",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "02",
+      "partNumber": "240234",
+      "description": "PLUG SCREW A M16X1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "magdrain-04-03-430622",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "03",
+      "partNumber": "430622",
+      "description": "SEALING RING A 16X22",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "magdrain-05-04-956315",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "04",
+      "partNumber": "956315",
+      "description": "HOSE NIPPLE 10",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "magdrain-06-05-956050",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "05",
+      "partNumber": "956050",
+      "description": "HOSE NIPPLE 16",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Following Service Instruction has to be noticed: SI-912-003 current issue SI-914-005"
+    },
+    {
+      "id": "magdrain-07-06-940879",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "06",
+      "partNumber": "940879",
+      "description": "BANJO BOLT M16X1.5X28",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "magdrain-08-07-956652",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "07",
+      "partNumber": "956652",
+      "description": "ADAPTER 3/4-16 UNF/ M16 X 1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "magdrain-09-07-956651",
+      "sectionId": "magnetic-drain-plug-plug-screw",
+      "figure": "07",
+      "partNumber": "956651",
+      "description": "ADAPTER 3/4-16 UNF/ M16 X 1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "overload-01-01-958912",
+      "sectionId": "overload-clutch",
+      "figure": "01",
+      "partNumber": "958912",
+      "description": "CLUTCH DRUM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "With additional bores to drain lead"
+    },
+    {
+      "id": "overload-02-02-958905",
+      "sectionId": "overload-clutch",
+      "figure": "02",
+      "partNumber": "958905",
+      "description": "CLUTCH HUB",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "overload-03-03-944080",
+      "sectionId": "overload-clutch",
+      "figure": "03",
+      "partNumber": "944080",
+      "description": "THRUST WASHER 45.2/60/1",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "overload-04-04-958920",
+      "sectionId": "overload-clutch",
+      "figure": "04",
+      "partNumber": "958920",
+      "description": "DOG HUB narrow",
+      "qty": {
+        "912ul": 1,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For gear sets part no. 886125, 886517; thin dog gear"
+    },
+    {
+      "id": "overload-05-04-958924",
+      "sectionId": "overload-clutch",
+      "figure": "04",
+      "partNumber": "958924",
+      "description": "DOG HUB wide, 7 deg.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "For gear set part no. 886518; wide dog gear"
+    },
+    {
+      "id": "overload-06-05-958931",
+      "sectionId": "overload-clutch",
+      "figure": "05",
+      "partNumber": "958931",
+      "description": "STEEL FRICTION PLATE 1.0 MM",
+      "qty": {
+        "912ul": 9,
+        "912uls": 9,
+        "914ul": 9
+      }
+    },
+    {
+      "id": "overload-07-06-958944",
+      "sectionId": "overload-clutch",
+      "figure": "06",
+      "partNumber": "958944",
+      "description": "SINTER FRICTION PLATE 1.8 MM",
+      "qty": {
+        "912ul": 8,
+        "912uls": 8,
+        "914ul": 8
+      }
+    },
+    {
+      "id": "overload-08-07-958951",
+      "sectionId": "overload-clutch",
+      "figure": "07",
+      "partNumber": "958951",
+      "description": "SUPPORT RING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "overload-09-08-838161",
+      "sectionId": "overload-clutch",
+      "figure": "08",
+      "partNumber": "838161",
+      "description": "DISK SPRING 100X76X2.7",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "overload-10-09-842643",
+      "sectionId": "overload-clutch",
+      "figure": "09",
+      "partNumber": "842643",
+      "description": "COLLAR NUT M102X1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "With additional bores to drain lead"
+    },
+    {
+      "id": "starterset-01-01-685974",
+      "sectionId": "starter-complete-sets",
+      "figure": "01",
+      "partNumber": "685974",
+      "description": "ELECTRIC STARTER SET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Ill. no. 1-5 standard starter 0.7 kW"
+    },
+    {
+      "id": "starterset-02-02-840636",
+      "sectionId": "starter-complete-sets",
+      "figure": "02",
+      "partNumber": "840636",
+      "description": "STUD M5X150/16",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterset-03-03-950420",
+      "sectionId": "starter-complete-sets",
+      "figure": "03",
+      "partNumber": "950420",
+      "description": "O-RING - 5X1.5",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterset-04-04-847248",
+      "sectionId": "starter-complete-sets",
+      "figure": "04",
+      "partNumber": "847248",
+      "description": "SPACER 5.4/10/12",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterset-05-05-942311",
+      "sectionId": "starter-complete-sets",
+      "figure": "05",
+      "partNumber": "942311",
+      "description": "HEX. NUT M5",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "starterset-06-06-889751",
+      "sectionId": "starter-complete-sets",
+      "figure": "06",
+      "partNumber": "889751",
+      "description": "ELECTRIC STARTER SET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Ill. no. 5. 6. 7. 8 SB-912-037 current issue SB-914-023"
+    },
+    {
+      "id": "starterset-07-07-851020",
+      "sectionId": "starter-complete-sets",
+      "figure": "07",
+      "partNumber": "851020",
+      "description": "CLAMP 76",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "will be delivered in circle shape"
+    },
+    {
+      "id": "starterset-08-08-941792",
+      "sectionId": "starter-complete-sets",
+      "figure": "08",
+      "partNumber": "941792",
+      "description": "ALLEN SCREW - M5x45",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterset-09-09-992818",
+      "sectionId": "starter-complete-sets",
+      "figure": "09",
+      "partNumber": "992818",
+      "description": "STARTER RELAY ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Ill. no. 9-11"
+    },
+    {
+      "id": "starterset-10-10-945831",
+      "sectionId": "starter-complete-sets",
+      "figure": "10",
+      "partNumber": "945831",
+      "description": "LOCK WASHER - A",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterset-11-11-242214",
+      "sectionId": "starter-complete-sets",
+      "figure": "11",
+      "partNumber": "242214",
+      "description": "HEX.NUT M6",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterset-12-12-960719",
+      "sectionId": "starter-complete-sets",
+      "figure": "12",
+      "partNumber": "960719",
+      "description": "CONNECTOR SHEATH",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not with Form 1"
+    },
+    {
+      "id": "starterset-13-13-864011",
+      "sectionId": "starter-complete-sets",
+      "figure": "13",
+      "partNumber": "864011",
+      "description": "FASTON CONNECTOR 6.3X0.8",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterset-14-14-837102",
+      "sectionId": "starter-complete-sets",
+      "figure": "14",
+      "partNumber": "837102",
+      "description": "IDLE GEAR SHAFT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterset-15-15-827261",
+      "sectionId": "starter-complete-sets",
+      "figure": "15",
+      "partNumber": "827261",
+      "description": "THRUST WASHER 12.5/21.5/1",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterset-16-16-834157",
+      "sectionId": "starter-complete-sets",
+      "figure": "16",
+      "partNumber": "834157",
+      "description": "IDLE GEAR 50/11 T.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-01-01-250140",
+      "sectionId": "starter-standard",
+      "figure": "01",
+      "partNumber": "250140",
+      "description": "O-RING - 24.4X3.1",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-02-01-685974",
+      "sectionId": "starter-standard",
+      "figure": "01",
+      "partNumber": "685974",
+      "description": "ELECTRIC STARTER SET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Ill. no. 1-19"
+    },
+    {
+      "id": "starterstd-03-02-850500",
+      "sectionId": "starter-standard",
+      "figure": "02",
+      "partNumber": "850500",
+      "description": "O-RING - 62X1.5",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterstd-04-03-242780",
+      "sectionId": "starter-standard",
+      "figure": "03",
+      "partNumber": "242780",
+      "description": "COMBINED NUT M6",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-05-04-260800",
+      "sectionId": "starter-standard",
+      "figure": "04",
+      "partNumber": "260800",
+      "description": "CONNECTOR SHEATH",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-06-05-xxx",
+      "sectionId": "starter-standard",
+      "figure": "05",
+      "partNumber": "XXX",
+      "description": "O-RING 6x1.7",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "starterstd-07-06-xxx",
+      "sectionId": "starter-standard",
+      "figure": "06",
+      "partNumber": "XXX",
+      "description": "SUPPORT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "starterstd-08-07-250130",
+      "sectionId": "starter-standard",
+      "figure": "07",
+      "partNumber": "250130",
+      "description": "OIL SEAL 15X24X5 NBR",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-09-08-xxx",
+      "sectionId": "starter-standard",
+      "figure": "08",
+      "partNumber": "XXX",
+      "description": "STATOR YOKE ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "starterstd-10-09-232260",
+      "sectionId": "starter-standard",
+      "figure": "09",
+      "partNumber": "232260",
+      "description": "BALL BEARING 6002 Z / 15-32-9",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-11-10-xxx",
+      "sectionId": "starter-standard",
+      "figure": "10",
+      "partNumber": "XXX",
+      "description": "ROTOR ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "starterstd-12-11-827600",
+      "sectionId": "starter-standard",
+      "figure": "11",
+      "partNumber": "827600",
+      "description": "SHIM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "starterstd-13-12-xxx",
+      "sectionId": "starter-standard",
+      "figure": "12",
+      "partNumber": "XXX",
+      "description": "ROTOR SUPPORT ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "starterstd-14-13-260810",
+      "sectionId": "starter-standard",
+      "figure": "13",
+      "partNumber": "260810",
+      "description": "CONNECTOR SHEATH",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-15-14-264180",
+      "sectionId": "starter-standard",
+      "figure": "14",
+      "partNumber": "264180",
+      "description": "CARBON BRUSH ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-16-15-866890",
+      "sectionId": "starter-standard",
+      "figure": "15",
+      "partNumber": "866890",
+      "description": "BRUSH HOLDER WITH SPRINGS",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "starterstd-17-16-840636",
+      "sectionId": "starter-standard",
+      "figure": "16",
+      "partNumber": "840636",
+      "description": "STUD M5X150/16",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterstd-18-17-950420",
+      "sectionId": "starter-standard",
+      "figure": "17",
+      "partNumber": "950420",
+      "description": "O-RING - 5X1.5",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "starterstd-19-18-847248",
+      "sectionId": "starter-standard",
+      "figure": "18",
+      "partNumber": "847248",
+      "description": "SPACER 5.4/10/12",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "estarter-01-01-250140",
+      "sectionId": "e-starter-single-parts",
+      "figure": "01",
+      "partNumber": "250140",
+      "description": "O-RING - 24.4X3.1",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "estarter-02-01-889751",
+      "sectionId": "e-starter-single-parts",
+      "figure": "01",
+      "partNumber": "889751",
+      "description": "ELECTRIC STARTER SET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Ill. no. 1-17"
+    },
+    {
+      "id": "estarter-03-02-850500",
+      "sectionId": "e-starter-single-parts",
+      "figure": "02",
+      "partNumber": "850500",
+      "description": "O-RING - 62X1.5",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "estarter-04-03-242780",
+      "sectionId": "e-starter-single-parts",
+      "figure": "03",
+      "partNumber": "242780",
+      "description": "COMBINED NUT M6",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "estarter-05-04-260800",
+      "sectionId": "e-starter-single-parts",
+      "figure": "04",
+      "partNumber": "260800",
+      "description": "CONNECTOR SHEATH",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "estarter-06-05-230530",
+      "sectionId": "e-starter-single-parts",
+      "figure": "05",
+      "partNumber": "230530",
+      "description": "O-RING - 6X1.7",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "estarter-07-06-xxx",
+      "sectionId": "e-starter-single-parts",
+      "figure": "06",
+      "partNumber": "XXX",
+      "description": "SUPPORT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "estarter-08-07-250130",
+      "sectionId": "e-starter-single-parts",
+      "figure": "07",
+      "partNumber": "250130",
+      "description": "OIL SEAL 15X24X5 NBR",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "estarter-09-08-xxx",
+      "sectionId": "e-starter-single-parts",
+      "figure": "08",
+      "partNumber": "XXX",
+      "description": "STATOR YOKE ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "estarter-10-09-232260",
+      "sectionId": "e-starter-single-parts",
+      "figure": "09",
+      "partNumber": "232260",
+      "description": "BALL BEARING 6002 Z / 15-32-9",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "estarter-11-10-xxx",
+      "sectionId": "e-starter-single-parts",
+      "figure": "10",
+      "partNumber": "XXX",
+      "description": "ROTOR ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "estarter-12-11-827600",
+      "sectionId": "e-starter-single-parts",
+      "figure": "11",
+      "partNumber": "827600",
+      "description": "SHIM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "estarter-13-12-xxx",
+      "sectionId": "e-starter-single-parts",
+      "figure": "12",
+      "partNumber": "XXX",
+      "description": "ROTOR SUPPORT ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Not available as single part. Use electric starter kit part no. 294354. not available"
+    },
+    {
+      "id": "estarter-14-12-294354",
+      "sectionId": "e-starter-single-parts",
+      "figure": "12",
+      "partNumber": "294354",
+      "description": "ELECTRIC STARTER REPAIR KIT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Ill. no. 12-15. 1-5"
+    },
+    {
+      "id": "estarter-15-13-xxx",
+      "sectionId": "e-starter-single-parts",
+      "figure": "13",
+      "partNumber": "XXX",
+      "description": "CONNECTOR SHEATH",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Not available as single part. Use electric starter kit part no. 294354. not available"
+    },
+    {
+      "id": "estarter-16-14-xxx",
+      "sectionId": "e-starter-single-parts",
+      "figure": "14",
+      "partNumber": "XXX",
+      "description": "CARBON BRUSH ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Not available as single part. Use electric starter kit part no. 294354. not available"
+    },
+    {
+      "id": "estarter-17-15-xxx",
+      "sectionId": "e-starter-single-parts",
+      "figure": "15",
+      "partNumber": "XXX",
+      "description": "BRUSH HOLDER WITH SPRINGS Not",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "available as single part. Use electric starter kit part no. 294354. not available"
+    },
+    {
+      "id": "estarter-18-16-440587",
+      "sectionId": "e-starter-single-parts",
+      "figure": "16",
+      "partNumber": "440587",
+      "description": "ALLEN SCREW - M5X180",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "estarter-19-17-927574",
+      "sectionId": "e-starter-single-parts",
+      "figure": "17",
+      "partNumber": "927574",
+      "description": "WASHER 5.3",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "suspframe-01-01-886563",
+      "sectionId": "engine-suspension-frame",
+      "figure": "01",
+      "partNumber": "886563",
+      "description": "ENGINE SUSPENSION FRAME ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "SB-912-028 SB-914-016 optional still valid"
+    },
+    {
+      "id": "suspframe-02-01-886565",
+      "sectionId": "engine-suspension-frame",
+      "figure": "01",
+      "partNumber": "886565",
+      "description": "ENGINE SUSPENSION FRAME ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Status N SB-912-028 SB-914-016 optional"
+    },
+    {
+      "id": "suspframe-03-02-941487",
+      "sectionId": "engine-suspension-frame",
+      "figure": "02",
+      "partNumber": "941487",
+      "description": "ALLEN SCREW M10X110",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "optional"
+    },
+    {
+      "id": "suspframe-04-02-941487",
+      "sectionId": "engine-suspension-frame",
+      "figure": "02",
+      "partNumber": "941487",
+      "description": "ALLEN SCREW M10X110",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "suspframe-05-03-945833",
+      "sectionId": "engine-suspension-frame",
+      "figure": "03",
+      "partNumber": "945833",
+      "description": "LOCK WASHER A10",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 0
+      },
+      "note": "optional"
+    },
+    {
+      "id": "suspframe-06-03-945753",
+      "sectionId": "engine-suspension-frame",
+      "figure": "03",
+      "partNumber": "945753",
+      "description": "LOCK WASHER A10",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 4
+      },
+      "note": "not available"
+    },
+    {
+      "id": "suspframe-07-03-945833",
+      "sectionId": "engine-suspension-frame",
+      "figure": "03",
+      "partNumber": "945833",
+      "description": "LOCK WASHER A10",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "suspframe-08-04-840948",
+      "sectionId": "engine-suspension-frame",
+      "figure": "04",
+      "partNumber": "840948",
+      "description": "ALLEN SCREW - M10X35",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "suspframe-09-04-840948",
+      "sectionId": "engine-suspension-frame",
+      "figure": "04",
+      "partNumber": "840948",
+      "description": "ALLEN SCREW - M10X35",
+      "qty": {
+        "912ul": 3,
+        "912uls": 3,
+        "914ul": 0
+      },
+      "note": "optional"
+    },
+    {
+      "id": "suspframe-10-05-927953",
+      "sectionId": "engine-suspension-frame",
+      "figure": "05",
+      "partNumber": "927953",
+      "description": "THRUST WASHER 10.1/20/1.0",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required optional"
+    },
+    {
+      "id": "suspframe-11-05-927952",
+      "sectionId": "engine-suspension-frame",
+      "figure": "05",
+      "partNumber": "927952",
+      "description": "THRUST WASHER 10.1/20/0.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required optional"
+    },
+    {
+      "id": "suspframe-12-05-927954",
+      "sectionId": "engine-suspension-frame",
+      "figure": "05",
+      "partNumber": "927954",
+      "description": "THRUST WASHER 10.1/20/1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required optional"
+    },
+    {
+      "id": "suspframe-13-06-860695",
+      "sectionId": "engine-suspension-frame",
+      "figure": "06",
+      "partNumber": "860695",
+      "description": "SHOCK MOUNT SET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Ill. no. 6-7 optional"
+    },
+    {
+      "id": "suspframe-14-06-944240",
+      "sectionId": "engine-suspension-frame",
+      "figure": "06",
+      "partNumber": "944240",
+      "description": "CUP WASHER",
+      "qty": {
+        "912ul": 8,
+        "912uls": 8,
+        "914ul": 8
+      },
+      "note": "optional"
+    },
+    {
+      "id": "suspframe-15-07-860690",
+      "sectionId": "engine-suspension-frame",
+      "figure": "07",
+      "partNumber": "860690",
+      "description": "SHOCK MOUNT",
+      "qty": {
+        "912ul": 8,
+        "912uls": 8,
+        "914ul": 8
+      },
+      "note": "optional"
+    },
+    {
+      "id": "suspframe-16-08-xxx",
+      "sectionId": "engine-suspension-frame",
+      "figure": "08",
+      "partNumber": "XXX",
+      "description": "STRUT",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "not available"
+    },
+    {
+      "id": "suspframe-17-09-927411",
+      "sectionId": "engine-suspension-frame",
+      "figure": "09",
+      "partNumber": "927411",
+      "description": "WASHER 10.5",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      },
+      "note": "see chapter 78-10-00"
+    },
+    {
+      "id": "suspframe-18-10-945833",
+      "sectionId": "engine-suspension-frame",
+      "figure": "10",
+      "partNumber": "945833",
+      "description": "LOCK WASHER A10",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      },
+      "note": "see chapter 78-10-00"
+    },
+    {
+      "id": "suspframe-19-11-640572",
+      "sectionId": "engine-suspension-frame",
+      "figure": "11",
+      "partNumber": "640572",
+      "description": "ALLEN SCREW M10X50",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      },
+      "note": "see chapter 78-10-00"
+    },
+    {
+      "id": "suspframe-20-12-847841",
+      "sectionId": "engine-suspension-frame",
+      "figure": "12",
+      "partNumber": "847841",
+      "description": "SPACER 10.5/17/15",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "governor-01-01-810301",
+      "sectionId": "governor-arrangement",
+      "figure": "01",
+      "partNumber": "810301",
+      "description": "OIL INLET FLANGE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-02-02-430175",
+      "sectionId": "governor-arrangement",
+      "figure": "02",
+      "partNumber": "430175",
+      "description": "O-RING - 46X3",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-03-03-830415",
+      "sectionId": "governor-arrangement",
+      "figure": "03",
+      "partNumber": "830415",
+      "description": "O-RING - 7X2",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-04-04-232246",
+      "sectionId": "governor-arrangement",
+      "figure": "04",
+      "partNumber": "232246",
+      "description": "ROLLER BEARING RNU 205 ECP/PAB4L",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-05-05-945820",
+      "sectionId": "governor-arrangement",
+      "figure": "05",
+      "partNumber": "945820",
+      "description": "RETAINING RING 52X2",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-06-06-832363",
+      "sectionId": "governor-arrangement",
+      "figure": "06",
+      "partNumber": "832363",
+      "description": "BALL BEARING 16002 C3 PAB4F",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-07-07-227280",
+      "sectionId": "governor-arrangement",
+      "figure": "07",
+      "partNumber": "227280",
+      "description": "THRUST WASHER",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-20-00"
+    },
+    {
+      "id": "governor-08-08-940316",
+      "sectionId": "governor-arrangement",
+      "figure": "08",
+      "partNumber": "940316",
+      "description": "COUNTERSUNK SCREW M5X12",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-20-00"
+    },
+    {
+      "id": "governor-09-09-834245",
+      "sectionId": "governor-arrangement",
+      "figure": "09",
+      "partNumber": "834245",
+      "description": "VACUUM PUMP GEAR 22 T",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-10-10-941522",
+      "sectionId": "governor-arrangement",
+      "figure": "10",
+      "partNumber": "941522",
+      "description": "ALLEN SCREW - M8x16",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-11-11-232925",
+      "sectionId": "governor-arrangement",
+      "figure": "11",
+      "partNumber": "232925",
+      "description": "NEEDLE SLEEVE 22X28X12",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-12-12-847773",
+      "sectionId": "governor-arrangement",
+      "figure": "12",
+      "partNumber": "847773",
+      "description": "DRIVE SLEEVE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-13-13-847802",
+      "sectionId": "governor-arrangement",
+      "figure": "13",
+      "partNumber": "847802",
+      "description": "SPACER 25/31.95/13",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-14-14-950380",
+      "sectionId": "governor-arrangement",
+      "figure": "14",
+      "partNumber": "950380",
+      "description": "O-RING - 32X4",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-15-15-830415",
+      "sectionId": "governor-arrangement",
+      "figure": "15",
+      "partNumber": "830415",
+      "description": "O-RING - 7X2",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-16-16-810294",
+      "sectionId": "governor-arrangement",
+      "figure": "16",
+      "partNumber": "810294",
+      "description": "GOVERNOR FLANGE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-17-17-941611",
+      "sectionId": "governor-arrangement",
+      "figure": "17",
+      "partNumber": "941611",
+      "description": "PLUG SCREW M8X1",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-18-18-241935",
+      "sectionId": "governor-arrangement",
+      "figure": "18",
+      "partNumber": "241935",
+      "description": "ALLEN SCREW - M6x20",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-19-19-241237",
+      "sectionId": "governor-arrangement",
+      "figure": "19",
+      "partNumber": "241237",
+      "description": "ALLEN SCREW - M6x16",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-20-20-956460",
+      "sectionId": "governor-arrangement",
+      "figure": "20",
+      "partNumber": "956460",
+      "description": "PRESSURE OIL LINE ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-21-21-940874",
+      "sectionId": "governor-arrangement",
+      "figure": "21",
+      "partNumber": "940874",
+      "description": "BANJO BOLT M10X1X19",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "see chapter 79-20-00 still valid optional"
+    },
+    {
+      "id": "governor-22-21-940876",
+      "sectionId": "governor-arrangement",
+      "figure": "21",
+      "partNumber": "940876",
+      "description": "BANJO BOLT M10X1X23",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "Longer thread for more safety against pull out. Check if thread in oil pump housing is deep enough. see chapter 79-20-00 optional"
+    },
+    {
+      "id": "governor-23-22-230150",
+      "sectionId": "governor-arrangement",
+      "figure": "22",
+      "partNumber": "230150",
+      "description": "SEALING RING A 10X14",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "see chapter 79-20-00 optional"
+    },
+    {
+      "id": "governor-24-23-847223",
+      "sectionId": "governor-arrangement",
+      "figure": "23",
+      "partNumber": "847223",
+      "description": "DISTANCE SLEEVE 8.4/15/6",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-25-24-853418",
+      "sectionId": "governor-arrangement",
+      "figure": "24",
+      "partNumber": "853418",
+      "description": "CABLE CLAMP",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-26-25-945832",
+      "sectionId": "governor-arrangement",
+      "figure": "25",
+      "partNumber": "945832",
+      "description": "LOCK WASHER - A8",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-27-26-240277",
+      "sectionId": "governor-arrangement",
+      "figure": "26",
+      "partNumber": "240277",
+      "description": "HEX. SCREW - M8X25",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-28-27-931372",
+      "sectionId": "governor-arrangement",
+      "figure": "27",
+      "partNumber": "931372",
+      "description": "GASKET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-29-28-xxx",
+      "sectionId": "governor-arrangement",
+      "figure": "28",
+      "partNumber": "XXX",
+      "description": "GOVERNOR JIHOSTROJ",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available optional"
+    },
+    {
+      "id": "governor-30-29-xxx",
+      "sectionId": "governor-arrangement",
+      "figure": "29",
+      "partNumber": "XXX",
+      "description": "GOVERNOR MT-PROPELLER",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available optional"
+    },
+    {
+      "id": "governor-31-30-945832",
+      "sectionId": "governor-arrangement",
+      "figure": "30",
+      "partNumber": "945832",
+      "description": "LOCK WASHER - A8",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-32-31-840711",
+      "sectionId": "governor-arrangement",
+      "figure": "31",
+      "partNumber": "840711",
+      "description": "STUD M8X21/20",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-33-32-942674",
+      "sectionId": "governor-arrangement",
+      "figure": "32",
+      "partNumber": "942674",
+      "description": "HEX. NUT M8 (WS 11mm)",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-34-33-911815",
+      "sectionId": "governor-arrangement",
+      "figure": "33",
+      "partNumber": "911815",
+      "description": "OIL PUMP HOUSING ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 79-20-00"
+    },
+    {
+      "id": "governor-35-34-937041",
+      "sectionId": "governor-arrangement",
+      "figure": "34",
+      "partNumber": "937041",
+      "description": "PROPELLER SHAFT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-36-34-937047",
+      "sectionId": "governor-arrangement",
+      "figure": "34",
+      "partNumber": "937047",
+      "description": "PROPELLER SHAFT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-37-35-834233",
+      "sectionId": "governor-arrangement",
+      "figure": "35",
+      "partNumber": "834233",
+      "description": "DRIVE GEAR 29 T.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-38-36-926035",
+      "sectionId": "governor-arrangement",
+      "figure": "36",
+      "partNumber": "926035",
+      "description": "RING HALF",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "see chapter 72-10-00"
+    },
+    {
+      "id": "governor-39-37-440867",
+      "sectionId": "governor-arrangement",
+      "figure": "37",
+      "partNumber": "440867",
+      "description": "HEX./TORX-FLANGE SCREW M8X35-SW10/T40",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "optional"
+    },
+    {
+      "id": "governor-40-38-881702",
+      "sectionId": "governor-arrangement",
+      "figure": "38",
+      "partNumber": "881702",
+      "description": "PROP:SHAFT CONFIGURAT 3 RETROFIT KIT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "For retrofitting from version 2 to version 3. as required optional"
+    },
+    {
+      "id": "governor-41-39-881700",
+      "sectionId": "governor-arrangement",
+      "figure": "39",
+      "partNumber": "881700",
+      "description": "GOVERNOR DRIVE RETROFIT KIT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "For retrofitting. same as part no. 881702 but without propeller shaft. as required optional"
     }
   ]
 }

@@ -128,11 +128,47 @@ const nestedCategories = [
     thumb: "/assets/rotax-oil-radiator-thumb.png"
   },
   {
+    id: "starters",
+    label: "Starters",
+    title: "Partida",
+    thumb: "/assets/rotax-starter-complete-sets-thumb.png"
+  },
+  {
     id: "water-circuits",
     label: "Water Circuits",
     title: "Circuitos de agua",
     thumb: "/assets/rotax-water-pump-thumb.png"
   }
+];
+
+const brazilStates = [
+  ["AC", "Acre"],
+  ["AL", "Alagoas"],
+  ["AP", "Amapa"],
+  ["AM", "Amazonas"],
+  ["BA", "Bahia"],
+  ["CE", "Ceara"],
+  ["DF", "Distrito Federal"],
+  ["ES", "Espirito Santo"],
+  ["GO", "Goias"],
+  ["MA", "Maranhao"],
+  ["MT", "Mato Grosso"],
+  ["MS", "Mato Grosso do Sul"],
+  ["MG", "Minas Gerais"],
+  ["PA", "Para"],
+  ["PB", "Paraiba"],
+  ["PR", "Parana"],
+  ["PE", "Pernambuco"],
+  ["PI", "Piaui"],
+  ["RJ", "Rio de Janeiro"],
+  ["RN", "Rio Grande do Norte"],
+  ["RS", "Rio Grande do Sul"],
+  ["RO", "Rondonia"],
+  ["RR", "Roraima"],
+  ["SC", "Santa Catarina"],
+  ["SP", "Sao Paulo"],
+  ["SE", "Sergipe"],
+  ["TO", "Tocantins"]
 ];
 
 function nestedCategoryById(categoryId) {
@@ -167,14 +203,16 @@ function categoriesForEngine(engineId) {
     { label: "Propeller Gear" },
     { label: "Radiators", categoryId: "radiator" },
     { label: "Water Circuits", categoryId: "water-circuits" },
-    { label: "Starters" },
-    { label: "Suspension Frame" },
-    { label: "Turbocharger Control Unit" },
+    { label: "Starters", categoryId: "starters" },
+    { label: "Engine Suspension Frame" },
+    { label: "Turbocharger Control Unit", engineIds: ["914ul"] },
     { label: "Tools" }
   ];
   const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
 
   return templates.map((template) => {
+    if (template.engineIds && !template.engineIds.includes(engineId)) return null;
+
     if (template.categoryId) {
       const category = nestedCategoryById(template.categoryId);
       const categorySections = sectionsInCategory(engineId, template.categoryId);
@@ -202,7 +240,7 @@ function categoriesForEngine(engineId) {
       thumb: "/assets/rotax-ignition-thumb.png",
       placeholder: true
     };
-  });
+  }).filter(Boolean);
 }
 
 function renderCatalogSidebar(engineId) {
@@ -325,7 +363,7 @@ function renderHome() {
         <div>
           <p class="eyebrow">Catalogo de pecas</p>
           <h1>Escolha o motor</h1>
-          <p class="lead">Clique em um motor para abrir as secoes disponiveis. As proximas secoes podem ser adicionadas no JSON conforme os capitulos forem chegando.</p>
+          <p class="lead">Clique em um motor para abrir as secoes disponiveis.</p>
         </div>
       </section>
       <section class="engine-grid">
@@ -552,8 +590,8 @@ function renderProceed() {
       <section class="page-header">
         <div>
           <p class="eyebrow">Finalizar solicitacao</p>
-          <h1>Dados para envio</h1>
-          <p class="lead">Todos os campos precisam ser preenchidos para gerar o arquivo TXT da cotacao.</p>
+          <h1>Dados para solicitar sua cotação</h1>
+          <p class="lead">Todos os Campos devem ser preenchidos para envio da solicitação.</p>
         </div>
         <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
       </section>
@@ -576,6 +614,13 @@ function renderProceed() {
             <label class="field">
               <span>E-mail</span>
               <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <label class="field">
+              <span>Estado</span>
+              <select name="state" required>
+                <option value="">Selecione</option>
+                ${brazilStates.map(([abbr, name]) => `<option value="${abbr}">${abbr} - ${escapeHtml(name)}</option>`).join("")}
+              </select>
             </label>
           </div>
           <div class="form-actions">
@@ -614,8 +659,9 @@ function renderDone() {
       <section class="result-panel">
         <div>
           <p class="eyebrow">E-mail enviado</p>
-          <h1>Solicitacao enviada</h1>
-          <p class="lead">Cotacao enviada para ${escapeHtml(quote.emailTo || "apicotacao@cdsav.com.br")} com o anexo ${escapeHtml(quote.filename)}.</p>
+          <h1>Solicitação enviada!</h1>
+          <p class="lead">Em breve, um de nossos consultores irá entrar em contato com sua cotação! Obrigado!</p>
+          <p class="control-number">Número de controle: <strong>${escapeHtml(quote.filename)}</strong></p>
         </div>
         <pre class="quote-text">${escapeHtml(quote.text)}</pre>
         <div class="form-actions">

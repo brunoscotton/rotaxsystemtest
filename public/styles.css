@@ -28,7 +28,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -691,7 +692,8 @@ td {
   font-weight: 700;
 }
 
-.field input {
+.field input,
+.field select {
   min-height: 44px;
   padding: 10px 12px;
   border: 1px solid var(--line);
@@ -700,9 +702,15 @@ td {
 }
 
 .field input:focus,
+.field select:focus,
 .search-field:focus {
   outline: 3px solid rgba(0, 153, 216, 0.18);
   border-color: var(--blue);
+}
+
+.control-number {
+  margin: 0;
+  color: var(--muted);
 }
 
 .form-actions {

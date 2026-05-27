@@ -59,6 +59,7 @@ function buildQuoteText({ customer, items }) {
     `Prefixo: ${customer.prefix.trim()}`,
     `Telefone: ${customer.phone.trim()}`,
     `E-mail: ${customer.email.trim()}`,
+    `Estado: ${customer.state.trim()}`,
     "",
     "ITENS SOLICITADOS",
     "Qtd | Item | PN | Descricao | Motor | Secao"
@@ -190,7 +191,7 @@ const server = createServer(async (req, res) => {
       const customer = payload.customer || {};
       const items = Array.isArray(payload.items) ? payload.items : [];
 
-      const missing = ["name", "prefix", "phone", "email"].filter((field) => !requiredText(customer[field]));
+      const missing = ["name", "prefix", "phone", "email", "state"].filter((field) => !requiredText(customer[field]));
       if (missing.length || !items.length) {
         sendJson(res, 400, {
           ok: false,
