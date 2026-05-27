@@ -64,6 +64,28 @@ function routeForEngine(engineId) {
   return `#/engine/${engineId}`;
 }
 
+const nestedCategories = [
+  {
+    id: "water-circuits",
+    label: "Water Circuits",
+    title: "Circuitos de agua",
+    thumb: "/assets/rotax-water-pump-thumb.png"
+  }
+];
+
+function nestedCategoryById(categoryId) {
+  return nestedCategories.find((category) => category.id === categoryId);
+}
+
+function sectionsInCategory(engineId, categoryId) {
+  return state.catalog.sections.filter((section) => section.categoryId === categoryId && section.engineIds.includes(engineId));
+}
+
+function itemCountForCategory(engineId, categoryId) {
+  return sectionsInCategory(engineId, categoryId)
+    .reduce((sum, section) => sum + itemsFor(engineId, section.id).length, 0);
+}
+
 function categoriesForEngine(engineId) {
   const templates = [
     { label: "Alternators" },
@@ -81,6 +103,7 @@ function categoriesForEngine(engineId) {
     { label: "Piston" },
     { label: "Propeller Gear" },
     { label: "Radiator" },
+    { label: "Water Circuits", categoryId: "water-circuits" },
     { label: "Starters" },
     { label: "Suspension Frame" },
     { label: "Tools" }
@@ -88,6 +111,25 @@ function categoriesForEngine(engineId) {
   const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
 
   return templates.map((template) => {
+    if (template.categoryId) {
+      const category = nestedCategoryById(template.categoryId);
+      const categorySections = sectionsInCategory(engineId, template.categoryId);
+      const count = itemCountForCategory(engineId, template.categoryId);
+      return category && count > 0 ? {
+        ...category,
+        count,
+        sections: categorySections,
+        category: true,
+        statusText: `${categorySections.length} subcategorias`
+      } : {
+        id: `placeholder-${template.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+        label: template.label,
+        title: "Secao em preparacao",
+        thumb: "/assets/rotax-ignition-thumb.png",
+        placeholder: true
+      };
+    }
+
     const section = sections.find((entry) => entry.label.toLowerCase() === template.label.toLowerCase());
     return section || {
       id: `placeholder-${template.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
@@ -97,6 +139,21 @@ function categoriesForEngine(engineId) {
       placeholder: true
     };
   });
+}
+
+function renderCatalogSidebar(engineId) {
+  return `
+    <nav class="catalog-sidebar" aria-label="Categorias">
+      <button type="button" disabled>ON SPECIAL</button>
+      <button type="button" disabled>ALL TOOLS</button>
+      <button type="button" disabled>CONSUMABLE</button>
+      ${state.catalog.engines.map((entry) => `
+        <button type="button" class="${entry.id === engineId ? "active" : ""}" ${entry.active ? `data-route="#/engine/${entry.id}"` : "disabled"}>
+          ${escapeHtml(entry.name)}
+        </button>
+      `).join("")}
+    </nav>
+  `;
 }
 
 function selectedCount() {
@@ -209,27 +266,60 @@ function renderEngine(engineId) {
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
       <section class="catalog-layout">
-        <nav class="catalog-sidebar" aria-label="Categorias">
-          <button type="button" disabled>ON SPECIAL</button>
-          <button type="button" disabled>ALL TOOLS</button>
-          <button type="button" disabled>CONSUMABLE</button>
-          ${state.catalog.engines.map((entry) => `
-            <button type="button" class="${entry.id === engineId ? "active" : ""}" ${entry.active ? `data-route="#/engine/${entry.id}"` : "disabled"}>
-              ${escapeHtml(entry.name)}
-            </button>
-          `).join("")}
-        </nav>
+        ${renderCatalogSidebar(engineId)}
         <div class="category-grid">
           ${categories.map((section) => {
-            const available = !section.placeholder && itemsFor(engineId, section.id).length > 0;
+            const available = !section.placeholder && (section.category ? section.count > 0 : itemsFor(engineId, section.id).length > 0);
+            const route = section.category ? `#/category/${engineId}/${section.id}` : `#/section/${engineId}/${section.id}`;
+            const status = section.statusText || `${itemsFor(engineId, section.id).length} PNs`;
             return `
-              <button class="category-card ${available ? "" : "disabled"}" type="button" ${available ? `data-route="#/section/${engineId}/${section.id}"` : "disabled"}>
+              <button class="category-card ${available ? "" : "disabled"}" type="button" ${available ? `data-route="${route}"` : "disabled"}>
                 <span class="category-title">${escapeHtml(section.label)}</span>
                 <img class="category-media" src="${section.thumb}" alt="${escapeHtml(section.label)}">
-                <span class="category-status">${available ? `${itemsFor(engineId, section.id).length} PNs` : "Em breve"}</span>
+                <span class="category-status">${available ? escapeHtml(status) : "Em breve"}</span>
               </button>
             `;
           }).join("")}
+        </div>
+      </section>
+    </main>
+  `);
+}
+
+function renderCategory(engineId, categoryId) {
+  const engine = engineById(engineId);
+  const category = nestedCategoryById(categoryId);
+  if (!engine || !category) {
+    location.hash = "#/";
+    return;
+  }
+
+  const sections = sectionsInCategory(engineId, categoryId);
+  if (!sections.length) {
+    location.hash = `#/engine/${engineId}`;
+    return;
+  }
+
+  shell(`
+    <main class="page">
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Motor selecionado</p>
+          <h1>${escapeHtml(category.label)} For ${escapeHtml(engine.name)}</h1>
+          <p class="lead">Escolha a subcategoria para abrir a figura e a tabela de PNs.</p>
+        </div>
+        <button class="secondary-button" type="button" data-route="#/engine/${engineId}">Voltar</button>
+      </section>
+      <section class="catalog-layout">
+        ${renderCatalogSidebar(engineId)}
+        <div class="category-grid">
+          ${sections.map((section) => `
+            <button class="category-card" type="button" data-route="#/section/${engineId}/${section.id}">
+              <span class="category-title">${escapeHtml(section.label)}</span>
+              <img class="category-media" src="${section.thumb}" alt="${escapeHtml(section.label)}">
+              <span class="category-status">${itemsFor(engineId, section.id).length} PNs</span>
+            </button>
+          `).join("")}
         </div>
       </section>
     </main>
@@ -290,7 +380,7 @@ function renderSection(engineId, sectionId) {
           <h1>${escapeHtml(section.label)}</h1>
           <p class="lead">${escapeHtml(section.title)}. Clique no numero da figura ou no ADD da tabela para incluir o PN na lista.</p>
         </div>
-        <button class="secondary-button" type="button" data-route="#/engine/${engineId}">Voltar</button>
+        <button class="secondary-button" type="button" data-route="${section.categoryId ? `#/category/${engineId}/${section.categoryId}` : `#/engine/${engineId}`}">Voltar</button>
       </section>
       <section class="detail-layout">
         <article class="diagram-panel">
@@ -525,6 +615,7 @@ function render() {
 
   if (!view) renderHome();
   else if (view === "engine") renderEngine(engineId);
+  else if (view === "category") renderCategory(engineId, sectionId);
   else if (view === "section") renderSection(engineId, sectionId);
   else if (view === "proceed") renderProceed();
   else if (view === "done") renderDone();
