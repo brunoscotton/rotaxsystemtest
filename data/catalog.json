@@ -168,6 +168,767 @@
       ]
     },
     {
+      "id": "carburetor-912-series",
+      "engineIds": [
+        "912uls",
+        "912ul"
+      ],
+      "label": "Carburetors",
+      "chapter": "73-00-00",
+      "figure": "73-00-00-912",
+      "title": "PARTS PER CARBURETOR 912 SERIES",
+      "source": "Carburetor 912 Series IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-carburetor-912-page.png",
+      "thumb": "/assets/rotax-carburetor-912-thumb.png",
+      "hotspots": [
+        {
+          "figure": "01",
+          "x": 14.5,
+          "y": 41.2
+        },
+        {
+          "figure": "02",
+          "x": 28,
+          "y": 54.6
+        },
+        {
+          "figure": "03",
+          "x": 28.1,
+          "y": 64
+        },
+        {
+          "figure": "04",
+          "x": 29.5,
+          "y": 65
+        },
+        {
+          "figure": "05",
+          "x": 24.2,
+          "y": 70.2
+        },
+        {
+          "figure": "06",
+          "x": 32.8,
+          "y": 67.7
+        },
+        {
+          "figure": "07",
+          "x": 34,
+          "y": 66.3
+        },
+        {
+          "figure": "08",
+          "x": 25.1,
+          "y": 64.4
+        },
+        {
+          "figure": "09",
+          "x": 16.3,
+          "y": 64
+        },
+        {
+          "figure": "10",
+          "x": 31,
+          "y": 54.8
+        },
+        {
+          "figure": "11",
+          "x": 29.5,
+          "y": 58.2
+        },
+        {
+          "figure": "12",
+          "x": 19,
+          "y": 58.6
+        },
+        {
+          "figure": "13",
+          "x": 29.2,
+          "y": 65.3
+        },
+        {
+          "figure": "14",
+          "x": 33.2,
+          "y": 67.5
+        },
+        {
+          "figure": "15",
+          "x": 20,
+          "y": 34.3
+        },
+        {
+          "figure": "16",
+          "x": 27.2,
+          "y": 27.5
+        },
+        {
+          "figure": "17",
+          "x": 29,
+          "y": 27.5
+        },
+        {
+          "figure": "18",
+          "x": 32,
+          "y": 23.4
+        },
+        {
+          "figure": "19",
+          "x": 31.2,
+          "y": 20
+        },
+        {
+          "figure": "20",
+          "x": 58.2,
+          "y": 39.4
+        },
+        {
+          "figure": "21",
+          "x": 51.8,
+          "y": 36.5
+        },
+        {
+          "figure": "22",
+          "x": 51.2,
+          "y": 34
+        },
+        {
+          "figure": "23",
+          "x": 40.4,
+          "y": 30.6
+        },
+        {
+          "figure": "24",
+          "x": 52.7,
+          "y": 30.2
+        },
+        {
+          "figure": "25",
+          "x": 56,
+          "y": 21.7
+        },
+        {
+          "figure": "26",
+          "x": 41,
+          "y": 23.6
+        },
+        {
+          "figure": "27",
+          "x": 38.8,
+          "y": 19.8
+        },
+        {
+          "figure": "28",
+          "x": 42.2,
+          "y": 16.8
+        },
+        {
+          "figure": "29",
+          "x": 45.8,
+          "y": 56
+        },
+        {
+          "figure": "30",
+          "x": 39.4,
+          "y": 54.2
+        },
+        {
+          "figure": "31",
+          "x": 50.6,
+          "y": 49.8
+        },
+        {
+          "figure": "32",
+          "x": 43.8,
+          "y": 47.8
+        },
+        {
+          "figure": "33",
+          "x": 66,
+          "y": 59
+        },
+        {
+          "figure": "34",
+          "x": 61.3,
+          "y": 54.8
+        },
+        {
+          "figure": "35",
+          "x": 62.8,
+          "y": 56.5
+        },
+        {
+          "figure": "36",
+          "x": 64.5,
+          "y": 58.5
+        },
+        {
+          "figure": "37",
+          "x": 62.4,
+          "y": 62.2
+        },
+        {
+          "figure": "38",
+          "x": 60.3,
+          "y": 50.6
+        },
+        {
+          "figure": "39",
+          "x": 45.2,
+          "y": 60.8
+        },
+        {
+          "figure": "40",
+          "x": 50.2,
+          "y": 62.5
+        },
+        {
+          "figure": "41",
+          "x": 47,
+          "y": 67.2
+        },
+        {
+          "figure": "42",
+          "x": 37.6,
+          "y": 64
+        },
+        {
+          "figure": "43",
+          "x": 53.4,
+          "y": 74
+        },
+        {
+          "figure": "44",
+          "x": 63,
+          "y": 66.2
+        },
+        {
+          "figure": "45",
+          "x": 55,
+          "y": 63.6
+        },
+        {
+          "figure": "46",
+          "x": 62,
+          "y": 74.2
+        },
+        {
+          "figure": "47",
+          "x": 69.5,
+          "y": 70.8
+        },
+        {
+          "figure": "48",
+          "x": 71.5,
+          "y": 80.8
+        },
+        {
+          "figure": "49",
+          "x": 75,
+          "y": 78
+        },
+        {
+          "figure": "50",
+          "x": 72.5,
+          "y": 77
+        },
+        {
+          "figure": "51",
+          "x": 67,
+          "y": 80
+        },
+        {
+          "figure": "52",
+          "x": 70.3,
+          "y": 63.6
+        },
+        {
+          "figure": "53",
+          "x": 74.7,
+          "y": 64.8
+        },
+        {
+          "figure": "54",
+          "x": 80.8,
+          "y": 67.2
+        },
+        {
+          "figure": "55",
+          "x": 83,
+          "y": 67
+        },
+        {
+          "figure": "56",
+          "x": 16.7,
+          "y": 70
+        },
+        {
+          "figure": "57",
+          "x": 16.2,
+          "y": 62.5
+        },
+        {
+          "figure": "58",
+          "x": 17.8,
+          "y": 53.8
+        },
+        {
+          "figure": "59",
+          "x": 32.2,
+          "y": 73.2
+        },
+        {
+          "figure": "60",
+          "x": 18.5,
+          "y": 83
+        },
+        {
+          "figure": "61",
+          "x": 12.6,
+          "y": 72.8
+        },
+        {
+          "figure": "62",
+          "x": 41.2,
+          "y": 78
+        },
+        {
+          "figure": "63",
+          "x": 63.2,
+          "y": 24.2
+        },
+        {
+          "figure": "64",
+          "x": 50.5,
+          "y": 19
+        },
+        {
+          "figure": "65",
+          "x": 70.2,
+          "y": 23
+        },
+        {
+          "figure": "66",
+          "x": 61.4,
+          "y": 26.8
+        },
+        {
+          "figure": "67",
+          "x": 65,
+          "y": 18.5
+        },
+        {
+          "figure": "68",
+          "x": 40.6,
+          "y": 43.8
+        },
+        {
+          "figure": "69",
+          "x": 51.5,
+          "y": 79
+        },
+        {
+          "figure": "70",
+          "x": 68,
+          "y": 39
+        },
+        {
+          "figure": "71",
+          "x": 68,
+          "y": 52.8
+        },
+        {
+          "figure": "72",
+          "x": 68,
+          "y": 52.8
+        },
+        {
+          "figure": "73",
+          "x": 68,
+          "y": 52.8
+        }
+      ]
+    },
+    {
+      "id": "carburetor-914-series",
+      "engineIds": [
+        "914ul"
+      ],
+      "label": "Carburetors",
+      "chapter": "73-00-00",
+      "figure": "73-00-00-914",
+      "title": "PARTS PER CARBURETOR 914 SERIES",
+      "source": "Carburetor 914 Series IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-carburetor-914-page.png",
+      "thumb": "/assets/rotax-carburetor-914-thumb.png",
+      "hotspots": [
+        {
+          "figure": "01",
+          "x": 14.5,
+          "y": 41.2
+        },
+        {
+          "figure": "02",
+          "x": 28,
+          "y": 54.6
+        },
+        {
+          "figure": "03",
+          "x": 28.1,
+          "y": 64
+        },
+        {
+          "figure": "04",
+          "x": 29.5,
+          "y": 65
+        },
+        {
+          "figure": "05",
+          "x": 24.2,
+          "y": 70.2
+        },
+        {
+          "figure": "06",
+          "x": 32.8,
+          "y": 67.7
+        },
+        {
+          "figure": "07",
+          "x": 34,
+          "y": 66.3
+        },
+        {
+          "figure": "08",
+          "x": 25.1,
+          "y": 64.4
+        },
+        {
+          "figure": "09",
+          "x": 16.3,
+          "y": 64
+        },
+        {
+          "figure": "10",
+          "x": 31,
+          "y": 54.8
+        },
+        {
+          "figure": "11",
+          "x": 29.5,
+          "y": 58.2
+        },
+        {
+          "figure": "12",
+          "x": 19,
+          "y": 58.6
+        },
+        {
+          "figure": "13",
+          "x": 29.2,
+          "y": 65.3
+        },
+        {
+          "figure": "14",
+          "x": 33.2,
+          "y": 67.5
+        },
+        {
+          "figure": "15",
+          "x": 20,
+          "y": 34.3
+        },
+        {
+          "figure": "16",
+          "x": 27.2,
+          "y": 27.5
+        },
+        {
+          "figure": "17",
+          "x": 29,
+          "y": 27.5
+        },
+        {
+          "figure": "18",
+          "x": 32,
+          "y": 23.4
+        },
+        {
+          "figure": "19",
+          "x": 31.2,
+          "y": 20
+        },
+        {
+          "figure": "20",
+          "x": 58.2,
+          "y": 39.4
+        },
+        {
+          "figure": "21",
+          "x": 51.8,
+          "y": 36.5
+        },
+        {
+          "figure": "22",
+          "x": 51.2,
+          "y": 34
+        },
+        {
+          "figure": "23",
+          "x": 40.4,
+          "y": 30.6
+        },
+        {
+          "figure": "24",
+          "x": 52.7,
+          "y": 30.2
+        },
+        {
+          "figure": "25",
+          "x": 56,
+          "y": 21.7
+        },
+        {
+          "figure": "26",
+          "x": 41,
+          "y": 23.6
+        },
+        {
+          "figure": "27",
+          "x": 38.8,
+          "y": 19.8
+        },
+        {
+          "figure": "28",
+          "x": 42.2,
+          "y": 16.8
+        },
+        {
+          "figure": "29",
+          "x": 45.8,
+          "y": 56
+        },
+        {
+          "figure": "30",
+          "x": 39.4,
+          "y": 54.2
+        },
+        {
+          "figure": "31",
+          "x": 50.6,
+          "y": 49.8
+        },
+        {
+          "figure": "32",
+          "x": 43.8,
+          "y": 47.8
+        },
+        {
+          "figure": "33",
+          "x": 66,
+          "y": 59
+        },
+        {
+          "figure": "34",
+          "x": 61.3,
+          "y": 54.8
+        },
+        {
+          "figure": "35",
+          "x": 62.8,
+          "y": 56.5
+        },
+        {
+          "figure": "36",
+          "x": 64.5,
+          "y": 58.5
+        },
+        {
+          "figure": "37",
+          "x": 62.4,
+          "y": 62.2
+        },
+        {
+          "figure": "38",
+          "x": 60.3,
+          "y": 50.6
+        },
+        {
+          "figure": "39",
+          "x": 45.2,
+          "y": 60.8
+        },
+        {
+          "figure": "40",
+          "x": 50.2,
+          "y": 62.5
+        },
+        {
+          "figure": "41",
+          "x": 47,
+          "y": 67.2
+        },
+        {
+          "figure": "42",
+          "x": 37.6,
+          "y": 64
+        },
+        {
+          "figure": "43",
+          "x": 53.4,
+          "y": 74
+        },
+        {
+          "figure": "44",
+          "x": 63,
+          "y": 66.2
+        },
+        {
+          "figure": "45",
+          "x": 55,
+          "y": 63.6
+        },
+        {
+          "figure": "46",
+          "x": 62,
+          "y": 74.2
+        },
+        {
+          "figure": "47",
+          "x": 69.5,
+          "y": 70.8
+        },
+        {
+          "figure": "48",
+          "x": 71.5,
+          "y": 80.8
+        },
+        {
+          "figure": "49",
+          "x": 75,
+          "y": 78
+        },
+        {
+          "figure": "50",
+          "x": 72.5,
+          "y": 77
+        },
+        {
+          "figure": "51",
+          "x": 67,
+          "y": 80
+        },
+        {
+          "figure": "52",
+          "x": 70.3,
+          "y": 63.6
+        },
+        {
+          "figure": "53",
+          "x": 74.7,
+          "y": 64.8
+        },
+        {
+          "figure": "54",
+          "x": 80.8,
+          "y": 67.2
+        },
+        {
+          "figure": "55",
+          "x": 83,
+          "y": 67
+        },
+        {
+          "figure": "56",
+          "x": 16.7,
+          "y": 70
+        },
+        {
+          "figure": "57",
+          "x": 16.2,
+          "y": 62.5
+        },
+        {
+          "figure": "58",
+          "x": 17.8,
+          "y": 53.8
+        },
+        {
+          "figure": "59",
+          "x": 32.2,
+          "y": 73.2
+        },
+        {
+          "figure": "60",
+          "x": 18.5,
+          "y": 83
+        },
+        {
+          "figure": "61",
+          "x": 12.6,
+          "y": 72.8
+        },
+        {
+          "figure": "62",
+          "x": 41.2,
+          "y": 78
+        },
+        {
+          "figure": "63",
+          "x": 63.2,
+          "y": 24.2
+        },
+        {
+          "figure": "64",
+          "x": 50.5,
+          "y": 19
+        },
+        {
+          "figure": "65",
+          "x": 70.2,
+          "y": 23
+        },
+        {
+          "figure": "66",
+          "x": 61.4,
+          "y": 26.8
+        },
+        {
+          "figure": "67",
+          "x": 65,
+          "y": 18.5
+        },
+        {
+          "figure": "68",
+          "x": 40.6,
+          "y": 43.8
+        },
+        {
+          "figure": "69",
+          "x": 51.5,
+          "y": 79
+        },
+        {
+          "figure": "70",
+          "x": 68,
+          "y": 39
+        },
+        {
+          "figure": "71",
+          "x": 68,
+          "y": 52.8
+        },
+        {
+          "figure": "72",
+          "x": 68,
+          "y": 52.8
+        },
+        {
+          "figure": "73",
+          "x": 68,
+          "y": 52.8
+        }
+      ]
+    },
+    {
       "id": "crankcase",
       "engineIds": [
         "912uls",
@@ -737,6 +1498,203 @@
           "figure": "38",
           "x": 81.1,
           "y": 86.3
+        }
+      ]
+    },
+    {
+      "id": "intake-manifold",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Intake Manifold",
+      "chapter": "73-10-00",
+      "figure": "73-10-00",
+      "title": "INTAKE MANIFOLD, COMPENSATING TUBE ASSY., RUBBER FLANGE ASSY.",
+      "source": "Intake IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-intake-page.png",
+      "thumb": "/assets/rotax-intake-thumb.png",
+      "hotspots": [
+        {
+          "figure": "01",
+          "x": 16,
+          "y": 64
+        },
+        {
+          "figure": "01",
+          "x": 64,
+          "y": 43.6
+        },
+        {
+          "figure": "02",
+          "x": 20.5,
+          "y": 52.2
+        },
+        {
+          "figure": "03",
+          "x": 59,
+          "y": 35
+        },
+        {
+          "figure": "04",
+          "x": 12.8,
+          "y": 55.2
+        },
+        {
+          "figure": "04",
+          "x": 58,
+          "y": 29
+        },
+        {
+          "figure": "05",
+          "x": 15.6,
+          "y": 49
+        },
+        {
+          "figure": "05",
+          "x": 58.4,
+          "y": 24.7
+        },
+        {
+          "figure": "06",
+          "x": 10,
+          "y": 53.2
+        },
+        {
+          "figure": "06",
+          "x": 65.8,
+          "y": 25.6
+        },
+        {
+          "figure": "07",
+          "x": 31,
+          "y": 51
+        },
+        {
+          "figure": "07",
+          "x": 72.8,
+          "y": 31.6
+        },
+        {
+          "figure": "08",
+          "x": 31,
+          "y": 45.2
+        },
+        {
+          "figure": "09",
+          "x": 37.8,
+          "y": 35.4
+        },
+        {
+          "figure": "10",
+          "x": 32.2,
+          "y": 46.8
+        },
+        {
+          "figure": "10",
+          "x": 69.2,
+          "y": 28.2
+        },
+        {
+          "figure": "11",
+          "x": 28,
+          "y": 44.2
+        },
+        {
+          "figure": "11",
+          "x": 67.8,
+          "y": 27.4
+        },
+        {
+          "figure": "12",
+          "x": 25.2,
+          "y": 48.2
+        },
+        {
+          "figure": "12",
+          "x": 72.8,
+          "y": 30
+        },
+        {
+          "figure": "13",
+          "x": 40.2,
+          "y": 41.8
+        },
+        {
+          "figure": "14",
+          "x": 31.5,
+          "y": 65
+        },
+        {
+          "figure": "14",
+          "x": 79.8,
+          "y": 39.6
+        },
+        {
+          "figure": "15",
+          "x": 57.8,
+          "y": 67.2
+        },
+        {
+          "figure": "15",
+          "x": 84.5,
+          "y": 38
+        },
+        {
+          "figure": "16",
+          "x": 57,
+          "y": 76
+        },
+        {
+          "figure": "16",
+          "x": 87,
+          "y": 39.8
+        },
+        {
+          "figure": "17",
+          "x": 61.5,
+          "y": 78
+        },
+        {
+          "figure": "17",
+          "x": 86.6,
+          "y": 43.8
+        },
+        {
+          "figure": "18",
+          "x": 64.5,
+          "y": 71.2
+        },
+        {
+          "figure": "18",
+          "x": 82.4,
+          "y": 49
+        },
+        {
+          "figure": "19",
+          "x": 45.5,
+          "y": 55.5
+        },
+        {
+          "figure": "20",
+          "x": 48.8,
+          "y": 64
+        },
+        {
+          "figure": "21",
+          "x": 68.2,
+          "y": 34.8
+        },
+        {
+          "figure": "22",
+          "x": 69.8,
+          "y": 33.2
+        },
+        {
+          "figure": "23",
+          "x": 55,
+          "y": 30.2
         }
       ]
     },
@@ -3557,6 +4515,2501 @@
         "912uls": 1,
         "914ul": 1
       }
+    },
+    {
+      "id": "cb912-02-961200",
+      "sectionId": "carburetor-912-series",
+      "figure": "02",
+      "partNumber": "961200",
+      "description": "DIFFUSER",
+      "qty": {
+        "912ul": 1,
+        "912uls": 0,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-02-961202",
+      "sectionId": "carburetor-912-series",
+      "figure": "02",
+      "partNumber": "961202",
+      "description": "DIFFUSER",
+      "qty": {
+        "912ul": 0,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-03-261608",
+      "sectionId": "carburetor-912-series",
+      "figure": "03",
+      "partNumber": "261608",
+      "description": "NEEDLE JET 2.70",
+      "qty": {
+        "912ul": 0,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-03-261607",
+      "sectionId": "carburetor-912-series",
+      "figure": "03",
+      "partNumber": "261607",
+      "description": "NEEDLE JET 2.72",
+      "qty": {
+        "912ul": 1,
+        "912uls": 0,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-04-963130",
+      "sectionId": "carburetor-912-series",
+      "figure": "04",
+      "partNumber": "963130",
+      "description": "MIXING TUBE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-05-430800",
+      "sectionId": "carburetor-912-series",
+      "figure": "05",
+      "partNumber": "430800",
+      "description": "O-RING - 8X2",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-06-827160",
+      "sectionId": "carburetor-912-series",
+      "figure": "06",
+      "partNumber": "827160",
+      "description": "SHIM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-07-268996",
+      "sectionId": "carburetor-912-series",
+      "figure": "07",
+      "partNumber": "268996",
+      "description": "MAIN JET 158",
+      "qty": {
+        "912ul": 1,
+        "912uls": 0,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-07-268985",
+      "sectionId": "carburetor-912-series",
+      "figure": "07",
+      "partNumber": "268985",
+      "description": "MAIN JET 160",
+      "qty": {
+        "912ul": 0,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "Special jetting according to instructions of the manufacturer"
+    },
+    {
+      "id": "cb912-07-268984",
+      "sectionId": "carburetor-912-series",
+      "figure": "07",
+      "partNumber": "268984",
+      "description": "MAIN JET 155",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SB-912-044; optional"
+    },
+    {
+      "id": "cb912-08-963143",
+      "sectionId": "carburetor-912-series",
+      "figure": "08",
+      "partNumber": "963143",
+      "description": "IDLE JET 35",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-08-963141",
+      "sectionId": "carburetor-912-series",
+      "figure": "08",
+      "partNumber": "963141",
+      "description": "IDLE JET 30",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-09-831713",
+      "sectionId": "carburetor-912-series",
+      "figure": "09",
+      "partNumber": "831713",
+      "description": "O-RING - 3.17X1.78",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-10-261708",
+      "sectionId": "carburetor-912-series",
+      "figure": "10",
+      "partNumber": "261708",
+      "description": "FLOAT NEEDLE VALVE W. VITON TIP",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-11-261710",
+      "sectionId": "carburetor-912-series",
+      "figure": "11",
+      "partNumber": "261710",
+      "description": "FLOAT NEEDLE CLIP",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-12-861189",
+      "sectionId": "carburetor-912-series",
+      "figure": "12",
+      "partNumber": "861189",
+      "description": "FLOATS (PAIR)",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-13-861192",
+      "sectionId": "carburetor-912-series",
+      "figure": "13",
+      "partNumber": "861192",
+      "description": "FLOAT BRACKET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-14-929702",
+      "sectionId": "carburetor-912-series",
+      "figure": "14",
+      "partNumber": "929702",
+      "description": "PIN",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-15-961231",
+      "sectionId": "carburetor-912-series",
+      "figure": "15",
+      "partNumber": "961231",
+      "description": "CARBURETOR PISTON",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-16-961215",
+      "sectionId": "carburetor-912-series",
+      "figure": "16",
+      "partNumber": "961215",
+      "description": "JET NEEDLE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-17-945786",
+      "sectionId": "carburetor-912-series",
+      "figure": "17",
+      "partNumber": "945786",
+      "description": "CIRCLIP",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-18-950430",
+      "sectionId": "carburetor-912-series",
+      "figure": "18",
+      "partNumber": "950430",
+      "description": "O-RING - 2.5X1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-19-961293",
+      "sectionId": "carburetor-912-series",
+      "figure": "19",
+      "partNumber": "961293",
+      "description": "FIXATION SCREW",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "With clearance for O-Ring; use only together with O-Ring Pos. 18 PN 950430"
+    },
+    {
+      "id": "cb912-20-861116",
+      "sectionId": "carburetor-912-series",
+      "figure": "20",
+      "partNumber": "861116",
+      "description": "DIAPHRAGM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-21-961241",
+      "sectionId": "carburetor-912-series",
+      "figure": "21",
+      "partNumber": "961241",
+      "description": "RETAINING RING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-22-841210",
+      "sectionId": "carburetor-912-series",
+      "figure": "22",
+      "partNumber": "841210",
+      "description": "COMBINED SCREW M4X12",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-23-938365",
+      "sectionId": "carburetor-912-series",
+      "figure": "23",
+      "partNumber": "938365",
+      "description": "THROTTLE VALVE SPRING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-24-961250",
+      "sectionId": "carburetor-912-series",
+      "figure": "24",
+      "partNumber": "961250",
+      "description": "CHAMBER TOP",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-25-841341",
+      "sectionId": "carburetor-912-series",
+      "figure": "25",
+      "partNumber": "841341",
+      "description": "COUNTERSUNK SCREW M5x12",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-26-847910",
+      "sectionId": "carburetor-912-series",
+      "figure": "26",
+      "partNumber": "847910",
+      "description": "DISTANCE SLEEVE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-27-838242",
+      "sectionId": "carburetor-912-series",
+      "figure": "27",
+      "partNumber": "838242",
+      "description": "SPRING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-28-640251",
+      "sectionId": "carburetor-912-series",
+      "figure": "28",
+      "partNumber": "640251",
+      "description": "OVAL HEAD SCREW M5x20",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-29-961281",
+      "sectionId": "carburetor-912-series",
+      "figure": "29",
+      "partNumber": "961281",
+      "description": "CHOKE HOUSING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-30-961273",
+      "sectionId": "carburetor-912-series",
+      "figure": "30",
+      "partNumber": "961273",
+      "description": "CHOKE VALVE ASSY. 1/3",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 1 and 3; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-30-961278",
+      "sectionId": "carburetor-912-series",
+      "figure": "30",
+      "partNumber": "961278",
+      "description": "CHOKE VALVE ASSY. 2/4",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 2 and 4; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-31-950420",
+      "sectionId": "carburetor-912-series",
+      "figure": "31",
+      "partNumber": "950420",
+      "description": "O-RING - 5X1.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-32-950030",
+      "sectionId": "carburetor-912-series",
+      "figure": "32",
+      "partNumber": "950030",
+      "description": "GASKET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-33-841360",
+      "sectionId": "carburetor-912-series",
+      "figure": "33",
+      "partNumber": "841360",
+      "description": "SLOTTED HEAD SCREW M4X14",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-34-848241",
+      "sectionId": "carburetor-912-series",
+      "figure": "34",
+      "partNumber": "848241",
+      "description": "CHOKE LEVER INSIDE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-35-848245",
+      "sectionId": "carburetor-912-series",
+      "figure": "35",
+      "partNumber": "848245",
+      "description": "CHOKE LEVER OUTSIDE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-36-845035",
+      "sectionId": "carburetor-912-series",
+      "figure": "36",
+      "partNumber": "845035",
+      "description": "SPRING WASHER 8.3/13.6/0.4",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-37-942290",
+      "sectionId": "carburetor-912-series",
+      "figure": "37",
+      "partNumber": "942290",
+      "description": "HEX.NUT M8X1",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-38-938286",
+      "sectionId": "carburetor-912-series",
+      "figure": "38",
+      "partNumber": "938286",
+      "description": "RETURN SPRING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-39-963992",
+      "sectionId": "carburetor-912-series",
+      "figure": "39",
+      "partNumber": "963992",
+      "description": "THROTTLE SHAFT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-40-950020",
+      "sectionId": "carburetor-912-series",
+      "figure": "40",
+      "partNumber": "950020",
+      "description": "O-RING - 6X2.0",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-41-963666",
+      "sectionId": "carburetor-912-series",
+      "figure": "41",
+      "partNumber": "963666",
+      "description": "THROTTLE VALVE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-42-941200",
+      "sectionId": "carburetor-912-series",
+      "figure": "42",
+      "partNumber": "941200",
+      "description": "SLOTTED HEAD SCREW M3X6",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-43-961267",
+      "sectionId": "carburetor-912-series",
+      "figure": "43",
+      "partNumber": "961267",
+      "description": "CABLE SUPPORT ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 2 and 4; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-43-961262",
+      "sectionId": "carburetor-912-series",
+      "figure": "43",
+      "partNumber": "961262",
+      "description": "CABLE SUPPORT ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 1 and 3; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-44-240357",
+      "sectionId": "carburetor-912-series",
+      "figure": "44",
+      "partNumber": "240357",
+      "description": "OVAL HEAD SCREW M4x10",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-45-963162",
+      "sectionId": "carburetor-912-series",
+      "figure": "45",
+      "partNumber": "963162",
+      "description": "THROTTLE VALVE STOP SCREW",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-46-848232",
+      "sectionId": "carburetor-912-series",
+      "figure": "46",
+      "partNumber": "848232",
+      "description": "STOP LEVER",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 2 and 4"
+    },
+    {
+      "id": "cb912-46-848230",
+      "sectionId": "carburetor-912-series",
+      "figure": "46",
+      "partNumber": "848230",
+      "description": "STOP LEVER",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 1 and 3"
+    },
+    {
+      "id": "cb912-47-963021",
+      "sectionId": "carburetor-912-series",
+      "figure": "47",
+      "partNumber": "963021",
+      "description": "THROTTLE VALVE LEVER LEFT ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "Ill. no. 47-48. 52-55; For cylinder 2 and 4; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-47-963026",
+      "sectionId": "carburetor-912-series",
+      "figure": "47",
+      "partNumber": "963026",
+      "description": "THROTTLE VALVE LEVER RIGHT ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "Ill. no. 47-48. 52-55; For cylinder 1 and 3; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-48-963015",
+      "sectionId": "carburetor-912-series",
+      "figure": "48",
+      "partNumber": "963015",
+      "description": "SLEEVE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-49-942290",
+      "sectionId": "carburetor-912-series",
+      "figure": "49",
+      "partNumber": "942290",
+      "description": "HEX.NUT M8X1",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-50-845035",
+      "sectionId": "carburetor-912-series",
+      "figure": "50",
+      "partNumber": "845035",
+      "description": "SPRING WASHER 8.3/13.6/0.4",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-51-938288",
+      "sectionId": "carburetor-912-series",
+      "figure": "51",
+      "partNumber": "938288",
+      "description": "RETURN SPRING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-52-241847",
+      "sectionId": "carburetor-912-series",
+      "figure": "52",
+      "partNumber": "241847",
+      "description": "ALLEN SCREW M5X12",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-53-847740",
+      "sectionId": "carburetor-912-series",
+      "figure": "53",
+      "partNumber": "847740",
+      "description": "GRADUATED SLEEVE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-54-827801",
+      "sectionId": "carburetor-912-series",
+      "figure": "54",
+      "partNumber": "827801",
+      "description": "WASHER - N - 6 - 200 HV",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "cb912-54-827802",
+      "sectionId": "carburetor-912-series",
+      "figure": "54",
+      "partNumber": "827802",
+      "description": "WASHER A 5.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-55-842031",
+      "sectionId": "carburetor-912-series",
+      "figure": "55",
+      "partNumber": "842031",
+      "description": "LOCK NUT - M5",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-55-842032",
+      "sectionId": "carburetor-912-series",
+      "figure": "55",
+      "partNumber": "842032",
+      "description": "LOCK NUT M5",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "cb912-56-961222",
+      "sectionId": "carburetor-912-series",
+      "figure": "56",
+      "partNumber": "961222",
+      "description": "IDLE MIXTURE SCREW",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-57-239463",
+      "sectionId": "carburetor-912-series",
+      "figure": "57",
+      "partNumber": "239463",
+      "description": "COMPRESSION SPRING DM4.9 D1 L14",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb912-58-941740",
+      "sectionId": "carburetor-912-series",
+      "figure": "58",
+      "partNumber": "941740",
+      "description": "SLOTTED HEAD SCREW M3.5X5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-59-830721",
+      "sectionId": "carburetor-912-series",
+      "figure": "59",
+      "partNumber": "830721",
+      "description": "GASKET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "viton"
+    },
+    {
+      "id": "cb912-60-963231",
+      "sectionId": "carburetor-912-series",
+      "figure": "60",
+      "partNumber": "963231",
+      "description": "FLOAT CHAMBER ASSY 1/3",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "Ill. no. 60-61"
+    },
+    {
+      "id": "cb912-60-963233",
+      "sectionId": "carburetor-912-series",
+      "figure": "60",
+      "partNumber": "963233",
+      "description": "FLOAT CHAMBER ASSY 2/4",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "Ill. no. 60-61"
+    },
+    {
+      "id": "cb912-61-268762",
+      "sectionId": "carburetor-912-series",
+      "figure": "61",
+      "partNumber": "268762",
+      "description": "JET 105",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb912-61-268758",
+      "sectionId": "carburetor-912-series",
+      "figure": "61",
+      "partNumber": "268758",
+      "description": "JET 85",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-61-268763",
+      "sectionId": "carburetor-912-series",
+      "figure": "61",
+      "partNumber": "268763",
+      "description": "JET 130",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb912-61-268857",
+      "sectionId": "carburetor-912-series",
+      "figure": "61",
+      "partNumber": "268857",
+      "description": "JET 120",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb912-61-268765",
+      "sectionId": "carburetor-912-series",
+      "figure": "61",
+      "partNumber": "268765",
+      "description": "JET 140",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb912-62-963180",
+      "sectionId": "carburetor-912-series",
+      "figure": "62",
+      "partNumber": "963180",
+      "description": "SPRING CLIP",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-63-851074",
+      "sectionId": "carburetor-912-series",
+      "figure": "63",
+      "partNumber": "851074",
+      "description": "SUPPORT 2/4",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 2 and 4"
+    },
+    {
+      "id": "cb912-63-851072",
+      "sectionId": "carburetor-912-series",
+      "figure": "63",
+      "partNumber": "851072",
+      "description": "SUPPORT 1/3",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "For cylinder 1 and 3"
+    },
+    {
+      "id": "cb912-64-240761",
+      "sectionId": "carburetor-912-series",
+      "figure": "64",
+      "partNumber": "240761",
+      "description": "SLOTTED HEAD SCREW M5X16",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-65-241440",
+      "sectionId": "carburetor-912-series",
+      "figure": "65",
+      "partNumber": "241440",
+      "description": "ADJUSTMENT SCREW M6X0.75",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-66-942541",
+      "sectionId": "carburetor-912-series",
+      "figure": "66",
+      "partNumber": "942541",
+      "description": "HEX. NUT M6X0.75 HIGHT 3 MM",
+      "qty": {
+        "912ul": 3,
+        "912uls": 3,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-67-861640",
+      "sectionId": "carburetor-912-series",
+      "figure": "67",
+      "partNumber": "861640",
+      "description": "BENT TUBE ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-68-256035",
+      "sectionId": "carburetor-912-series",
+      "figure": "68",
+      "partNumber": "256035",
+      "description": "AIR VENT LINE 120 MM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-69-963010",
+      "sectionId": "carburetor-912-series",
+      "figure": "69",
+      "partNumber": "963010",
+      "description": "SLEEVE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-70-996946",
+      "sectionId": "carburetor-912-series",
+      "figure": "70",
+      "partNumber": "996946",
+      "description": "GASKET SET CARBURETOR",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "Contain parts requirement for 2 carburetors with rubber gasket"
+    },
+    {
+      "id": "cb912-71-889534",
+      "sectionId": "carburetor-912-series",
+      "figure": "71",
+      "partNumber": "889534",
+      "description": "CARBURETOR OVERHAUL SET",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "for 1 carburetor with rubber gasket"
+    },
+    {
+      "id": "cb912-72-889531",
+      "sectionId": "carburetor-912-series",
+      "figure": "72",
+      "partNumber": "889531",
+      "description": "CARBURETOR 200H INSPECTION KIT",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb912-73-889532",
+      "sectionId": "carburetor-912-series",
+      "figure": "73",
+      "partNumber": "889532",
+      "description": "CARBURETOR 5YEARS SERVICE KIT 912/914",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "cb914-02-961200",
+      "sectionId": "carburetor-914-series",
+      "figure": "02",
+      "partNumber": "961200",
+      "description": "DIFFUSER",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-03-261607",
+      "sectionId": "carburetor-914-series",
+      "figure": "03",
+      "partNumber": "261607",
+      "description": "NEEDLE JET 2.72",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-04-963135",
+      "sectionId": "carburetor-914-series",
+      "figure": "04",
+      "partNumber": "963135",
+      "description": "MIXING TUBE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-05-268996",
+      "sectionId": "carburetor-914-series",
+      "figure": "05",
+      "partNumber": "268996",
+      "description": "MAIN JET 158",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-914-015"
+    },
+    {
+      "id": "cb914-05-268993",
+      "sectionId": "carburetor-914-series",
+      "figure": "05",
+      "partNumber": "268993",
+      "description": "MAIN JET 164",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SB-914-002"
+    },
+    {
+      "id": "cb914-05-268985",
+      "sectionId": "carburetor-914-series",
+      "figure": "05",
+      "partNumber": "268985",
+      "description": "MAIN JET 160",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SB-914-002"
+    },
+    {
+      "id": "cb914-05-268997",
+      "sectionId": "carburetor-914-series",
+      "figure": "05",
+      "partNumber": "268997",
+      "description": "MAIN JET 156",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-914-015"
+    },
+    {
+      "id": "cb914-06-963141",
+      "sectionId": "carburetor-914-series",
+      "figure": "06",
+      "partNumber": "963141",
+      "description": "IDLE JET 30",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-06-963143",
+      "sectionId": "carburetor-914-series",
+      "figure": "06",
+      "partNumber": "963143",
+      "description": "IDLE JET 35",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-07-831713",
+      "sectionId": "carburetor-914-series",
+      "figure": "07",
+      "partNumber": "831713",
+      "description": "O-RING - 3.17X1.78",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      },
+      "note": "SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-08-261708",
+      "sectionId": "carburetor-914-series",
+      "figure": "08",
+      "partNumber": "261708",
+      "description": "FLOAT NEEDLE VALVE W. VITON TIP",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-09-261710",
+      "sectionId": "carburetor-914-series",
+      "figure": "09",
+      "partNumber": "261710",
+      "description": "FLOAT NEEDLE CLIP",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-10-861189",
+      "sectionId": "carburetor-914-series",
+      "figure": "10",
+      "partNumber": "861189",
+      "description": "FLOATS (PAIR)",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "Package including two floats"
+    },
+    {
+      "id": "cb914-11-861192",
+      "sectionId": "carburetor-914-series",
+      "figure": "11",
+      "partNumber": "861192",
+      "description": "FLOAT BRACKET",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-12-929702",
+      "sectionId": "carburetor-914-series",
+      "figure": "12",
+      "partNumber": "929702",
+      "description": "PIN",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-13-961231",
+      "sectionId": "carburetor-914-series",
+      "figure": "13",
+      "partNumber": "961231",
+      "description": "CARBURETOR PISTON",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-14-961215",
+      "sectionId": "carburetor-914-series",
+      "figure": "14",
+      "partNumber": "961215",
+      "description": "JET NEEDLE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-15-945786",
+      "sectionId": "carburetor-914-series",
+      "figure": "15",
+      "partNumber": "945786",
+      "description": "CIRCLIP",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-16-950430",
+      "sectionId": "carburetor-914-series",
+      "figure": "16",
+      "partNumber": "950430",
+      "description": "O-RING - 2.5X1.5",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-17-961293",
+      "sectionId": "carburetor-914-series",
+      "figure": "17",
+      "partNumber": "961293",
+      "description": "FIXATION SCREW",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "with clearance for O-ring; use only together with O-Ring Pos. 16 PN 950430"
+    },
+    {
+      "id": "cb914-18-861116",
+      "sectionId": "carburetor-914-series",
+      "figure": "18",
+      "partNumber": "861116",
+      "description": "DIAPHRAGM",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-19-961241",
+      "sectionId": "carburetor-914-series",
+      "figure": "19",
+      "partNumber": "961241",
+      "description": "RETAINING RING",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-20-841210",
+      "sectionId": "carburetor-914-series",
+      "figure": "20",
+      "partNumber": "841210",
+      "description": "COMBINED SCREW M4X12",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "cb914-21-938365",
+      "sectionId": "carburetor-914-series",
+      "figure": "21",
+      "partNumber": "938365",
+      "description": "THROTTLE VALVE SPRING",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-22-961250",
+      "sectionId": "carburetor-914-series",
+      "figure": "22",
+      "partNumber": "961250",
+      "description": "CHAMBER TOP",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-23-841341",
+      "sectionId": "carburetor-914-series",
+      "figure": "23",
+      "partNumber": "841341",
+      "description": "COUNTERSUNK SCREW M5x12",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-24-847910",
+      "sectionId": "carburetor-914-series",
+      "figure": "24",
+      "partNumber": "847910",
+      "description": "DISTANCE SLEEVE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-25-838242",
+      "sectionId": "carburetor-914-series",
+      "figure": "25",
+      "partNumber": "838242",
+      "description": "SPRING",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-26-640251",
+      "sectionId": "carburetor-914-series",
+      "figure": "26",
+      "partNumber": "640251",
+      "description": "OVAL HEAD SCREW M5x20",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-27-961281",
+      "sectionId": "carburetor-914-series",
+      "figure": "27",
+      "partNumber": "961281",
+      "description": "CHOKE HOUSING",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-28-961278",
+      "sectionId": "carburetor-914-series",
+      "figure": "28",
+      "partNumber": "961278",
+      "description": "CHOKE VALVE ASSY. 2/4",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 2 and 4; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-28-961273",
+      "sectionId": "carburetor-914-series",
+      "figure": "28",
+      "partNumber": "961273",
+      "description": "CHOKE VALVE ASSY. 1/3",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 1 and 3; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-29-950420",
+      "sectionId": "carburetor-914-series",
+      "figure": "29",
+      "partNumber": "950420",
+      "description": "O-RING - 5X1.5",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-30-950030",
+      "sectionId": "carburetor-914-series",
+      "figure": "30",
+      "partNumber": "950030",
+      "description": "GASKET",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-31-841360",
+      "sectionId": "carburetor-914-series",
+      "figure": "31",
+      "partNumber": "841360",
+      "description": "SLOTTED HEAD SCREW M4X14",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "cb914-32-848241",
+      "sectionId": "carburetor-914-series",
+      "figure": "32",
+      "partNumber": "848241",
+      "description": "CHOKE LEVER INSIDE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-33-848245",
+      "sectionId": "carburetor-914-series",
+      "figure": "33",
+      "partNumber": "848245",
+      "description": "CHOKE LEVER OUTSIDE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-34-845035",
+      "sectionId": "carburetor-914-series",
+      "figure": "34",
+      "partNumber": "845035",
+      "description": "SPRING WASHER 8.3/13.6/0.4",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "cb914-35-942290",
+      "sectionId": "carburetor-914-series",
+      "figure": "35",
+      "partNumber": "942290",
+      "description": "HEX.NUT M8X1",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "cb914-36-938286",
+      "sectionId": "carburetor-914-series",
+      "figure": "36",
+      "partNumber": "938286",
+      "description": "RETURN SPRING",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-37-963992",
+      "sectionId": "carburetor-914-series",
+      "figure": "37",
+      "partNumber": "963992",
+      "description": "THROTTLE SHAFT",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 1 and 3"
+    },
+    {
+      "id": "cb914-38-963994",
+      "sectionId": "carburetor-914-series",
+      "figure": "38",
+      "partNumber": "963994",
+      "description": "THROTTLE SHAFT",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 2 and 4"
+    },
+    {
+      "id": "cb914-39-950020",
+      "sectionId": "carburetor-914-series",
+      "figure": "39",
+      "partNumber": "950020",
+      "description": "O-RING - 6X2.0",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      },
+      "note": "at carburetor 1/3 only 1 piece"
+    },
+    {
+      "id": "cb914-40-963666",
+      "sectionId": "carburetor-914-series",
+      "figure": "40",
+      "partNumber": "963666",
+      "description": "THROTTLE VALVE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-41-941200",
+      "sectionId": "carburetor-914-series",
+      "figure": "41",
+      "partNumber": "941200",
+      "description": "SLOTTED HEAD SCREW M3X6",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "cb914-42-961262",
+      "sectionId": "carburetor-914-series",
+      "figure": "42",
+      "partNumber": "961262",
+      "description": "CABLE SUPPORT ASSY.",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 1 and 3; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-42-961267",
+      "sectionId": "carburetor-914-series",
+      "figure": "42",
+      "partNumber": "961267",
+      "description": "CABLE SUPPORT ASSY.",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 2 and 4; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-43-240357",
+      "sectionId": "carburetor-914-series",
+      "figure": "43",
+      "partNumber": "240357",
+      "description": "OVAL HEAD SCREW M4x10",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "cb914-44-963162",
+      "sectionId": "carburetor-914-series",
+      "figure": "44",
+      "partNumber": "963162",
+      "description": "THROTTLE VALVE STOP SCREW",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-45-848230",
+      "sectionId": "carburetor-914-series",
+      "figure": "45",
+      "partNumber": "848230",
+      "description": "STOP LEVER",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 1 and 3"
+    },
+    {
+      "id": "cb914-45-848232",
+      "sectionId": "carburetor-914-series",
+      "figure": "45",
+      "partNumber": "848232",
+      "description": "STOP LEVER",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 2 and 4"
+    },
+    {
+      "id": "cb914-46-963021",
+      "sectionId": "carburetor-914-series",
+      "figure": "46",
+      "partNumber": "963021",
+      "description": "THROTTLE VALVE LEVER LEFT ASSY.",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "Ill. no. 46-47. 51-54; For cylinder 2 and 4; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-46-963026",
+      "sectionId": "carburetor-914-series",
+      "figure": "46",
+      "partNumber": "963026",
+      "description": "THROTTLE VALVE LEVER RIGHT ASSY.",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "Ill. no. 46-47. 51-54; For cylinder 1 and 3; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-47-963015",
+      "sectionId": "carburetor-914-series",
+      "figure": "47",
+      "partNumber": "963015",
+      "description": "SLEEVE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-48-942290",
+      "sectionId": "carburetor-914-series",
+      "figure": "48",
+      "partNumber": "942290",
+      "description": "HEX.NUT M8X1",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "cb914-49-845035",
+      "sectionId": "carburetor-914-series",
+      "figure": "49",
+      "partNumber": "845035",
+      "description": "SPRING WASHER 8.3/13.6/0.4",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "cb914-50-938288",
+      "sectionId": "carburetor-914-series",
+      "figure": "50",
+      "partNumber": "938288",
+      "description": "RETURN SPRING",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-51-241847",
+      "sectionId": "carburetor-914-series",
+      "figure": "51",
+      "partNumber": "241847",
+      "description": "ALLEN SCREW M5X12",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-52-847740",
+      "sectionId": "carburetor-914-series",
+      "figure": "52",
+      "partNumber": "847740",
+      "description": "GRADUATED SLEEVE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-53-827802",
+      "sectionId": "carburetor-914-series",
+      "figure": "53",
+      "partNumber": "827802",
+      "description": "WASHER A 5.5",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-54-842031",
+      "sectionId": "carburetor-914-series",
+      "figure": "54",
+      "partNumber": "842031",
+      "description": "LOCK NUT - M5",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "cb914-55-961222",
+      "sectionId": "carburetor-914-series",
+      "figure": "55",
+      "partNumber": "961222",
+      "description": "IDLE MIXTURE SCREW",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-56-239463",
+      "sectionId": "carburetor-914-series",
+      "figure": "56",
+      "partNumber": "239463",
+      "description": "COMPRESSION SPRING DM4.9 D1 L14",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-57-941740",
+      "sectionId": "carburetor-914-series",
+      "figure": "57",
+      "partNumber": "941740",
+      "description": "SLOTTED HEAD SCREW M3.5X5",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-58-830721",
+      "sectionId": "carburetor-914-series",
+      "figure": "58",
+      "partNumber": "830721",
+      "description": "GASKET",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "rubber gasket"
+    },
+    {
+      "id": "cb914-59-963236",
+      "sectionId": "carburetor-914-series",
+      "figure": "59",
+      "partNumber": "963236",
+      "description": "FLOAT CHAMBER ASSY 1/3",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "Ill. no. 59-60"
+    },
+    {
+      "id": "cb914-59-963238",
+      "sectionId": "carburetor-914-series",
+      "figure": "59",
+      "partNumber": "963238",
+      "description": "FLOAT CHAMBER ASSY 2/4",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "Ill. no. 59-60"
+    },
+    {
+      "id": "cb914-60-268762",
+      "sectionId": "carburetor-914-series",
+      "figure": "60",
+      "partNumber": "268762",
+      "description": "JET 105",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb914-60-268763",
+      "sectionId": "carburetor-914-series",
+      "figure": "60",
+      "partNumber": "268763",
+      "description": "JET 130",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb914-60-268857",
+      "sectionId": "carburetor-914-series",
+      "figure": "60",
+      "partNumber": "268857",
+      "description": "JET 120",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb914-60-268758",
+      "sectionId": "carburetor-914-series",
+      "figure": "60",
+      "partNumber": "268758",
+      "description": "JET 85",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-60-268765",
+      "sectionId": "carburetor-914-series",
+      "figure": "60",
+      "partNumber": "268765",
+      "description": "JET 140",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-03-1998; optional"
+    },
+    {
+      "id": "cb914-61-963281",
+      "sectionId": "carburetor-914-series",
+      "figure": "61",
+      "partNumber": "963281",
+      "description": "ATTACHMENT SCREW ASSY.",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "Ill. no. 61-62; SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-62-631772",
+      "sectionId": "carburetor-914-series",
+      "figure": "62",
+      "partNumber": "631772",
+      "description": "O-RING - 15.6X1.78",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "SI-912-012; SI-914-014"
+    },
+    {
+      "id": "cb914-63-950141",
+      "sectionId": "carburetor-914-series",
+      "figure": "63",
+      "partNumber": "950141",
+      "description": "SEALING RING A 8X13",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-64-941853",
+      "sectionId": "carburetor-914-series",
+      "figure": "64",
+      "partNumber": "941853",
+      "description": "FUEL LINE CONNECTOR",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-65-851074",
+      "sectionId": "carburetor-914-series",
+      "figure": "65",
+      "partNumber": "851074",
+      "description": "SUPPORT 2/4",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 2 and 4"
+    },
+    {
+      "id": "cb914-65-851072",
+      "sectionId": "carburetor-914-series",
+      "figure": "65",
+      "partNumber": "851072",
+      "description": "SUPPORT 1/3",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "For cylinder 1 and 3"
+    },
+    {
+      "id": "cb914-66-240761",
+      "sectionId": "carburetor-914-series",
+      "figure": "66",
+      "partNumber": "240761",
+      "description": "SLOTTED HEAD SCREW M5X16",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-67-241440",
+      "sectionId": "carburetor-914-series",
+      "figure": "67",
+      "partNumber": "241440",
+      "description": "ADJUSTMENT SCREW M6X0.75",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-68-942541",
+      "sectionId": "carburetor-914-series",
+      "figure": "68",
+      "partNumber": "942541",
+      "description": "HEX. NUT M6X0.75 HIGHT 3 MM",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 3
+      }
+    },
+    {
+      "id": "cb914-69-861640",
+      "sectionId": "carburetor-914-series",
+      "figure": "69",
+      "partNumber": "861640",
+      "description": "BENT TUBE ASSY.",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-70-963010",
+      "sectionId": "carburetor-914-series",
+      "figure": "70",
+      "partNumber": "963010",
+      "description": "SLEEVE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-71-996946",
+      "sectionId": "carburetor-914-series",
+      "figure": "71",
+      "partNumber": "996946",
+      "description": "GASKET SET CARBURETOR",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      },
+      "note": "Contain parts for 2 carburetors with rubber gasket"
+    },
+    {
+      "id": "cb914-72-889534",
+      "sectionId": "carburetor-914-series",
+      "figure": "72",
+      "partNumber": "889534",
+      "description": "CARBURETOR OVERHAUL SET",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      },
+      "note": "for 1 carburetor with rubber gasket"
+    },
+    {
+      "id": "cb914-73-889531",
+      "sectionId": "carburetor-914-series",
+      "figure": "73",
+      "partNumber": "889531",
+      "description": "CARBURETOR 200H INSPECTION KIT",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "cb914-74-889532",
+      "sectionId": "carburetor-914-series",
+      "figure": "74",
+      "partNumber": "889532",
+      "description": "CARBURETOR 5YEARS SERVICE KIT 912/914",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "intake-01-230910",
+      "sectionId": "intake-manifold",
+      "figure": "01",
+      "partNumber": "230910",
+      "description": "O-RING - 34X2",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "intake-02-867933",
+      "sectionId": "intake-manifold",
+      "figure": "02",
+      "partNumber": "867933",
+      "description": "INTAKE MANIFOLD 2/4",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "intake-02-867932",
+      "sectionId": "intake-manifold",
+      "figure": "02",
+      "partNumber": "867932",
+      "description": "INTAKE MANIFOLD 2/4",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "intake-03-867935",
+      "sectionId": "intake-manifold",
+      "figure": "03",
+      "partNumber": "867935",
+      "description": "INTAKE MANIFOLD 1/3",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "not available"
+    },
+    {
+      "id": "intake-03-867937",
+      "sectionId": "intake-manifold",
+      "figure": "03",
+      "partNumber": "867937",
+      "description": "INTAKE MANIFOLD 1/3",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "intake-04-827962",
+      "sectionId": "intake-manifold",
+      "figure": "04",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4",
+      "qty": {
+        "912ul": 8,
+        "912uls": 8,
+        "914ul": 8
+      }
+    },
+    {
+      "id": "intake-05-240533",
+      "sectionId": "intake-manifold",
+      "figure": "05",
+      "partNumber": "240533",
+      "description": "ALLEN SCREW - M6x75",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "intake-06-840866",
+      "sectionId": "intake-manifold",
+      "figure": "06",
+      "partNumber": "840866",
+      "description": "ALLEN SCREW - M6x25",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "intake-07-922242",
+      "sectionId": "intake-manifold",
+      "figure": "07",
+      "partNumber": "922242",
+      "description": "ANGULAR TUBE 1/4-18NPT",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "intake-08-956142",
+      "sectionId": "intake-manifold",
+      "figure": "08",
+      "partNumber": "956142",
+      "description": "LOW PRESSURE HOSE OLN(E)",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "in a roll; not with Form 1"
+    },
+    {
+      "id": "intake-08-956143",
+      "sectionId": "intake-manifold",
+      "figure": "08",
+      "partNumber": "956143",
+      "description": "TUBE 66 MM",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "SI-912-020; SI-914-022"
+    },
+    {
+      "id": "intake-09-924541",
+      "sectionId": "intake-manifold",
+      "figure": "09",
+      "partNumber": "924541",
+      "description": "COMPENSATING TUBE ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "SI-912-020; SI-914-022"
+    },
+    {
+      "id": "intake-10-853515",
+      "sectionId": "intake-manifold",
+      "figure": "10",
+      "partNumber": "853515",
+      "description": "CLAMP 16/9",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "intake-11-953400",
+      "sectionId": "intake-manifold",
+      "figure": "11",
+      "partNumber": "953400",
+      "description": "BRACKET",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "intake-12-838242",
+      "sectionId": "intake-manifold",
+      "figure": "12",
+      "partNumber": "838242",
+      "description": "SPRING",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "intake-13-940980",
+      "sectionId": "intake-manifold",
+      "figure": "13",
+      "partNumber": "940980",
+      "description": "SCREW M3.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "SI-912-020; SI-914-022"
+    },
+    {
+      "id": "intake-14-230300",
+      "sectionId": "intake-manifold",
+      "figure": "14",
+      "partNumber": "230300",
+      "description": "O-RING - 47X270",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "intake-15-267789",
+      "sectionId": "intake-manifold",
+      "figure": "15",
+      "partNumber": "267789",
+      "description": "RUBBER FLANGE ASSY.",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "SB-912-030; SB-914-019"
+    },
+    {
+      "id": "intake-16-250315",
+      "sectionId": "intake-manifold",
+      "figure": "16",
+      "partNumber": "250315",
+      "description": "WASHER - 8",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "intake-17-940483",
+      "sectionId": "intake-manifold",
+      "figure": "17",
+      "partNumber": "940483",
+      "description": "HEX. SCREW - M8X30",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      }
+    },
+    {
+      "id": "intake-18-240277",
+      "sectionId": "intake-manifold",
+      "figure": "18",
+      "partNumber": "240277",
+      "description": "HEX. SCREW - M8X25",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 4
+      },
+      "note": "SI-912-020; SI-914-022"
+    },
+    {
+      "id": "intake-19-931640",
+      "sectionId": "intake-manifold",
+      "figure": "19",
+      "partNumber": "931640",
+      "description": "GASKET",
+      "qty": {
+        "912ul": 2,
+        "912uls": 0,
+        "914ul": 0
+      },
+      "note": "Only at intake manifold without O-ring"
+    },
+    {
+      "id": "intake-20-874300",
+      "sectionId": "intake-manifold",
+      "figure": "20",
+      "partNumber": "874300",
+      "description": "DRIP TRAY",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "optional"
+    },
+    {
+      "id": "intake-21-230415",
+      "sectionId": "intake-manifold",
+      "figure": "21",
+      "partNumber": "230415",
+      "description": "SEALING RING A 6X10",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "intake-22-641071",
+      "sectionId": "intake-manifold",
+      "figure": "22",
+      "partNumber": "641071",
+      "description": "HEX.SCREW - M6X6",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "intake-23-956141",
+      "sectionId": "intake-manifold",
+      "figure": "23",
+      "partNumber": "956141",
+      "description": "TUBE 81 MM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "SI-912-020; SI-914-022"
     }
   ]
 }
