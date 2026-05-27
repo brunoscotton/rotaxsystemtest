@@ -1,5 +1,5 @@
 import { createServer } from "node:http";
-import { readFile, mkdir, writeFile, stat } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { createReadStream } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -75,6 +75,43 @@ function buildQuoteText({ customer, items }) {
   }
 
   return `${lines.join("\n")}\n`;
+}
+
+async function sendQuoteEmail({ customer, filename, text }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.QUOTE_TO_EMAIL || "apicotacao@cdsav.com.br";
+  const from = process.env.QUOTE_FROM_EMAIL || "Rotax System <apicotacao@cdsav.com.br>";
+
+  if (!apiKey) {
+    throw new Error("Envio de e-mail nao configurado. Defina RESEND_API_KEY na Vercel.");
+  }
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [to],
+      subject: `Cotacao Rotax - ${customer.prefix.trim()} - ${customer.name.trim()}`,
+      text,
+      attachments: [
+        {
+          filename,
+          content: Buffer.from(text, "utf8").toString("base64")
+        }
+      ]
+    })
+  });
+
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(result.message || "Nao foi possivel enviar o e-mail.");
+  }
+
+  return { id: result.id, to };
 }
 
 async function readRequestBody(req) {
@@ -171,22 +208,14 @@ const server = createServer(async (req, res) => {
       const stamp = now.toISOString().replace(/[-:]/g, "").replace(/\..+/, "");
       const filename = `${stamp}-${sanitizeFilePart(customer.prefix)}-${sanitizeFilePart(customer.name)}.txt`;
       const text = buildQuoteText({ customer, items });
-      let downloadUrl = null;
-
-      try {
-        await mkdir(requestsDir, { recursive: true });
-        await writeFile(path.join(requestsDir, filename), text, "utf8");
-        downloadUrl = `/api/requests/${filename}`;
-      } catch {
-        // Serverless hosts such as Vercel expose a read-only app directory.
-        // The browser still receives the TXT content and downloads it locally.
-      }
+      const email = await sendQuoteEmail({ customer, filename, text });
 
       sendJson(res, 201, {
         ok: true,
         filename,
-        downloadUrl,
-        text
+        text,
+        emailTo: email.to,
+        emailId: email.id
       });
       return;
     }

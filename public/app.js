@@ -37,18 +37,6 @@ function escapeHtml(value) {
     .replace(/'/g, "&#039;");
 }
 
-function downloadQuoteText(text, filename) {
-  const blob = new Blob([text || ""], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename || "cotacao-rotax.txt";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-
 function routeParts() {
   const clean = location.hash.replace(/^#\/?/, "");
   return clean ? clean.split("/") : [];
@@ -437,13 +425,12 @@ function renderDone() {
     <main class="page">
       <section class="result-panel">
         <div>
-          <p class="eyebrow">TXT gerado</p>
-          <h1>Solicitacao pronta</h1>
-          <p class="lead">Arquivo criado: ${escapeHtml(quote.filename)}</p>
+          <p class="eyebrow">E-mail enviado</p>
+          <h1>Solicitacao enviada</h1>
+          <p class="lead">Cotacao enviada para ${escapeHtml(quote.emailTo || "apicotacao@cdsav.com.br")} com o anexo ${escapeHtml(quote.filename)}.</p>
         </div>
         <pre class="quote-text">${escapeHtml(quote.text)}</pre>
         <div class="form-actions">
-          <button class="secondary-button" type="button" data-download-quote>Baixar TXT</button>
           <button class="primary-button" type="button" data-route="#/">Nova solicitacao</button>
         </div>
       </section>
@@ -481,7 +468,6 @@ async function submitQuote(form) {
   }
 
   state.lastQuote = result;
-  downloadQuoteText(result.text, result.filename);
   state.cart = {};
   saveCart();
   location.hash = "#/done";
@@ -513,10 +499,6 @@ function bindEvents() {
       return;
     }
 
-    const download = event.target.closest("[data-download-quote]");
-    if (download && state.lastQuote) {
-      downloadQuoteText(state.lastQuote.text, state.lastQuote.filename);
-    }
   });
 
   app.addEventListener("input", (event) => {

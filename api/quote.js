@@ -47,6 +47,43 @@ function buildQuoteText({ customer, items }) {
   return `${lines.join("\n")}\n`;
 }
 
+async function sendQuoteEmail({ customer, filename, text }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.QUOTE_TO_EMAIL || "apicotacao@cdsav.com.br";
+  const from = process.env.QUOTE_FROM_EMAIL || "Rotax System <apicotacao@cdsav.com.br>";
+
+  if (!apiKey) {
+    throw new Error("Envio de e-mail nao configurado. Defina RESEND_API_KEY na Vercel.");
+  }
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [to],
+      subject: `Cotacao Rotax - ${customer.prefix.trim()} - ${customer.name.trim()}`,
+      text,
+      attachments: [
+        {
+          filename,
+          content: Buffer.from(text, "utf8").toString("base64")
+        }
+      ]
+    })
+  });
+
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(result.message || "Nao foi possivel enviar o e-mail.");
+  }
+
+  return { id: result.id, to };
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ ok: false, message: "Metodo nao permitido." });
@@ -76,6 +113,14 @@ export default async function handler(req, res) {
   const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, "");
   const filename = `${stamp}-${sanitizeFilePart(customer.prefix)}-${sanitizeFilePart(customer.name)}.txt`;
   const text = buildQuoteText({ customer, items });
+  let email;
 
-  res.status(201).json({ ok: true, filename, text });
+  try {
+    email = await sendQuoteEmail({ customer, filename, text });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: error.message || "Nao foi possivel enviar o e-mail." });
+    return;
+  }
+
+  res.status(201).json({ ok: true, filename, text, emailTo: email.to, emailId: email.id });
 }
