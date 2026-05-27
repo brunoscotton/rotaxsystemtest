@@ -75,7 +75,7 @@ function categoriesForEngine(engineId) {
     { label: "Fuel Pump Assembly-Fuel Hose Assembly-Airbox Assembly" },
     { label: "Governors" },
     { label: "Intake Manifold" },
-    { label: "Magneto" },
+    { label: "Magnetic pickup Assy" },
     { label: "Oil Systems" },
     { label: "Overload Clutch" },
     { label: "Piston" },

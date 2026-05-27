@@ -1280,13 +1280,470 @@
       ]
     },
     {
-      "id": "magneto-generator",
+      "id": "double-ignition-coil",
       "engineIds": [
         "912uls",
         "912ul",
         "914ul"
       ],
       "label": "Double Ignition Assembly",
+      "chapter": "74-20-00",
+      "figure": "74-20-00",
+      "title": "DOUBLE IGNITION COIL ASSY., SMD-ELECTRONIC MODULE",
+      "source": "Ignition coil IPC - Edition 05, Revision 01, 2024",
+      "image": "/assets/rotax-double-ignition-page.png",
+      "thumb": "/assets/rotax-double-ignition-thumb.png",
+      "hotspots": [
+        {
+          "figure": "01",
+          "x": 73.0,
+          "y": 55.8
+        },
+        {
+          "figure": "01",
+          "x": 62.4,
+          "y": 57.5
+        },
+        {
+          "figure": "02",
+          "x": 54.5,
+          "y": 36.5
+        },
+        {
+          "figure": "02",
+          "x": 65.7,
+          "y": 41.8
+        },
+        {
+          "figure": "02",
+          "x": 20.4,
+          "y": 57.0
+        },
+        {
+          "figure": "03",
+          "x": 50.1,
+          "y": 43.0
+        },
+        {
+          "figure": "03",
+          "x": 19.2,
+          "y": 56.0
+        },
+        {
+          "figure": "03",
+          "x": 64.5,
+          "y": 39.5
+        },
+        {
+          "figure": "04",
+          "x": 54.0,
+          "y": 35.6
+        },
+        {
+          "figure": "04",
+          "x": 36.2,
+          "y": 37.5
+        },
+        {
+          "figure": "04",
+          "x": 59.5,
+          "y": 38.9
+        },
+        {
+          "figure": "04",
+          "x": 22.7,
+          "y": 60.0
+        },
+        {
+          "figure": "05",
+          "x": 54.1,
+          "y": 39.0
+        },
+        {
+          "figure": "05",
+          "x": 42.8,
+          "y": 35.9
+        },
+        {
+          "figure": "05",
+          "x": 61.2,
+          "y": 41.1
+        },
+        {
+          "figure": "05",
+          "x": 25.5,
+          "y": 62.5
+        },
+        {
+          "figure": "06",
+          "x": 68.6,
+          "y": 53.5
+        },
+        {
+          "figure": "07",
+          "x": 73.2,
+          "y": 52.8
+        },
+        {
+          "figure": "07",
+          "x": 60.8,
+          "y": 57.1
+        },
+        {
+          "figure": "08",
+          "x": 40.6,
+          "y": 45.5
+        },
+        {
+          "figure": "08",
+          "x": 78.0,
+          "y": 39.6
+        },
+        {
+          "figure": "08",
+          "x": 77.3,
+          "y": 41.5
+        },
+        {
+          "figure": "08",
+          "x": 37.3,
+          "y": 61.1
+        },
+        {
+          "figure": "08",
+          "x": 49.4,
+          "y": 65.2
+        },
+        {
+          "figure": "08",
+          "x": 79.7,
+          "y": 58.9
+        },
+        {
+          "figure": "09",
+          "x": 82.6,
+          "y": 51.7
+        },
+        {
+          "figure": "09",
+          "x": 40.8,
+          "y": 63.4
+        },
+        {
+          "figure": "10",
+          "x": 41.2,
+          "y": 43.2
+        },
+        {
+          "figure": "10",
+          "x": 75.0,
+          "y": 59.0
+        },
+        {
+          "figure": "11",
+          "x": 43.4,
+          "y": 59.2
+        },
+        {
+          "figure": "11",
+          "x": 42.8,
+          "y": 69.4
+        },
+        {
+          "figure": "12",
+          "x": 86.2,
+          "y": 45.8
+        },
+        {
+          "figure": "14",
+          "x": 50.3,
+          "y": 66.3
+        },
+        {
+          "figure": "15",
+          "x": 33.9,
+          "y": 62.3
+        },
+        {
+          "figure": "15",
+          "x": 49.7,
+          "y": 64.0
+        },
+        {
+          "figure": "16",
+          "x": 84.2,
+          "y": 54.3
+        },
+        {
+          "figure": "16",
+          "x": 46.6,
+          "y": 66.0
+        },
+        {
+          "figure": "17",
+          "x": 40.7,
+          "y": 45.0
+        },
+        {
+          "figure": "17",
+          "x": 77.0,
+          "y": 59.5
+        },
+        {
+          "figure": "17",
+          "x": 78.0,
+          "y": 61.0
+        },
+        {
+          "figure": "17",
+          "x": 54.0,
+          "y": 77.8
+        },
+        {
+          "figure": "18",
+          "x": 33.5,
+          "y": 48.0
+        },
+        {
+          "figure": "18",
+          "x": 59.4,
+          "y": 76.0
+        },
+        {
+          "figure": "20",
+          "x": 35.0,
+          "y": 30.7
+        },
+        {
+          "figure": "21",
+          "x": 36.7,
+          "y": 25.3
+        },
+        {
+          "figure": "22",
+          "x": 39.0,
+          "y": 22.6
+        },
+        {
+          "figure": "23",
+          "x": 42.7,
+          "y": 17.7
+        },
+        {
+          "figure": "23",
+          "x": 52.0,
+          "y": 19.9
+        },
+        {
+          "figure": "24",
+          "x": 53.8,
+          "y": 28.6
+        },
+        {
+          "figure": "25",
+          "x": 61.1,
+          "y": 24.8
+        },
+        {
+          "figure": "27",
+          "x": 80.7,
+          "y": 34.4
+        },
+        {
+          "figure": "29",
+          "x": 34.7,
+          "y": 70.4
+        },
+        {
+          "figure": "31",
+          "x": 37.2,
+          "y": 62.2
+        },
+        {
+          "figure": "32",
+          "x": 36.8,
+          "y": 59.4
+        },
+        {
+          "figure": "33",
+          "x": 54.9,
+          "y": 72.1
+        },
+        {
+          "figure": "34",
+          "x": 30.5,
+          "y": 54.3
+        },
+        {
+          "figure": "34",
+          "x": 69.5,
+          "y": 37.9
+        },
+        {
+          "figure": "35",
+          "x": 61.5,
+          "y": 30.8
+        },
+        {
+          "figure": "35",
+          "x": 76.2,
+          "y": 30.0
+        },
+        {
+          "figure": "36",
+          "x": 18.0,
+          "y": 40.2
+        },
+        {
+          "figure": "36",
+          "x": 18.0,
+          "y": 57.5
+        },
+        {
+          "figure": "37",
+          "x": 66.0,
+          "y": 30.4
+        },
+        {
+          "figure": "37",
+          "x": 83.0,
+          "y": 34.6
+        },
+        {
+          "figure": "38",
+          "x": 14.0,
+          "y": 44.3
+        },
+        {
+          "figure": "38",
+          "x": 28.8,
+          "y": 61.0
+        },
+        {
+          "figure": "39",
+          "x": 11.5,
+          "y": 62.5
+        },
+        {
+          "figure": "39",
+          "x": 24.0,
+          "y": 63.0
+        },
+        {
+          "figure": "40",
+          "x": 14.0,
+          "y": 58.7
+        },
+        {
+          "figure": "40",
+          "x": 25.2,
+          "y": 61.8
+        },
+        {
+          "figure": "41",
+          "x": 18.5,
+          "y": 73.7
+        },
+        {
+          "figure": "42",
+          "x": 75.3,
+          "y": 32.0
+        },
+        {
+          "figure": "42",
+          "x": 24.0,
+          "y": 51.9
+        },
+        {
+          "figure": "43",
+          "x": 50.7,
+          "y": 70.8
+        },
+        {
+          "figure": "44",
+          "x": 76.5,
+          "y": 67.7
+        },
+        {
+          "figure": "44",
+          "x": 75.1,
+          "y": 82.1
+        },
+        {
+          "figure": "46",
+          "x": 72.4,
+          "y": 82.8
+        },
+        {
+          "figure": "47",
+          "x": 72.4,
+          "y": 66.0
+        },
+        {
+          "figure": "55",
+          "x": 78.6,
+          "y": 73.5
+        },
+        {
+          "figure": "56",
+          "x": 80.9,
+          "y": 78.8
+        },
+        {
+          "figure": "62",
+          "x": 25.8,
+          "y": 45.1
+        },
+        {
+          "figure": "63",
+          "x": 28.6,
+          "y": 44.7
+        },
+        {
+          "figure": "64",
+          "x": 83.3,
+          "y": 41.6
+        },
+        {
+          "figure": "65",
+          "x": 45.7,
+          "y": 64.2
+        },
+        {
+          "figure": "66",
+          "x": 80.1,
+          "y": 67.5
+        },
+        {
+          "figure": "66",
+          "x": 81.8,
+          "y": 82.0
+        },
+        {
+          "figure": "67",
+          "x": 19.5,
+          "y": 85.5
+        },
+        {
+          "figure": "68",
+          "x": 57.5,
+          "y": 76.5
+        },
+        {
+          "figure": "69",
+          "x": 22.0,
+          "y": 37.7
+        }
+      ]
+    },
+    {
+      "id": "magneto-generator",
+      "engineIds": [
+        "912uls",
+        "912ul",
+        "914ul"
+      ],
+      "label": "Magnetic pickup Assy",
       "chapter": "24-20-00",
       "figure": "24-20-00",
       "title": "MAGNETO-GENERATOR, PICK UP, RECTIFIER REGULATOR",
@@ -7010,6 +7467,748 @@
         "914ul": 1
       },
       "note": "SI-912-020; SI-914-022"
+    },
+    {
+      "id": "igncoil-01-01-966218",
+      "sectionId": "double-ignition-coil",
+      "figure": "01",
+      "partNumber": "966218",
+      "description": "DOUBLE IGNITION COIL ASSY",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      },
+      "note": "Ill. no. 1-5 Including ignition cables and protection hoses"
+    },
+    {
+      "id": "igncoil-02-02-865712",
+      "sectionId": "double-ignition-coil",
+      "figure": "02",
+      "partNumber": "865712",
+      "description": "IGNITION CABLE 490 MM",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "igncoil-03-02-865711",
+      "sectionId": "double-ignition-coil",
+      "figure": "02",
+      "partNumber": "865711",
+      "description": "IGNITION CABLE 7 MM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "still valid in a roll. Ignition cable 4.5 m not with Form 1 available as required"
+    },
+    {
+      "id": "igncoil-04-03-860992",
+      "sectionId": "double-ignition-coil",
+      "figure": "03",
+      "partNumber": "860992",
+      "description": "HEAT PROTECTION HOSE 440 MM",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "igncoil-05-03-860991",
+      "sectionId": "double-ignition-coil",
+      "figure": "03",
+      "partNumber": "860991",
+      "description": "PROTECTION HOSE 8X1",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "still valid In a roll. Protection hose 4.1 m not with Form 1 available as required"
+    },
+    {
+      "id": "igncoil-06-04-865718",
+      "sectionId": "double-ignition-coil",
+      "figure": "04",
+      "partNumber": "865718",
+      "description": "IGNITION CABLE 600 MM",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "igncoil-07-04-865711",
+      "sectionId": "double-ignition-coil",
+      "figure": "04",
+      "partNumber": "865711",
+      "description": "IGNITION CABLE 7 MM",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "still valid In a roll. Ignition cable 4.5 m not with Form 1 available as required"
+    },
+    {
+      "id": "igncoil-08-05-860991",
+      "sectionId": "double-ignition-coil",
+      "figure": "05",
+      "partNumber": "860991",
+      "description": "PROTECTION HOSE 8X1",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "still valid In a roll. Protection hose 4.1 m not with Form 1 available as required"
+    },
+    {
+      "id": "igncoil-09-05-860993",
+      "sectionId": "double-ignition-coil",
+      "figure": "05",
+      "partNumber": "860993",
+      "description": "HEAT PROTECTION HOSE 550 MM",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "igncoil-10-06-842742",
+      "sectionId": "double-ignition-coil",
+      "figure": "06",
+      "partNumber": "842742",
+      "description": "DISTANCE NUT M6X22.5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-11-07-953390",
+      "sectionId": "double-ignition-coil",
+      "figure": "07",
+      "partNumber": "953390",
+      "description": "SEPARATING PLATE",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-12-08-945831",
+      "sectionId": "double-ignition-coil",
+      "figure": "08",
+      "partNumber": "945831",
+      "description": "LOCK WASHER - A6",
+      "qty": {
+        "912ul": 9,
+        "912uls": 9,
+        "914ul": 9
+      }
+    },
+    {
+      "id": "igncoil-13-09-840883",
+      "sectionId": "double-ignition-coil",
+      "figure": "09",
+      "partNumber": "840883",
+      "description": "ALLEN SCREW M6X30",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-14-10-953127",
+      "sectionId": "double-ignition-coil",
+      "figure": "10",
+      "partNumber": "953127",
+      "description": "IGNITION COIL BRACKET ASS`Y",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-15-11-860710",
+      "sectionId": "double-ignition-coil",
+      "figure": "11",
+      "partNumber": "860710",
+      "description": "RUBBER BUFFER 25X20XM6",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-16-12-960060",
+      "sectionId": "double-ignition-coil",
+      "figure": "12",
+      "partNumber": "960060",
+      "description": "RUBBER BUFFER 25X15XM6",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-17-14-851260",
+      "sectionId": "double-ignition-coil",
+      "figure": "14",
+      "partNumber": "851260",
+      "description": "IGNITION COIL BRACKET 1",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-18-15-240772",
+      "sectionId": "double-ignition-coil",
+      "figure": "15",
+      "partNumber": "240772",
+      "description": "HEX.SCREW - M6X10",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-19-16-241935",
+      "sectionId": "double-ignition-coil",
+      "figure": "16",
+      "partNumber": "241935",
+      "description": "ALLEN SCREW - M6x20",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-20-17-242214",
+      "sectionId": "double-ignition-coil",
+      "figure": "17",
+      "partNumber": "242214",
+      "description": "HEX.NUT M6",
+      "qty": {
+        "912ul": 4,
+        "912uls": 4,
+        "914ul": 4
+      }
+    },
+    {
+      "id": "igncoil-21-18-241237",
+      "sectionId": "double-ignition-coil",
+      "figure": "18",
+      "partNumber": "241237",
+      "description": "ALLEN SCREW - M6x16",
+      "qty": {
+        "912ul": 3,
+        "912uls": 3,
+        "914ul": 3
+      }
+    },
+    {
+      "id": "igncoil-22-20-965443",
+      "sectionId": "double-ignition-coil",
+      "figure": "20",
+      "partNumber": "965443",
+      "description": "IGNITION MODULE",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 2
+      },
+      "note": "(6p+6p+single con.) SI-912-013 SI-914-016"
+    },
+    {
+      "id": "igncoil-23-20-965445",
+      "sectionId": "double-ignition-coil",
+      "figure": "20",
+      "partNumber": "965445",
+      "description": "IGNITION MODULE",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 0
+      },
+      "note": "(6p+6p+single con.) SI-912-020 SI-914-022"
+    },
+    {
+      "id": "igncoil-24-21-827801",
+      "sectionId": "double-ignition-coil",
+      "figure": "21",
+      "partNumber": "827801",
+      "description": "WASHER - N - 6 - 200 HV",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-25-22-945830",
+      "sectionId": "double-ignition-coil",
+      "figure": "22",
+      "partNumber": "945830",
+      "description": "LOCK WASHER - A5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-26-23-240187",
+      "sectionId": "double-ignition-coil",
+      "figure": "23",
+      "partNumber": "240187",
+      "description": "ALLEN SCREW - M5x25",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-27-24-851118",
+      "sectionId": "double-ignition-coil",
+      "figure": "24",
+      "partNumber": "851118",
+      "description": "CABLE CLAMP 11.3/M5",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-28-25-965788",
+      "sectionId": "double-ignition-coil",
+      "figure": "25",
+      "partNumber": "965788",
+      "description": "MASS CABLE ASSY.",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-29-26-965781",
+      "sectionId": "double-ignition-coil",
+      "figure": "26",
+      "partNumber": "965781",
+      "description": "MASS CABLE ASSY.",
+      "qty": {
+        "912ul": 2,
+        "912uls": 0,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-30-27-241187",
+      "sectionId": "double-ignition-coil",
+      "figure": "27",
+      "partNumber": "241187",
+      "description": "HEX.SCREW - M6X16",
+      "qty": {
+        "912ul": 1,
+        "912uls": 2,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-31-29-851481",
+      "sectionId": "double-ignition-coil",
+      "figure": "29",
+      "partNumber": "851481",
+      "description": "IGNITION COIL BRACKET 3",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-32-31-945832",
+      "sectionId": "double-ignition-coil",
+      "figure": "31",
+      "partNumber": "945832",
+      "description": "LOCK WASHER - A8",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-33-32-440192",
+      "sectionId": "double-ignition-coil",
+      "figure": "32",
+      "partNumber": "440192",
+      "description": "ALLEN SCREW - M8x16",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-34-33-851267",
+      "sectionId": "double-ignition-coil",
+      "figure": "33",
+      "partNumber": "851267",
+      "description": "BRACKET 2",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-35-34-860734",
+      "sectionId": "double-ignition-coil",
+      "figure": "34",
+      "partNumber": "860734",
+      "description": "GLASS FIBER-SILICON SHEATING 120",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-36-35-860741",
+      "sectionId": "double-ignition-coil",
+      "figure": "35",
+      "partNumber": "860741",
+      "description": "MARKING SLEEVE 1",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-37-36-860742",
+      "sectionId": "double-ignition-coil",
+      "figure": "36",
+      "partNumber": "860742",
+      "description": "MARKING SLEEVE 2",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-38-37-860743",
+      "sectionId": "double-ignition-coil",
+      "figure": "37",
+      "partNumber": "860743",
+      "description": "MARKING SLEEVE 3",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-39-38-860744",
+      "sectionId": "double-ignition-coil",
+      "figure": "38",
+      "partNumber": "860744",
+      "description": "MARKING SLEEVE 4",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-40-39-265249",
+      "sectionId": "double-ignition-coil",
+      "figure": "39",
+      "partNumber": "265249",
+      "description": "SPARK PLUG CONNECTOR",
+      "qty": {
+        "912ul": 8,
+        "912uls": 8,
+        "914ul": 8
+      }
+    },
+    {
+      "id": "igncoil-41-40-866710",
+      "sectionId": "double-ignition-coil",
+      "figure": "40",
+      "partNumber": "866710",
+      "description": "TIE WRAP 142X2.5 MM",
+      "qty": {
+        "912ul": 8,
+        "912uls": 8,
+        "914ul": 8
+      }
+    },
+    {
+      "id": "igncoil-42-41-297656",
+      "sectionId": "double-ignition-coil",
+      "figure": "41",
+      "partNumber": "297656",
+      "description": "SPARK PLUG 12",
+      "qty": {
+        "912ul": 8,
+        "912uls": 8,
+        "914ul": 8
+      }
+    },
+    {
+      "id": "igncoil-43-42-251921",
+      "sectionId": "double-ignition-coil",
+      "figure": "42",
+      "partNumber": "251921",
+      "description": "TIE WRAP 290X3.7 MM",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "Status N"
+    },
+    {
+      "id": "igncoil-44-42-251920",
+      "sectionId": "double-ignition-coil",
+      "figure": "42",
+      "partNumber": "251920",
+      "description": "TIE WRAP 279X3.6 MM",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "still valid"
+    },
+    {
+      "id": "igncoil-45-43-847701",
+      "sectionId": "double-ignition-coil",
+      "figure": "43",
+      "partNumber": "847701",
+      "description": "SPACER 6.5/10/11",
+      "qty": {
+        "912ul": 0,
+        "912uls": 0,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-46-43-847701",
+      "sectionId": "double-ignition-coil",
+      "figure": "43",
+      "partNumber": "847701",
+      "description": "SPACER 6.5/10/11",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "Necessary at version with ring mount optional"
+    },
+    {
+      "id": "igncoil-47-44-260130",
+      "sectionId": "double-ignition-coil",
+      "figure": "44",
+      "partNumber": "260130",
+      "description": "CABLE GROMMET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "igncoil-48-46-265275",
+      "sectionId": "double-ignition-coil",
+      "figure": "46",
+      "partNumber": "265275",
+      "description": "FASTON CONNECTOR",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "igncoil-49-47-265210",
+      "sectionId": "double-ignition-coil",
+      "figure": "47",
+      "partNumber": "265210",
+      "description": "FLAT PIN TERMINAL",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "igncoil-50-55-265269",
+      "sectionId": "double-ignition-coil",
+      "figure": "55",
+      "partNumber": "265269",
+      "description": "CONNECTOR HOUSING 6-POLE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "igncoil-51-56-265265",
+      "sectionId": "double-ignition-coil",
+      "figure": "56",
+      "partNumber": "265265",
+      "description": "CONNECTOR HOUSING 6-POLE",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "as required"
+    },
+    {
+      "id": "igncoil-52-62-960010",
+      "sectionId": "double-ignition-coil",
+      "figure": "62",
+      "partNumber": "960010",
+      "description": "SHRINKABLE HOSE IMPRINTED",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "letter A printed on"
+    },
+    {
+      "id": "igncoil-53-63-960015",
+      "sectionId": "double-ignition-coil",
+      "figure": "63",
+      "partNumber": "960015",
+      "description": "SHRINKABLE HOSE IMPRINTED",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "letter B printed on"
+    },
+    {
+      "id": "igncoil-54-64-965784",
+      "sectionId": "double-ignition-coil",
+      "figure": "64",
+      "partNumber": "965784",
+      "description": "MASS CABLE ASSY.",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      },
+      "note": "SI-912-013 SI-914-016"
+    },
+    {
+      "id": "igncoil-55-65-853125",
+      "sectionId": "double-ignition-coil",
+      "figure": "65",
+      "partNumber": "853125",
+      "description": "CONNECTOR BRACKET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "SI-912-013 SI-914-016"
+    },
+    {
+      "id": "igncoil-56-66-260135",
+      "sectionId": "double-ignition-coil",
+      "figure": "66",
+      "partNumber": "260135",
+      "description": "DUMMY PLUG",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "SI-912-013 SI-914-016"
+    },
+    {
+      "id": "igncoil-57-67-881280",
+      "sectionId": "double-ignition-coil",
+      "figure": "67",
+      "partNumber": "881280",
+      "description": "SOFT START SET",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      },
+      "note": "Consisting of 20. 21. 22. 23. 44. 46"
+    },
+    {
+      "id": "igncoil-58-68-827962",
+      "sectionId": "double-ignition-coil",
+      "figure": "68",
+      "partNumber": "827962",
+      "description": "WASHER - A 6.4",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 1
+      }
+    },
+    {
+      "id": "igncoil-59-69-866714",
+      "sectionId": "double-ignition-coil",
+      "figure": "69",
+      "partNumber": "866714",
+      "description": "TIE WRAP 142x3.2 MM",
+      "qty": {
+        "912ul": 2,
+        "912uls": 2,
+        "914ul": 2
+      }
+    },
+    {
+      "id": "igncoil-60-70-964081",
+      "sectionId": "double-ignition-coil",
+      "figure": "70",
+      "partNumber": "964081",
+      "description": "STARTER CABLE ASSY. - EASY START",
+      "qty": {
+        "912ul": 1,
+        "912uls": 1,
+        "914ul": 0
+      },
+      "note": "SI-912-028"
     }
   ]
 }
