@@ -37,8 +37,16 @@ function escapeHtml(value) {
     .replace(/'/g, "&#039;");
 }
 
-function quoteDownloadHref(text) {
-  return `data:text/plain;charset=utf-8,${encodeURIComponent(text || "")}`;
+function downloadQuoteText(text, filename) {
+  const blob = new Blob([text || ""], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename || "cotacao-rotax.txt";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function routeParts() {
@@ -62,6 +70,12 @@ function itemsFor(engineId, sectionId) {
   return state.catalog.items
     .filter((item) => item.sectionId === sectionId && Number(item.qty?.[engineId] || 0) > 0)
     .sort((a, b) => Number(a.figure) - Number(b.figure) || a.partNumber.localeCompare(b.partNumber));
+}
+
+function routeForEngine(engineId) {
+  const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
+  if (sections.length === 1) return `#/section/${engineId}/${sections[0].id}`;
+  return `#/engine/${engineId}`;
 }
 
 function selectedCount() {
@@ -140,7 +154,7 @@ function renderHome() {
       </section>
       <section class="engine-grid">
         ${state.catalog.engines.map((engine) => `
-          <button class="engine-card ${engine.active ? "" : "disabled"}" type="button" ${engine.active ? `data-route="#/engine/${engine.id}"` : "disabled"}>
+          <button class="engine-card ${engine.active ? "" : "disabled"}" type="button" ${engine.active ? `data-route="${routeForEngine(engine.id)}"` : "disabled"}>
             <span class="card-ribbon">${escapeHtml(engine.name)}</span>
             <img class="card-media" src="${engine.image}" alt="${escapeHtml(engine.name)}">
             <span class="card-body">
@@ -243,7 +257,7 @@ function renderSection(engineId, sectionId) {
           <h1>${escapeHtml(section.label)}</h1>
           <p class="lead">${escapeHtml(section.title)}. Clique no numero da figura ou no ADD da tabela para incluir o PN na lista.</p>
         </div>
-        <button class="secondary-button" type="button" data-route="#/engine/${engineId}">Voltar</button>
+        <button class="secondary-button" type="button" data-route="${routeForEngine(engineId) === `#/section/${engineId}/${sectionId}` ? "#/" : `#/engine/${engineId}`}">Voltar</button>
       </section>
       <section class="detail-layout">
         <article class="diagram-panel">
@@ -383,7 +397,7 @@ function renderDone() {
         </div>
         <pre class="quote-text">${escapeHtml(quote.text)}</pre>
         <div class="form-actions">
-          <a class="secondary-button" href="${quoteDownloadHref(quote.text)}" download="${escapeHtml(quote.filename)}">Baixar TXT</a>
+          <button class="secondary-button" type="button" data-download-quote>Baixar TXT</button>
           <button class="primary-button" type="button" data-route="#/">Nova solicitacao</button>
         </div>
       </section>
@@ -421,6 +435,7 @@ async function submitQuote(form) {
   }
 
   state.lastQuote = result;
+  downloadQuoteText(result.text, result.filename);
   state.cart = {};
   saveCart();
   location.hash = "#/done";
@@ -449,6 +464,12 @@ function bindEvents() {
     const remove = event.target.closest("[data-remove]");
     if (remove) {
       removeItem(remove.dataset.remove);
+      return;
+    }
+
+    const download = event.target.closest("[data-download-quote]");
+    if (download && state.lastQuote) {
+      downloadQuoteText(state.lastQuote.text, state.lastQuote.filename);
     }
   });
 

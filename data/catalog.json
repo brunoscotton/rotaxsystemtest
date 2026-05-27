@@ -4,28 +4,28 @@
       "id": "912uls",
       "name": "ROTAX 912 ULS",
       "subtitle": "Catalogo inicial com secao de ignicao",
-      "image": "/assets/rotax-ignition-thumb.png",
+      "image": "/assets/engine-912uls.png",
       "active": true
     },
     {
       "id": "912ul",
       "name": "ROTAX 912 UL",
       "subtitle": "Estrutura pronta para proximas secoes",
-      "image": "/assets/rotax-ignition-thumb.png",
+      "image": "/assets/engine-912ul.png",
       "active": true
     },
     {
       "id": "914ul",
       "name": "ROTAX 914 UL",
       "subtitle": "Estrutura pronta para proximas secoes",
-      "image": "/assets/rotax-ignition-thumb.png",
+      "image": "/assets/engine-914ul.png",
       "active": true
     },
     {
       "id": "912is",
       "name": "ROTAX 912 iS",
       "subtitle": "Aguardando capitulos do manual",
-      "image": "/assets/rotax-ignition-thumb.png",
+      "image": "/assets/engine-912is.png",
       "active": false
     }
   ],
