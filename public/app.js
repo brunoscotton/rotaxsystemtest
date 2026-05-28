@@ -208,7 +208,22 @@ const brazilStates = [
 ];
 
 function nestedCategoryById(categoryId) {
-  return nestedCategories.find((category) => category.id === categoryId);
+  return nestedCategories.find((category) => category.id === categoryId) || categoryFromCatalog(categoryId);
+}
+
+function categoryFromCatalog(categoryId, engineId = "") {
+  if (!state.catalog) return null;
+  const sections = state.catalog.sections.filter((section) =>
+    section.categoryId === categoryId && (!engineId || section.engineIds.includes(engineId))
+  );
+  if (!sections.length) return null;
+  const first = sections[0];
+  return {
+    id: categoryId,
+    label: first.categoryLabel || first.label,
+    title: first.categoryTitle || first.title,
+    thumb: first.categoryThumb || first.thumb
+  };
 }
 
 function sectionsInCategory(engineId, categoryId) {
@@ -221,6 +236,11 @@ function itemCountForCategory(engineId, categoryId) {
 }
 
 function categoriesForEngine(engineId) {
+  const generatedEngines = ["915is", "916is", "582ul"];
+  if (generatedEngines.includes(engineId)) {
+    return categoriesFromCatalog(engineId);
+  }
+
   const legacyEngines = ["912uls", "912ul", "914ul"];
   const templates = [
     { label: "Alternators" },
@@ -288,6 +308,37 @@ function categoriesForEngine(engineId) {
       placeholder: true
     };
   }).filter(Boolean);
+}
+
+function categoriesFromCatalog(engineId) {
+  const sections = state.catalog.sections
+    .filter((section) => section.engineIds.includes(engineId))
+    .sort((a, b) =>
+      Number(a.categoryOrder ?? 9999) - Number(b.categoryOrder ?? 9999) ||
+      Number(a.sectionOrder ?? 9999) - Number(b.sectionOrder ?? 9999) ||
+      a.label.localeCompare(b.label)
+    );
+  const groups = new Map();
+
+  for (const section of sections) {
+    const key = section.categoryId || section.id;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(section);
+  }
+
+  return [...groups.entries()].map(([categoryId, group]) => {
+    if (group.length === 1 && !group[0].forceCategory) return group[0];
+
+    const category = categoryFromCatalog(categoryId, engineId);
+    const count = itemCountForCategory(engineId, categoryId);
+    return {
+      ...category,
+      count,
+      sections: group,
+      category: true,
+      statusText: group.length === 1 ? "1 subcategoria" : `${group.length} subcategorias`
+    };
+  });
 }
 
 function renderCatalogSidebar(engineId) {
