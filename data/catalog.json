@@ -55,6 +55,13 @@
       "subtitle": "Catalogo de pecas 582 UL",
       "image": "/assets/engine-582ul.png",
       "active": true
+    },
+    {
+      "id": "accessories",
+      "name": "Acessorios",
+      "subtitle": "Velas de ignicao, oleos e acessorios",
+      "image": "/assets/accessories-cover.png",
+      "active": true
     }
   ],
   "sections": [
@@ -5533,6 +5540,38 @@
       "thumb": "/assets/503ul-wiring-accessories-thumb.png",
       "hotspots": [],
       "categoryOrder": 34,
+      "sectionOrder": 1
+    },
+    {
+      "id": "accessories-spark-plugs",
+      "engineIds": [
+        "accessories"
+      ],
+      "label": "Velas de ignicao",
+      "chapter": "Acess?rios",
+      "figure": "Produtos",
+      "title": "Velas de ignicao",
+      "source": "Cat?logo CDSAV",
+      "image": "/assets/accessories-spark-plug.jpg",
+      "thumb": "/assets/accessories-spark-plug.jpg",
+      "hotspots": [],
+      "categoryOrder": 1,
+      "sectionOrder": 1
+    },
+    {
+      "id": "accessories-oil",
+      "engineIds": [
+        "accessories"
+      ],
+      "label": "Oleo",
+      "chapter": "Acess?rios",
+      "figure": "Produtos",
+      "title": "Oleo para motor",
+      "source": "Cat?logo CDSAV",
+      "image": "/assets/accessories-sportlt.png",
+      "thumb": "/assets/accessories-sportlt.png",
+      "hotspots": [],
+      "categoryOrder": 2,
       "sectionOrder": 1
     }
   ],
@@ -53074,6 +53113,83 @@
       "qty": {
         "503ul": 1
       }
+    },
+    {
+      "id": "accessories-spark-br8es",
+      "sectionId": "accessories-spark-plugs",
+      "figure": "1",
+      "partNumber": "BR8ES",
+      "description": "Vela de ignicao BR8ES",
+      "qty": {
+        "accessories": 1
+      },
+      "image": "/assets/accessories-br8es.jpg"
+    },
+    {
+      "id": "accessories-spark-dcpr8e",
+      "sectionId": "accessories-spark-plugs",
+      "figure": "2",
+      "partNumber": "DCPR8E",
+      "description": "Vela de ignicao DCPR8E",
+      "qty": {
+        "accessories": 1
+      },
+      "image": "/assets/accessories-dcpr8e.jpg"
+    },
+    {
+      "id": "accessories-spark-dcpr7e",
+      "sectionId": "accessories-spark-plugs",
+      "figure": "3",
+      "partNumber": "DCPR7E",
+      "description": "Vela de ignicao DCPR7E",
+      "qty": {
+        "accessories": 1
+      },
+      "image": "/assets/accessories-dcpr7e.jpg"
+    },
+    {
+      "id": "accessories-spark-x27epr-u9",
+      "sectionId": "accessories-spark-plugs",
+      "figure": "4",
+      "partNumber": "X27EPR-U9",
+      "description": "Vela de ignicao Denso X27EPR-U9",
+      "qty": {
+        "accessories": 1
+      },
+      "image": "/assets/accessories-x27epr-u9.jpg"
+    },
+    {
+      "id": "accessories-spark-297656",
+      "sectionId": "accessories-spark-plugs",
+      "figure": "5",
+      "partNumber": "297656",
+      "description": "Vela de ignicao 297656",
+      "qty": {
+        "accessories": 1
+      },
+      "image": "/assets/accessories-spark-plug.jpg"
+    },
+    {
+      "id": "accessories-oil-sportlt",
+      "sectionId": "accessories-oil",
+      "figure": "1",
+      "partNumber": "SPORTLT",
+      "description": "Oleo AeroShell Sport Plus 4 1L",
+      "qty": {
+        "accessories": 1
+      },
+      "image": "/assets/accessories-sportlt.png"
+    },
+    {
+      "id": "accessories-oil-xps-5w50",
+      "sectionId": "accessories-oil",
+      "figure": "2",
+      "partNumber": "XPS 5W-50",
+      "description": "Oleo XPS 5W-50 full synthetic",
+      "qty": {
+        "accessories": 1
+      },
+      "image": "/assets/accessories-xps-5w50.jpg"
     }
   ]
 }

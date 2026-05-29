@@ -591,6 +591,16 @@ td {
   white-space: nowrap;
 }
 
+.part-thumb {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
 .part-note {
   display: block;
   margin-top: 4px;

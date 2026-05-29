@@ -108,6 +108,10 @@ function routeForEngine(engineId) {
   return `#/engine/${engineId}`;
 }
 
+function isAccessoriesCatalog(engineId) {
+  return engineId === "accessories";
+}
+
 const nestedCategories = [
   {
     id: "exhaust",
@@ -236,7 +240,7 @@ function itemCountForCategory(engineId, categoryId) {
 }
 
 function categoriesForEngine(engineId) {
-  const generatedEngines = ["915is", "916is", "582ul", "503ul"];
+  const generatedEngines = ["915is", "916is", "582ul", "503ul", "accessories"];
   if (generatedEngines.includes(engineId)) {
     return categoriesFromCatalog(engineId);
   }
@@ -458,8 +462,8 @@ function renderHome() {
       <section class="page-header">
         <div>
           <p class="eyebrow">Catalogo de pecas</p>
-          <h1>Escolha o motor</h1>
-          <p class="lead">Clique em um motor para abrir as secoes disponiveis.</p>
+          <h1>Escolha o motor ou acessorios</h1>
+          <p class="lead">Clique em um motor ou categoria para abrir as secoes disponiveis.</p>
         </div>
       </section>
       <section class="engine-grid">
@@ -487,13 +491,14 @@ function renderEngine(engineId) {
   }
   const sections = state.catalog.sections.filter((section) => section.engineIds.includes(engineId));
   const categories = categoriesForEngine(engineId);
+  const accessories = isAccessoriesCatalog(engineId);
   shell(`
     <main class="page">
       <section class="page-header">
         <div>
-          <p class="eyebrow">Motor selecionado</p>
-          <h1>Categories For ${escapeHtml(engine.name)}</h1>
-          <p class="lead">Escolha a secao do manual para abrir a figura e a tabela de PNs.</p>
+          <p class="eyebrow">${accessories ? "Categoria selecionada" : "Motor selecionado"}</p>
+          <h1>${accessories ? "Categorias de Acessorios" : `Categories For ${escapeHtml(engine.name)}`}</h1>
+          <p class="lead">${accessories ? "Escolha a categoria para abrir os produtos disponiveis." : "Escolha a secao do manual para abrir a figura e a tabela de PNs."}</p>
         </div>
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
@@ -531,14 +536,15 @@ function renderCategory(engineId, categoryId) {
     location.hash = `#/engine/${engineId}`;
     return;
   }
+  const accessories = isAccessoriesCatalog(engineId);
 
   shell(`
     <main class="page">
       <section class="page-header">
         <div>
-          <p class="eyebrow">Motor selecionado</p>
-          <h1>${escapeHtml(category.label)} For ${escapeHtml(engine.name)}</h1>
-          <p class="lead">Escolha a subcategoria para abrir a figura e a tabela de PNs.</p>
+          <p class="eyebrow">${accessories ? "Acessorios" : "Motor selecionado"}</p>
+          <h1>${accessories ? escapeHtml(category.label) : `${escapeHtml(category.label)} For ${escapeHtml(engine.name)}`}</h1>
+          <p class="lead">${accessories ? "Escolha o produto para abrir a tabela de PNs." : "Escolha a subcategoria para abrir a figura e a tabela de PNs."}</p>
         </div>
         <button class="secondary-button" type="button" data-route="#/engine/${engineId}">Voltar</button>
       </section>
@@ -603,6 +609,8 @@ function renderSection(engineId, sectionId) {
   const filtered = query
     ? parts.filter((item) => `${item.figure} ${item.partNumber} ${item.description} ${item.note || ""}`.toLowerCase().includes(query))
     : parts;
+  const hasItemImages = filtered.some((item) => item.image);
+  const accessories = isAccessoriesCatalog(engineId);
 
   shell(`
     <main class="page">
@@ -610,7 +618,7 @@ function renderSection(engineId, sectionId) {
         <div>
           <p class="eyebrow">${escapeHtml(engine.name)} / ${escapeHtml(section.chapter)}</p>
           <h1>${escapeHtml(section.label)}</h1>
-          <p class="lead">${escapeHtml(section.title)}. Clique no numero da figura ou no ADD da tabela para incluir o PN na lista.</p>
+          <p class="lead">${escapeHtml(section.title)}. ${accessories ? "Clique no ADD para incluir o produto na lista." : "Clique no numero da figura ou no ADD da tabela para incluir o PN na lista."}</p>
         </div>
         <button class="secondary-button" type="button" data-route="${section.categoryId ? `#/category/${engineId}/${section.categoryId}` : `#/engine/${engineId}`}">Voltar</button>
       </section>
@@ -649,6 +657,7 @@ function renderSection(engineId, sectionId) {
             <table>
               <thead>
                 <tr>
+                  ${hasItemImages ? "<th>Foto</th>" : ""}
                   <th>Item</th>
                   <th>PN</th>
                   <th>Descricao</th>
@@ -659,6 +668,7 @@ function renderSection(engineId, sectionId) {
               <tbody>
                 ${filtered.map((item) => `
                   <tr data-row-filter="${escapeHtml(`${item.figure} ${item.partNumber} ${item.description} ${item.note || ""}`.toLowerCase())}">
+                    ${hasItemImages ? `<td>${item.image ? `<img class="part-thumb" src="${item.image}" alt="${escapeHtml(item.description)}">` : ""}</td>` : ""}
                     <td>${escapeHtml(item.figure)}</td>
                     <td class="part-number">${escapeHtml(item.partNumber)}</td>
                     <td>
