@@ -4,6 +4,11 @@ const CART_KEY = "rotaxQuoteCart";
 
 const state = {
   catalog: null,
+  config: { supabase: { enabled: false } },
+  supabase: null,
+  session: null,
+  profile: null,
+  authMessage: "",
   cart: loadCart(),
   lastQuote: null,
   search: "",
@@ -64,6 +69,59 @@ function itemsFor(engineId, sectionId) {
 function currentEngineId() {
   const [view, engineId] = routeParts();
   return ["engine", "category", "section"].includes(view) && engineById(engineId) ? engineId : "";
+}
+
+function authEnabled() {
+  return Boolean(state.config?.supabase?.enabled && state.supabase);
+}
+
+function authUser() {
+  return state.session?.user || null;
+}
+
+function profileToCustomer() {
+  const profile = state.profile || {};
+  return {
+    name: profile.name || "",
+    prefix: profile.prefixo || "",
+    phone: profile.phone || "",
+    email: profile.email || authUser()?.email || "",
+    state: profile.estado || ""
+  };
+}
+
+function profileIsComplete() {
+  const customer = profileToCustomer();
+  return ["name", "prefix", "phone", "email", "state"].every((field) => requiredProfileText(customer[field]));
+}
+
+function requiredProfileText(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+async function loadProfile() {
+  if (!authEnabled() || !authUser()) {
+    state.profile = null;
+    return null;
+  }
+
+  const { data, error } = await state.supabase
+    .from("profiles")
+    .select("name,prefixo,phone,email,estado")
+    .eq("id", authUser().id)
+    .maybeSingle();
+
+  if (error) throw error;
+  state.profile = data || null;
+  return state.profile;
+}
+
+async function currentAccessToken() {
+  if (!authEnabled()) return "";
+  const { data, error } = await state.supabase.auth.getSession();
+  if (error) throw error;
+  state.session = data.session;
+  return data.session?.access_token || "";
 }
 
 function searchEngines() {
@@ -449,6 +507,16 @@ function shell(content) {
             ${renderGlobalSearchResults()}
           </div>
         </div>
+        ${authEnabled() ? `
+          <div class="auth-actions">
+            ${authUser() ? `
+              <button class="secondary-button" type="button" data-route="#/profile">${escapeHtml(state.profile?.name || authUser().email || "Perfil")}</button>
+              <button class="secondary-button" type="button" data-logout>Sair</button>
+            ` : `
+              <button class="secondary-button" type="button" data-route="#/login">Entrar</button>
+            `}
+          </div>
+        ` : ""}
         <button class="cart-button" type="button" data-route="#/proceed">Lista (${selectedCount()})</button>
       </header>
       ${content}
@@ -691,6 +759,46 @@ function renderSection(engineId, sectionId) {
 
 function renderProceed() {
   const selected = selectedItems();
+  const customer = profileToCustomer();
+
+  if (authEnabled() && !authUser()) {
+    shell(`
+      <main class="page">
+        <section class="result-panel">
+          <div>
+            <p class="eyebrow">Login necessario</p>
+            <h1>Entre para enviar sua solicitacao</h1>
+            <p class="lead">A cotacao usa os dados do seu cadastro para proteger o envio e evitar informacoes incorretas.</p>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="button" data-route="#/login">Entrar ou cadastrar</button>
+            <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
+          </div>
+        </section>
+      </main>
+    `);
+    return;
+  }
+
+  if (authEnabled() && !profileIsComplete()) {
+    shell(`
+      <main class="page">
+        <section class="result-panel">
+          <div>
+            <p class="eyebrow">Cadastro incompleto</p>
+            <h1>Complete seu cadastro</h1>
+            <p class="lead">Nome, prefixo, telefone, e-mail e estado sao obrigatorios para enviar a solicitacao.</p>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="button" data-route="#/profile">Completar cadastro</button>
+            <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
+          </div>
+        </section>
+      </main>
+    `);
+    return;
+  }
+
   shell(`
     <main class="page">
       <section class="page-header">
@@ -707,26 +815,27 @@ function renderProceed() {
           <div class="form-grid">
             <label class="field">
               <span>Nome</span>
-              <input name="name" autocomplete="name" required>
+              <input name="name" autocomplete="name" value="${escapeHtml(customer.name)}" ${authEnabled() ? "readonly" : ""} required>
             </label>
             <label class="field">
               <span>Prefixo</span>
-              <input name="prefix" required>
+              <input name="prefix" value="${escapeHtml(customer.prefix)}" ${authEnabled() ? "readonly" : ""} required>
             </label>
             <label class="field">
               <span>Telefone</span>
-              <input name="phone" autocomplete="tel" required>
+              <input name="phone" autocomplete="tel" value="${escapeHtml(customer.phone)}" ${authEnabled() ? "readonly" : ""} required>
             </label>
             <label class="field">
               <span>E-mail</span>
-              <input name="email" type="email" autocomplete="email" required>
+              <input name="email" type="email" autocomplete="email" value="${escapeHtml(customer.email)}" ${authEnabled() ? "readonly" : ""} required>
             </label>
             <label class="field">
               <span>Estado</span>
-              <select name="state" required>
+              <select name="state" ${authEnabled() ? "disabled" : ""} required>
                 <option value="">Selecione</option>
-                ${brazilStates.map(([abbr, name]) => `<option value="${abbr}">${abbr} - ${escapeHtml(name)}</option>`).join("")}
+                ${brazilStates.map(([abbr, name]) => `<option value="${abbr}" ${customer.state === abbr ? "selected" : ""}>${abbr} - ${escapeHtml(name)}</option>`).join("")}
               </select>
+              ${authEnabled() ? `<input type="hidden" name="state" value="${escapeHtml(customer.state)}">` : ""}
             </label>
           </div>
           <div class="form-actions">
@@ -778,6 +887,135 @@ function renderDone() {
   `);
 }
 
+function renderLogin() {
+  if (!authEnabled()) {
+    location.hash = "#/";
+    return;
+  }
+
+  shell(`
+    <main class="page auth-page">
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Area do cliente</p>
+          <h1>Login e cadastro</h1>
+          <p class="lead">Entre para usar os dados do seu cadastro no envio da solicitacao.</p>
+        </div>
+        <button class="secondary-button" type="button" data-route="#/">Voltar</button>
+      </section>
+      ${state.authMessage ? `<div class="auth-message">${escapeHtml(state.authMessage)}</div>` : ""}
+      <section class="auth-grid">
+        <form class="form-panel" data-login-form>
+          <h2>Entrar</h2>
+          <label class="field">
+            <span>E-mail</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label class="field">
+            <span>Senha</span>
+            <input name="password" type="password" autocomplete="current-password" required minlength="6">
+          </label>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Entrar</button>
+          </div>
+        </form>
+        <form class="form-panel" data-register-form>
+          <h2>Criar cadastro</h2>
+          <div class="form-grid">
+            <label class="field">
+              <span>Nome</span>
+              <input name="name" autocomplete="name" required>
+            </label>
+            <label class="field">
+              <span>Prefixo</span>
+              <input name="prefixo" required>
+            </label>
+            <label class="field">
+              <span>Telefone</span>
+              <input name="phone" autocomplete="tel" required>
+            </label>
+            <label class="field">
+              <span>E-mail</span>
+              <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <label class="field">
+              <span>Estado</span>
+              <select name="estado" required>
+                <option value="">Selecione</option>
+                ${brazilStates.map(([abbr, name]) => `<option value="${abbr}">${abbr} - ${escapeHtml(name)}</option>`).join("")}
+              </select>
+            </label>
+            <label class="field">
+              <span>Senha</span>
+              <input name="password" type="password" autocomplete="new-password" required minlength="6">
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Cadastrar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  `);
+}
+
+function renderProfile() {
+  if (!authEnabled()) {
+    location.hash = "#/";
+    return;
+  }
+
+  if (!authUser()) {
+    location.hash = "#/login";
+    return;
+  }
+
+  const customer = profileToCustomer();
+  shell(`
+    <main class="page auth-page">
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Area do cliente</p>
+          <h1>Meu cadastro</h1>
+          <p class="lead">Esses dados serao usados automaticamente no envio da cotacao.</p>
+        </div>
+        <button class="secondary-button" type="button" data-route="#/">Voltar</button>
+      </section>
+      ${state.authMessage ? `<div class="auth-message">${escapeHtml(state.authMessage)}</div>` : ""}
+      <form class="form-panel auth-single" data-profile-form>
+        <div class="form-grid">
+          <label class="field">
+            <span>Nome</span>
+            <input name="name" value="${escapeHtml(customer.name)}" autocomplete="name" required>
+          </label>
+          <label class="field">
+            <span>Prefixo</span>
+            <input name="prefixo" value="${escapeHtml(customer.prefix)}" required>
+          </label>
+          <label class="field">
+            <span>Telefone</span>
+            <input name="phone" value="${escapeHtml(customer.phone)}" autocomplete="tel" required>
+          </label>
+          <label class="field">
+            <span>E-mail</span>
+            <input name="email" type="email" value="${escapeHtml(customer.email)}" autocomplete="email" required>
+          </label>
+          <label class="field">
+            <span>Estado</span>
+            <select name="estado" required>
+              <option value="">Selecione</option>
+              ${brazilStates.map(([abbr, name]) => `<option value="${abbr}" ${customer.state === abbr ? "selected" : ""}>${abbr} - ${escapeHtml(name)}</option>`).join("")}
+            </select>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="primary-button" type="submit">Salvar cadastro</button>
+        </div>
+      </form>
+    </main>
+  `);
+}
+
 async function submitQuote(form) {
   const selected = selectedItems();
   if (!selected.length) {
@@ -786,7 +1024,7 @@ async function submitQuote(form) {
   }
 
   const data = new FormData(form);
-  const customer = Object.fromEntries(data.entries());
+  const customer = authEnabled() ? profileToCustomer() : Object.fromEntries(data.entries());
   const items = selected.map(({ item, entry, engine, section }) => ({
     quantity: entry.quantity,
     figure: item.figure,
@@ -796,9 +1034,20 @@ async function submitQuote(form) {
     section: section.label
   }));
 
+  const headers = { "Content-Type": "application/json" };
+  if (authEnabled()) {
+    const token = await currentAccessToken();
+    if (!token) {
+      showToast("Faca login para enviar a solicitacao.");
+      location.hash = "#/login";
+      return;
+    }
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   const response = await fetch("/api/quote", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: JSON.stringify({ customer, items })
   });
   const result = await response.json();
@@ -811,6 +1060,80 @@ async function submitQuote(form) {
   state.cart = {};
   saveCart();
   location.hash = "#/done";
+}
+
+async function saveProfileFromForm(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const user = authUser();
+  if (!user) throw new Error("Faca login para salvar o cadastro.");
+
+  const profile = {
+    id: user.id,
+    name: String(data.name || "").trim(),
+    prefixo: String(data.prefixo || "").trim(),
+    phone: String(data.phone || "").trim(),
+    email: String(data.email || user.email || "").trim(),
+    estado: String(data.estado || "").trim(),
+    updated_at: new Date().toISOString()
+  };
+
+  const missing = ["name", "prefixo", "phone", "email", "estado"].filter((field) => !requiredProfileText(profile[field]));
+  if (missing.length) throw new Error("Preencha todos os campos do cadastro.");
+
+  const { error } = await state.supabase.from("profiles").upsert(profile, { onConflict: "id" });
+  if (error) throw error;
+  state.profile = profile;
+  return profile;
+}
+
+async function submitLogin(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const { data: result, error } = await state.supabase.auth.signInWithPassword({
+    email: String(data.email || "").trim(),
+    password: String(data.password || "")
+  });
+  if (error) throw error;
+
+  state.session = result.session;
+  await loadProfile();
+  state.authMessage = "";
+  location.hash = profileIsComplete() ? "#/proceed" : "#/profile";
+  render();
+}
+
+async function submitRegister(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const email = String(data.email || "").trim();
+  const password = String(data.password || "");
+  const { data: result, error } = await state.supabase.auth.signUp({ email, password });
+  if (error) throw error;
+
+  state.session = result.session;
+  if (!state.session) {
+    state.authMessage = "Cadastro criado. Confirme seu e-mail antes de entrar.";
+    renderLogin();
+    return;
+  }
+
+  await saveProfileFromForm(form);
+  state.authMessage = "Cadastro criado com sucesso.";
+  location.hash = "#/proceed";
+  render();
+}
+
+async function submitProfile(form) {
+  await saveProfileFromForm(form);
+  state.authMessage = "Cadastro salvo com sucesso.";
+  renderProfile();
+}
+
+async function logout() {
+  if (authEnabled()) await state.supabase.auth.signOut();
+  state.session = null;
+  state.profile = null;
+  state.authMessage = "";
+  location.hash = "#/";
+  render();
 }
 
 function bindEvents() {
@@ -841,6 +1164,12 @@ function bindEvents() {
     const remove = event.target.closest("[data-remove]");
     if (remove) {
       removeItem(remove.dataset.remove);
+      return;
+    }
+
+    const logoutButton = event.target.closest("[data-logout]");
+    if (logoutButton) {
+      logout().catch((error) => showToast(error.message));
       return;
     }
 
@@ -884,6 +1213,24 @@ function bindEvents() {
     if (event.target.matches("[data-form]")) {
       event.preventDefault();
       submitQuote(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-login-form]")) {
+      event.preventDefault();
+      submitLogin(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-register-form]")) {
+      event.preventDefault();
+      submitRegister(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-profile-form]")) {
+      event.preventDefault();
+      submitProfile(event.target).catch((error) => showToast(error.message));
     }
   });
 }
@@ -897,13 +1244,35 @@ function render() {
   else if (view === "category") renderCategory(engineId, sectionId);
   else if (view === "section") renderSection(engineId, sectionId);
   else if (view === "proceed") renderProceed();
+  else if (view === "login") renderLogin();
+  else if (view === "profile") renderProfile();
   else if (view === "done") renderDone();
   else renderHome();
 }
 
 async function init() {
-  const response = await fetch("/api/catalog");
-  state.catalog = await response.json();
+  const [configResponse, catalogResponse] = await Promise.all([
+    fetch("/api/config").catch(() => null),
+    fetch("/api/catalog")
+  ]);
+  if (configResponse?.ok) state.config = await configResponse.json();
+  state.catalog = await catalogResponse.json();
+
+  if (state.config?.supabase?.enabled) {
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+    state.supabase = createClient(state.config.supabase.url, state.config.supabase.anonKey);
+    const { data, error } = await state.supabase.auth.getSession();
+    if (error) throw error;
+    state.session = data.session;
+    if (state.session) await loadProfile();
+    state.supabase.auth.onAuthStateChange(async (_event, session) => {
+      state.session = session;
+      if (session) await loadProfile();
+      else state.profile = null;
+      render();
+    });
+  }
+
   bindEvents();
   window.addEventListener("hashchange", render);
   render();

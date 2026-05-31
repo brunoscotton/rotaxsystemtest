@@ -1,5 +1,75 @@
 import nodemailer from "nodemailer";
 
+function supabaseConfig() {
+  return {
+    url: process.env.SUPABASE_URL,
+    anonKey: process.env.SUPABASE_ANON_KEY
+  };
+}
+
+function authIsConfigured() {
+  const config = supabaseConfig();
+  return Boolean(config.url && config.anonKey);
+}
+
+function bearerToken(req) {
+  const header = req.headers.authorization || req.headers.Authorization || "";
+  const match = String(header).match(/^Bearer\s+(.+)$/i);
+  return match ? match[1] : "";
+}
+
+async function supabaseFetch(path, { token, query = "", method = "GET", body } = {}) {
+  const config = supabaseConfig();
+  const response = await fetch(`${config.url}${path}${query}`, {
+    method,
+    headers: {
+      apikey: config.anonKey,
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(message || "Falha ao validar login.");
+  }
+
+  return response.json();
+}
+
+async function customerFromAuth(req) {
+  if (!authIsConfigured()) return null;
+
+  const token = bearerToken(req);
+  if (!token) {
+    const error = new Error("Faca login para enviar a solicitacao.");
+    error.statusCode = 401;
+    throw error;
+  }
+
+  const user = await supabaseFetch("/auth/v1/user", { token });
+  const profiles = await supabaseFetch("/rest/v1/profiles", {
+    token,
+    query: `?id=eq.${encodeURIComponent(user.id)}&select=name,prefixo,phone,email,estado`
+  });
+  const profile = Array.isArray(profiles) ? profiles[0] : null;
+
+  if (!profile) {
+    const error = new Error("Complete seu cadastro antes de enviar a solicitacao.");
+    error.statusCode = 403;
+    throw error;
+  }
+
+  return {
+    name: profile.name || "",
+    prefix: profile.prefixo || "",
+    phone: profile.phone || "",
+    email: profile.email || user.email || "",
+    state: profile.estado || ""
+  };
+}
+
 function sanitizeFilePart(value) {
   return String(value || "")
     .normalize("NFD")
@@ -95,8 +165,17 @@ export default async function handler(req, res) {
     res.status(400).json({ ok: false, message: "JSON invalido." });
     return;
   }
-  const customer = payload.customer || {};
+  let customer = payload.customer || {};
   const items = Array.isArray(payload.items) ? payload.items : [];
+
+  try {
+    const authCustomer = await customerFromAuth(req);
+    if (authCustomer) customer = authCustomer;
+  } catch (error) {
+    res.status(error.statusCode || 401).json({ ok: false, message: error.message || "Login invalido." });
+    return;
+  }
+
   const missing = ["name", "prefix", "phone", "email", "state"].filter((field) => !requiredText(customer[field]));
 
   if (missing.length || !items.length) {
