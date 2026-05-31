@@ -69,15 +69,11 @@ async function supabaseFetch(pathname, { token, query = "", method = "GET", body
   return text ? JSON.parse(text) : null;
 }
 
-async function customerFromAuth(req) {
+async function customerFromAuth(req, requestedPrefix = "") {
   if (!authIsConfigured()) return null;
 
   const token = bearerToken(req);
-  if (!token) {
-    const error = new Error("Faca login para enviar a solicitacao.");
-    error.statusCode = 401;
-    throw error;
-  }
+  if (!token) return null;
 
   const user = await supabaseFetch("/auth/v1/user", { token });
   const profiles = await supabaseFetch("/rest/v1/profiles", {
@@ -96,7 +92,9 @@ async function customerFromAuth(req) {
     token,
     query: `?user_id=eq.${encodeURIComponent(user.id)}&select=type,value,is_default,created_at&order=is_default.desc,created_at.asc`
   }).catch(() => []);
-  const primaryPrefix = Array.isArray(prefixes) ? prefixes.find((entry) => entry.is_default) || prefixes[0] : null;
+  const primaryPrefix = Array.isArray(prefixes)
+    ? prefixes.find((entry) => entry.value === requestedPrefix) || prefixes.find((entry) => entry.is_default) || prefixes[0]
+    : null;
   const name = [profile.first_name || profile.name || "", profile.last_name || ""].filter(Boolean).join(" ").trim();
 
   return {
@@ -309,7 +307,7 @@ const server = createServer(async (req, res) => {
       const items = Array.isArray(payload.items) ? payload.items : [];
 
       try {
-        const authCustomer = await customerFromAuth(req);
+        const authCustomer = await customerFromAuth(req, customer.prefix);
         if (authCustomer) customer = authCustomer;
       } catch (error) {
         sendJson(res, error.statusCode || 401, { ok: false, message: error.message || "Login invalido." });

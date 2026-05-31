@@ -13,6 +13,7 @@ const state = {
   history: [],
   authMessage: "",
   passwordRecovery: false,
+  guestCheckout: false,
   cart: loadCart(),
   lastQuote: null,
   search: "",
@@ -93,9 +94,9 @@ function primaryPrefix() {
   return state.prefixes.find((prefix) => prefix.is_default) || state.prefixes[0] || null;
 }
 
-function profileToCustomer() {
+function profileToCustomer(selectedPrefix = "") {
   const profile = state.profile || {};
-  const prefix = primaryPrefix();
+  const prefix = state.prefixes.find((entry) => entry.value === selectedPrefix) || primaryPrefix();
   return {
     name: fullName(profile),
     prefix: prefix?.value || profile.prefixo || "",
@@ -169,6 +170,31 @@ async function currentAccessToken() {
   if (error) throw error;
   state.session = data.session;
   return data.session?.access_token || "";
+}
+
+function handleSupabaseAuthRedirect() {
+  if (!location.hash.startsWith("#error") && !location.hash.includes("access_token=")) return false;
+  const params = new URLSearchParams(location.hash.replace(/^#/, ""));
+  const errorCode = params.get("error_code");
+  const errorDescription = params.get("error_description");
+
+  if (params.get("error")) {
+    state.passwordRecovery = false;
+    state.authMessage = errorCode === "otp_expired"
+      ? "O link de redefinicao expirou ou ja foi usado. Solicite um novo link em Esqueci a senha."
+      : (errorDescription || "Nao foi possivel validar o link de redefinicao.");
+    location.hash = "#/login";
+    return true;
+  }
+
+  if (params.get("type") === "recovery" || params.has("access_token")) {
+    state.passwordRecovery = true;
+    state.authMessage = "Digite a nova senha para concluir a redefinicao.";
+    location.hash = "#/login";
+    return true;
+  }
+
+  return false;
 }
 
 function searchEngines() {
@@ -806,9 +832,23 @@ function renderSection(engineId, sectionId) {
 
 function renderProceed() {
   const selected = selectedItems();
-  const customer = profileToCustomer();
+  const useProfile = authEnabled() && authUser() && !state.guestCheckout;
+  const customer = useProfile ? profileToCustomer() : {};
+  const prefixField = useProfile && state.prefixes.length > 1 ? `
+    <label class="field">
+      <span>Prefixo</span>
+      <select name="prefix" required>
+        ${state.prefixes.map((prefix) => `<option value="${escapeHtml(prefix.value)}" ${customer.prefix === prefix.value ? "selected" : ""}>${escapeHtml(prefix.type)} - ${escapeHtml(prefix.value)}${prefix.is_default ? " - Padrao" : ""}</option>`).join("")}
+      </select>
+    </label>
+  ` : `
+    <label class="field">
+      <span>Prefixo</span>
+      <input name="prefix" value="${escapeHtml(customer.prefix || "")}" ${useProfile ? "readonly" : ""} required>
+    </label>
+  `;
 
-  if (authEnabled() && !authUser()) {
+  if (authEnabled() && !authUser() && !state.guestCheckout) {
     shell(`
       <main class="page">
         <section class="result-panel">
@@ -819,6 +859,7 @@ function renderProceed() {
           </div>
           <div class="form-actions">
             <button class="primary-button" type="button" data-route="#/login">Entrar ou cadastrar</button>
+            <button class="secondary-button" type="button" data-guest-checkout>Continuar como visitante</button>
             <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
           </div>
         </section>
@@ -827,7 +868,7 @@ function renderProceed() {
     return;
   }
 
-  if (authEnabled() && !profileIsComplete()) {
+  if (useProfile && !profileIsComplete()) {
     shell(`
       <main class="page">
         <section class="result-panel">
@@ -862,46 +903,41 @@ function renderProceed() {
           <div class="form-grid">
             <label class="field">
               <span>Nome</span>
-              <input name="name" autocomplete="name" value="${escapeHtml(customer.name)}" ${authEnabled() ? "readonly" : ""} required>
+              <input name="name" autocomplete="name" value="${escapeHtml(customer.name || "")}" ${useProfile ? "readonly" : ""} required>
             </label>
-            <label class="field">
-              <span>Prefixo</span>
-              <input name="prefix" value="${escapeHtml(customer.prefix)}" ${authEnabled() ? "readonly" : ""} required>
-            </label>
+            ${prefixField}
             <label class="field">
               <span>Telefone</span>
-              <input name="phone" autocomplete="tel" value="${escapeHtml(customer.phone)}" ${authEnabled() ? "readonly" : ""} required>
+              <input name="phone" autocomplete="tel" value="${escapeHtml(customer.phone || "")}" ${useProfile ? "readonly" : ""} required>
             </label>
             <label class="field">
               <span>E-mail</span>
-              <input name="email" type="email" autocomplete="email" value="${escapeHtml(customer.email)}" ${authEnabled() ? "readonly" : ""} required>
+              <input name="email" type="email" autocomplete="email" value="${escapeHtml(customer.email || "")}" ${useProfile ? "readonly" : ""} required>
             </label>
             <label class="field">
               <span>Estado</span>
-              <select name="state" ${authEnabled() ? "disabled" : ""} required>
+              <select name="state" ${useProfile ? "disabled" : ""} required>
                 <option value="">Selecione</option>
                 ${brazilStates.map(([abbr, name]) => `<option value="${abbr}" ${customer.state === abbr ? "selected" : ""}>${abbr} - ${escapeHtml(name)}</option>`).join("")}
               </select>
-              ${authEnabled() ? `<input type="hidden" name="state" value="${escapeHtml(customer.state)}">` : ""}
+              ${useProfile ? `<input type="hidden" name="state" value="${escapeHtml(customer.state)}">` : ""}
             </label>
-            ${authEnabled() ? `
-              <label class="field">
-                <span>Endereco</span>
-                <input value="${escapeHtml(customer.address)}" readonly>
-              </label>
-              <label class="field">
-                <span>Cidade</span>
-                <input value="${escapeHtml(customer.city)}" readonly>
-              </label>
-              <label class="field">
-                <span>CEP</span>
-                <input value="${escapeHtml(customer.cep)}" readonly>
-              </label>
-              <label class="field">
-                <span>Complemento</span>
-                <input value="${escapeHtml(customer.complement)}" readonly>
-              </label>
-            ` : ""}
+            <label class="field">
+              <span>Endereco</span>
+              <input name="address" autocomplete="street-address" value="${escapeHtml(customer.address || "")}" ${useProfile ? "readonly" : ""} required>
+            </label>
+            <label class="field">
+              <span>Cidade</span>
+              <input name="city" autocomplete="address-level2" value="${escapeHtml(customer.city || "")}" ${useProfile ? "readonly" : ""} required>
+            </label>
+            <label class="field">
+              <span>CEP</span>
+              <input name="cep" autocomplete="postal-code" value="${escapeHtml(customer.cep || "")}" ${useProfile ? "readonly" : ""} required>
+            </label>
+            <label class="field">
+              <span>Complemento</span>
+              <input name="complement" value="${escapeHtml(customer.complement || "")}" ${useProfile ? "readonly" : ""}>
+            </label>
           </div>
           <div class="form-actions">
             <button class="secondary-button" type="button" data-route="#/">Cancelar</button>
@@ -1337,7 +1373,9 @@ async function submitQuote(form) {
   }
 
   const data = new FormData(form);
-  const customer = authEnabled() ? profileToCustomer() : Object.fromEntries(data.entries());
+  const formCustomer = Object.fromEntries(data.entries());
+  const useProfile = authEnabled() && authUser() && !state.guestCheckout;
+  const customer = useProfile ? profileToCustomer(String(formCustomer.prefix || "")) : formCustomer;
   const items = selected.map(({ item, entry, engine, section }) => ({
     quantity: entry.quantity,
     figure: item.figure,
@@ -1348,7 +1386,7 @@ async function submitQuote(form) {
   }));
 
   const headers = { "Content-Type": "application/json" };
-  if (authEnabled()) {
+  if (useProfile) {
     const token = await currentAccessToken();
     if (!token) {
       showToast("Faca login para enviar a solicitacao.");
@@ -1370,6 +1408,7 @@ async function submitQuote(form) {
   }
 
   state.lastQuote = result;
+  state.guestCheckout = false;
   state.cart = {};
   saveCart();
   location.hash = "#/done";
@@ -1571,6 +1610,7 @@ async function submitLogin(form) {
   if (error) throw error;
 
   state.session = result.session;
+  state.guestCheckout = false;
   await loadProfile();
   state.authMessage = "";
   location.hash = profileIsComplete() ? "#/proceed" : "#/profile/account";
@@ -1639,6 +1679,7 @@ async function logout() {
   state.history = [];
   state.authMessage = "";
   state.passwordRecovery = false;
+  state.guestCheckout = false;
   location.hash = "#/";
   render();
 }
@@ -1671,6 +1712,13 @@ function bindEvents() {
     const downloadQuote = event.target.closest("[data-download-quote]");
     if (downloadQuote) {
       downloadLastQuote();
+      return;
+    }
+
+    const guestCheckout = event.target.closest("[data-guest-checkout]");
+    if (guestCheckout) {
+      state.guestCheckout = true;
+      renderProceed();
       return;
     }
 
@@ -1851,8 +1899,12 @@ async function init() {
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
     state.supabase = createClient(state.config.supabase.url, state.config.supabase.anonKey);
     const { data, error } = await state.supabase.auth.getSession();
-    if (error) throw error;
-    state.session = data.session;
+    if (error) {
+      state.authMessage = "Nao foi possivel validar a sessao. Tente entrar novamente.";
+    } else {
+      state.session = data.session;
+    }
+    handleSupabaseAuthRedirect();
     if (state.session) await loadProfile();
     state.supabase.auth.onAuthStateChange(async (event, session) => {
       state.session = session;
