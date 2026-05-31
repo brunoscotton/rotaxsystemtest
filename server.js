@@ -193,7 +193,7 @@ async function sendQuoteEmail({ customer, filename, text }) {
   const from = process.env.SMTP_FROM || user;
 
   if (!host || !user || !pass) {
-    throw new Error("Envio de e-mail nao configurado. Defina SMTP_HOST, SMTP_USER e SMTP_PASS na Vercel.");
+    return { id: "email-skipped", to, skipped: true };
   }
 
   const transporter = nodemailer.createTransport({
@@ -212,7 +212,7 @@ async function sendQuoteEmail({ customer, filename, text }) {
     attachments: [{ filename, content: text, contentType: "text/plain; charset=utf-8" }]
   });
 
-  return { id: info.messageId, to };
+  return { id: info.messageId, to, skipped: false };
 }
 
 async function readRequestBody(req) {
@@ -339,7 +339,8 @@ const server = createServer(async (req, res) => {
         filename,
         text,
         emailTo: email.to,
-        emailId: email.id
+        emailId: email.id,
+        emailSkipped: Boolean(email.skipped)
       });
       return;
     }

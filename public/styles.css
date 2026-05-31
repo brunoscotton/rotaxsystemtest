@@ -783,6 +783,51 @@ td {
   background: #fff;
 }
 
+.password-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+}
+
+.password-control input {
+  border-radius: 6px 0 0 6px;
+}
+
+.password-toggle,
+.link-button {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--blue);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.password-toggle {
+  padding: 0 12px;
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.link-button {
+  min-height: 44px;
+  padding: 10px 12px;
+  border-color: transparent;
+}
+
+.field-error {
+  min-height: 16px;
+  color: #c83232;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .check-field {
   align-content: end;
 }

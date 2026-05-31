@@ -12,6 +12,7 @@ const state = {
   addresses: [],
   history: [],
   authMessage: "",
+  passwordRecovery: false,
   cart: loadCart(),
   lastQuote: null,
   search: "",
@@ -904,7 +905,7 @@ function renderProceed() {
           </div>
           <div class="form-actions">
             <button class="secondary-button" type="button" data-route="#/">Cancelar</button>
-            <button class="primary-button" type="submit" ${selected.length ? "" : "disabled"}>Enviar</button>
+            <button class="primary-button" type="submit" ${selected.length ? "" : "disabled"}>Gerar solicitacao</button>
           </div>
         </form>
         <aside class="summary-panel">
@@ -932,18 +933,20 @@ function renderDone() {
     location.hash = "#/";
     return;
   }
+  const emailSkipped = Boolean(quote.emailSkipped);
 
   shell(`
     <main class="page">
       <section class="result-panel">
         <div>
-          <p class="eyebrow">E-mail enviado</p>
-          <h1>Solicitação enviada!</h1>
-          <p class="lead">Em breve, um de nossos consultores irá entrar em contato com sua cotação! Obrigado!</p>
-          <p class="control-number">Número de controle: <strong>${escapeHtml(quote.filename)}</strong></p>
+          <p class="eyebrow">${emailSkipped ? "Arquivo TXT gerado" : "E-mail enviado"}</p>
+          <h1>${emailSkipped ? "Solicitacao gerada para conferencia" : "Solicitacao enviada!"}</h1>
+          <p class="lead">${emailSkipped ? "Revise o texto abaixo e baixe o arquivo TXT para validar o conteudo do teste." : "Em breve, um de nossos consultores ira entrar em contato com sua cotacao! Obrigado!"}</p>
+          <p class="control-number">Numero de controle: <strong>${escapeHtml(quote.filename)}</strong></p>
         </div>
         <pre class="quote-text">${escapeHtml(quote.text)}</pre>
         <div class="form-actions">
+          <button class="primary-button" type="button" data-download-quote>Baixar TXT</button>
           <button class="primary-button" type="button" data-route="#/">Nova solicitacao</button>
         </div>
       </section>
@@ -968,6 +971,31 @@ function renderLogin() {
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
       ${state.authMessage ? `<div class="auth-message">${escapeHtml(state.authMessage)}</div>` : ""}
+      ${state.passwordRecovery ? `
+        <form class="form-panel auth-single" data-reset-password-form>
+          <h2>Redefinir senha</h2>
+          <div class="form-grid">
+            <label class="field">
+              <span>Nova senha</span>
+              <span class="password-control">
+                <input name="password" type="password" autocomplete="new-password" required minlength="6">
+                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+              </span>
+            </label>
+            <label class="field">
+              <span>Confirmar nova senha</span>
+              <span class="password-control">
+                <input name="confirm_password" type="password" autocomplete="new-password" required minlength="6">
+                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+              </span>
+              <span class="field-error" data-match-message="confirm_password"></span>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Salvar nova senha</button>
+          </div>
+        </form>
+      ` : ""}
       <section class="auth-grid">
         <form class="form-panel" data-login-form>
           <h2>Entrar</h2>
@@ -977,9 +1005,13 @@ function renderLogin() {
           </label>
           <label class="field">
             <span>Senha</span>
-            <input name="password" type="password" autocomplete="current-password" required minlength="6">
+            <span class="password-control">
+              <input name="password" type="password" autocomplete="current-password" required minlength="6">
+              <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+            </span>
           </label>
           <div class="form-actions">
+            <button class="link-button" type="button" data-forgot-password>Esqueci a senha</button>
             <button class="primary-button" type="submit">Entrar</button>
           </div>
         </form>
@@ -996,14 +1028,14 @@ function renderLogin() {
             </label>
             <label class="field">
               <span>Tipo</span>
-              <select name="prefix_type" required>
+              <select name="prefix_type" data-prefix-type required>
                 <option value="">Selecione</option>
                 <option value="COM">COM</option>
                 <option value="PREFIXO">Prefixo</option>
               </select>
             </label>
             <label class="field">
-              <span>Prefixo</span>
+              <span data-prefix-label>Prefixo</span>
               <input name="prefixo" required>
             </label>
             <label class="field">
@@ -1017,6 +1049,7 @@ function renderLogin() {
             <label class="field">
               <span>Confirmar e-mail</span>
               <input name="confirm_email" type="email" autocomplete="email" required>
+              <span class="field-error" data-match-message="confirm_email"></span>
             </label>
             <label class="field">
               <span>Estado</span>
@@ -1043,11 +1076,18 @@ function renderLogin() {
             </label>
             <label class="field">
               <span>Senha</span>
-              <input name="password" type="password" autocomplete="new-password" required minlength="6">
+              <span class="password-control">
+                <input name="password" type="password" autocomplete="new-password" required minlength="6">
+                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+              </span>
             </label>
             <label class="field">
               <span>Confirmar senha</span>
-              <input name="confirm_password" type="password" autocomplete="new-password" required minlength="6">
+              <span class="password-control">
+                <input name="confirm_password" type="password" autocomplete="new-password" required minlength="6">
+                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+              </span>
+              <span class="field-error" data-match-message="confirm_password"></span>
             </label>
           </div>
           <div class="form-actions">
@@ -1159,6 +1199,10 @@ function renderProfile(tab = "account") {
       <form class="form-panel" data-delivery-address-form>
         <h2>Adicionar endereco de entrega</h2>
         <div class="form-grid">
+          <label class="field check-field">
+            <span>Mesmo endereco de cadastro</span>
+            <input name="same_profile_address" type="checkbox" value="true" data-same-profile-address>
+          </label>
           <label class="field">
             <span>Identificacao</span>
             <input name="label" placeholder="Ex.: Hangar, Oficina, Residencial" required>
@@ -1208,7 +1252,10 @@ function renderProfile(tab = "account") {
               <span>
                 <strong>${escapeHtml(prefix.type)} - ${escapeHtml(prefix.value)}${prefix.is_default ? " - Padrao" : ""}</strong>
               </span>
-              <button class="secondary-button" type="button" data-prefix-delete="${prefix.id}">Remover</button>
+              <span class="inline-actions">
+                ${prefix.is_default ? "" : `<button class="secondary-button" type="button" data-prefix-default="${prefix.id}">Tornar Padrao</button>`}
+                <button class="secondary-button" type="button" data-prefix-delete="${prefix.id}">Remover</button>
+              </span>
             </div>
           `).join("") : `<div class="empty-state">Nenhum prefixo cadastrado.</div>`}
         </div>
@@ -1218,14 +1265,14 @@ function renderProfile(tab = "account") {
         <div class="form-grid">
           <label class="field">
             <span>Tipo</span>
-            <select name="type" required>
+            <select name="type" data-prefix-type required>
               <option value="">Selecione</option>
               <option value="COM">COM</option>
               <option value="PREFIXO">Prefixo</option>
             </select>
           </label>
           <label class="field">
-            <span>Prefixo</span>
+            <span data-prefix-label>Prefixo</span>
             <input name="value" required>
           </label>
           <label class="field check-field">
@@ -1390,6 +1437,18 @@ async function deletePrefix(prefixId) {
   renderProfile("prefixes");
 }
 
+async function setDefaultPrefix(prefixId) {
+  const user = authUser();
+  if (!user) throw new Error("Faca login para alterar o prefixo padrao.");
+  const { error: clearError } = await state.supabase.from("user_prefixes").update({ is_default: false }).eq("user_id", user.id);
+  if (clearError) throw clearError;
+  const { error } = await state.supabase.from("user_prefixes").update({ is_default: true }).eq("id", prefixId).eq("user_id", user.id);
+  if (error) throw error;
+  await loadProfile();
+  state.authMessage = "Prefixo padrao atualizado.";
+  renderProfile("prefixes");
+}
+
 async function saveDeliveryAddressFromForm(form) {
   const data = Object.fromEntries(new FormData(form).entries());
   const user = authUser();
@@ -1424,6 +1483,85 @@ async function deleteDeliveryAddress(addressId) {
   renderProfile("delivery");
 }
 
+function updatePrefixLabel(form) {
+  const select = form?.querySelector("[data-prefix-type]");
+  const label = form?.querySelector("[data-prefix-label]");
+  if (!select || !label) return;
+  label.textContent = select.value === "COM" ? "COM" : "Prefixo";
+}
+
+function validateRegisterMatches(form) {
+  const email = form?.elements.email;
+  const confirmEmail = form?.elements.confirm_email;
+  const password = form?.elements.password;
+  const confirmPassword = form?.elements.confirm_password;
+  const emailMessage = form?.querySelector('[data-match-message="confirm_email"]');
+  const passwordMessage = form?.querySelector('[data-match-message="confirm_password"]');
+
+  const emailMismatch = Boolean(email?.value && confirmEmail?.value && email.value.trim().toLowerCase() !== confirmEmail.value.trim().toLowerCase());
+  const passwordMismatch = Boolean(password?.value && confirmPassword?.value && password.value !== confirmPassword.value);
+
+  if (confirmEmail) confirmEmail.setCustomValidity(emailMismatch ? "E-mail nao confere." : "");
+  if (confirmPassword) confirmPassword.setCustomValidity(passwordMismatch ? "Senhas nao conferem." : "");
+  if (emailMessage) emailMessage.textContent = emailMismatch ? "E-mail nao confere." : "";
+  if (passwordMessage) passwordMessage.textContent = passwordMismatch ? "Senhas nao conferem." : "";
+
+  return !emailMismatch && !passwordMismatch;
+}
+
+function fillDeliveryAddressFromProfile(form) {
+  const customer = profileToCustomer();
+  if (form.elements.address) form.elements.address.value = customer.address || "";
+  if (form.elements.city) form.elements.city.value = customer.city || "";
+  if (form.elements.cep) form.elements.cep.value = customer.cep || "";
+  if (form.elements.complement) form.elements.complement.value = customer.complement || "";
+  if (form.elements.estado) form.elements.estado.value = customer.state || "";
+}
+
+function downloadLastQuote() {
+  const quote = state.lastQuote;
+  if (!quote?.text || !quote?.filename) {
+    showToast("Nenhum TXT disponivel para baixar.");
+    return;
+  }
+  const blob = new Blob([quote.text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = quote.filename;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function sendPasswordReset() {
+  const form = document.querySelector("[data-login-form]");
+  const email = String(form?.elements.email?.value || "").trim();
+  if (!email) {
+    showToast("Informe o e-mail para receber o link de redefinicao.");
+    return;
+  }
+  const redirectTo = `${location.origin}${location.pathname}`;
+  const { error } = await state.supabase.auth.resetPasswordForEmail(email, { redirectTo });
+  if (error) throw error;
+  state.authMessage = "Enviamos um link de redefinicao de senha para o e-mail informado.";
+  renderLogin();
+}
+
+async function submitResetPassword(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const password = String(data.password || "");
+  const confirmPassword = String(data.confirm_password || "");
+  validateRegisterMatches(form);
+  if (password !== confirmPassword) throw new Error("As senhas nao conferem.");
+  const { error } = await state.supabase.auth.updateUser({ password });
+  if (error) throw error;
+  state.passwordRecovery = false;
+  state.authMessage = "Senha atualizada com sucesso.";
+  renderLogin();
+}
+
 async function submitLogin(form) {
   const data = Object.fromEntries(new FormData(form).entries());
   const { data: result, error } = await state.supabase.auth.signInWithPassword({
@@ -1445,6 +1583,7 @@ async function submitRegister(form) {
   const confirmEmail = String(data.confirm_email || "").trim();
   const password = String(data.password || "");
   const confirmPassword = String(data.confirm_password || "");
+  validateRegisterMatches(form);
   if (email.toLowerCase() !== confirmEmail.toLowerCase()) throw new Error("Os e-mails nao conferem.");
   if (password !== confirmPassword) throw new Error("As senhas nao conferem.");
 
@@ -1499,12 +1638,42 @@ async function logout() {
   state.addresses = [];
   state.history = [];
   state.authMessage = "";
+  state.passwordRecovery = false;
   location.hash = "#/";
   render();
 }
 
 function bindEvents() {
   app.addEventListener("click", (event) => {
+    const logoutButton = event.target.closest("[data-logout]");
+    if (logoutButton) {
+      event.preventDefault();
+      logout().catch((error) => showToast(error.message));
+      return;
+    }
+
+    const passwordToggle = event.target.closest("[data-toggle-password]");
+    if (passwordToggle) {
+      const input = passwordToggle.closest(".password-control")?.querySelector("input");
+      if (input) {
+        input.type = input.type === "password" ? "text" : "password";
+        passwordToggle.textContent = input.type === "password" ? "Mostrar" : "Ocultar";
+      }
+      return;
+    }
+
+    const forgotPassword = event.target.closest("[data-forgot-password]");
+    if (forgotPassword) {
+      sendPasswordReset().catch((error) => showToast(error.message));
+      return;
+    }
+
+    const downloadQuote = event.target.closest("[data-download-quote]");
+    if (downloadQuote) {
+      downloadLastQuote();
+      return;
+    }
+
     const route = event.target.closest("[data-route]");
     if (route) {
       state.globalSearch = "";
@@ -1540,15 +1709,15 @@ function bindEvents() {
       return;
     }
 
-    const addressDelete = event.target.closest("[data-address-delete]");
-    if (addressDelete) {
-      deleteDeliveryAddress(addressDelete.dataset.addressDelete).catch((error) => showToast(error.message));
+    const prefixDefault = event.target.closest("[data-prefix-default]");
+    if (prefixDefault) {
+      setDefaultPrefix(prefixDefault.dataset.prefixDefault).catch((error) => showToast(error.message));
       return;
     }
 
-    const logoutButton = event.target.closest("[data-logout]");
-    if (logoutButton) {
-      logout().catch((error) => showToast(error.message));
+    const addressDelete = event.target.closest("[data-address-delete]");
+    if (addressDelete) {
+      deleteDeliveryAddress(addressDelete.dataset.addressDelete).catch((error) => showToast(error.message));
       return;
     }
 
@@ -1571,6 +1740,23 @@ function bindEvents() {
       document.querySelectorAll("[data-row-filter]").forEach((row) => {
         row.hidden = query ? !row.dataset.rowFilter.includes(query) : false;
       });
+      return;
+    }
+
+    const matchForm = event.target.closest("[data-register-form], [data-reset-password-form]");
+    if (matchForm) {
+      validateRegisterMatches(matchForm);
+    }
+  });
+
+  app.addEventListener("change", (event) => {
+    if (event.target.matches("[data-prefix-type]")) {
+      updatePrefixLabel(event.target.closest("form"));
+      return;
+    }
+
+    if (event.target.matches("[data-same-profile-address]") && event.target.checked) {
+      fillDeliveryAddressFromProfile(event.target.closest("form"));
     }
   });
 
@@ -1604,6 +1790,12 @@ function bindEvents() {
     if (event.target.matches("[data-register-form]")) {
       event.preventDefault();
       submitRegister(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-reset-password-form]")) {
+      event.preventDefault();
+      submitResetPassword(event.target).catch((error) => showToast(error.message));
       return;
     }
 
@@ -1662,8 +1854,13 @@ async function init() {
     if (error) throw error;
     state.session = data.session;
     if (state.session) await loadProfile();
-    state.supabase.auth.onAuthStateChange(async (_event, session) => {
+    state.supabase.auth.onAuthStateChange(async (event, session) => {
       state.session = session;
+      if (event === "PASSWORD_RECOVERY") {
+        state.passwordRecovery = true;
+        state.authMessage = "Digite a nova senha para concluir a redefinicao.";
+        location.hash = "#/login";
+      }
       if (session) await loadProfile();
       else {
         state.profile = null;
