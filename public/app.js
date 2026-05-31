@@ -8,6 +8,9 @@ const state = {
   supabase: null,
   session: null,
   profile: null,
+  prefixes: [],
+  addresses: [],
+  history: [],
   authMessage: "",
   cart: loadCart(),
   lastQuote: null,
@@ -79,20 +82,35 @@ function authUser() {
   return state.session?.user || null;
 }
 
+function fullName(profile = state.profile || {}) {
+  const firstName = profile.first_name || profile.name || "";
+  const lastName = profile.last_name || "";
+  return [firstName, lastName].filter(Boolean).join(" ").trim();
+}
+
+function primaryPrefix() {
+  return state.prefixes.find((prefix) => prefix.is_default) || state.prefixes[0] || null;
+}
+
 function profileToCustomer() {
   const profile = state.profile || {};
+  const prefix = primaryPrefix();
   return {
-    name: profile.name || "",
-    prefix: profile.prefixo || "",
+    name: fullName(profile),
+    prefix: prefix?.value || profile.prefixo || "",
     phone: profile.phone || "",
     email: profile.email || authUser()?.email || "",
-    state: profile.estado || ""
+    state: profile.estado || "",
+    address: profile.address || "",
+    city: profile.city || "",
+    cep: profile.cep || "",
+    complement: profile.complement || ""
   };
 }
 
 function profileIsComplete() {
   const customer = profileToCustomer();
-  return ["name", "prefix", "phone", "email", "state"].every((field) => requiredProfileText(customer[field]));
+  return ["name", "prefix", "phone", "email", "state", "address", "city", "cep"].every((field) => requiredProfileText(customer[field]));
 }
 
 function requiredProfileText(value) {
@@ -107,12 +125,40 @@ async function loadProfile() {
 
   const { data, error } = await state.supabase
     .from("profiles")
-    .select("name,prefixo,phone,email,estado")
+    .select("name,first_name,last_name,prefixo,phone,email,estado,address,city,cep,complement")
     .eq("id", authUser().id)
     .maybeSingle();
 
   if (error) throw error;
   state.profile = data || null;
+
+  const [prefixesResult, addressesResult, historyResult] = await Promise.all([
+    state.supabase
+      .from("user_prefixes")
+      .select("id,type,value,is_default,created_at")
+      .eq("user_id", authUser().id)
+      .order("is_default", { ascending: false })
+      .order("created_at", { ascending: true }),
+    state.supabase
+      .from("delivery_addresses")
+      .select("id,label,address,city,cep,complement,estado,is_default,created_at")
+      .eq("user_id", authUser().id)
+      .order("is_default", { ascending: false })
+      .order("created_at", { ascending: true }),
+    state.supabase
+      .from("quote_history")
+      .select("id,control_number,created_at,items")
+      .eq("user_id", authUser().id)
+      .order("created_at", { ascending: false })
+      .limit(30)
+  ]);
+
+  if (prefixesResult.error && prefixesResult.error.code !== "42P01") throw prefixesResult.error;
+  if (addressesResult.error && addressesResult.error.code !== "42P01") throw addressesResult.error;
+  if (historyResult.error && historyResult.error.code !== "42P01") throw historyResult.error;
+  state.prefixes = prefixesResult.data || [];
+  state.addresses = addressesResult.data || [];
+  state.history = historyResult.data || [];
   return state.profile;
 }
 
@@ -510,7 +556,7 @@ function shell(content) {
         ${authEnabled() ? `
           <div class="auth-actions">
             ${authUser() ? `
-              <button class="secondary-button" type="button" data-route="#/profile">${escapeHtml(state.profile?.name || authUser().email || "Perfil")}</button>
+              <button class="secondary-button" type="button" data-route="#/profile/account">${escapeHtml(fullName() || authUser().email || "Perfil")}</button>
               <button class="secondary-button" type="button" data-logout>Sair</button>
             ` : `
               <button class="secondary-button" type="button" data-route="#/login">Entrar</button>
@@ -787,10 +833,10 @@ function renderProceed() {
           <div>
             <p class="eyebrow">Cadastro incompleto</p>
             <h1>Complete seu cadastro</h1>
-            <p class="lead">Nome, prefixo, telefone, e-mail e estado sao obrigatorios para enviar a solicitacao.</p>
+            <p class="lead">Nome, sobrenome, prefixo, telefone, e-mail, estado e endereco sao obrigatorios para enviar a solicitacao.</p>
           </div>
           <div class="form-actions">
-            <button class="primary-button" type="button" data-route="#/profile">Completar cadastro</button>
+            <button class="primary-button" type="button" data-route="#/profile/account">Completar cadastro</button>
             <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
           </div>
         </section>
@@ -837,6 +883,24 @@ function renderProceed() {
               </select>
               ${authEnabled() ? `<input type="hidden" name="state" value="${escapeHtml(customer.state)}">` : ""}
             </label>
+            ${authEnabled() ? `
+              <label class="field">
+                <span>Endereco</span>
+                <input value="${escapeHtml(customer.address)}" readonly>
+              </label>
+              <label class="field">
+                <span>Cidade</span>
+                <input value="${escapeHtml(customer.city)}" readonly>
+              </label>
+              <label class="field">
+                <span>CEP</span>
+                <input value="${escapeHtml(customer.cep)}" readonly>
+              </label>
+              <label class="field">
+                <span>Complemento</span>
+                <input value="${escapeHtml(customer.complement)}" readonly>
+              </label>
+            ` : ""}
           </div>
           <div class="form-actions">
             <button class="secondary-button" type="button" data-route="#/">Cancelar</button>
@@ -924,7 +988,19 @@ function renderLogin() {
           <div class="form-grid">
             <label class="field">
               <span>Nome</span>
-              <input name="name" autocomplete="name" required>
+              <input name="first_name" autocomplete="given-name" required>
+            </label>
+            <label class="field">
+              <span>Sobrenome</span>
+              <input name="last_name" autocomplete="family-name" required>
+            </label>
+            <label class="field">
+              <span>Tipo</span>
+              <select name="prefix_type" required>
+                <option value="">Selecione</option>
+                <option value="COM">COM</option>
+                <option value="PREFIXO">Prefixo</option>
+              </select>
             </label>
             <label class="field">
               <span>Prefixo</span>
@@ -939,6 +1015,10 @@ function renderLogin() {
               <input name="email" type="email" autocomplete="email" required>
             </label>
             <label class="field">
+              <span>Confirmar e-mail</span>
+              <input name="confirm_email" type="email" autocomplete="email" required>
+            </label>
+            <label class="field">
               <span>Estado</span>
               <select name="estado" required>
                 <option value="">Selecione</option>
@@ -946,8 +1026,28 @@ function renderLogin() {
               </select>
             </label>
             <label class="field">
+              <span>Endereco</span>
+              <input name="address" autocomplete="street-address" required>
+            </label>
+            <label class="field">
+              <span>Cidade</span>
+              <input name="city" autocomplete="address-level2" required>
+            </label>
+            <label class="field">
+              <span>CEP</span>
+              <input name="cep" autocomplete="postal-code" required>
+            </label>
+            <label class="field">
+              <span>Complemento</span>
+              <input name="complement">
+            </label>
+            <label class="field">
               <span>Senha</span>
               <input name="password" type="password" autocomplete="new-password" required minlength="6">
+            </label>
+            <label class="field">
+              <span>Confirmar senha</span>
+              <input name="confirm_password" type="password" autocomplete="new-password" required minlength="6">
             </label>
           </div>
           <div class="form-actions">
@@ -959,7 +1059,7 @@ function renderLogin() {
   `);
 }
 
-function renderProfile() {
+function renderProfile(tab = "account") {
   if (!authEnabled()) {
     location.hash = "#/";
     return;
@@ -970,7 +1070,193 @@ function renderProfile() {
     return;
   }
 
+  const profile = state.profile || {};
   const customer = profileToCustomer();
+  const activeTab = ["account", "address", "delivery", "prefixes", "history"].includes(tab) ? tab : "account";
+  const menuItems = [
+    ["account", "Dados pessoais"],
+    ["address", "Endereco"],
+    ["delivery", "Enderecos de entrega"],
+    ["prefixes", "Prefixos"],
+    ["history", "Historico"]
+  ];
+
+  const accountPanel = `
+    <form class="form-panel auth-single" data-profile-form>
+      <div class="form-grid">
+        <label class="field">
+          <span>Nome</span>
+          <input name="first_name" value="${escapeHtml(profile.first_name || profile.name || "")}" autocomplete="given-name" required>
+        </label>
+        <label class="field">
+          <span>Sobrenome</span>
+          <input name="last_name" value="${escapeHtml(profile.last_name || "")}" autocomplete="family-name" required>
+        </label>
+        <label class="field">
+          <span>Telefone</span>
+          <input name="phone" value="${escapeHtml(customer.phone)}" autocomplete="tel" required>
+        </label>
+        <label class="field">
+          <span>E-mail</span>
+          <input name="email" type="email" value="${escapeHtml(customer.email)}" autocomplete="email" required>
+        </label>
+        <label class="field">
+          <span>Estado</span>
+          <select name="estado" required>
+            <option value="">Selecione</option>
+            ${brazilStates.map(([abbr, name]) => `<option value="${abbr}" ${customer.state === abbr ? "selected" : ""}>${abbr} - ${escapeHtml(name)}</option>`).join("")}
+          </select>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button class="primary-button" type="submit">Salvar dados</button>
+      </div>
+    </form>
+  `;
+
+  const addressPanel = `
+    <form class="form-panel auth-single" data-profile-address-form>
+      <div class="form-grid">
+        <label class="field">
+          <span>Endereco</span>
+          <input name="address" value="${escapeHtml(customer.address)}" autocomplete="street-address" required>
+        </label>
+        <label class="field">
+          <span>Cidade</span>
+          <input name="city" value="${escapeHtml(customer.city)}" autocomplete="address-level2" required>
+        </label>
+        <label class="field">
+          <span>CEP</span>
+          <input name="cep" value="${escapeHtml(customer.cep)}" autocomplete="postal-code" required>
+        </label>
+        <label class="field">
+          <span>Complemento</span>
+          <input name="complement" value="${escapeHtml(customer.complement)}">
+        </label>
+      </div>
+      <div class="form-actions">
+        <button class="primary-button" type="submit">Salvar endereco</button>
+      </div>
+    </form>
+  `;
+
+  const deliveryPanel = `
+    <section class="profile-stack">
+      <div class="form-panel">
+        <h2>Enderecos cadastrados</h2>
+        <div class="quote-list">
+          ${state.addresses.length ? state.addresses.map((address) => `
+            <div class="quote-item">
+              <span>
+                <strong>${escapeHtml(address.label || "Entrega")}${address.is_default ? " - Padrao" : ""}</strong>
+                <span class="selected-meta">${escapeHtml(address.address)}, ${escapeHtml(address.city)} - ${escapeHtml(address.estado)} / CEP ${escapeHtml(address.cep)}${address.complement ? ` / ${escapeHtml(address.complement)}` : ""}</span>
+              </span>
+              <button class="secondary-button" type="button" data-address-delete="${address.id}">Remover</button>
+            </div>
+          `).join("") : `<div class="empty-state">Nenhum endereco de entrega cadastrado.</div>`}
+        </div>
+      </div>
+      <form class="form-panel" data-delivery-address-form>
+        <h2>Adicionar endereco de entrega</h2>
+        <div class="form-grid">
+          <label class="field">
+            <span>Identificacao</span>
+            <input name="label" placeholder="Ex.: Hangar, Oficina, Residencial" required>
+          </label>
+          <label class="field">
+            <span>Endereco</span>
+            <input name="address" required>
+          </label>
+          <label class="field">
+            <span>Cidade</span>
+            <input name="city" required>
+          </label>
+          <label class="field">
+            <span>Estado</span>
+            <select name="estado" required>
+              <option value="">Selecione</option>
+              ${brazilStates.map(([abbr, name]) => `<option value="${abbr}">${abbr} - ${escapeHtml(name)}</option>`).join("")}
+            </select>
+          </label>
+          <label class="field">
+            <span>CEP</span>
+            <input name="cep" required>
+          </label>
+          <label class="field">
+            <span>Complemento</span>
+            <input name="complement">
+          </label>
+          <label class="field check-field">
+            <span>Padrao</span>
+            <input name="is_default" type="checkbox" value="true">
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="primary-button" type="submit">Adicionar endereco</button>
+        </div>
+      </form>
+    </section>
+  `;
+
+  const prefixesPanel = `
+    <section class="profile-stack">
+      <div class="form-panel">
+        <h2>Prefixos cadastrados</h2>
+        <div class="quote-list">
+          ${state.prefixes.length ? state.prefixes.map((prefix) => `
+            <div class="quote-item">
+              <span>
+                <strong>${escapeHtml(prefix.type)} - ${escapeHtml(prefix.value)}${prefix.is_default ? " - Padrao" : ""}</strong>
+              </span>
+              <button class="secondary-button" type="button" data-prefix-delete="${prefix.id}">Remover</button>
+            </div>
+          `).join("") : `<div class="empty-state">Nenhum prefixo cadastrado.</div>`}
+        </div>
+      </div>
+      <form class="form-panel" data-prefix-form>
+        <h2>Adicionar prefixo</h2>
+        <div class="form-grid">
+          <label class="field">
+            <span>Tipo</span>
+            <select name="type" required>
+              <option value="">Selecione</option>
+              <option value="COM">COM</option>
+              <option value="PREFIXO">Prefixo</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Prefixo</span>
+            <input name="value" required>
+          </label>
+          <label class="field check-field">
+            <span>Padrao</span>
+            <input name="is_default" type="checkbox" value="true">
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="primary-button" type="submit">Adicionar prefixo</button>
+        </div>
+      </form>
+    </section>
+  `;
+
+  const historyPanel = `
+    <section class="form-panel auth-single">
+      <h2>Historico de solicitacoes</h2>
+      <div class="quote-list history-list">
+        ${state.history.length ? state.history.map((entry) => `
+          <div class="quote-item">
+            <span>
+              <strong>${escapeHtml(entry.control_number)}</strong>
+              <span class="selected-meta">${new Date(entry.created_at).toLocaleString("pt-BR")} / ${Array.isArray(entry.items) ? entry.items.length : 0} itens</span>
+            </span>
+          </div>
+        `).join("") : `<div class="empty-state">Nenhuma solicitacao enviada ainda.</div>`}
+      </div>
+    </section>
+  `;
+
+  const panels = { account: accountPanel, address: addressPanel, delivery: deliveryPanel, prefixes: prefixesPanel, history: historyPanel };
   shell(`
     <main class="page auth-page">
       <section class="page-header">
@@ -982,36 +1268,16 @@ function renderProfile() {
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
       ${state.authMessage ? `<div class="auth-message">${escapeHtml(state.authMessage)}</div>` : ""}
-      <form class="form-panel auth-single" data-profile-form>
-        <div class="form-grid">
-          <label class="field">
-            <span>Nome</span>
-            <input name="name" value="${escapeHtml(customer.name)}" autocomplete="name" required>
-          </label>
-          <label class="field">
-            <span>Prefixo</span>
-            <input name="prefixo" value="${escapeHtml(customer.prefix)}" required>
-          </label>
-          <label class="field">
-            <span>Telefone</span>
-            <input name="phone" value="${escapeHtml(customer.phone)}" autocomplete="tel" required>
-          </label>
-          <label class="field">
-            <span>E-mail</span>
-            <input name="email" type="email" value="${escapeHtml(customer.email)}" autocomplete="email" required>
-          </label>
-          <label class="field">
-            <span>Estado</span>
-            <select name="estado" required>
-              <option value="">Selecione</option>
-              ${brazilStates.map(([abbr, name]) => `<option value="${abbr}" ${customer.state === abbr ? "selected" : ""}>${abbr} - ${escapeHtml(name)}</option>`).join("")}
-            </select>
-          </label>
+      <section class="profile-layout">
+        <nav class="profile-sidebar" aria-label="Menu do usuario">
+          ${menuItems.map(([id, label]) => `
+            <button type="button" class="${activeTab === id ? "active" : ""}" data-route="#/profile/${id}">${escapeHtml(label)}</button>
+          `).join("")}
+        </nav>
+        <div class="profile-content">
+          ${panels[activeTab]}
         </div>
-        <div class="form-actions">
-          <button class="primary-button" type="submit">Salvar cadastro</button>
-        </div>
-      </form>
+      </section>
     </main>
   `);
 }
@@ -1067,23 +1333,95 @@ async function saveProfileFromForm(form) {
   const user = authUser();
   if (!user) throw new Error("Faca login para salvar o cadastro.");
 
+  const current = state.profile || {};
+  const firstName = String(data.first_name ?? current.first_name ?? current.name ?? "").trim();
+  const lastName = String(data.last_name ?? current.last_name ?? "").trim();
   const profile = {
     id: user.id,
-    name: String(data.name || "").trim(),
-    prefixo: String(data.prefixo || "").trim(),
-    phone: String(data.phone || "").trim(),
-    email: String(data.email || user.email || "").trim(),
-    estado: String(data.estado || "").trim(),
+    name: [firstName, lastName].filter(Boolean).join(" ").trim(),
+    first_name: firstName,
+    last_name: lastName,
+    prefixo: String(data.prefixo ?? current.prefixo ?? primaryPrefix()?.value ?? "").trim(),
+    phone: String(data.phone ?? current.phone ?? "").trim(),
+    email: String(data.email ?? current.email ?? user.email ?? "").trim(),
+    estado: String(data.estado ?? current.estado ?? "").trim(),
+    address: String(data.address ?? current.address ?? "").trim(),
+    city: String(data.city ?? current.city ?? "").trim(),
+    cep: String(data.cep ?? current.cep ?? "").trim(),
+    complement: String(data.complement ?? current.complement ?? "").trim(),
     updated_at: new Date().toISOString()
   };
 
-  const missing = ["name", "prefixo", "phone", "email", "estado"].filter((field) => !requiredProfileText(profile[field]));
+  const missing = ["name", "phone", "email", "estado"].filter((field) => !requiredProfileText(profile[field]));
   if (missing.length) throw new Error("Preencha todos os campos do cadastro.");
 
   const { error } = await state.supabase.from("profiles").upsert(profile, { onConflict: "id" });
   if (error) throw error;
   state.profile = profile;
   return profile;
+}
+
+async function savePrefixFromForm(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const user = authUser();
+  if (!user) throw new Error("Faca login para adicionar prefixo.");
+
+  const prefix = {
+    user_id: user.id,
+    type: String(data.type || data.prefix_type || "").trim(),
+    value: String(data.value || data.prefixo || "").trim().toUpperCase(),
+    is_default: data.is_default === "true" || state.prefixes.length === 0
+  };
+
+  if (!prefix.type || !prefix.value) throw new Error("Informe tipo e prefixo.");
+  if (prefix.is_default) {
+    await state.supabase.from("user_prefixes").update({ is_default: false }).eq("user_id", user.id);
+  }
+
+  const { error } = await state.supabase.from("user_prefixes").insert(prefix);
+  if (error) throw error;
+  await loadProfile();
+}
+
+async function deletePrefix(prefixId) {
+  const { error } = await state.supabase.from("user_prefixes").delete().eq("id", prefixId);
+  if (error) throw error;
+  await loadProfile();
+  renderProfile("prefixes");
+}
+
+async function saveDeliveryAddressFromForm(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const user = authUser();
+  if (!user) throw new Error("Faca login para adicionar endereco.");
+
+  const address = {
+    user_id: user.id,
+    label: String(data.label || "").trim(),
+    address: String(data.address || "").trim(),
+    city: String(data.city || "").trim(),
+    cep: String(data.cep || "").trim(),
+    complement: String(data.complement || "").trim(),
+    estado: String(data.estado || "").trim(),
+    is_default: data.is_default === "true" || state.addresses.length === 0
+  };
+
+  const missing = ["label", "address", "city", "cep", "estado"].filter((field) => !requiredProfileText(address[field]));
+  if (missing.length) throw new Error("Preencha todos os campos obrigatorios do endereco.");
+  if (address.is_default) {
+    await state.supabase.from("delivery_addresses").update({ is_default: false }).eq("user_id", user.id);
+  }
+
+  const { error } = await state.supabase.from("delivery_addresses").insert(address);
+  if (error) throw error;
+  await loadProfile();
+}
+
+async function deleteDeliveryAddress(addressId) {
+  const { error } = await state.supabase.from("delivery_addresses").delete().eq("id", addressId);
+  if (error) throw error;
+  await loadProfile();
+  renderProfile("delivery");
 }
 
 async function submitLogin(form) {
@@ -1097,14 +1435,19 @@ async function submitLogin(form) {
   state.session = result.session;
   await loadProfile();
   state.authMessage = "";
-  location.hash = profileIsComplete() ? "#/proceed" : "#/profile";
+  location.hash = profileIsComplete() ? "#/proceed" : "#/profile/account";
   render();
 }
 
 async function submitRegister(form) {
   const data = Object.fromEntries(new FormData(form).entries());
   const email = String(data.email || "").trim();
+  const confirmEmail = String(data.confirm_email || "").trim();
   const password = String(data.password || "");
+  const confirmPassword = String(data.confirm_password || "");
+  if (email.toLowerCase() !== confirmEmail.toLowerCase()) throw new Error("Os e-mails nao conferem.");
+  if (password !== confirmPassword) throw new Error("As senhas nao conferem.");
+
   const { data: result, error } = await state.supabase.auth.signUp({ email, password });
   if (error) throw error;
 
@@ -1116,6 +1459,7 @@ async function submitRegister(form) {
   }
 
   await saveProfileFromForm(form);
+  await savePrefixFromForm(form);
   state.authMessage = "Cadastro criado com sucesso.";
   location.hash = "#/proceed";
   render();
@@ -1124,13 +1468,36 @@ async function submitRegister(form) {
 async function submitProfile(form) {
   await saveProfileFromForm(form);
   state.authMessage = "Cadastro salvo com sucesso.";
-  renderProfile();
+  await loadProfile();
+  renderProfile("account");
+}
+
+async function submitProfileAddress(form) {
+  await saveProfileFromForm(form);
+  state.authMessage = "Endereco salvo com sucesso.";
+  await loadProfile();
+  renderProfile("address");
+}
+
+async function submitPrefix(form) {
+  await savePrefixFromForm(form);
+  state.authMessage = "Prefixo adicionado com sucesso.";
+  renderProfile("prefixes");
+}
+
+async function submitDeliveryAddress(form) {
+  await saveDeliveryAddressFromForm(form);
+  state.authMessage = "Endereco de entrega adicionado com sucesso.";
+  renderProfile("delivery");
 }
 
 async function logout() {
   if (authEnabled()) await state.supabase.auth.signOut();
   state.session = null;
   state.profile = null;
+  state.prefixes = [];
+  state.addresses = [];
+  state.history = [];
   state.authMessage = "";
   location.hash = "#/";
   render();
@@ -1164,6 +1531,18 @@ function bindEvents() {
     const remove = event.target.closest("[data-remove]");
     if (remove) {
       removeItem(remove.dataset.remove);
+      return;
+    }
+
+    const prefixDelete = event.target.closest("[data-prefix-delete]");
+    if (prefixDelete) {
+      deletePrefix(prefixDelete.dataset.prefixDelete).catch((error) => showToast(error.message));
+      return;
+    }
+
+    const addressDelete = event.target.closest("[data-address-delete]");
+    if (addressDelete) {
+      deleteDeliveryAddress(addressDelete.dataset.addressDelete).catch((error) => showToast(error.message));
       return;
     }
 
@@ -1231,6 +1610,24 @@ function bindEvents() {
     if (event.target.matches("[data-profile-form]")) {
       event.preventDefault();
       submitProfile(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-profile-address-form]")) {
+      event.preventDefault();
+      submitProfileAddress(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-prefix-form]")) {
+      event.preventDefault();
+      submitPrefix(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-delivery-address-form]")) {
+      event.preventDefault();
+      submitDeliveryAddress(event.target).catch((error) => showToast(error.message));
     }
   });
 }
@@ -1245,7 +1642,7 @@ function render() {
   else if (view === "section") renderSection(engineId, sectionId);
   else if (view === "proceed") renderProceed();
   else if (view === "login") renderLogin();
-  else if (view === "profile") renderProfile();
+  else if (view === "profile") renderProfile(engineId);
   else if (view === "done") renderDone();
   else renderHome();
 }
@@ -1268,7 +1665,12 @@ async function init() {
     state.supabase.auth.onAuthStateChange(async (_event, session) => {
       state.session = session;
       if (session) await loadProfile();
-      else state.profile = null;
+      else {
+        state.profile = null;
+        state.prefixes = [];
+        state.addresses = [];
+        state.history = [];
+      }
       render();
     });
   }

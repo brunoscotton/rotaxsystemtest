@@ -25,7 +25,8 @@ async function supabaseFetch(path, { token, query = "", method = "GET", body } =
     headers: {
       apikey: config.anonKey,
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Prefer: method === "POST" ? "return=representation" : ""
     },
     body: body ? JSON.stringify(body) : undefined
   });
@@ -35,7 +36,8 @@ async function supabaseFetch(path, { token, query = "", method = "GET", body } =
     throw new Error(message || "Falha ao validar login.");
   }
 
-  return response.json();
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
 }
 
 async function customerFromAuth(req) {
@@ -51,7 +53,7 @@ async function customerFromAuth(req) {
   const user = await supabaseFetch("/auth/v1/user", { token });
   const profiles = await supabaseFetch("/rest/v1/profiles", {
     token,
-    query: `?id=eq.${encodeURIComponent(user.id)}&select=name,prefixo,phone,email,estado`
+    query: `?id=eq.${encodeURIComponent(user.id)}&select=name,first_name,last_name,prefixo,phone,email,estado,address,city,cep,complement`
   });
   const profile = Array.isArray(profiles) ? profiles[0] : null;
 
@@ -61,12 +63,25 @@ async function customerFromAuth(req) {
     throw error;
   }
 
+  const prefixes = await supabaseFetch("/rest/v1/user_prefixes", {
+    token,
+    query: `?user_id=eq.${encodeURIComponent(user.id)}&select=type,value,is_default,created_at&order=is_default.desc,created_at.asc`
+  }).catch(() => []);
+  const primaryPrefix = Array.isArray(prefixes) ? prefixes.find((entry) => entry.is_default) || prefixes[0] : null;
+  const name = [profile.first_name || profile.name || "", profile.last_name || ""].filter(Boolean).join(" ").trim();
+
   return {
-    name: profile.name || "",
-    prefix: profile.prefixo || "",
+    _userId: user.id,
+    _token: token,
+    name,
+    prefix: primaryPrefix?.value || profile.prefixo || "",
     phone: profile.phone || "",
     email: profile.email || user.email || "",
-    state: profile.estado || ""
+    state: profile.estado || "",
+    address: profile.address || "",
+    city: profile.city || "",
+    cep: profile.cep || "",
+    complement: profile.complement || ""
   };
 }
 
@@ -101,6 +116,10 @@ function buildQuoteText({ customer, items }) {
     `Telefone: ${customer.phone.trim()}`,
     `E-mail: ${customer.email.trim()}`,
     `Estado: ${customer.state.trim()}`,
+    `Endereco: ${customer.address?.trim() || ""}`,
+    `Cidade: ${customer.city?.trim() || ""}`,
+    `CEP: ${customer.cep?.trim() || ""}`,
+    `Complemento: ${customer.complement?.trim() || ""}`,
     "",
     "ITENS SOLICITADOS",
     "Qtd | Item | PN | Descricao | Motor | Secao"
@@ -118,6 +137,21 @@ function buildQuoteText({ customer, items }) {
   }
 
   return `${lines.join("\n")}\n`;
+}
+
+async function saveQuoteHistory({ customer, filename, items }) {
+  if (!authIsConfigured() || !customer._userId || !customer._token) return;
+  const { _token, _userId, ...safeCustomer } = customer;
+  await supabaseFetch("/rest/v1/quote_history", {
+    token: _token,
+    method: "POST",
+    body: {
+      user_id: _userId,
+      control_number: filename,
+      customer: safeCustomer,
+      items
+    }
+  }).catch(() => null);
 }
 
 async function sendQuoteEmail({ customer, filename, text }) {
@@ -176,7 +210,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  const missing = ["name", "prefix", "phone", "email", "state"].filter((field) => !requiredText(customer[field]));
+  const requiredFields = authIsConfigured() ? ["name", "prefix", "phone", "email", "state", "address", "city", "cep"] : ["name", "prefix", "phone", "email", "state"];
+  const missing = requiredFields.filter((field) => !requiredText(customer[field]));
 
   if (missing.length || !items.length) {
     res.status(400).json({
@@ -198,6 +233,8 @@ export default async function handler(req, res) {
     res.status(500).json({ ok: false, message: error.message || "Nao foi possivel enviar o e-mail." });
     return;
   }
+
+  await saveQuoteHistory({ customer, filename, items });
 
   res.status(201).json({ ok: true, filename, text, emailTo: email.to, emailId: email.id });
 }

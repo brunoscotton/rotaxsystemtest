@@ -703,6 +703,48 @@ td {
   max-width: 860px;
 }
 
+.profile-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.profile-sidebar {
+  display: grid;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.profile-sidebar button {
+  min-height: 48px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-align: left;
+}
+
+.profile-sidebar button:last-child {
+  border-bottom: 0;
+}
+
+.profile-sidebar button.active {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+}
+
+.profile-content,
+.profile-stack {
+  display: grid;
+  gap: 18px;
+}
+
 .auth-message {
   padding: 12px 14px;
   color: #0f3d2e;
@@ -739,6 +781,16 @@ td {
   border: 1px solid var(--line);
   border-radius: 6px;
   background: #fff;
+}
+
+.check-field {
+  align-content: end;
+}
+
+.check-field input {
+  width: 22px;
+  min-height: 22px;
+  padding: 0;
 }
 
 .field input:focus,
@@ -808,6 +860,7 @@ td {
   .detail-layout,
   .checkout-layout,
   .auth-grid,
+  .profile-layout,
   .catalog-layout {
     grid-template-columns: 1fr;
   }
