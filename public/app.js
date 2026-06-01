@@ -18,6 +18,7 @@ const state = {
   staffLoaded: false,
   staffLoading: false,
   staffVerifying: false,
+  staffVerifyPromise: null,
   staffActionBusy: false,
   staffError: "",
   activeQuoteId: "",
@@ -203,15 +204,21 @@ async function staffApi(action, options = {}) {
   const token = await currentAccessToken();
   if (!token) throw new Error("Login necessario.");
   const method = options.method || "GET";
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), options.timeout || 15000);
   const response = await fetch(`/api/admin?action=${encodeURIComponent(action)}`, {
     method,
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: options.body ? JSON.stringify({ action, ...options.body }) : undefined
-  });
-  const result = await response.json();
+    body: options.body ? JSON.stringify({ action, ...options.body }) : undefined,
+    signal: controller.signal
+  }).catch((error) => {
+    if (error.name === "AbortError") throw new Error("A validacao demorou demais. Tente atualizar o painel.");
+    throw error;
+  }).finally(() => window.clearTimeout(timeout));
+  const result = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(result.message || "Nao foi possivel carregar o painel.");
   return result;
 }
@@ -224,6 +231,7 @@ async function refreshStaffSession() {
   try {
     const result = await staffApi("me");
     state.staff = { role: result.role, profile: result.profile };
+    if (result.profile) state.profile = result.profile;
     state.staffError = "";
     return state.staff;
   } catch (error) {
@@ -240,13 +248,34 @@ function staffRoleMatches(kind) {
 
 async function ensureStaffPanelAccess(kind) {
   if (staffRoleMatches(kind)) return true;
-  if (state.staffVerifying) return false;
-  state.staffVerifying = true;
+  if (!state.staffVerifyPromise) {
+    state.staffVerifying = true;
+    state.staffVerifyPromise = (async () => {
+      try {
+        await refreshStaffSession();
+        return staffRoleMatches(kind);
+      } finally {
+        state.staffVerifying = false;
+        state.staffVerifyPromise = null;
+      }
+    })();
+  }
   try {
+    return await state.staffVerifyPromise;
+  } catch (error) {
+    state.staffError = error.message || "Nao foi possivel validar o painel.";
+    return false;
+  }
+}
+
+async function loadProfileWithStaffFallback() {
+  try {
+    return await loadProfile();
+  } catch (error) {
+    state.profile = null;
+    state.authMessage = error.message || "Nao foi possivel carregar o cadastro.";
     await refreshStaffSession();
-    return staffRoleMatches(kind);
-  } finally {
-    state.staffVerifying = false;
+    return state.profile;
   }
 }
 
@@ -257,12 +286,7 @@ async function prepareLoggedSession(session, { forceMaster = false } = {}) {
   state.prefixes = [];
   state.addresses = [];
   state.history = [];
-  try {
-    await loadProfile();
-  } catch (error) {
-    state.profile = null;
-    state.authMessage = error.message || "Nao foi possivel carregar o cadastro.";
-  }
+  await loadProfileWithStaffFallback();
   await refreshStaffSession();
 
   if (forceMaster || state.staff?.role === "master") return "#/master";
@@ -298,6 +322,7 @@ function resetStaffData() {
   state.staffLoaded = false;
   state.staffLoading = false;
   state.staffVerifying = false;
+  state.staffVerifyPromise = null;
   state.staffActionBusy = false;
   state.staffError = "";
   state.activeQuoteId = "";
@@ -1253,34 +1278,32 @@ function renderStaffPanel(kind) {
 
   if (!staffRoleMatches(kind)) {
     shell(`<main class="page"><div class="empty-state">Validando acesso ao painel...</div></main>`);
-    if (!state.staffVerifying) {
-      ensureStaffPanelAccess(kind).then((hasAccess) => {
-        if (!hasAccess) {
-          shell(`
-            <main class="page">
-              <section class="result-panel">
-                <div>
-                  <p class="eyebrow">Painel indisponivel</p>
-                  <h1>Nao foi possivel abrir o painel</h1>
-                  <p class="lead">${escapeHtml(state.staffError || "Acesso nao autorizado.")}</p>
-                  <p class="selected-meta">Confira se SUPABASE_SERVICE_ROLE_KEY esta configurada na Vercel, se o SQL atualizado foi rodado no Supabase e se o ultimo deploy terminou.</p>
-                </div>
-                <div class="form-actions">
-                  <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
-                  <button class="secondary-button" type="button" data-logout>Sair</button>
-                </div>
-              </section>
-            </main>
-          `);
-          return;
-        }
-        state.staffLoaded = false;
-        renderStaffPanel(kind);
-      }).catch((error) => {
-        state.staffError = error.message || "Nao foi possivel validar o painel.";
-        renderStaffPanel(kind);
-      });
-    }
+    ensureStaffPanelAccess(kind).then((hasAccess) => {
+      if (!hasAccess) {
+        shell(`
+          <main class="page">
+            <section class="result-panel">
+              <div>
+                <p class="eyebrow">Painel indisponivel</p>
+                <h1>Nao foi possivel abrir o painel</h1>
+                <p class="lead">${escapeHtml(state.staffError || "Acesso nao autorizado.")}</p>
+                <p class="selected-meta">Confira se SUPABASE_SERVICE_ROLE_KEY esta configurada na Vercel, se o SQL atualizado foi rodado no Supabase e se o ultimo deploy terminou.</p>
+              </div>
+              <div class="form-actions">
+                <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
+                <button class="secondary-button" type="button" data-logout>Sair</button>
+              </div>
+            </section>
+          </main>
+        `);
+        return;
+      }
+      state.staffLoaded = false;
+      renderStaffPanel(kind);
+    }).catch((error) => {
+      state.staffError = error.message || "Nao foi possivel validar o painel.";
+      renderStaffPanel(kind);
+    });
     return;
   }
 
