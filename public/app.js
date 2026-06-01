@@ -1178,9 +1178,11 @@ function renderStaffPanel(kind) {
 
   if (!state.staffLoaded) {
     shell(`<main class="page"><div class="empty-state">Carregando painel...</div></main>`);
-    loadStaffData().then(() => renderStaffPanel(kind)).catch((error) => {
-      shell(`<main class="page"><div class="empty-state">${escapeHtml(error.message)}</div></main>`);
-    });
+    if (!state.staffLoading) {
+      loadStaffData().then(() => renderStaffPanel(kind)).catch((error) => {
+        shell(`<main class="page"><div class="empty-state">${escapeHtml(error.message)}</div></main>`);
+      });
+    }
     return;
   }
 
