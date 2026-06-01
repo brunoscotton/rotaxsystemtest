@@ -649,7 +649,13 @@ function renderGlobalSearchResults() {
         <span>${escapeHtml(item.description)}</span>
         <small>${escapeHtml(engine.name)} / ${escapeHtml(section.label)} / Item ${escapeHtml(item.figure)} / Qtd ${escapeHtml(item.qty[engine.id])}</small>
       </button>
-      <button class="small-button add" type="button" data-add="${item.id}" data-engine="${engine.id}">ADD</button>
+      <div class="search-add-controls">
+        <label>
+          <span>Qtd</span>
+          <input type="number" min="1" max="999" value="${Number(state.cart[item.id]?.quantity || 1)}" data-add-qty="${item.id}">
+        </label>
+        <button class="small-button add" type="button" data-add="${item.id}" data-engine="${engine.id}" data-qty-source="${item.id}">ADD</button>
+      </div>
     </div>
   `).join("");
 }
@@ -661,10 +667,10 @@ function updateGlobalSearchDropdown() {
   panel.hidden = state.globalSearch.trim().length < 2;
 }
 
-function addItem(itemId, engineId) {
+function addItem(itemId, engineId, quantityToAdd = 1) {
   const item = itemById(itemId);
   if (!item) return;
-  const quantity = Number(state.cart[itemId]?.quantity || 0) + 1;
+  const quantity = Number(state.cart[itemId]?.quantity || 0) + Math.max(1, Number(quantityToAdd || 1));
   state.cart[itemId] = { quantity, engineId };
   saveCart();
   showToast(`${item.partNumber} adicionado a lista.`);
@@ -682,6 +688,16 @@ function changeQty(itemId, delta) {
   const next = current + delta;
   if (next <= 0) removeItem(itemId);
   else {
+    state.cart[itemId].quantity = next;
+    saveCart();
+    render();
+  }
+}
+
+function setQty(itemId, quantity) {
+  const next = Math.max(0, Number(quantity || 0));
+  if (next <= 0) removeItem(itemId);
+  else if (state.cart[itemId]) {
     state.cart[itemId].quantity = next;
     saveCart();
     render();
@@ -1089,7 +1105,14 @@ function renderProceed() {
                   <strong>${escapeHtml(item.partNumber)}</strong>
                   <span class="selected-meta">${entry.quantity}x / Item ${escapeHtml(item.figure)} / ${escapeHtml(engine.name)} / ${escapeHtml(section.label)}</span>
                 </span>
-                <button class="secondary-button" type="button" data-remove="${item.id}">Remover</button>
+                <span class="checkout-item-actions">
+                  <span class="qty-controls">
+                    <button type="button" data-qty="${item.id}" data-delta="-1">-</button>
+                    <input type="number" min="1" max="999" value="${entry.quantity}" data-set-qty="${item.id}" aria-label="Quantidade do PN ${escapeHtml(item.partNumber)}">
+                    <button type="button" data-qty="${item.id}" data-delta="1">+</button>
+                  </span>
+                  <button class="secondary-button" type="button" data-remove="${item.id}">Remover</button>
+                </span>
               </div>
             `).join("") : `<div class="empty-state">Sua lista ainda esta vazia.</div>`}
           </div>
@@ -2220,7 +2243,9 @@ function bindEvents() {
     const add = event.target.closest("[data-add]");
     if (add) {
       state.globalSearch = "";
-      addItem(add.dataset.add, add.dataset.engine);
+      const qtySource = add.dataset.qtySource;
+      const qty = qtySource ? Number(findByDataValue("data-add-qty", qtySource)?.value || 1) : 1;
+      addItem(add.dataset.add, add.dataset.engine, qty);
       return;
     }
 
@@ -2279,6 +2304,12 @@ function bindEvents() {
     const matchForm = event.target.closest("[data-register-form], [data-reset-password-form]");
     if (matchForm) {
       validateRegisterMatches(matchForm);
+      return;
+    }
+
+    if (event.target.matches("[data-set-qty]")) {
+      setQty(event.target.dataset.setQty, event.target.value);
+      return;
     }
   });
 

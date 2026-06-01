@@ -144,6 +144,28 @@ button:disabled {
   border-bottom: 0;
 }
 
+.search-add-controls {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+}
+
+.search-add-controls label {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.search-add-controls input {
+  width: 68px;
+  min-height: 34px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
 .global-result-main {
   display: grid;
   gap: 2px;
@@ -664,6 +686,15 @@ td {
   gap: 7px;
 }
 
+.qty-controls input {
+  width: 62px;
+  height: 30px;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+}
+
 .qty-controls button {
   width: 30px;
   height: 30px;
@@ -671,6 +702,13 @@ td {
   border-radius: 6px;
   background: #fff;
   font-weight: 700;
+}
+
+.checkout-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .empty-state {
