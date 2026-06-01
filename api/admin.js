@@ -75,6 +75,13 @@ async function ensureFirstMasterProfile(user) {
     name: existing?.name || "Bruno Scotton",
     first_name: existing?.first_name || "Bruno",
     last_name: existing?.last_name || "Scotton",
+    prefixo: existing?.prefixo || "MASTER",
+    phone: existing?.phone || "00000000000",
+    estado: existing?.estado || "SP",
+    address: existing?.address || "CDSAV",
+    city: existing?.city || "Sao Paulo",
+    cep: existing?.cep || "00000000",
+    complement: existing?.complement || "",
     role: "master",
     status: "approved",
     updated_at: new Date().toISOString()

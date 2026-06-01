@@ -18,6 +18,13 @@ where first_name is null;
 update public.profiles
 set role = 'master',
     status = 'approved',
+    prefixo = coalesce(nullif(prefixo, ''), 'MASTER'),
+    phone = coalesce(nullif(phone, ''), '00000000000'),
+    estado = coalesce(nullif(estado, ''), 'SP'),
+    address = coalesce(nullif(address, ''), 'CDSAV'),
+    city = coalesce(nullif(city, ''), 'Sao Paulo'),
+    cep = coalesce(nullif(cep, ''), '00000000'),
+    complement = coalesce(complement, ''),
     updated_at = now()
 where lower(email) = 'bruno.scotton@cdsav.com.br';
 
