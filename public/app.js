@@ -1235,9 +1235,10 @@ function renderStaffPanel(kind) {
                 <button class="primary-button" type="button" data-copy-active-codes>Copiar codigos</button>
                 <select data-quote-status="${activeQuote.id}">
                   <option value="">Alterar status</option>
-                  <option value="accepted">Aceitar cotacao</option>
-                  <option value="finalized">Finalizar cotacao</option>
+                  <option value="accepted" ${activeQuote.status === "accepted" ? "selected" : ""}>Aceitar cotacao</option>
+                  <option value="finalized" ${activeQuote.status === "finalized" ? "selected" : ""}>Finalizar cotacao</option>
                 </select>
+                <button class="secondary-button" type="button" data-update-quote-status="${activeQuote.id}">Atualizar status</button>
               </div>
             </div>
           ` : ""}
@@ -2001,8 +2002,12 @@ async function saveStaffUser(userId) {
 }
 
 async function updateStaffQuote(quoteId, status) {
-  if (!status) return;
+  if (!status) {
+    showToast("Selecione um status antes de atualizar.");
+    return;
+  }
   await staffApi("quote", { method: "POST", body: { quoteId, status } });
+  showToast("Status atualizado.");
   await refreshStaffPanel();
 }
 
@@ -2017,7 +2022,11 @@ async function copyActiveCodes() {
 }
 
 async function logout() {
-  if (authEnabled()) await state.supabase.auth.signOut();
+  try {
+    if (authEnabled()) await state.supabase.auth.signOut();
+  } catch (error) {
+    showToast(error.message || "Nao foi possivel encerrar a sessao remota.");
+  }
   state.session = null;
   state.profile = null;
   state.prefixes = [];
@@ -2031,14 +2040,20 @@ async function logout() {
   render();
 }
 
+function handleLogoutClick(event) {
+  const logoutButton = event.target.closest("[data-logout]");
+  if (!logoutButton) return false;
+  event.preventDefault();
+  event.stopPropagation();
+  logout().catch((error) => showToast(error.message));
+  return true;
+}
+
 function bindEvents() {
+  document.addEventListener("click", handleLogoutClick, true);
+
   app.addEventListener("click", (event) => {
-    const logoutButton = event.target.closest("[data-logout]");
-    if (logoutButton) {
-      event.preventDefault();
-      logout().catch((error) => showToast(error.message));
-      return;
-    }
+    if (event.target.closest("[data-logout]")) return;
 
     const passwordToggle = event.target.closest("[data-toggle-password]");
     if (passwordToggle) {
@@ -2091,6 +2106,14 @@ function bindEvents() {
     const saveUser = event.target.closest("[data-save-user]");
     if (saveUser) {
       saveStaffUser(saveUser.dataset.saveUser).catch((error) => showToast(error.message));
+      return;
+    }
+
+    const updateQuoteStatus = event.target.closest("[data-update-quote-status]");
+    if (updateQuoteStatus) {
+      const quoteId = updateQuoteStatus.dataset.updateQuoteStatus;
+      const status = document.querySelector(`[data-quote-status="${CSS.escape(quoteId)}"]`)?.value || "";
+      updateStaffQuote(quoteId, status).catch((error) => showToast(error.message));
       return;
     }
 
@@ -2180,10 +2203,6 @@ function bindEvents() {
       return;
     }
 
-    const quoteStatus = event.target.closest("[data-quote-status]");
-    if (quoteStatus) {
-      updateStaffQuote(quoteStatus.dataset.quoteStatus, quoteStatus.value).catch((error) => showToast(error.message));
-    }
   });
 
   app.addEventListener("focusin", (event) => {
