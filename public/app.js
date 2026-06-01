@@ -1,6 +1,7 @@
 const app = document.querySelector("#app");
 const toast = document.querySelector("#toast");
 const CART_KEY = "rotaxQuoteCart";
+const FIRST_MASTER_EMAIL = "bruno.scotton@cdsav.com.br";
 
 const state = {
   catalog: null,
@@ -16,6 +17,7 @@ const state = {
   staffQuotes: [],
   staffLoaded: false,
   staffLoading: false,
+  staffError: "",
   activeQuoteId: "",
   authMessage: "",
   passwordRecovery: false,
@@ -125,6 +127,10 @@ function profileIsApproved() {
   return state.profile?.status === "approved" || ["master", "seller"].includes(state.staff?.role);
 }
 
+function isFirstMasterEmail(email) {
+  return String(email || "").trim().toLowerCase() === FIRST_MASTER_EMAIL;
+}
+
 function requiredProfileText(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
@@ -207,9 +213,11 @@ async function refreshStaffSession() {
   try {
     const result = await staffApi("me");
     state.staff = { role: result.role, profile: result.profile };
+    state.staffError = "";
     return state.staff;
-  } catch {
+  } catch (error) {
     state.staff = null;
+    state.staffError = error.message || "Nao foi possivel validar o painel.";
     return null;
   }
 }
@@ -236,6 +244,7 @@ function resetStaffData() {
   state.staffQuotes = [];
   state.staffLoaded = false;
   state.staffLoading = false;
+  state.staffError = "";
   state.activeQuoteId = "";
 }
 
@@ -1143,8 +1152,21 @@ function renderStaffPanel(kind) {
   if (!state.staff || (expectedRole === "master" && state.staff.role !== "master")) {
     refreshStaffSession().then(() => {
       if (!state.staff || (expectedRole === "master" && state.staff.role !== "master")) {
-        showToast("Acesso nao autorizado.");
-        location.hash = "#/";
+        shell(`
+          <main class="page">
+            <section class="result-panel">
+              <div>
+                <p class="eyebrow">Painel indisponivel</p>
+                <h1>Nao foi possivel abrir o painel</h1>
+                <p class="lead">${escapeHtml(state.staffError || "Acesso nao autorizado.")}</p>
+              </div>
+              <div class="form-actions">
+                <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
+                <button class="secondary-button" type="button" data-logout>Sair</button>
+              </div>
+            </section>
+          </main>
+        `);
         return;
       }
       state.staffLoaded = false;
@@ -1891,10 +1913,15 @@ async function submitLogin(form) {
 
   state.session = result.session;
   state.guestCheckout = false;
-  await loadProfile();
-  await refreshStaffSession();
   state.authMessage = "";
-  if (state.staff?.role === "master") location.hash = "#/master";
+  try {
+    await loadProfile();
+  } catch (error) {
+    state.profile = null;
+    state.authMessage = error.message || "Nao foi possivel carregar o cadastro.";
+  }
+  await refreshStaffSession();
+  if (state.staff?.role === "master" || isFirstMasterEmail(result.session?.user?.email || data.email)) location.hash = "#/master";
   else if (state.staff?.role === "seller") location.hash = "#/seller";
   else if (state.profile?.status === "pending") location.hash = "#/pending";
   else if (state.profile?.status === "blocked") {
