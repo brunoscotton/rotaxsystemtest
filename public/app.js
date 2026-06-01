@@ -132,7 +132,14 @@ function profileIsComplete() {
 }
 
 function profileIsApproved() {
-  return state.profile?.status === "approved" || ["master", "seller"].includes(state.staff?.role);
+  return state.profile?.status === "approved" || Boolean(effectiveStaffRole());
+}
+
+function effectiveStaffRole() {
+  if (["master", "seller"].includes(state.staff?.role)) return state.staff.role;
+  if (isFirstMasterEmail(authUser()?.email)) return "master";
+  if (state.profile?.status === "approved" && ["master", "seller"].includes(state.profile?.role)) return state.profile.role;
+  return "";
 }
 
 function isFirstMasterEmail(email) {
@@ -244,8 +251,8 @@ async function refreshStaffSession() {
 }
 
 function staffRoleMatches(kind) {
-  if (!state.staff) return false;
-  return kind === "master" ? state.staff.role === "master" : ["master", "seller"].includes(state.staff.role);
+  const role = effectiveStaffRole();
+  return kind === "master" ? role === "master" : ["master", "seller"].includes(role);
 }
 
 async function ensureStaffPanelAccess(kind) {
@@ -279,6 +286,13 @@ async function loadProfileWithStaffFallback() {
     await refreshStaffSession();
     return state.profile;
   }
+}
+
+async function refreshLoggedSessionSoft(session) {
+  state.session = session;
+  if (!session) return;
+  if (!state.profile) await loadProfileWithStaffFallback();
+  if (effectiveStaffRole() && !state.staff) await refreshStaffSession();
 }
 
 async function prepareLoggedSession(session, { forceMaster = false } = {}) {
@@ -763,6 +777,7 @@ function resolveHotspotItem(sectionId, engineId, figure) {
 }
 
 function shell(content) {
+  const staffRole = effectiveStaffRole();
   app.innerHTML = `
     <div class="app-shell">
       <header class="topbar">
@@ -783,8 +798,8 @@ function shell(content) {
           <div class="auth-actions">
             ${authUser() ? `
               <button class="secondary-button" type="button" data-route="#/profile/account">${escapeHtml(fullName() || authUser().email || "Perfil")}</button>
-              ${state.staff?.role === "master" ? `<button class="secondary-button" type="button" data-route="#/master">Painel Master</button>` : ""}
-              ${state.staff?.role === "seller" ? `<button class="secondary-button" type="button" data-route="#/seller">Painel Vendedor</button>` : ""}
+              ${staffRole === "master" ? `<button class="secondary-button" type="button" data-route="#/master">Painel Master</button>` : ""}
+              ${staffRole === "seller" ? `<button class="secondary-button" type="button" data-route="#/seller">Painel Vendedor</button>` : ""}
               <button class="secondary-button" type="button" data-logout>Sair</button>
             ` : `
               <button class="secondary-button" type="button" data-route="#/login">Entrar</button>
@@ -1334,7 +1349,7 @@ function renderStaffPanel(kind) {
     return;
   }
 
-  const canMaster = state.staff.role === "master";
+  const canMaster = effectiveStaffRole() === "master";
   const actionBusy = state.staffActionBusy;
   const quoteCounts = {
     new: state.staffQuotes.filter((quote) => (quote.status || "new") === "new").length,
@@ -2572,6 +2587,14 @@ async function init() {
         state.authMessage = "Digite a nova senha para concluir a redefinicao.";
         location.hash = "#/login";
         render();
+        return;
+      }
+      if (session && ["INITIAL_SESSION", "TOKEN_REFRESHED", "USER_UPDATED"].includes(event)) {
+        refreshLoggedSessionSoft(session).then(() => {
+          if (authUser()) render();
+        }).catch((error) => {
+          state.authMessage = error.message || "Nao foi possivel atualizar a sessao.";
+        });
         return;
       }
       if (session) {
