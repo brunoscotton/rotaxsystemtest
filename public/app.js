@@ -22,6 +22,7 @@ const state = {
   staffQuoteFilter: "new",
   authMessage: "",
   passwordRecovery: false,
+  passwordRecoveryIntent: false,
   guestCheckout: false,
   cart: loadCart(),
   lastQuote: null,
@@ -269,6 +270,10 @@ function clearSupabaseAuthStorage() {
   }
 }
 
+function isPasswordRecoveryUrl(url = location.href) {
+  return /[?#&]type=recovery\b/i.test(url) || /[?#&]access_token=/i.test(url) || /[?#&]code=/i.test(url);
+}
+
 function handleSupabaseAuthRedirect() {
   if (!location.hash.startsWith("#error") && !location.hash.includes("access_token=")) return false;
   const params = new URLSearchParams(location.hash.replace(/^#/, ""));
@@ -286,6 +291,7 @@ function handleSupabaseAuthRedirect() {
 
   if (params.get("type") === "recovery" || params.has("access_token")) {
     state.passwordRecovery = true;
+    state.passwordRecoveryIntent = true;
     state.authMessage = "Digite a nova senha para concluir a redefinicao.";
     location.hash = "#/login";
     return true;
@@ -1918,7 +1924,7 @@ async function sendPasswordReset() {
     showToast("Informe o e-mail para receber o link de redefinicao.");
     return;
   }
-  const redirectTo = `${location.origin}${location.pathname}`;
+  const redirectTo = `${location.origin}${location.pathname}#/login`;
   const { error } = await state.supabase.auth.resetPasswordForEmail(email, { redirectTo });
   if (error) throw error;
   state.authMessage = "Enviamos um link de redefinicao de senha para o e-mail informado.";
@@ -1934,6 +1940,7 @@ async function submitResetPassword(form) {
   const { error } = await state.supabase.auth.updateUser({ password });
   if (error) throw error;
   state.passwordRecovery = false;
+  state.passwordRecoveryIntent = false;
   state.authMessage = "Senha atualizada com sucesso.";
   renderLogin();
 }
@@ -2080,6 +2087,7 @@ async function logout() {
   resetStaffData();
   state.authMessage = "";
   state.passwordRecovery = false;
+  state.passwordRecoveryIntent = false;
   state.guestCheckout = false;
   clearSupabaseAuthStorage();
   location.hash = "#/";
@@ -2355,6 +2363,7 @@ function render() {
 }
 
 async function init() {
+  state.passwordRecoveryIntent = isPasswordRecoveryUrl();
   const [configResponse, catalogResponse] = await Promise.all([
     fetch("/api/config").catch(() => null),
     fetch("/api/catalog")
@@ -2372,16 +2381,23 @@ async function init() {
       state.session = data.session;
     }
     handleSupabaseAuthRedirect();
-    if (state.session) {
+    if (state.passwordRecoveryIntent && state.session) {
+      state.passwordRecovery = true;
+      state.authMessage = "Digite a nova senha para concluir a redefinicao.";
+      location.hash = "#/login";
+    } else if (state.session) {
       await loadProfile();
       await refreshStaffSession();
     }
     state.supabase.auth.onAuthStateChange(async (event, session) => {
       state.session = session;
-      if (event === "PASSWORD_RECOVERY") {
+      if (event === "PASSWORD_RECOVERY" || (state.passwordRecoveryIntent && session)) {
         state.passwordRecovery = true;
+        state.passwordRecoveryIntent = true;
         state.authMessage = "Digite a nova senha para concluir a redefinicao.";
         location.hash = "#/login";
+        render();
+        return;
       }
       if (session) {
         await loadProfile();
