@@ -23,6 +23,8 @@ const state = {
   staffError: "",
   activeQuoteId: "",
   staffQuoteFilter: "new",
+  staffUserSearch: "",
+  staffUserStatusFilter: "all",
   authMessage: "",
   passwordRecovery: false,
   passwordRecoveryIntent: false,
@@ -1249,6 +1251,21 @@ function quoteCopyText(quote) {
     : "";
 }
 
+function staffUserName(user) {
+  return (user.name || `${user.first_name || ""} ${user.last_name || ""}`.trim()).trim();
+}
+
+function filterStaffUsers(users) {
+  const query = normalizeSearch(state.staffUserSearch);
+  return users.filter((user) => {
+    const status = user.status || "pending";
+    const text = normalizeSearch(`${staffUserName(user)} ${user.email || ""} ${user.phone || ""}`);
+    const matchesText = !query || text.includes(query);
+    const matchesStatus = state.staffUserStatusFilter === "all" || status === state.staffUserStatusFilter;
+    return matchesText && matchesStatus;
+  });
+}
+
 function formatPartNumberForDisplay(partNumber) {
   const digits = String(partNumber || "").replace(/\D/g, "");
   if (digits.length === 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
@@ -1327,6 +1344,8 @@ function renderStaffPanel(kind) {
   const filteredQuotes = state.staffQuotes.filter((quote) => (quote.status || "new") === state.staffQuoteFilter);
   const activeQuote = filteredQuotes.find((quote) => quote.id === state.activeQuoteId) || filteredQuotes[0] || null;
   if (activeQuote && !state.activeQuoteId) state.activeQuoteId = activeQuote.id;
+  const pendingUsersCount = state.staffUsers.filter((user) => (user.status || "pending") === "pending").length;
+  const filteredUsers = filterStaffUsers(state.staffUsers);
 
   shell(`
     <main class="page auth-page">
@@ -1388,6 +1407,22 @@ function renderStaffPanel(kind) {
           ` : ""}
           <div class="form-panel">
             <h2>Cadastros</h2>
+            ${pendingUsersCount ? `<div class="pending-alert">Existem cadastros pendentes de aprovacao! (${pendingUsersCount})</div>` : ""}
+            <div class="staff-user-filters">
+              <label class="field">
+                <span>Buscar cadastro</span>
+                <input type="search" value="${escapeHtml(state.staffUserSearch)}" placeholder="Digite o nome do cliente" data-staff-user-search>
+              </label>
+              <label class="field">
+                <span>Status do cadastro</span>
+                <select data-staff-user-status-filter>
+                  <option value="all" ${state.staffUserStatusFilter === "all" ? "selected" : ""}>Todos</option>
+                  <option value="pending" ${state.staffUserStatusFilter === "pending" ? "selected" : ""}>Pendente</option>
+                  <option value="approved" ${state.staffUserStatusFilter === "approved" ? "selected" : ""}>Aprovado</option>
+                  <option value="blocked" ${state.staffUserStatusFilter === "blocked" ? "selected" : ""}>Bloqueado</option>
+                </select>
+              </label>
+            </div>
             <div class="table-wrap">
               <table class="parts-table admin-table">
                 <thead>
@@ -1401,9 +1436,9 @@ function renderStaffPanel(kind) {
                   </tr>
                 </thead>
                 <tbody>
-                  ${state.staffUsers.map((user) => `
+                  ${filteredUsers.length ? filteredUsers.map((user) => `
                     <tr>
-                      <td>${escapeHtml(user.name || `${user.first_name || ""} ${user.last_name || ""}`.trim())}</td>
+                      <td>${escapeHtml(staffUserName(user))}</td>
                       <td>${escapeHtml(user.email || "")}</td>
                       <td>${escapeHtml(user.phone || "")}</td>
                       <td>${profileStatusLabel(user.status)}</td>
@@ -1424,7 +1459,13 @@ function renderStaffPanel(kind) {
                         </div>
                       </td>
                     </tr>
-                  `).join("")}
+                  `).join("") : `
+                    <tr>
+                      <td colspan="6">
+                        <div class="empty-state">Nenhum cadastro encontrado com os filtros atuais.</div>
+                      </td>
+                    </tr>
+                  `}
                 </tbody>
               </table>
             </div>
@@ -2367,6 +2408,18 @@ function bindEvents() {
       return;
     }
 
+    if (event.target.matches("[data-staff-user-search]")) {
+      const cursor = event.target.selectionStart || 0;
+      state.staffUserSearch = event.target.value;
+      renderStaffPanel(routeParts()[0] === "master" ? "master" : "seller");
+      const input = document.querySelector("[data-staff-user-search]");
+      if (input) {
+        input.focus();
+        input.setSelectionRange(cursor, cursor);
+      }
+      return;
+    }
+
     const matchForm = event.target.closest("[data-register-form], [data-reset-password-form]");
     if (matchForm) {
       validateRegisterMatches(matchForm);
@@ -2387,6 +2440,12 @@ function bindEvents() {
 
     if (event.target.matches("[data-same-profile-address]") && event.target.checked) {
       fillDeliveryAddressFromProfile(event.target.closest("form"));
+      return;
+    }
+
+    if (event.target.matches("[data-staff-user-status-filter]")) {
+      state.staffUserStatusFilter = event.target.value || "all";
+      renderStaffPanel(routeParts()[0] === "master" ? "master" : "seller");
       return;
     }
 
