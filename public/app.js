@@ -17,6 +17,8 @@ const state = {
   staffQuotes: [],
   staffLoaded: false,
   staffLoading: false,
+  staffVerifying: false,
+  staffActionBusy: false,
   staffError: "",
   activeQuoteId: "",
   staffQuoteFilter: "new",
@@ -187,8 +189,14 @@ async function currentAccessToken() {
   if (!authEnabled()) return "";
   const { data, error } = await state.supabase.auth.getSession();
   if (error) throw error;
-  state.session = data.session;
-  return data.session?.access_token || "";
+  if (data.session?.access_token) {
+    state.session = data.session;
+    return data.session.access_token;
+  }
+  const { data: refreshed, error: refreshError } = await state.supabase.auth.refreshSession();
+  if (refreshError) throw refreshError;
+  state.session = refreshed.session;
+  return refreshed.session?.access_token || "";
 }
 
 async function staffApi(action, options = {}) {
@@ -222,6 +230,23 @@ async function refreshStaffSession() {
     state.staff = null;
     state.staffError = error.message || "Nao foi possivel validar o painel.";
     return null;
+  }
+}
+
+function staffRoleMatches(kind) {
+  if (!state.staff) return false;
+  return kind === "master" ? state.staff.role === "master" : ["master", "seller"].includes(state.staff.role);
+}
+
+async function ensureStaffPanelAccess(kind) {
+  if (staffRoleMatches(kind)) return true;
+  if (state.staffVerifying) return false;
+  state.staffVerifying = true;
+  try {
+    await refreshStaffSession();
+    return staffRoleMatches(kind);
+  } finally {
+    state.staffVerifying = false;
   }
 }
 
@@ -272,6 +297,8 @@ function resetStaffData() {
   state.staffQuotes = [];
   state.staffLoaded = false;
   state.staffLoading = false;
+  state.staffVerifying = false;
+  state.staffActionBusy = false;
   state.staffError = "";
   state.activeQuoteId = "";
   state.staffQuoteFilter = "new";
@@ -1224,32 +1251,36 @@ function renderStaffPanel(kind) {
     return;
   }
 
-  const expectedRole = kind === "master" ? "master" : "seller";
-  if (!state.staff || (expectedRole === "master" && state.staff.role !== "master")) {
-    refreshStaffSession().then(() => {
-      if (!state.staff || (expectedRole === "master" && state.staff.role !== "master")) {
-        shell(`
-          <main class="page">
-            <section class="result-panel">
-              <div>
-                <p class="eyebrow">Painel indisponivel</p>
-                <h1>Nao foi possivel abrir o painel</h1>
-                <p class="lead">${escapeHtml(state.staffError || "Acesso nao autorizado.")}</p>
-                <p class="selected-meta">Confira se SUPABASE_SERVICE_ROLE_KEY esta configurada na Vercel, se o SQL atualizado foi rodado no Supabase e se o ultimo deploy terminou.</p>
-              </div>
-              <div class="form-actions">
-                <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
-                <button class="secondary-button" type="button" data-logout>Sair</button>
-              </div>
-            </section>
-          </main>
-        `);
-        return;
-      }
-      state.staffLoaded = false;
-      renderStaffPanel(kind);
-    });
-    shell(`<main class="page"><div class="empty-state">Carregando painel...</div></main>`);
+  if (!staffRoleMatches(kind)) {
+    shell(`<main class="page"><div class="empty-state">Validando acesso ao painel...</div></main>`);
+    if (!state.staffVerifying) {
+      ensureStaffPanelAccess(kind).then((hasAccess) => {
+        if (!hasAccess) {
+          shell(`
+            <main class="page">
+              <section class="result-panel">
+                <div>
+                  <p class="eyebrow">Painel indisponivel</p>
+                  <h1>Nao foi possivel abrir o painel</h1>
+                  <p class="lead">${escapeHtml(state.staffError || "Acesso nao autorizado.")}</p>
+                  <p class="selected-meta">Confira se SUPABASE_SERVICE_ROLE_KEY esta configurada na Vercel, se o SQL atualizado foi rodado no Supabase e se o ultimo deploy terminou.</p>
+                </div>
+                <div class="form-actions">
+                  <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
+                  <button class="secondary-button" type="button" data-logout>Sair</button>
+                </div>
+              </section>
+            </main>
+          `);
+          return;
+        }
+        state.staffLoaded = false;
+        renderStaffPanel(kind);
+      }).catch((error) => {
+        state.staffError = error.message || "Nao foi possivel validar o painel.";
+        renderStaffPanel(kind);
+      });
+    }
     return;
   }
 
@@ -1264,6 +1295,7 @@ function renderStaffPanel(kind) {
   }
 
   const canMaster = state.staff.role === "master";
+  const actionBusy = state.staffActionBusy;
   const quoteCounts = {
     new: state.staffQuotes.filter((quote) => (quote.status || "new") === "new").length,
     accepted: state.staffQuotes.filter((quote) => quote.status === "accepted").length,
@@ -1281,7 +1313,7 @@ function renderStaffPanel(kind) {
           <h1>${canMaster ? "Controle geral" : "Solicitacoes de cotacao"}</h1>
           <p class="lead">${canMaster ? "Visualize cadastros, solicitacoes e privilegios." : "Aceite e finalize solicitacoes recebidas."}</p>
         </div>
-        <button class="secondary-button" type="button" data-refresh-staff>Atualizar</button>
+        <button class="secondary-button" type="button" data-refresh-staff ${actionBusy ? "disabled" : ""}>Atualizar</button>
       </section>
       <section class="staff-layout">
         <aside class="form-panel">
@@ -1320,14 +1352,14 @@ function renderStaffPanel(kind) {
               <h3>Codigos para copiar</h3>
               <pre class="quote-text" data-copy-codes>${escapeHtml(quoteCopyText(activeQuote))}</pre>
               <div class="form-actions">
-                <button class="primary-button" type="button" data-copy-active-codes>Copiar codigos</button>
-                <select data-quote-status="${activeQuote.id}">
+                <button class="primary-button" type="button" data-copy-active-codes ${actionBusy ? "disabled" : ""}>Copiar codigos</button>
+                <select data-quote-status="${activeQuote.id}" ${actionBusy ? "disabled" : ""}>
                   <option value="">Alterar status</option>
                   <option value="accepted" ${activeQuote.status === "accepted" ? "selected" : ""}>Aceitar cotacao</option>
                   <option value="finalized" ${activeQuote.status === "finalized" ? "selected" : ""}>Finalizar cotacao</option>
                 </select>
-                <button class="secondary-button" type="button" data-update-quote-status="${activeQuote.id}">Atualizar status</button>
-                ${canMaster ? `<button class="secondary-button danger-button" type="button" data-delete-quote="${activeQuote.id}">Excluir solicitacao</button>` : ""}
+                <button class="secondary-button" type="button" data-update-quote-status="${activeQuote.id}" ${actionBusy ? "disabled" : ""}>${actionBusy ? "Atualizando..." : "Atualizar status"}</button>
+                ${canMaster ? `<button class="secondary-button danger-button" type="button" data-delete-quote="${activeQuote.id}" ${actionBusy ? "disabled" : ""}>Excluir solicitacao</button>` : ""}
               </div>
             </div>
           ` : ""}
@@ -2075,9 +2107,11 @@ async function submitDeliveryAddress(form) {
 }
 
 async function refreshStaffPanel() {
+  const view = routeParts()[0] === "master" ? "master" : "seller";
+  const hasAccess = await ensureStaffPanelAccess(view);
+  if (!hasAccess) throw new Error(state.staffError || "Nao foi possivel validar o painel.");
   state.staffLoaded = false;
   await loadStaffData();
-  const view = routeParts()[0] === "master" ? "master" : "seller";
   renderStaffPanel(view);
 }
 
@@ -2089,15 +2123,24 @@ async function saveStaffUser(userId) {
 }
 
 async function updateStaffQuote(quoteId, status) {
+  if (state.staffActionBusy) return;
   if (!status) {
     showToast("Selecione um status antes de atualizar.");
     return;
   }
-  await staffApi("quote", { method: "POST", body: { quoteId, status } });
-  state.staffQuoteFilter = status;
-  state.activeQuoteId = quoteId;
-  showToast("Status atualizado.");
-  await refreshStaffPanel();
+  state.staffActionBusy = true;
+  renderStaffPanel(routeParts()[0] === "master" ? "master" : "seller");
+  try {
+    await staffApi("quote", { method: "POST", body: { quoteId, status } });
+    state.staffQuoteFilter = status;
+    state.activeQuoteId = quoteId;
+    state.staffLoaded = false;
+    await loadStaffData();
+    showToast("Status atualizado.");
+  } finally {
+    state.staffActionBusy = false;
+    renderStaffPanel(routeParts()[0] === "master" ? "master" : "seller");
+  }
 }
 
 async function deleteStaffQuote(quoteId) {
