@@ -250,6 +250,25 @@ function resetStaffData() {
   state.staffQuoteFilter = "new";
 }
 
+function closestElement(target, selector) {
+  if (target?.closest) return target.closest(selector);
+  return target?.parentElement?.closest(selector) || null;
+}
+
+function findByDataValue(attribute, value) {
+  return Array.from(document.querySelectorAll(`[${attribute}]`)).find((element) => element.dataset[attribute.replace(/^data-/, "").replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())] === value) || null;
+}
+
+function clearSupabaseAuthStorage() {
+  try {
+    Object.keys(localStorage)
+      .filter((key) => key.startsWith("sb-") && key.includes("auth-token"))
+      .forEach((key) => localStorage.removeItem(key));
+  } catch {
+    // Local storage may be unavailable in strict browser modes.
+  }
+}
+
 function handleSupabaseAuthRedirect() {
   if (!location.hash.startsWith("#error") && !location.hash.includes("access_token=")) return false;
   const params = new URLSearchParams(location.hash.replace(/^#/, ""));
@@ -2007,8 +2026,8 @@ async function refreshStaffPanel() {
 }
 
 async function saveStaffUser(userId) {
-  const role = document.querySelector(`[data-user-role="${CSS.escape(userId)}"]`)?.value || "usuario";
-  const status = document.querySelector(`[data-user-status="${CSS.escape(userId)}"]`)?.value || "pending";
+  const role = findByDataValue("data-user-role", userId)?.value || "usuario";
+  const status = findByDataValue("data-user-status", userId)?.value || "pending";
   await staffApi("user", { method: "POST", body: { userId, role, status } });
   await refreshStaffPanel();
 }
@@ -2019,6 +2038,8 @@ async function updateStaffQuote(quoteId, status) {
     return;
   }
   await staffApi("quote", { method: "POST", body: { quoteId, status } });
+  state.staffQuoteFilter = status;
+  state.activeQuoteId = quoteId;
   showToast("Status atualizado.");
   await refreshStaffPanel();
 }
@@ -2042,11 +2063,7 @@ async function copyActiveCodes() {
 }
 
 async function logout() {
-  try {
-    if (authEnabled()) await state.supabase.auth.signOut();
-  } catch (error) {
-    showToast(error.message || "Nao foi possivel encerrar a sessao remota.");
-  }
+  const supabase = state.supabase;
   state.session = null;
   state.profile = null;
   state.prefixes = [];
@@ -2056,12 +2073,16 @@ async function logout() {
   state.authMessage = "";
   state.passwordRecovery = false;
   state.guestCheckout = false;
+  clearSupabaseAuthStorage();
   location.hash = "#/";
   render();
+  if (authEnabled() && supabase) {
+    supabase.auth.signOut().catch((error) => showToast(error.message || "Nao foi possivel encerrar a sessao remota."));
+  }
 }
 
 function handleLogoutClick(event) {
-  const logoutButton = event.target.closest("[data-logout]");
+  const logoutButton = closestElement(event.target, "[data-logout]");
   if (!logoutButton) return false;
   event.preventDefault();
   event.stopPropagation();
@@ -2140,7 +2161,7 @@ function bindEvents() {
     const updateQuoteStatus = event.target.closest("[data-update-quote-status]");
     if (updateQuoteStatus) {
       const quoteId = updateQuoteStatus.dataset.updateQuoteStatus;
-      const status = document.querySelector(`[data-quote-status="${CSS.escape(quoteId)}"]`)?.value || "";
+      const status = findByDataValue("data-quote-status", quoteId)?.value || "";
       updateStaffQuote(quoteId, status).catch((error) => showToast(error.message));
       return;
     }
