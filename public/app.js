@@ -11,6 +11,12 @@ const state = {
   prefixes: [],
   addresses: [],
   history: [],
+  staff: null,
+  staffUsers: [],
+  staffQuotes: [],
+  staffLoaded: false,
+  staffLoading: false,
+  activeQuoteId: "",
   authMessage: "",
   passwordRecovery: false,
   guestCheckout: false,
@@ -115,6 +121,10 @@ function profileIsComplete() {
   return ["name", "prefix", "phone", "email", "state", "address", "city", "cep"].every((field) => requiredProfileText(customer[field]));
 }
 
+function profileIsApproved() {
+  return state.profile?.status === "approved" || ["master", "seller"].includes(state.staff?.role);
+}
+
 function requiredProfileText(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
@@ -127,7 +137,7 @@ async function loadProfile() {
 
   const { data, error } = await state.supabase
     .from("profiles")
-    .select("name,first_name,last_name,prefixo,phone,email,estado,address,city,cep,complement")
+    .select("name,first_name,last_name,prefixo,phone,email,estado,address,city,cep,complement,role,status")
     .eq("id", authUser().id)
     .maybeSingle();
 
@@ -149,7 +159,7 @@ async function loadProfile() {
       .order("created_at", { ascending: true }),
     state.supabase
       .from("quote_history")
-      .select("id,control_number,created_at,items")
+      .select("id,control_number,created_at,items,status")
       .eq("user_id", authUser().id)
       .order("created_at", { ascending: false })
       .limit(30)
@@ -170,6 +180,63 @@ async function currentAccessToken() {
   if (error) throw error;
   state.session = data.session;
   return data.session?.access_token || "";
+}
+
+async function staffApi(action, options = {}) {
+  const token = await currentAccessToken();
+  if (!token) throw new Error("Login necessario.");
+  const method = options.method || "GET";
+  const response = await fetch(`/api/admin?action=${encodeURIComponent(action)}`, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: options.body ? JSON.stringify({ action, ...options.body }) : undefined
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || "Nao foi possivel carregar o painel.");
+  return result;
+}
+
+async function refreshStaffSession() {
+  if (!authEnabled() || !authUser()) {
+    state.staff = null;
+    return null;
+  }
+  try {
+    const result = await staffApi("me");
+    state.staff = { role: result.role, profile: result.profile };
+    return state.staff;
+  } catch {
+    state.staff = null;
+    return null;
+  }
+}
+
+async function loadStaffData() {
+  if (state.staffLoading) return;
+  state.staffLoading = true;
+  try {
+    const [usersResult, quotesResult] = await Promise.all([
+      staffApi("users"),
+      staffApi("quotes")
+    ]);
+    state.staffUsers = usersResult.users || [];
+    state.staffQuotes = quotesResult.quotes || [];
+    state.staffLoaded = true;
+  } finally {
+    state.staffLoading = false;
+  }
+}
+
+function resetStaffData() {
+  state.staff = null;
+  state.staffUsers = [];
+  state.staffQuotes = [];
+  state.staffLoaded = false;
+  state.staffLoading = false;
+  state.activeQuoteId = "";
 }
 
 function handleSupabaseAuthRedirect() {
@@ -584,6 +651,8 @@ function shell(content) {
           <div class="auth-actions">
             ${authUser() ? `
               <button class="secondary-button" type="button" data-route="#/profile/account">${escapeHtml(fullName() || authUser().email || "Perfil")}</button>
+              ${state.staff?.role === "master" ? `<button class="secondary-button" type="button" data-route="#/master">Painel Master</button>` : ""}
+              ${state.staff?.role === "seller" ? `<button class="secondary-button" type="button" data-route="#/seller">Painel Vendedor</button>` : ""}
               <button class="secondary-button" type="button" data-logout>Sair</button>
             ` : `
               <button class="secondary-button" type="button" data-route="#/login">Entrar</button>
@@ -887,6 +956,11 @@ function renderProceed() {
     return;
   }
 
+  if (useProfile && !profileIsApproved()) {
+    renderPending();
+    return;
+  }
+
   shell(`
     <main class="page">
       <section class="page-header">
@@ -985,6 +1059,211 @@ function renderDone() {
           <button class="primary-button" type="button" data-download-quote>Baixar TXT</button>
           <button class="primary-button" type="button" data-route="#/">Nova solicitacao</button>
         </div>
+      </section>
+    </main>
+  `);
+}
+
+function renderPending() {
+  shell(`
+    <main class="page">
+      <section class="result-panel">
+        <div>
+          <p class="eyebrow">Cadastro em analise</p>
+          <h1>Cadastro enviado para analise</h1>
+          <p class="lead">Assim que concluido, voce sera notificado.</p>
+        </div>
+        <div class="form-actions">
+          <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
+          <button class="secondary-button" type="button" data-logout>Sair</button>
+        </div>
+      </section>
+    </main>
+  `);
+}
+
+function quoteStatusLabel(status) {
+  return {
+    new: "Solicitacao nao aceita",
+    accepted: "Solicitacao aceita",
+    finalized: "Solicitacao finalizada"
+  }[status] || "Solicitacao nao aceita";
+}
+
+function profileStatusLabel(status) {
+  return {
+    pending: "Pendente",
+    approved: "Aprovado",
+    blocked: "Bloqueado"
+  }[status] || "Pendente";
+}
+
+function roleLabel(role) {
+  return {
+    master: "Master",
+    seller: "Vendedor",
+    usuario: "Usuario"
+  }[role] || "Usuario";
+}
+
+function quoteCopyText(quote) {
+  return Array.isArray(quote?.items)
+    ? quote.items.map((item) => `${item.quantity || 1}\t${formatPartNumberForDisplay(item.partNumber || "")}`).join("\n")
+    : "";
+}
+
+function formatPartNumberForDisplay(partNumber) {
+  const digits = String(partNumber || "").replace(/\D/g, "");
+  if (digits.length === 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+  return String(partNumber || "");
+}
+
+function timelineStepClass(currentStatus, stepStatus) {
+  const order = { new: 0, accepted: 1, finalized: 2 };
+  return order[currentStatus || "new"] >= order[stepStatus] ? "active" : "";
+}
+
+function renderHistoryTimeline(status = "new") {
+  return `
+    <div class="timeline">
+      <span class="${timelineStepClass(status, "new")}">Solicitacao enviada</span>
+      <span class="${timelineStepClass(status, "accepted")}">Solicitacao Aceita, em processamento</span>
+      <span class="${timelineStepClass(status, "finalized")}">Solicitacao finalizada e enviada</span>
+    </div>
+  `;
+}
+
+function renderStaffPanel(kind) {
+  if (!authEnabled() || !authUser()) {
+    location.hash = "#/login";
+    return;
+  }
+
+  const expectedRole = kind === "master" ? "master" : "seller";
+  if (!state.staff || (expectedRole === "master" && state.staff.role !== "master")) {
+    refreshStaffSession().then(() => {
+      if (!state.staff || (expectedRole === "master" && state.staff.role !== "master")) {
+        showToast("Acesso nao autorizado.");
+        location.hash = "#/";
+        return;
+      }
+      state.staffLoaded = false;
+      renderStaffPanel(kind);
+    });
+    shell(`<main class="page"><div class="empty-state">Carregando painel...</div></main>`);
+    return;
+  }
+
+  if (!state.staffLoaded) {
+    shell(`<main class="page"><div class="empty-state">Carregando painel...</div></main>`);
+    loadStaffData().then(() => renderStaffPanel(kind)).catch((error) => {
+      shell(`<main class="page"><div class="empty-state">${escapeHtml(error.message)}</div></main>`);
+    });
+    return;
+  }
+
+  const canMaster = state.staff.role === "master";
+  const activeQuote = state.staffQuotes.find((quote) => quote.id === state.activeQuoteId) || state.staffQuotes[0] || null;
+  if (activeQuote && !state.activeQuoteId) state.activeQuoteId = activeQuote.id;
+
+  shell(`
+    <main class="page auth-page">
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">${canMaster ? "Painel Master" : "Painel Vendedor"}</p>
+          <h1>${canMaster ? "Controle geral" : "Solicitacoes de cotacao"}</h1>
+          <p class="lead">${canMaster ? "Visualize cadastros, solicitacoes e privilegios." : "Aceite e finalize solicitacoes recebidas."}</p>
+        </div>
+        <button class="secondary-button" type="button" data-refresh-staff>Atualizar</button>
+      </section>
+      <section class="staff-layout">
+        <aside class="form-panel">
+          <h2>Solicitacoes</h2>
+          <div class="quote-list">
+            ${state.staffQuotes.length ? state.staffQuotes.map((quote) => `
+              <button class="staff-quote ${quote.id === state.activeQuoteId ? "active" : ""}" type="button" data-staff-quote="${quote.id}">
+                <span class="status-dot ${escapeHtml(quote.status || "new")}"></span>
+                <span>
+                  <strong>${escapeHtml(quote.control_number)}</strong>
+                  <small>${escapeHtml(quote.customer?.name || "Cliente")} / ${quoteStatusLabel(quote.status)}</small>
+                </span>
+              </button>
+            `).join("") : `<div class="empty-state">Nenhuma solicitacao encontrada.</div>`}
+          </div>
+        </aside>
+        <section class="profile-stack">
+          ${activeQuote ? `
+            <div class="form-panel">
+              <h2>${escapeHtml(activeQuote.control_number)}</h2>
+              <div class="admin-grid">
+                <span><strong>Nome:</strong> ${escapeHtml(activeQuote.customer?.name || "")}</span>
+                <span><strong>Prefixo:</strong> ${escapeHtml(activeQuote.customer?.prefix || "")}</span>
+                <span><strong>Telefone:</strong> ${escapeHtml(activeQuote.customer?.phone || "")}</span>
+                <span><strong>E-mail:</strong> ${escapeHtml(activeQuote.customer?.email || "")}</span>
+                <span><strong>Estado:</strong> ${escapeHtml(activeQuote.customer?.state || "")}</span>
+                <span><strong>Endereco:</strong> ${escapeHtml(activeQuote.customer?.address || "")}</span>
+                <span><strong>Cidade:</strong> ${escapeHtml(activeQuote.customer?.city || "")}</span>
+                <span><strong>CEP:</strong> ${escapeHtml(activeQuote.customer?.cep || "")}</span>
+              </div>
+              <h3>Codigos para copiar</h3>
+              <pre class="quote-text" data-copy-codes>${escapeHtml(quoteCopyText(activeQuote))}</pre>
+              <div class="form-actions">
+                <button class="primary-button" type="button" data-copy-active-codes>Copiar codigos</button>
+                <select data-quote-status="${activeQuote.id}">
+                  <option value="">Alterar status</option>
+                  <option value="accepted">Aceitar cotacao</option>
+                  <option value="finalized">Finalizar cotacao</option>
+                </select>
+              </div>
+            </div>
+          ` : ""}
+          <div class="form-panel">
+            <h2>Cadastros</h2>
+            <div class="table-wrap">
+              <table class="parts-table admin-table">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Status</th>
+                    <th>Perfil</th>
+                    ${canMaster ? "<th>Acoes</th>" : ""}
+                  </tr>
+                </thead>
+                <tbody>
+                  ${state.staffUsers.map((user) => `
+                    <tr>
+                      <td>${escapeHtml(user.name || `${user.first_name || ""} ${user.last_name || ""}`.trim())}</td>
+                      <td>${escapeHtml(user.email || "")}</td>
+                      <td>${escapeHtml(user.phone || "")}</td>
+                      <td>${profileStatusLabel(user.status)}</td>
+                      <td>${roleLabel(user.role)}</td>
+                      ${canMaster ? `
+                        <td>
+                          <div class="inline-actions">
+                            <select data-user-role="${user.id}">
+                              <option value="usuario" ${user.role === "usuario" ? "selected" : ""}>Usuario</option>
+                              <option value="seller" ${user.role === "seller" ? "selected" : ""}>Vendedor</option>
+                              <option value="master" ${user.role === "master" ? "selected" : ""}>Master</option>
+                            </select>
+                            <select data-user-status="${user.id}">
+                              <option value="pending" ${user.status === "pending" ? "selected" : ""}>Pendente</option>
+                              <option value="approved" ${user.status === "approved" ? "selected" : ""}>Aprovado</option>
+                              <option value="blocked" ${user.status === "blocked" ? "selected" : ""}>Bloqueado</option>
+                            </select>
+                            <button class="small-button" type="button" data-save-user="${user.id}">Salvar</button>
+                          </div>
+                        </td>
+                      ` : ""}
+                    </tr>
+                  `).join("")}
+                </tbody>
+              </table>
+            </div>
+            ${canMaster ? `<p class="selected-meta">Senhas nao sao exibidas por seguranca. Use redefinicao de senha quando necessario.</p>` : ""}
+          </div>
+        </section>
       </section>
     </main>
   `);
@@ -1154,7 +1433,7 @@ function renderProfile(tab = "account") {
     ["address", "Endereco"],
     ["delivery", "Enderecos de entrega"],
     ["prefixes", "Prefixos"],
-    ["history", "Historico"]
+    ["history", "Acompanhar solicitacoes"]
   ];
 
   const accountPanel = `
@@ -1331,7 +1610,8 @@ function renderProfile(tab = "account") {
           <div class="quote-item">
             <span>
               <strong>${escapeHtml(entry.control_number)}</strong>
-              <span class="selected-meta">${new Date(entry.created_at).toLocaleString("pt-BR")} / ${Array.isArray(entry.items) ? entry.items.length : 0} itens</span>
+              <span class="selected-meta">${new Date(entry.created_at).toLocaleString("pt-BR")} / ${Array.isArray(entry.items) ? entry.items.length : 0} itens / ${quoteStatusLabel(entry.status)}</span>
+              ${renderHistoryTimeline(entry.status || "new")}
             </span>
           </div>
         `).join("") : `<div class="empty-state">Nenhuma solicitacao enviada ainda.</div>`}
@@ -1612,8 +1892,15 @@ async function submitLogin(form) {
   state.session = result.session;
   state.guestCheckout = false;
   await loadProfile();
+  await refreshStaffSession();
   state.authMessage = "";
-  location.hash = profileIsComplete() ? "#/proceed" : "#/profile/account";
+  if (state.staff?.role === "master") location.hash = "#/master";
+  else if (state.staff?.role === "seller") location.hash = "#/seller";
+  else if (state.profile?.status === "pending") location.hash = "#/pending";
+  else if (state.profile?.status === "blocked") {
+    state.authMessage = "Seu cadastro esta bloqueado. Entre em contato com a CDSAV.";
+    location.hash = "#/pending";
+  } else location.hash = profileIsComplete() ? "#/proceed" : "#/profile/account";
   render();
 }
 
@@ -1639,8 +1926,8 @@ async function submitRegister(form) {
 
   await saveProfileFromForm(form);
   await savePrefixFromForm(form);
-  state.authMessage = "Cadastro criado com sucesso.";
-  location.hash = "#/proceed";
+  state.authMessage = "Cadastro enviado para analise.";
+  location.hash = "#/pending";
   render();
 }
 
@@ -1670,6 +1957,36 @@ async function submitDeliveryAddress(form) {
   renderProfile("delivery");
 }
 
+async function refreshStaffPanel() {
+  state.staffLoaded = false;
+  await loadStaffData();
+  const view = routeParts()[0] === "master" ? "master" : "seller";
+  renderStaffPanel(view);
+}
+
+async function saveStaffUser(userId) {
+  const role = document.querySelector(`[data-user-role="${CSS.escape(userId)}"]`)?.value || "usuario";
+  const status = document.querySelector(`[data-user-status="${CSS.escape(userId)}"]`)?.value || "pending";
+  await staffApi("user", { method: "POST", body: { userId, role, status } });
+  await refreshStaffPanel();
+}
+
+async function updateStaffQuote(quoteId, status) {
+  if (!status) return;
+  await staffApi("quote", { method: "POST", body: { quoteId, status } });
+  await refreshStaffPanel();
+}
+
+async function copyActiveCodes() {
+  const text = document.querySelector("[data-copy-codes]")?.textContent || "";
+  if (!text.trim()) {
+    showToast("Nao ha codigos para copiar.");
+    return;
+  }
+  await navigator.clipboard.writeText(text);
+  showToast("Codigos copiados.");
+}
+
 async function logout() {
   if (authEnabled()) await state.supabase.auth.signOut();
   state.session = null;
@@ -1677,6 +1994,7 @@ async function logout() {
   state.prefixes = [];
   state.addresses = [];
   state.history = [];
+  resetStaffData();
   state.authMessage = "";
   state.passwordRecovery = false;
   state.guestCheckout = false;
@@ -1719,6 +2037,31 @@ function bindEvents() {
     if (guestCheckout) {
       state.guestCheckout = true;
       renderProceed();
+      return;
+    }
+
+    const staffQuote = event.target.closest("[data-staff-quote]");
+    if (staffQuote) {
+      state.activeQuoteId = staffQuote.dataset.staffQuote;
+      renderStaffPanel(routeParts()[0] === "master" ? "master" : "seller");
+      return;
+    }
+
+    const refreshStaff = event.target.closest("[data-refresh-staff]");
+    if (refreshStaff) {
+      refreshStaffPanel().catch((error) => showToast(error.message));
+      return;
+    }
+
+    const copyCodes = event.target.closest("[data-copy-active-codes]");
+    if (copyCodes) {
+      copyActiveCodes().catch((error) => showToast(error.message));
+      return;
+    }
+
+    const saveUser = event.target.closest("[data-save-user]");
+    if (saveUser) {
+      saveStaffUser(saveUser.dataset.saveUser).catch((error) => showToast(error.message));
       return;
     }
 
@@ -1805,6 +2148,12 @@ function bindEvents() {
 
     if (event.target.matches("[data-same-profile-address]") && event.target.checked) {
       fillDeliveryAddressFromProfile(event.target.closest("form"));
+      return;
+    }
+
+    const quoteStatus = event.target.closest("[data-quote-status]");
+    if (quoteStatus) {
+      updateStaffQuote(quoteStatus.dataset.quoteStatus, quoteStatus.value).catch((error) => showToast(error.message));
     }
   });
 
@@ -1883,6 +2232,9 @@ function render() {
   else if (view === "proceed") renderProceed();
   else if (view === "login") renderLogin();
   else if (view === "profile") renderProfile(engineId);
+  else if (view === "pending") renderPending();
+  else if (view === "master") renderStaffPanel("master");
+  else if (view === "seller") renderStaffPanel("seller");
   else if (view === "done") renderDone();
   else renderHome();
 }
@@ -1905,7 +2257,10 @@ async function init() {
       state.session = data.session;
     }
     handleSupabaseAuthRedirect();
-    if (state.session) await loadProfile();
+    if (state.session) {
+      await loadProfile();
+      await refreshStaffSession();
+    }
     state.supabase.auth.onAuthStateChange(async (event, session) => {
       state.session = session;
       if (event === "PASSWORD_RECOVERY") {
@@ -1913,12 +2268,16 @@ async function init() {
         state.authMessage = "Digite a nova senha para concluir a redefinicao.";
         location.hash = "#/login";
       }
-      if (session) await loadProfile();
+      if (session) {
+        await loadProfile();
+        await refreshStaffSession();
+      }
       else {
         state.profile = null;
         state.prefixes = [];
         state.addresses = [];
         state.history = [];
+        resetStaffData();
       }
       render();
     });

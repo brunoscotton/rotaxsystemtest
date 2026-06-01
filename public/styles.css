@@ -710,6 +710,13 @@ td {
   align-items: start;
 }
 
+.staff-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.55fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
 .profile-sidebar {
   display: grid;
   overflow: hidden;
@@ -826,6 +833,90 @@ td {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 8px;
+}
+
+.staff-quote {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.staff-quote.active {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0, 153, 216, 0.14);
+}
+
+.staff-quote small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.status-dot {
+  width: 11px;
+  height: 11px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: #35a853;
+}
+
+.status-dot.accepted {
+  background: #f6a623;
+}
+
+.status-dot.finalized {
+  background: #d94b43;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+  margin: 14px 0 20px;
+}
+
+.admin-table select {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(680px, 100%);
+  margin-top: 10px;
+}
+
+.timeline span {
+  position: relative;
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.timeline span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #c8d2da;
+}
+
+.timeline span.active::before {
+  background: #35a853;
 }
 
 .check-field {

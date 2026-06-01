@@ -6,11 +6,20 @@ alter table public.profiles
   add column if not exists address text,
   add column if not exists city text,
   add column if not exists cep text,
-  add column if not exists complement text;
+  add column if not exists complement text,
+  add column if not exists role text not null default 'usuario' check (role in ('master', 'seller', 'usuario')),
+  add column if not exists status text not null default 'pending' check (status in ('pending', 'approved', 'blocked')),
+  add column if not exists updated_at timestamptz not null default now();
 
 update public.profiles
 set first_name = coalesce(first_name, name)
 where first_name is null;
+
+update public.profiles
+set role = 'master',
+    status = 'approved',
+    updated_at = now()
+where lower(email) = 'bruno.scotton@cdsav.com.br';
 
 create table if not exists public.user_prefixes (
   id uuid primary key default gen_random_uuid(),
@@ -48,12 +57,23 @@ where is_default;
 
 create table if not exists public.quote_history (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references auth.users(id) on delete cascade,
+  user_id uuid references auth.users(id) on delete set null,
   control_number text not null,
   customer jsonb not null,
   items jsonb not null,
+  status text not null default 'new' check (status in ('new', 'accepted', 'finalized')),
+  accepted_by uuid references auth.users(id) on delete set null,
+  accepted_at timestamptz,
+  finalized_at timestamptz,
   created_at timestamptz not null default now()
 );
+
+alter table public.quote_history
+  alter column user_id drop not null,
+  add column if not exists status text not null default 'new' check (status in ('new', 'accepted', 'finalized')),
+  add column if not exists accepted_by uuid references auth.users(id) on delete set null,
+  add column if not exists accepted_at timestamptz,
+  add column if not exists finalized_at timestamptz;
 
 alter table public.quote_history enable row level security;
 

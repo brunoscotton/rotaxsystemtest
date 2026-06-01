@@ -3,7 +3,8 @@ import nodemailer from "nodemailer";
 function supabaseConfig() {
   return {
     url: process.env.SUPABASE_URL,
-    anonKey: process.env.SUPABASE_ANON_KEY
+    anonKey: process.env.SUPABASE_ANON_KEY,
+    serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY
   };
 }
 
@@ -12,19 +13,25 @@ function authIsConfigured() {
   return Boolean(config.url && config.anonKey);
 }
 
+function serviceIsConfigured() {
+  const config = supabaseConfig();
+  return Boolean(config.url && config.serviceRoleKey);
+}
+
 function bearerToken(req) {
   const header = req.headers.authorization || req.headers.Authorization || "";
   const match = String(header).match(/^Bearer\s+(.+)$/i);
   return match ? match[1] : "";
 }
 
-async function supabaseFetch(path, { token, query = "", method = "GET", body } = {}) {
+async function supabaseFetch(path, { token, service = false, query = "", method = "GET", body } = {}) {
   const config = supabaseConfig();
+  const key = service ? config.serviceRoleKey : config.anonKey;
   const response = await fetch(`${config.url}${path}${query}`, {
     method,
     headers: {
-      apikey: config.anonKey,
-      Authorization: `Bearer ${token}`,
+      apikey: key,
+      Authorization: `Bearer ${token || key}`,
       "Content-Type": "application/json",
       Prefer: method === "POST" ? "return=representation" : ""
     },
@@ -138,17 +145,30 @@ function buildQuoteText({ customer, items }) {
 }
 
 async function saveQuoteHistory({ customer, filename, items }) {
-  if (!authIsConfigured() || !customer._userId || !customer._token) return;
+  if (!authIsConfigured()) return;
   const { _token, _userId, ...safeCustomer } = customer;
+  const body = {
+    user_id: _userId || null,
+    control_number: filename,
+    customer: safeCustomer,
+    items,
+    status: "new"
+  };
+
+  if (serviceIsConfigured()) {
+    await supabaseFetch("/rest/v1/quote_history", {
+      service: true,
+      method: "POST",
+      body
+    }).catch(() => null);
+    return;
+  }
+
+  if (!_userId || !_token) return;
   await supabaseFetch("/rest/v1/quote_history", {
     token: _token,
     method: "POST",
-    body: {
-      user_id: _userId,
-      control_number: filename,
-      customer: safeCustomer,
-      items
-    }
+    body
   }).catch(() => null);
 }
 
