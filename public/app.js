@@ -1180,6 +1180,7 @@ function renderStaffPanel(kind) {
                 <p class="eyebrow">Painel indisponivel</p>
                 <h1>Nao foi possivel abrir o painel</h1>
                 <p class="lead">${escapeHtml(state.staffError || "Acesso nao autorizado.")}</p>
+                <p class="selected-meta">Confira se SUPABASE_SERVICE_ROLE_KEY esta configurada na Vercel, se o SQL atualizado foi rodado no Supabase e se o ultimo deploy terminou.</p>
               </div>
               <div class="form-actions">
                 <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
@@ -1939,8 +1940,9 @@ async function submitResetPassword(form) {
 
 async function submitLogin(form) {
   const data = Object.fromEntries(new FormData(form).entries());
+  const email = String(data.email || "").trim();
   const { data: result, error } = await state.supabase.auth.signInWithPassword({
-    email: String(data.email || "").trim(),
+    email,
     password: String(data.password || "")
   });
   if (error) throw error;
@@ -1948,14 +1950,20 @@ async function submitLogin(form) {
   state.session = result.session;
   state.guestCheckout = false;
   state.authMessage = "";
+  const firstMaster = isFirstMasterEmail(result.session?.user?.email || email);
   try {
     await loadProfile();
   } catch (error) {
     state.profile = null;
     state.authMessage = error.message || "Nao foi possivel carregar o cadastro.";
   }
+  if (firstMaster) {
+    location.hash = "#/master";
+    render();
+    return;
+  }
   await refreshStaffSession();
-  if (state.staff?.role === "master" || isFirstMasterEmail(result.session?.user?.email || data.email)) location.hash = "#/master";
+  if (state.staff?.role === "master") location.hash = "#/master";
   else if (state.staff?.role === "seller") location.hash = "#/seller";
   else if (state.profile?.status === "pending") location.hash = "#/pending";
   else if (state.profile?.status === "blocked") {
@@ -2283,7 +2291,11 @@ function bindEvents() {
 
     if (event.target.matches("[data-login-form]")) {
       event.preventDefault();
-      submitLogin(event.target).catch((error) => showToast(error.message));
+      submitLogin(event.target).catch((error) => {
+        state.authMessage = error.message || "Nao foi possivel entrar.";
+        renderLogin();
+        showToast(state.authMessage);
+      });
       return;
     }
 
