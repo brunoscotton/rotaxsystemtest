@@ -126,9 +126,12 @@ async function listQuotes() {
   return Array.isArray(rows) ? rows : [];
 }
 
-async function updateUser(body) {
+async function updateUser(body, staff) {
   const role = ["master", "seller", "usuario"].includes(body.role) ? body.role : "usuario";
   const status = ["pending", "approved", "blocked"].includes(body.status) ? body.status : "pending";
+  if (staff.role !== "master" && role !== "usuario") {
+    throw Object.assign(new Error("Vendedor pode aprovar ou bloquear apenas cadastros de clientes."), { statusCode: 403 });
+  }
   const rows = await supabaseFetch("/rest/v1/profiles", {
     service: true,
     method: "PATCH",
@@ -158,6 +161,15 @@ async function updateQuote(body, staff) {
   return Array.isArray(rows) ? rows[0] : null;
 }
 
+async function deleteQuote(body) {
+  await supabaseFetch("/rest/v1/quote_history", {
+    service: true,
+    method: "DELETE",
+    query: `?id=eq.${encodeURIComponent(body.quoteId)}`
+  });
+  return { id: body.quoteId };
+}
+
 export async function handleAdminRequest({ method, headers, url, body }) {
   const requestUrl = new URL(url, "http://local");
   const action = requestUrl.searchParams.get("action") || body?.action || "";
@@ -178,13 +190,18 @@ export async function handleAdminRequest({ method, headers, url, body }) {
   }
 
   if (method === "POST" && action === "user") {
-    await requireStaff(headers, ["master"]);
-    return { status: 200, body: { ok: true, user: await updateUser(body) } };
+    const staff = await requireStaff(headers, ["master", "seller"]);
+    return { status: 200, body: { ok: true, user: await updateUser(body, staff) } };
   }
 
   if (method === "POST" && action === "quote") {
     const staff = await requireStaff(headers, ["master", "seller"]);
     return { status: 200, body: { ok: true, quote: await updateQuote(body, staff) } };
+  }
+
+  if (method === "POST" && action === "deleteQuote") {
+    await requireStaff(headers, ["master"]);
+    return { status: 200, body: { ok: true, quote: await deleteQuote(body) } };
   }
 
   return { status: 404, body: { ok: false, message: "Acao administrativa nao encontrada." } };

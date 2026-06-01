@@ -19,6 +19,7 @@ const state = {
   staffLoading: false,
   staffError: "",
   activeQuoteId: "",
+  staffQuoteFilter: "new",
   authMessage: "",
   passwordRecovery: false,
   guestCheckout: false,
@@ -246,6 +247,7 @@ function resetStaffData() {
   state.staffLoading = false;
   state.staffError = "";
   state.activeQuoteId = "";
+  state.staffQuoteFilter = "new";
 }
 
 function handleSupabaseAuthRedirect() {
@@ -1187,7 +1189,13 @@ function renderStaffPanel(kind) {
   }
 
   const canMaster = state.staff.role === "master";
-  const activeQuote = state.staffQuotes.find((quote) => quote.id === state.activeQuoteId) || state.staffQuotes[0] || null;
+  const quoteCounts = {
+    new: state.staffQuotes.filter((quote) => (quote.status || "new") === "new").length,
+    accepted: state.staffQuotes.filter((quote) => quote.status === "accepted").length,
+    finalized: state.staffQuotes.filter((quote) => quote.status === "finalized").length
+  };
+  const filteredQuotes = state.staffQuotes.filter((quote) => (quote.status || "new") === state.staffQuoteFilter);
+  const activeQuote = filteredQuotes.find((quote) => quote.id === state.activeQuoteId) || filteredQuotes[0] || null;
   if (activeQuote && !state.activeQuoteId) state.activeQuoteId = activeQuote.id;
 
   shell(`
@@ -1203,8 +1211,13 @@ function renderStaffPanel(kind) {
       <section class="staff-layout">
         <aside class="form-panel">
           <h2>Solicitacoes</h2>
+          <div class="status-tabs">
+            <button class="${state.staffQuoteFilter === "new" ? "active" : ""}" type="button" data-quote-filter="new">Novas solicitacoes (${quoteCounts.new})</button>
+            <button class="${state.staffQuoteFilter === "accepted" ? "active" : ""}" type="button" data-quote-filter="accepted">Solicitacoes em andamento (${quoteCounts.accepted})</button>
+            <button class="${state.staffQuoteFilter === "finalized" ? "active" : ""}" type="button" data-quote-filter="finalized">Solicitacoes finalizadas (${quoteCounts.finalized})</button>
+          </div>
           <div class="quote-list">
-            ${state.staffQuotes.length ? state.staffQuotes.map((quote) => `
+            ${filteredQuotes.length ? filteredQuotes.map((quote) => `
               <button class="staff-quote ${quote.id === state.activeQuoteId ? "active" : ""}" type="button" data-staff-quote="${quote.id}">
                 <span class="status-dot ${escapeHtml(quote.status || "new")}"></span>
                 <span>
@@ -1212,7 +1225,7 @@ function renderStaffPanel(kind) {
                   <small>${escapeHtml(quote.customer?.name || "Cliente")} / ${quoteStatusLabel(quote.status)}</small>
                 </span>
               </button>
-            `).join("") : `<div class="empty-state">Nenhuma solicitacao encontrada.</div>`}
+            `).join("") : `<div class="empty-state">Nenhuma solicitacao nesta aba.</div>`}
           </div>
         </aside>
         <section class="profile-stack">
@@ -1239,6 +1252,7 @@ function renderStaffPanel(kind) {
                   <option value="finalized" ${activeQuote.status === "finalized" ? "selected" : ""}>Finalizar cotacao</option>
                 </select>
                 <button class="secondary-button" type="button" data-update-quote-status="${activeQuote.id}">Atualizar status</button>
+                ${canMaster ? `<button class="secondary-button danger-button" type="button" data-delete-quote="${activeQuote.id}">Excluir solicitacao</button>` : ""}
               </div>
             </div>
           ` : ""}
@@ -1253,7 +1267,7 @@ function renderStaffPanel(kind) {
                     <th>Telefone</th>
                     <th>Status</th>
                     <th>Perfil</th>
-                    ${canMaster ? "<th>Acoes</th>" : ""}
+                    <th>Acoes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1264,23 +1278,21 @@ function renderStaffPanel(kind) {
                       <td>${escapeHtml(user.phone || "")}</td>
                       <td>${profileStatusLabel(user.status)}</td>
                       <td>${roleLabel(user.role)}</td>
-                      ${canMaster ? `
-                        <td>
-                          <div class="inline-actions">
-                            <select data-user-role="${user.id}">
-                              <option value="usuario" ${user.role === "usuario" ? "selected" : ""}>Usuario</option>
-                              <option value="seller" ${user.role === "seller" ? "selected" : ""}>Vendedor</option>
-                              <option value="master" ${user.role === "master" ? "selected" : ""}>Master</option>
-                            </select>
-                            <select data-user-status="${user.id}">
-                              <option value="pending" ${user.status === "pending" ? "selected" : ""}>Pendente</option>
-                              <option value="approved" ${user.status === "approved" ? "selected" : ""}>Aprovado</option>
-                              <option value="blocked" ${user.status === "blocked" ? "selected" : ""}>Bloqueado</option>
-                            </select>
-                            <button class="small-button" type="button" data-save-user="${user.id}">Salvar</button>
-                          </div>
-                        </td>
-                      ` : ""}
+                      <td>
+                        <div class="inline-actions">
+                          <select data-user-role="${user.id}" ${canMaster ? "" : "disabled"}>
+                            <option value="usuario" ${user.role === "usuario" ? "selected" : ""}>Usuario</option>
+                            <option value="seller" ${user.role === "seller" ? "selected" : ""}>Vendedor</option>
+                            <option value="master" ${user.role === "master" ? "selected" : ""}>Master</option>
+                          </select>
+                          <select data-user-status="${user.id}">
+                            <option value="pending" ${user.status === "pending" ? "selected" : ""}>Pendente</option>
+                            <option value="approved" ${user.status === "approved" ? "selected" : ""}>Aprovado</option>
+                            <option value="blocked" ${user.status === "blocked" ? "selected" : ""}>Bloqueado</option>
+                          </select>
+                          <button class="small-button" type="button" data-save-user="${user.id}">${canMaster ? "Salvar" : "Atualizar cadastro"}</button>
+                        </div>
+                      </td>
                     </tr>
                   `).join("")}
                 </tbody>
@@ -2011,6 +2023,14 @@ async function updateStaffQuote(quoteId, status) {
   await refreshStaffPanel();
 }
 
+async function deleteStaffQuote(quoteId) {
+  if (!quoteId) return;
+  await staffApi("deleteQuote", { method: "POST", body: { quoteId } });
+  if (state.activeQuoteId === quoteId) state.activeQuoteId = "";
+  showToast("Solicitacao excluida.");
+  await refreshStaffPanel();
+}
+
 async function copyActiveCodes() {
   const text = document.querySelector("[data-copy-codes]")?.textContent || "";
   if (!text.trim()) {
@@ -2091,6 +2111,14 @@ function bindEvents() {
       return;
     }
 
+    const quoteFilter = event.target.closest("[data-quote-filter]");
+    if (quoteFilter) {
+      state.staffQuoteFilter = quoteFilter.dataset.quoteFilter;
+      state.activeQuoteId = "";
+      renderStaffPanel(routeParts()[0] === "master" ? "master" : "seller");
+      return;
+    }
+
     const refreshStaff = event.target.closest("[data-refresh-staff]");
     if (refreshStaff) {
       refreshStaffPanel().catch((error) => showToast(error.message));
@@ -2114,6 +2142,12 @@ function bindEvents() {
       const quoteId = updateQuoteStatus.dataset.updateQuoteStatus;
       const status = document.querySelector(`[data-quote-status="${CSS.escape(quoteId)}"]`)?.value || "";
       updateStaffQuote(quoteId, status).catch((error) => showToast(error.message));
+      return;
+    }
+
+    const deleteQuote = event.target.closest("[data-delete-quote]");
+    if (deleteQuote) {
+      deleteStaffQuote(deleteQuote.dataset.deleteQuote).catch((error) => showToast(error.message));
       return;
     }
 

@@ -835,6 +835,35 @@ td {
   gap: 8px;
 }
 
+.status-tabs {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+.status-tabs button {
+  min-height: 40px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.status-tabs button.active {
+  border-color: var(--blue);
+  background: rgba(0, 153, 216, 0.1);
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.danger-button {
+  border-color: #d94b43;
+  color: #b7332d;
+}
+
 .staff-quote {
   display: grid;
   grid-template-columns: 12px minmax(0, 1fr);
