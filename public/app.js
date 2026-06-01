@@ -23,6 +23,7 @@ const state = {
   authMessage: "",
   passwordRecovery: false,
   passwordRecoveryIntent: false,
+  handlingLogin: false,
   guestCheckout: false,
   cart: loadCart(),
   lastQuote: null,
@@ -222,6 +223,31 @@ async function refreshStaffSession() {
     state.staffError = error.message || "Nao foi possivel validar o painel.";
     return null;
   }
+}
+
+async function prepareLoggedSession(session, { forceMaster = false } = {}) {
+  state.session = session;
+  resetStaffData();
+  state.profile = null;
+  state.prefixes = [];
+  state.addresses = [];
+  state.history = [];
+  try {
+    await loadProfile();
+  } catch (error) {
+    state.profile = null;
+    state.authMessage = error.message || "Nao foi possivel carregar o cadastro.";
+  }
+  await refreshStaffSession();
+
+  if (forceMaster || state.staff?.role === "master") return "#/master";
+  if (state.staff?.role === "seller") return "#/seller";
+  if (state.profile?.status === "pending") return "#/pending";
+  if (state.profile?.status === "blocked") {
+    state.authMessage = "Seu cadastro esta bloqueado. Entre em contato com a CDSAV.";
+    return "#/pending";
+  }
+  return profileIsComplete() ? "#/proceed" : "#/profile/account";
 }
 
 async function loadStaffData() {
@@ -1948,36 +1974,28 @@ async function submitResetPassword(form) {
 async function submitLogin(form) {
   const data = Object.fromEntries(new FormData(form).entries());
   const email = String(data.email || "").trim();
-  const { data: result, error } = await state.supabase.auth.signInWithPassword({
-    email,
-    password: String(data.password || "")
-  });
-  if (error) throw error;
-
-  state.session = result.session;
+  state.handlingLogin = true;
+  resetStaffData();
+  state.profile = null;
+  state.prefixes = [];
+  state.addresses = [];
+  state.history = [];
   state.guestCheckout = false;
   state.authMessage = "";
-  const firstMaster = isFirstMasterEmail(result.session?.user?.email || email);
   try {
-    await loadProfile();
-  } catch (error) {
-    state.profile = null;
-    state.authMessage = error.message || "Nao foi possivel carregar o cadastro.";
-  }
-  if (firstMaster) {
-    location.hash = "#/master";
+    const { data: result, error } = await state.supabase.auth.signInWithPassword({
+      email,
+      password: String(data.password || "")
+    });
+    if (error) throw error;
+
+    const firstMaster = isFirstMasterEmail(result.session?.user?.email || email);
+    const route = await prepareLoggedSession(result.session, { forceMaster: firstMaster });
+    location.hash = route;
     render();
-    return;
+  } finally {
+    state.handlingLogin = false;
   }
-  await refreshStaffSession();
-  if (state.staff?.role === "master") location.hash = "#/master";
-  else if (state.staff?.role === "seller") location.hash = "#/seller";
-  else if (state.profile?.status === "pending") location.hash = "#/pending";
-  else if (state.profile?.status === "blocked") {
-    state.authMessage = "Seu cadastro esta bloqueado. Entre em contato com a CDSAV.";
-    location.hash = "#/pending";
-  } else location.hash = profileIsComplete() ? "#/proceed" : "#/profile/account";
-  render();
 }
 
 async function submitRegister(form) {
@@ -2088,6 +2106,7 @@ async function logout() {
   state.authMessage = "";
   state.passwordRecovery = false;
   state.passwordRecoveryIntent = false;
+  state.handlingLogin = false;
   state.guestCheckout = false;
   clearSupabaseAuthStorage();
   location.hash = "#/";
@@ -2386,10 +2405,10 @@ async function init() {
       state.authMessage = "Digite a nova senha para concluir a redefinicao.";
       location.hash = "#/login";
     } else if (state.session) {
-      await loadProfile();
-      await refreshStaffSession();
+      await prepareLoggedSession(state.session, { forceMaster: isFirstMasterEmail(state.session.user?.email) });
     }
     state.supabase.auth.onAuthStateChange(async (event, session) => {
+      if (state.handlingLogin) return;
       state.session = session;
       if (event === "PASSWORD_RECOVERY" || (state.passwordRecoveryIntent && session)) {
         state.passwordRecovery = true;
@@ -2400,8 +2419,9 @@ async function init() {
         return;
       }
       if (session) {
-        await loadProfile();
-        await refreshStaffSession();
+        const route = await prepareLoggedSession(session, { forceMaster: isFirstMasterEmail(session.user?.email) });
+        const currentView = routeParts()[0];
+        if (!currentView || currentView === "login") location.hash = route;
       }
       else {
         state.profile = null;
