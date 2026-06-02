@@ -581,7 +581,7 @@ function categoriesForEngine(engineId) {
 
   const legacyEngines = ["912uls", "912ul", "914ul"];
   const templates = [
-    { label: "KITS DE REVISÃO", categoryId: "kits-revisao-912uls", engineIds: ["912uls"] },
+    { label: "KITS DE REVISÃO", categoryId: "kits-revisao-912uls", engineIds: legacyEngines },
     { label: "Alternators" },
     { label: "Carburetors", engineIds: legacyEngines },
     { label: "Crankcase" },
