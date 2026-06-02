@@ -3,63 +3,63 @@
     {
       "id": "912uls",
       "name": "ROTAX 912 ULS",
-      "subtitle": "Catalogo de pecas 912 ULS",
+      "subtitle": "Catálogo de peças 912 ULS",
       "image": "/assets/engine-912uls.png",
       "active": true
     },
     {
       "id": "912ul",
       "name": "ROTAX 912 UL",
-      "subtitle": "Catalogo de pecas 912 UL",
+      "subtitle": "Catálogo de peças 912 UL",
       "image": "/assets/engine-912ul.png",
       "active": true
     },
     {
       "id": "914ul",
       "name": "ROTAX 914 UL",
-      "subtitle": "Catalogo de pecas 914 UL",
+      "subtitle": "Catálogo de peças 914 UL",
       "image": "/assets/engine-914ul.png",
       "active": true
     },
     {
       "id": "912is",
       "name": "ROTAX 912 iS",
-      "subtitle": "Catalogo de pecas 912 iS",
+      "subtitle": "Catálogo de peças 912 iS",
       "image": "/assets/engine-912is.png",
       "active": true
     },
     {
       "id": "915is",
       "name": "ROTAX 915 iS",
-      "subtitle": "Catalogo de pecas 915 iS",
+      "subtitle": "Catálogo de peças 915 iS",
       "image": "/assets/engine-915is.png",
       "active": true
     },
     {
       "id": "916is",
       "name": "ROTAX 916 iS",
-      "subtitle": "Catalogo de pecas 916 iS",
+      "subtitle": "Catálogo de peças 916 iS",
       "image": "/assets/engine-916is.png",
       "active": true
     },
     {
       "id": "503ul",
       "name": "ROTAX 503 UL",
-      "subtitle": "Catalogo de pecas 503 UL",
+      "subtitle": "Catálogo de peças 503 UL",
       "image": "/assets/engine-503ul.png",
       "active": true
     },
     {
       "id": "582ul",
       "name": "ROTAX 582 UL",
-      "subtitle": "Catalogo de pecas 582 UL",
+      "subtitle": "Catálogo de peças 582 UL",
       "image": "/assets/engine-582ul.png",
       "active": true
     },
     {
       "id": "accessories",
-      "name": "Acessorios",
-      "subtitle": "Velas de ignicao, oleos e acessorios",
+      "name": "Acessórios",
+      "subtitle": "Velas de ignição, óleos e acessórios",
       "image": "/assets/accessories-cover.png",
       "active": true
     }
@@ -5544,8 +5544,8 @@
     },
     {
       "categoryId": "kits-revisao-912uls",
-      "categoryLabel": "KITS DE REVIS?O",
-      "categoryTitle": "Kits de revis?o",
+      "categoryLabel": "KITS DE REVISÃO",
+      "categoryTitle": "Kits de revisão",
       "categoryThumb": "/assets/kit-revisao-cover.png",
       "engineIds": [
         "912uls",
@@ -5553,22 +5553,22 @@
         "914ul"
       ],
       "chapter": "Kits",
-      "source": "Cat?logo CDSAV",
+      "source": "Catálogo CDSAV",
       "hotspots": [],
       "categoryOrder": 0,
       "kit": true,
       "id": "kit-revisao-912uls-50-horas",
       "label": "50 Horas",
       "figure": "50 Horas",
-      "title": "Kit de revis?o 50 Horas",
+      "title": "Kit de revisão 50 Horas",
       "image": "/assets/kit-50-horas.png",
       "thumb": "/assets/kit-50-horas.png",
       "sectionOrder": 1
     },
     {
       "categoryId": "kits-revisao-912uls",
-      "categoryLabel": "KITS DE REVIS?O",
-      "categoryTitle": "Kits de revis?o",
+      "categoryLabel": "KITS DE REVISÃO",
+      "categoryTitle": "Kits de revisão",
       "categoryThumb": "/assets/kit-revisao-cover.png",
       "engineIds": [
         "912uls",
@@ -5576,22 +5576,22 @@
         "914ul"
       ],
       "chapter": "Kits",
-      "source": "Cat?logo CDSAV",
+      "source": "Catálogo CDSAV",
       "hotspots": [],
       "categoryOrder": 0,
       "kit": true,
       "id": "kit-revisao-912uls-100-horas",
       "label": "100 Horas",
       "figure": "100 Horas",
-      "title": "Kit de revis?o 100 Horas",
+      "title": "Kit de revisão 100 Horas",
       "image": "/assets/kit-100-horas.png",
       "thumb": "/assets/kit-100-horas.png",
       "sectionOrder": 2
     },
     {
       "categoryId": "kits-revisao-912uls",
-      "categoryLabel": "KITS DE REVIS?O",
-      "categoryTitle": "Kits de revis?o",
+      "categoryLabel": "KITS DE REVISÃO",
+      "categoryTitle": "Kits de revisão",
       "categoryThumb": "/assets/kit-revisao-cover.png",
       "engineIds": [
         "912uls",
@@ -5599,22 +5599,22 @@
         "914ul"
       ],
       "chapter": "Kits",
-      "source": "Cat?logo CDSAV",
+      "source": "Catálogo CDSAV",
       "hotspots": [],
       "categoryOrder": 0,
       "kit": true,
       "id": "kit-revisao-912uls-200-horas",
       "label": "200 Horas",
       "figure": "200 Horas",
-      "title": "Kit de revis?o 200 Horas",
+      "title": "Kit de revisão 200 Horas",
       "image": "/assets/kit-200-horas.png",
       "thumb": "/assets/kit-200-horas.png",
       "sectionOrder": 3
     },
     {
       "categoryId": "kits-revisao-912uls",
-      "categoryLabel": "KITS DE REVIS?O",
-      "categoryTitle": "Kits de revis?o",
+      "categoryLabel": "KITS DE REVISÃO",
+      "categoryTitle": "Kits de revisão",
       "categoryThumb": "/assets/kit-revisao-cover.png",
       "engineIds": [
         "912uls",
@@ -5622,22 +5622,22 @@
         "914ul"
       ],
       "chapter": "Kits",
-      "source": "Cat?logo CDSAV",
+      "source": "Catálogo CDSAV",
       "hotspots": [],
       "categoryOrder": 0,
       "kit": true,
       "id": "kit-revisao-912uls-600-horas",
       "label": "600 Horas",
       "figure": "600 Horas",
-      "title": "Kit de revis?o 600 Horas",
+      "title": "Kit de revisão 600 Horas",
       "image": "/assets/kit-600-horas.png",
       "thumb": "/assets/kit-600-horas.png",
       "sectionOrder": 4
     },
     {
       "categoryId": "kits-revisao-912uls",
-      "categoryLabel": "KITS DE REVIS?O",
-      "categoryTitle": "Kits de revis?o",
+      "categoryLabel": "KITS DE REVISÃO",
+      "categoryTitle": "Kits de revisão",
       "categoryThumb": "/assets/kit-revisao-cover.png",
       "engineIds": [
         "912uls",
@@ -5645,7 +5645,7 @@
         "914ul"
       ],
       "chapter": "Kits",
-      "source": "Cat?logo CDSAV",
+      "source": "Catálogo CDSAV",
       "hotspots": [],
       "categoryOrder": 0,
       "kit": true,
@@ -5659,8 +5659,8 @@
     },
     {
       "categoryId": "kits-revisao-912uls",
-      "categoryLabel": "KITS DE REVIS?O",
-      "categoryTitle": "Kits de revis?o",
+      "categoryLabel": "KITS DE REVISÃO",
+      "categoryTitle": "Kits de revisão",
       "categoryThumb": "/assets/kit-revisao-cover.png",
       "engineIds": [
         "912uls",
@@ -5668,14 +5668,14 @@
         "914ul"
       ],
       "chapter": "Kits",
-      "source": "Cat?logo CDSAV",
+      "source": "Catálogo CDSAV",
       "hotspots": [],
       "categoryOrder": 0,
       "kit": true,
       "id": "kit-revisao-912uls-5-anos",
       "label": "5 Anos",
       "figure": "5 Anos",
-      "title": "Kit de revis?o 5 Anos",
+      "title": "Kit de revisão 5 Anos",
       "image": "/assets/kit-5-anos.png",
       "thumb": "/assets/kit-5-anos.png",
       "sectionOrder": 6
@@ -5685,11 +5685,11 @@
       "engineIds": [
         "accessories"
       ],
-      "label": "Velas de ignicao",
-      "chapter": "Acess?rios",
+      "label": "Velas de ignição",
+      "chapter": "Acessórios",
       "figure": "Produtos",
-      "title": "Velas de ignicao",
-      "source": "Cat?logo CDSAV",
+      "title": "Velas de ignição",
+      "source": "Catálogo CDSAV",
       "image": "/assets/accessories-spark-plug.jpg",
       "thumb": "/assets/accessories-spark-plug.jpg",
       "hotspots": [],
@@ -5701,11 +5701,11 @@
       "engineIds": [
         "accessories"
       ],
-      "label": "Oleo",
-      "chapter": "Acess?rios",
+      "label": "Óleo",
+      "chapter": "Acessórios",
       "figure": "Produtos",
-      "title": "Oleo para motor",
-      "source": "Cat?logo CDSAV",
+      "title": "Óleo para motor",
+      "source": "Catálogo CDSAV",
       "image": "/assets/accessories-sportlt.png",
       "thumb": "/assets/accessories-sportlt.png",
       "hotspots": [],
@@ -53866,7 +53866,7 @@
       "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
       "figure": "2",
       "partNumber": "852402",
-      "description": "CARCA?A EMBR.",
+      "description": "CARCAÇA EMBR.",
       "qty": {
         "912uls": 1,
         "912ul": 1,

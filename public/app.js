@@ -153,15 +153,21 @@ function requiredProfileText(value) {
 }
 
 function personTypeLabel(personType) {
-  return personType === "pj" ? "Pessoa Juridica" : "Pessoa fisica";
+  return personType === "pj" ? "Pessoa Jurídica" : "Pessoa física";
 }
 
 function personNameLabel(personType) {
-  return personType === "pj" ? "Razao Social" : "Nome";
+  return personType === "pj" ? "Razão Social" : "Nome";
 }
 
 function normalizePersonType(value) {
   return value === "pj" ? "pj" : "pf";
+}
+
+function personDocLabels(personType) {
+  return personType === "pj"
+    ? { primary: "CNPJ", secondary: "Inscrição estadual" }
+    : { primary: "RG", secondary: "CPF" };
 }
 
 async function loadProfile() {
@@ -225,7 +231,7 @@ async function currentAccessToken() {
 
 async function staffApi(action, options = {}) {
   const token = await currentAccessToken();
-  if (!token) throw new Error("Login necessario.");
+  if (!token) throw new Error("Login necessário.");
   const method = options.method || "GET";
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), options.timeout || 15000);
@@ -242,7 +248,7 @@ async function staffApi(action, options = {}) {
     throw error;
   }).finally(() => window.clearTimeout(timeout));
   const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.message || "Nao foi possivel carregar o painel.");
+  if (!response.ok) throw new Error(result.message || "Nao foi possível carregar o painel.");
   return result;
 }
 
@@ -259,7 +265,7 @@ async function refreshStaffSession() {
     return state.staff;
   } catch (error) {
     state.staff = null;
-    state.staffError = error.message || "Nao foi possivel validar o painel.";
+    state.staffError = error.message || "Nao foi possível validar o painel.";
     return null;
   }
 }
@@ -286,7 +292,7 @@ async function ensureStaffPanelAccess(kind) {
   try {
     return await state.staffVerifyPromise;
   } catch (error) {
-    state.staffError = error.message || "Nao foi possivel validar o painel.";
+    state.staffError = error.message || "Nao foi possível validar o painel.";
     return false;
   }
 }
@@ -296,7 +302,7 @@ async function loadProfileWithStaffFallback() {
     return await loadProfile();
   } catch (error) {
     state.profile = null;
-    state.authMessage = error.message || "Nao foi possivel carregar o cadastro.";
+    state.authMessage = error.message || "Nao foi possível carregar o cadastro.";
     await refreshStaffSession();
     return state.profile;
   }
@@ -391,8 +397,8 @@ function handleSupabaseAuthRedirect() {
   if (params.get("error")) {
     state.passwordRecovery = false;
     state.authMessage = errorCode === "otp_expired"
-      ? "O link de redefinicao expirou ou ja foi usado. Solicite um novo link em Esqueci a senha."
-      : (errorDescription || "Nao foi possivel validar o link de redefinicao.");
+      ? "O link de redefinição expirou ou ja foi usado. Solicite um novo link em Esqueci a senha."
+      : (errorDescription || "Nao foi possível validar o link de redefinição.");
     location.hash = "#/login";
     return true;
   }
@@ -400,7 +406,7 @@ function handleSupabaseAuthRedirect() {
   if (params.get("type") === "recovery" || params.has("access_token")) {
     state.passwordRecovery = true;
     state.passwordRecoveryIntent = true;
-    state.authMessage = "Digite a nova senha para concluir a redefinicao.";
+    state.authMessage = "Digite a nova senha para concluir a redefinição.";
     location.hash = "#/login";
     return true;
   }
@@ -470,19 +476,19 @@ const nestedCategories = [
   {
     id: "oil-systems",
     label: "Oil Systems",
-    title: "Sistema de oleo",
+    title: "Sistema de óleo",
     thumb: "/assets/rotax-oil-pump-912-thumb.png"
   },
   {
     id: "fuel-pump-912is",
     label: "Fuel Pump Assembly",
-    title: "Bomba de combustivel",
+    title: "Bomba de combustível",
     thumb: "/assets/rotax-912is-fuel-pump-assy-thumb.png"
   },
   {
     id: "fuel-system-legacy",
     label: "Fuel Pump Assembly-Fuel Hose Assembly-Airbox Assembly",
-    title: "Sistema de combustivel",
+    title: "Sistema de combustível",
     thumb: "/assets/rotax-fuel-system-1-12-thumb.png"
   },
   {
@@ -500,7 +506,7 @@ const nestedCategories = [
   {
     id: "intake-manifold-912is",
     label: "Intake Manifold",
-    title: "Coletor de admissao",
+    title: "Coletor de admissão",
     thumb: "/assets/rotax-912is-intake-manifold-standard-thumb.png"
   },
   {
@@ -518,13 +524,13 @@ const nestedCategories = [
   {
     id: "water-circuits",
     label: "Water Circuits",
-    title: "Circuitos de agua",
+    title: "Circuitos de água",
     thumb: "/assets/rotax-water-pump-thumb.png"
   },
   {
     id: "wiring-harness-912is",
     label: "Wiring Harness",
-    title: "Chicote eletrico",
+    title: "Chicote elétrico",
     thumb: "/assets/rotax-912is-wiring-harness-faston-thumb.png"
   }
 ];
@@ -827,10 +833,10 @@ function shell(content) {
     <div class="app-shell">
       <header class="topbar">
         <a class="brand" href="#/">
-          <span class="brand-mark">PN</span>
+          <img class="brand-logo" src="/assets/cdsav-logo.png" alt="Cruzeiro do Sul Aviação">
           <span>
             <span class="brand-title">Rotax Parts Quote</span>
-            <span class="brand-subtitle">Selecao rapida para cotacao</span>
+            <span class="brand-subtitle">Seleção rápida para cotação</span>
           </span>
         </a>
         <div class="global-search">
@@ -863,9 +869,9 @@ function renderHome() {
     <main class="page">
       <section class="page-header">
         <div>
-          <p class="eyebrow">Catalogo de pecas</p>
+          <p class="eyebrow">Catálogo de peças</p>
           <h1>Escolha o motor ou acessorios</h1>
-          <p class="lead">Clique em um motor ou categoria para abrir as secoes disponiveis.</p>
+          <p class="lead">Clique em um motor ou categoria para abrir as seções disponíveis.</p>
         </div>
       </section>
       <section class="engine-grid">
@@ -899,8 +905,8 @@ function renderEngine(engineId) {
       <section class="page-header">
         <div>
           <p class="eyebrow">${accessories ? "Categoria selecionada" : "Motor selecionado"}</p>
-          <h1>${accessories ? "Categorias de Acessorios" : `Categories For ${escapeHtml(engine.name)}`}</h1>
-          <p class="lead">${accessories ? "Escolha a categoria para abrir os produtos disponiveis." : "Escolha a secao do manual para abrir a figura e a tabela de PNs."}</p>
+          <h1>${accessories ? "Categorias de Acessórios" : `Categories For ${escapeHtml(engine.name)}`}</h1>
+          <p class="lead">${accessories ? "Escolha a categoria para abrir os produtos disponíveis." : "Escolha a seção do manual para abrir a figura e a tabela de PNs."}</p>
         </div>
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
@@ -944,7 +950,7 @@ function renderCategory(engineId, categoryId) {
     <main class="page">
       <section class="page-header">
         <div>
-          <p class="eyebrow">${accessories ? "Acessorios" : "Motor selecionado"}</p>
+          <p class="eyebrow">${accessories ? "Acessórios" : "Motor selecionado"}</p>
           <h1>${accessories ? escapeHtml(category.label) : `${escapeHtml(category.label)} For ${escapeHtml(engine.name)}`}</h1>
           <p class="lead">${accessories ? "Escolha o produto para abrir a tabela de PNs." : "Escolha a subcategoria para abrir a figura e a tabela de PNs."}</p>
         </div>
@@ -971,7 +977,7 @@ function renderSelectedStrip() {
   if (!selected.length) {
     return `
       <div class="selected-strip">
-        <div class="empty-state">Nenhuma peca selecionada.</div>
+        <div class="empty-state">Nenhuma peça selecionada.</div>
       </div>
     `;
   }
@@ -1024,7 +1030,10 @@ function renderSection(engineId, sectionId) {
           <h1>${escapeHtml(section.label)}</h1>
           <p class="lead">${escapeHtml(section.title)}. ${accessories ? "Clique no ADD para incluir o produto na lista." : "Clique no numero da figura ou no ADD da tabela para incluir o PN na lista."}</p>
         </div>
-        <button class="secondary-button" type="button" data-route="${section.categoryId ? `#/category/${engineId}/${section.categoryId}` : `#/engine/${engineId}`}">Voltar</button>
+        <div class="page-actions">
+          ${kitSection && parts.length ? `<button class="primary-button" type="button" data-add-kit="${section.id}" data-engine="${engineId}">Adicionar tudo a lista</button>` : ""}
+          <button class="secondary-button" type="button" data-route="${section.categoryId ? `#/category/${engineId}/${section.categoryId}` : `#/engine/${engineId}`}">Voltar</button>
+        </div>
       </section>
       <section class="detail-layout">
         <article class="diagram-panel">
@@ -1034,7 +1043,7 @@ function renderSection(engineId, sectionId) {
           </div>
           <div class="diagram-wrap">
             <div class="diagram-stage">
-              <img src="${diagramImage}" alt="${escapeHtml(accessories ? "Acessorios" : section.title)}">
+              <img src="${diagramImage}" alt="${escapeHtml(accessories ? "Acessórios" : section.title)}">
               ${section.hotspots.map((spot) => {
                 const item = resolveHotspotItem(sectionId, engineId, spot.figure);
                 const selected = item && state.cart[item.id];
@@ -1064,7 +1073,7 @@ function renderSection(engineId, sectionId) {
                   ${hasItemImages ? "<th>Foto</th>" : ""}
                   <th>Item</th>
                   <th>PN</th>
-                  <th>Descricao</th>
+                  <th>Descrição</th>
                   <th>Qtd ref.</th>
                   <th>ADD</th>
                 </tr>
@@ -1096,7 +1105,7 @@ function renderSection(engineId, sectionId) {
           </div>
           ${kitSection && parts.length ? `
             <div class="kit-actions">
-              <button class="primary-button" type="button" data-add-kit="${section.id}" data-engine="${engineId}">Adicionar kit a lista</button>
+              <button class="primary-button" type="button" data-add-kit="${section.id}" data-engine="${engineId}">Adicionar tudo a lista</button>
             </div>
           ` : ""}
           ${renderSelectedStrip()}
@@ -1114,7 +1123,7 @@ function renderProceed() {
     <label class="field">
       <span>Prefixo</span>
       <select name="prefix" required>
-        ${state.prefixes.map((prefix) => `<option value="${escapeHtml(prefix.value)}" ${customer.prefix === prefix.value ? "selected" : ""}>${escapeHtml(prefix.type)} - ${escapeHtml(prefix.value)}${prefix.is_default ? " - Padrao" : ""}</option>`).join("")}
+        ${state.prefixes.map((prefix) => `<option value="${escapeHtml(prefix.value)}" ${customer.prefix === prefix.value ? "selected" : ""}>${escapeHtml(prefix.type)} - ${escapeHtml(prefix.value)}${prefix.is_default ? " - Padrão" : ""}</option>`).join("")}
       </select>
     </label>
   ` : `
@@ -1129,14 +1138,14 @@ function renderProceed() {
       <main class="page">
         <section class="result-panel">
           <div>
-            <p class="eyebrow">Login necessario</p>
-            <h1>Entre para enviar sua solicitacao</h1>
-            <p class="lead">A cotacao usa os dados do seu cadastro para proteger o envio e evitar informacoes incorretas.</p>
+            <p class="eyebrow">Login necessário</p>
+            <h1>Entre para enviar sua solicitação</h1>
+            <p class="lead">A cotação usa os dados do seu cadastro para proteger o envio e evitar informações incorretas.</p>
           </div>
           <div class="form-actions">
             <button class="primary-button" type="button" data-route="#/login">Entrar ou cadastrar</button>
             <button class="secondary-button" type="button" data-guest-checkout>Continuar como visitante</button>
-            <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
+            <button class="secondary-button" type="button" data-route="#/">Adicionar mais peças</button>
           </div>
         </section>
       </main>
@@ -1151,11 +1160,11 @@ function renderProceed() {
           <div>
             <p class="eyebrow">Cadastro incompleto</p>
             <h1>Complete seu cadastro</h1>
-            <p class="lead">Nome, sobrenome, prefixo, telefone, e-mail, estado e endereco sao obrigatorios para enviar a solicitacao.</p>
+            <p class="lead">Nome, sobrenome, prefixo, telefone, e-mail, estado e endereco sao obrigatorios para enviar a solicitação.</p>
           </div>
           <div class="form-actions">
             <button class="primary-button" type="button" data-route="#/profile/account">Completar cadastro</button>
-            <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
+            <button class="secondary-button" type="button" data-route="#/">Adicionar mais peças</button>
           </div>
         </section>
       </main>
@@ -1172,11 +1181,11 @@ function renderProceed() {
     <main class="page">
       <section class="page-header">
         <div>
-          <p class="eyebrow">Finalizar solicitacao</p>
+          <p class="eyebrow">Finalizar solicitação</p>
           <h1>Dados para solicitar sua cotação</h1>
           <p class="lead">Todos os Campos devem ser preenchidos para envio da solicitação.</p>
         </div>
-        <button class="secondary-button" type="button" data-route="#/">Adicionar mais pecas</button>
+        <button class="secondary-button" type="button" data-route="#/">Adicionar mais peças</button>
       </section>
       <section class="checkout-layout">
         <form class="form-panel" data-form>
@@ -1204,7 +1213,7 @@ function renderProceed() {
               ${useProfile ? `<input type="hidden" name="state" value="${escapeHtml(customer.state)}">` : ""}
             </label>
             <label class="field">
-              <span>Endereco</span>
+              <span>Endereço</span>
               <input name="address" autocomplete="street-address" value="${escapeHtml(customer.address || "")}" ${useProfile ? "readonly" : ""} required>
             </label>
             <label class="field">
@@ -1222,7 +1231,7 @@ function renderProceed() {
           </div>
           <div class="form-actions">
             <button class="secondary-button" type="button" data-route="#/">Cancelar</button>
-            <button class="primary-button" type="submit" ${selected.length ? "" : "disabled"}>Gerar solicitacao</button>
+            <button class="primary-button" type="submit" ${selected.length ? "" : "disabled"}>Gerar solicitação</button>
           </div>
         </form>
         <aside class="summary-panel">
@@ -1265,13 +1274,13 @@ function renderDone() {
         <div>
           <p class="eyebrow">${emailSkipped ? "Arquivo TXT gerado" : "E-mail enviado"}</p>
           <h1>${emailSkipped ? "Solicitacao gerada para conferencia" : "Solicitacao enviada!"}</h1>
-          <p class="lead">${emailSkipped ? "Revise o texto abaixo e baixe o arquivo TXT para validar o conteudo do teste." : "Em breve, um de nossos consultores ira entrar em contato com sua cotacao! Obrigado!"}</p>
+          <p class="lead">${emailSkipped ? "Revise o texto abaixo e baixe o arquivo TXT para validar o conteúdo do teste." : "Em breve, um de nossos consultores irá entrar em contato com sua cotação! Obrigado!"}</p>
           <p class="control-number">Numero de controle: <strong>${escapeHtml(quote.filename)}</strong></p>
         </div>
         <pre class="quote-text">${escapeHtml(quote.text)}</pre>
         <div class="form-actions">
           <button class="primary-button" type="button" data-download-quote>Baixar TXT</button>
-          <button class="primary-button" type="button" data-route="#/">Nova solicitacao</button>
+          <button class="primary-button" type="button" data-route="#/">Nova solicitação</button>
         </div>
       </section>
     </main>
@@ -1283,8 +1292,8 @@ function renderPending() {
     <main class="page">
       <section class="result-panel">
         <div>
-          <p class="eyebrow">Cadastro em analise</p>
-          <h1>Cadastro enviado para analise</h1>
+          <p class="eyebrow">Cadastro em análise</p>
+          <h1>Cadastro enviado para análise</h1>
           <p class="lead">Assim que concluido, voce sera notificado.</p>
         </div>
         <div class="form-actions">
@@ -1316,8 +1325,8 @@ function roleLabel(role) {
   return {
     master: "Master",
     seller: "Vendedor",
-    usuario: "Usuario"
-  }[role] || "Usuario";
+    usuario: "Usuário"
+  }[role] || "Usuário";
 }
 
 function quoteCopyText(quote) {
@@ -1338,7 +1347,7 @@ function staffUserRegistrationText(user) {
     `Tipo de pessoa:\t${personTypeLabel(personType)}`,
     `${personNameLabel(personType)}:\t${staffUserName(user)}`,
     personType === "pf" ? `CPF:\t${user.cpf || ""}` : `CNPJ:\t${user.cnpj || ""}`,
-    personType === "pf" ? `RG:\t${user.rg || ""}` : `Inscricao estadual:\t${user.state_registration || ""}`,
+    personType === "pf" ? `RG:\t${user.rg || ""}` : `Inscrição estadual:\t${user.state_registration || ""}`,
     `Nome Responsavel pelo cadastro:\t${user.responsible_name || ""}`,
     `CPF Responsavel pelo cadastro:\t${user.responsible_cpf || ""}`,
     "",
@@ -1348,7 +1357,7 @@ function staffUserRegistrationText(user) {
     `Prefixo/COM:\t${user.prefixo || ""}`,
     "",
     "ENDERECO",
-    `Endereco:\t${user.address || ""}`,
+    `Endereço:\t${user.address || ""}`,
     `Bairro:\t${user.district || ""}`,
     `Municipio:\t${user.municipality || user.city || ""}`,
     `Estado:\t${user.estado || ""}`,
@@ -1417,10 +1426,10 @@ function renderStaffPanel(kind) {
           <main class="page">
             <section class="result-panel">
               <div>
-                <p class="eyebrow">Painel indisponivel</p>
-                <h1>Nao foi possivel abrir o painel</h1>
+                <p class="eyebrow">Painel indisponível</p>
+                <h1>Nao foi possível abrir o painel</h1>
                 <p class="lead">${escapeHtml(state.staffError || "Acesso nao autorizado.")}</p>
-                <p class="selected-meta">Confira se SUPABASE_SERVICE_ROLE_KEY esta configurada na Vercel, se o SQL atualizado foi rodado no Supabase e se o ultimo deploy terminou.</p>
+                <p class="selected-meta">Confirá se SUPABASE_SERVICE_ROLE_KEY esta configurada na Vercel, se o SQL atualizado foi rodado no Supabase e se o ultimo deploy terminou.</p>
               </div>
               <div class="form-actions">
                 <button class="secondary-button" type="button" data-route="#/">Voltar ao catalogo</button>
@@ -1434,7 +1443,7 @@ function renderStaffPanel(kind) {
       state.staffLoaded = false;
       renderStaffPanel(kind);
     }).catch((error) => {
-      state.staffError = error.message || "Nao foi possivel validar o painel.";
+      state.staffError = error.message || "Nao foi possível validar o painel.";
       renderStaffPanel(kind);
     });
     return;
@@ -1468,18 +1477,18 @@ function renderStaffPanel(kind) {
       <section class="page-header">
         <div>
           <p class="eyebrow">${canMaster ? "Painel Master" : "Painel Vendedor"}</p>
-          <h1>${canMaster ? "Controle geral" : "Solicitacoes de cotacao"}</h1>
-          <p class="lead">${canMaster ? "Visualize cadastros, solicitacoes e privilegios." : "Aceite e finalize solicitacoes recebidas."}</p>
+          <h1>${canMaster ? "Controle geral" : "Solicitações de cotação"}</h1>
+          <p class="lead">${canMaster ? "Visualize cadastros, solicitações e privilegios." : "Aceite e finalize solicitações recebidas."}</p>
         </div>
         <button class="secondary-button" type="button" data-refresh-staff ${actionBusy ? "disabled" : ""}>Atualizar</button>
       </section>
       <section class="staff-layout">
         <aside class="form-panel">
-          <h2>Solicitacoes</h2>
+          <h2>Solicitações</h2>
           <div class="status-tabs">
-            <button class="${state.staffQuoteFilter === "new" ? "active" : ""}" type="button" data-quote-filter="new">Novas solicitacoes (${quoteCounts.new})</button>
-            <button class="${state.staffQuoteFilter === "accepted" ? "active" : ""}" type="button" data-quote-filter="accepted">Solicitacoes em andamento (${quoteCounts.accepted})</button>
-            <button class="${state.staffQuoteFilter === "finalized" ? "active" : ""}" type="button" data-quote-filter="finalized">Solicitacoes finalizadas (${quoteCounts.finalized})</button>
+            <button class="${state.staffQuoteFilter === "new" ? "active" : ""}" type="button" data-quote-filter="new">Novas solicitações (${quoteCounts.new})</button>
+            <button class="${state.staffQuoteFilter === "accepted" ? "active" : ""}" type="button" data-quote-filter="accepted">Solicitações em andamento (${quoteCounts.accepted})</button>
+            <button class="${state.staffQuoteFilter === "finalized" ? "active" : ""}" type="button" data-quote-filter="finalized">Solicitações finalizadas (${quoteCounts.finalized})</button>
           </div>
           <div class="quote-list">
             ${filteredQuotes.length ? filteredQuotes.map((quote) => `
@@ -1490,7 +1499,7 @@ function renderStaffPanel(kind) {
                   <small>${escapeHtml(quote.customer?.name || "Cliente")} / ${quoteStatusLabel(quote.status)}</small>
                 </span>
               </button>
-            `).join("") : `<div class="empty-state">Nenhuma solicitacao nesta aba.</div>`}
+            `).join("") : `<div class="empty-state">Nenhuma solicitação nesta aba.</div>`}
           </div>
         </aside>
         <section class="profile-stack">
@@ -1503,27 +1512,27 @@ function renderStaffPanel(kind) {
                 <span><strong>Telefone:</strong> ${escapeHtml(activeQuote.customer?.phone || "")}</span>
                 <span><strong>E-mail:</strong> ${escapeHtml(activeQuote.customer?.email || "")}</span>
                 <span><strong>Estado:</strong> ${escapeHtml(activeQuote.customer?.state || "")}</span>
-                <span><strong>Endereco:</strong> ${escapeHtml(activeQuote.customer?.address || "")}</span>
+                <span><strong>Endereço:</strong> ${escapeHtml(activeQuote.customer?.address || "")}</span>
                 <span><strong>Cidade:</strong> ${escapeHtml(activeQuote.customer?.city || "")}</span>
                 <span><strong>CEP:</strong> ${escapeHtml(activeQuote.customer?.cep || "")}</span>
               </div>
-              <h3>Codigos para copiar</h3>
+              <h3>Códigos para copiar</h3>
               <pre class="quote-text" data-copy-codes>${escapeHtml(quoteCopyText(activeQuote))}</pre>
               <div class="form-actions">
-                <button class="primary-button" type="button" data-copy-active-codes ${actionBusy ? "disabled" : ""}>Copiar codigos</button>
+                <button class="primary-button" type="button" data-copy-active-codes ${actionBusy ? "disabled" : ""}>Copiar códigos</button>
                 <select data-quote-status="${activeQuote.id}" ${actionBusy ? "disabled" : ""}>
                   <option value="">Alterar status</option>
-                  <option value="accepted" ${activeQuote.status === "accepted" ? "selected" : ""}>Aceitar cotacao</option>
-                  <option value="finalized" ${activeQuote.status === "finalized" ? "selected" : ""}>Finalizar cotacao</option>
+                  <option value="accepted" ${activeQuote.status === "accepted" ? "selected" : ""}>Aceitar cotação</option>
+                  <option value="finalized" ${activeQuote.status === "finalized" ? "selected" : ""}>Finalizar cotação</option>
                 </select>
                 <button class="secondary-button" type="button" data-update-quote-status="${activeQuote.id}" ${actionBusy ? "disabled" : ""}>${actionBusy ? "Atualizando..." : "Atualizar status"}</button>
-                ${canMaster ? `<button class="secondary-button danger-button" type="button" data-delete-quote="${activeQuote.id}" ${actionBusy ? "disabled" : ""}>Excluir solicitacao</button>` : ""}
+                ${canMaster ? `<button class="secondary-button danger-button" type="button" data-delete-quote="${activeQuote.id}" ${actionBusy ? "disabled" : ""}>Excluir solicitação</button>` : ""}
               </div>
             </div>
           ` : ""}
           <div class="form-panel">
             <h2>Cadastros</h2>
-            ${pendingUsersCount ? `<div class="pending-alert">Existem cadastros pendentes de aprovacao! (${pendingUsersCount})</div>` : ""}
+            ${pendingUsersCount ? `<div class="pending-alert">Existem cadastros pendentes de aprovação! (${pendingUsersCount})</div>` : ""}
             <div class="staff-user-filters">
               <label class="field">
                 <span>Buscar cadastro</span>
@@ -1562,7 +1571,7 @@ function renderStaffPanel(kind) {
                       <td>
                         <div class="inline-actions">
                           <select data-user-role="${user.id}" ${canMaster ? "" : "disabled"}>
-                            <option value="usuario" ${user.role === "usuario" ? "selected" : ""}>Usuario</option>
+                            <option value="usuario" ${user.role === "usuario" ? "selected" : ""}>Usuário</option>
                             <option value="seller" ${user.role === "seller" ? "selected" : ""}>Vendedor</option>
                             <option value="master" ${user.role === "master" ? "selected" : ""}>Master</option>
                           </select>
@@ -1573,6 +1582,7 @@ function renderStaffPanel(kind) {
                           </select>
                           <button class="small-button" type="button" data-download-registration="${user.id}">Baixar TXT</button>
                           <button class="small-button" type="button" data-save-user="${user.id}">${canMaster ? "Salvar" : "Atualizar cadastro"}</button>
+                          ${canMaster ? `<button class="small-button danger-button" type="button" data-delete-user="${user.id}">Excluir</button>` : ""}
                         </div>
                       </td>
                     </tr>
@@ -1586,7 +1596,7 @@ function renderStaffPanel(kind) {
                 </tbody>
               </table>
             </div>
-            ${canMaster ? `<p class="selected-meta">Senhas nao sao exibidas por seguranca. Use redefinicao de senha quando necessario.</p>` : ""}
+            ${canMaster ? `<p class="selected-meta">Senhas nao sao exibidas por seguranca. Use redefinição de senha quando necessário.</p>` : ""}
           </div>
         </section>
       </section>
@@ -1606,7 +1616,7 @@ function renderLogin() {
         <div>
           <p class="eyebrow">Area do cliente</p>
           <h1>Login e cadastro</h1>
-          <p class="lead">Entre para usar os dados do seu cadastro no envio da solicitacao.</p>
+          <p class="lead">Entre para usar os dados do seu cadastro no envio da solicitação.</p>
         </div>
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
@@ -1619,14 +1629,14 @@ function renderLogin() {
               <span>Nova senha</span>
               <span class="password-control">
                 <input name="password" type="password" autocomplete="new-password" required minlength="6">
-                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+                <button class="password-toggle" type="button" data-toggle-password aria-label="Mostrar senha" title="Mostrar senha">&#128065;</button>
               </span>
             </label>
             <label class="field">
               <span>Confirmar nova senha</span>
               <span class="password-control">
                 <input name="confirm_password" type="password" autocomplete="new-password" required minlength="6">
-                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+                <button class="password-toggle" type="button" data-toggle-password aria-label="Mostrar senha" title="Mostrar senha">&#128065;</button>
               </span>
               <span class="field-error" data-match-message="confirm_password"></span>
             </label>
@@ -1647,7 +1657,7 @@ function renderLogin() {
             <span>Senha</span>
             <span class="password-control">
               <input name="password" type="password" autocomplete="current-password" required minlength="6">
-              <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+              <button class="password-toggle" type="button" data-toggle-password aria-label="Mostrar senha" title="Mostrar senha">&#128065;</button>
             </span>
           </label>
           <div class="form-actions">
@@ -1661,8 +1671,8 @@ function renderLogin() {
             <label class="field">
               <span>Tipo de pessoa</span>
               <select name="person_type" data-person-type required>
-                <option value="pf" selected>Pessoa fisica</option>
-                <option value="pj">Pessoa Juridica</option>
+                <option value="pf" selected>Pessoa física</option>
+                <option value="pj">Pessoa Jurídica</option>
               </select>
             </label>
             <label class="field">
@@ -1673,21 +1683,13 @@ function renderLogin() {
               <span>Sobrenome</span>
               <input name="last_name" autocomplete="family-name" required>
             </label>
-            <label class="field" data-pf-field>
-              <span>CPF</span>
-              <input name="cpf" inputmode="numeric" autocomplete="off" required>
+            <label class="field">
+              <span data-person-doc-primary-label>RG</span>
+              <input name="document_primary" autocomplete="off" required>
             </label>
-            <label class="field" data-pf-field>
-              <span>RG</span>
-              <input name="rg" autocomplete="off" required>
-            </label>
-            <label class="field" data-pj-field hidden>
-              <span>CNPJ</span>
-              <input name="cnpj" inputmode="numeric" autocomplete="off">
-            </label>
-            <label class="field" data-pj-field hidden>
-              <span>Inscricao estadual</span>
-              <input name="state_registration" autocomplete="off">
+            <label class="field">
+              <span data-person-doc-secondary-label>CPF</span>
+              <input name="document_secondary" inputmode="numeric" autocomplete="off" required>
             </label>
             <label class="field">
               <span>Nome Responsavel pelo cadastro</span>
@@ -1730,7 +1732,7 @@ function renderLogin() {
               </select>
             </label>
             <label class="field">
-              <span>Endereco</span>
+              <span>Endereço</span>
               <input name="address" autocomplete="street-address" required>
             </label>
             <label class="field">
@@ -1753,14 +1755,14 @@ function renderLogin() {
               <span>Senha</span>
               <span class="password-control">
                 <input name="password" type="password" autocomplete="new-password" required minlength="6">
-                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+                <button class="password-toggle" type="button" data-toggle-password aria-label="Mostrar senha" title="Mostrar senha">&#128065;</button>
               </span>
             </label>
             <label class="field">
               <span>Confirmar senha</span>
               <span class="password-control">
                 <input name="confirm_password" type="password" autocomplete="new-password" required minlength="6">
-                <button class="password-toggle" type="button" data-toggle-password>Mostrar</button>
+                <button class="password-toggle" type="button" data-toggle-password aria-label="Mostrar senha" title="Mostrar senha">&#128065;</button>
               </span>
               <span class="field-error" data-match-message="confirm_password"></span>
             </label>
@@ -1790,13 +1792,14 @@ function renderProfile(tab = "account") {
   const activeTab = ["account", "address", "delivery", "prefixes", "history"].includes(tab) ? tab : "account";
   const menuItems = [
     ["account", "Dados pessoais"],
-    ["address", "Endereco"],
-    ["delivery", "Enderecos de entrega"],
+    ["address", "Endereço"],
+    ["delivery", "Endereços de entrega"],
     ["prefixes", "Prefixos"],
-    ["history", "Acompanhar solicitacoes"]
+    ["history", "Acompanhar solicitações"]
   ];
   const profilePersonType = normalizePersonType(profile.person_type);
   const isLegalProfile = profilePersonType === "pj";
+  const profileDocLabels = personDocLabels(profilePersonType);
 
   const accountPanel = `
     <form class="form-panel auth-single" data-profile-form>
@@ -1804,8 +1807,8 @@ function renderProfile(tab = "account") {
         <label class="field">
           <span>Tipo de pessoa</span>
           <select name="person_type" data-person-type required>
-            <option value="pf" ${profilePersonType === "pf" ? "selected" : ""}>Pessoa fisica</option>
-            <option value="pj" ${profilePersonType === "pj" ? "selected" : ""}>Pessoa Juridica</option>
+            <option value="pf" ${profilePersonType === "pf" ? "selected" : ""}>Pessoa física</option>
+            <option value="pj" ${profilePersonType === "pj" ? "selected" : ""}>Pessoa Jurídica</option>
           </select>
         </label>
         <label class="field">
@@ -1816,21 +1819,13 @@ function renderProfile(tab = "account") {
           <span>Sobrenome</span>
           <input name="last_name" value="${escapeHtml(profile.last_name || "")}" autocomplete="family-name" ${isLegalProfile ? "" : "required"}>
         </label>
-        <label class="field" data-pf-field ${isLegalProfile ? "hidden" : ""}>
-          <span>CPF</span>
-          <input name="cpf" value="${escapeHtml(profile.cpf || "")}" inputmode="numeric" autocomplete="off" ${isLegalProfile ? "" : "required"}>
+        <label class="field">
+          <span data-person-doc-primary-label>${profileDocLabels.primary}</span>
+          <input name="document_primary" value="${escapeHtml(isLegalProfile ? profile.cnpj || "" : profile.rg || "")}" autocomplete="off" required>
         </label>
-        <label class="field" data-pf-field ${isLegalProfile ? "hidden" : ""}>
-          <span>RG</span>
-          <input name="rg" value="${escapeHtml(profile.rg || "")}" autocomplete="off" ${isLegalProfile ? "" : "required"}>
-        </label>
-        <label class="field" data-pj-field ${isLegalProfile ? "" : "hidden"}>
-          <span>CNPJ</span>
-          <input name="cnpj" value="${escapeHtml(profile.cnpj || "")}" inputmode="numeric" autocomplete="off" ${isLegalProfile ? "required" : ""}>
-        </label>
-        <label class="field" data-pj-field ${isLegalProfile ? "" : "hidden"}>
-          <span>Inscricao estadual</span>
-          <input name="state_registration" value="${escapeHtml(profile.state_registration || "")}" autocomplete="off" ${isLegalProfile ? "required" : ""}>
+        <label class="field">
+          <span data-person-doc-secondary-label>${profileDocLabels.secondary}</span>
+          <input name="document_secondary" value="${escapeHtml(isLegalProfile ? profile.state_registration || "" : profile.cpf || "")}" inputmode="numeric" autocomplete="off" required>
         </label>
         <label class="field">
           <span>Nome Responsavel pelo cadastro</span>
@@ -1866,7 +1861,7 @@ function renderProfile(tab = "account") {
     <form class="form-panel auth-single" data-profile-address-form>
       <div class="form-grid">
         <label class="field">
-          <span>Endereco</span>
+          <span>Endereço</span>
           <input name="address" value="${escapeHtml(customer.address)}" autocomplete="street-address" required>
         </label>
         <label class="field">
@@ -1895,12 +1890,12 @@ function renderProfile(tab = "account") {
   const deliveryPanel = `
     <section class="profile-stack">
       <div class="form-panel">
-        <h2>Enderecos cadastrados</h2>
+        <h2>Endereços cadastrados</h2>
         <div class="quote-list">
           ${state.addresses.length ? state.addresses.map((address) => `
             <div class="quote-item">
               <span>
-                <strong>${escapeHtml(address.label || "Entrega")}${address.is_default ? " - Padrao" : ""}</strong>
+                <strong>${escapeHtml(address.label || "Entrega")}${address.is_default ? " - Padrão" : ""}</strong>
                 <span class="selected-meta">${escapeHtml(address.address)}, ${escapeHtml(address.city)} - ${escapeHtml(address.estado)} / CEP ${escapeHtml(address.cep)}${address.complement ? ` / ${escapeHtml(address.complement)}` : ""}</span>
               </span>
               <button class="secondary-button" type="button" data-address-delete="${address.id}">Remover</button>
@@ -1920,7 +1915,7 @@ function renderProfile(tab = "account") {
             <input name="label" placeholder="Ex.: Hangar, Oficina, Residencial" required>
           </label>
           <label class="field">
-            <span>Endereco</span>
+            <span>Endereço</span>
             <input name="address" required>
           </label>
           <label class="field">
@@ -1943,7 +1938,7 @@ function renderProfile(tab = "account") {
             <input name="complement">
           </label>
           <label class="field check-field">
-            <span>Padrao</span>
+            <span>Padrão</span>
             <input name="is_default" type="checkbox" value="true">
           </label>
         </div>
@@ -1962,10 +1957,10 @@ function renderProfile(tab = "account") {
           ${state.prefixes.length ? state.prefixes.map((prefix) => `
             <div class="quote-item">
               <span>
-                <strong>${escapeHtml(prefix.type)} - ${escapeHtml(prefix.value)}${prefix.is_default ? " - Padrao" : ""}</strong>
+                <strong>${escapeHtml(prefix.type)} - ${escapeHtml(prefix.value)}${prefix.is_default ? " - Padrão" : ""}</strong>
               </span>
               <span class="inline-actions">
-                ${prefix.is_default ? "" : `<button class="secondary-button" type="button" data-prefix-default="${prefix.id}">Tornar Padrao</button>`}
+                ${prefix.is_default ? "" : `<button class="secondary-button" type="button" data-prefix-default="${prefix.id}">Tornar Padrão</button>`}
                 <button class="secondary-button" type="button" data-prefix-delete="${prefix.id}">Remover</button>
               </span>
             </div>
@@ -1988,7 +1983,7 @@ function renderProfile(tab = "account") {
             <input name="value" required>
           </label>
           <label class="field check-field">
-            <span>Padrao</span>
+            <span>Padrão</span>
             <input name="is_default" type="checkbox" value="true">
           </label>
         </div>
@@ -2001,7 +1996,7 @@ function renderProfile(tab = "account") {
 
   const historyPanel = `
     <section class="form-panel auth-single">
-      <h2>Historico de solicitacoes</h2>
+      <h2>Historico de solicitações</h2>
       <div class="quote-list history-list">
         ${state.history.length ? state.history.map((entry) => `
           <div class="quote-item">
@@ -2011,7 +2006,7 @@ function renderProfile(tab = "account") {
               ${renderHistoryTimeline(entry.status || "new")}
             </span>
           </div>
-        `).join("") : `<div class="empty-state">Nenhuma solicitacao enviada ainda.</div>`}
+        `).join("") : `<div class="empty-state">Nenhuma solicitação enviada ainda.</div>`}
       </div>
     </section>
   `;
@@ -2023,7 +2018,7 @@ function renderProfile(tab = "account") {
         <div>
           <p class="eyebrow">Area do cliente</p>
           <h1>Meu cadastro</h1>
-          <p class="lead">Esses dados serao usados automaticamente no envio da cotacao.</p>
+          <p class="lead">Esses dados serao usados automaticamente no envio da cotação.</p>
         </div>
         <button class="secondary-button" type="button" data-route="#/">Voltar</button>
       </section>
@@ -2066,7 +2061,7 @@ async function submitQuote(form) {
   if (useProfile) {
     const token = await currentAccessToken();
     if (!token) {
-      showToast("Faca login para enviar a solicitacao.");
+      showToast("Faca login para enviar a solicitação.");
       location.hash = "#/login";
       return;
     }
@@ -2080,7 +2075,7 @@ async function submitQuote(form) {
   });
   const result = await response.json();
   if (!response.ok) {
-    showToast(result.message || "Nao foi possivel enviar.");
+    showToast(result.message || "Nao foi possível enviar.");
     return;
   }
 
@@ -2101,6 +2096,8 @@ async function saveProfileFromForm(form) {
   const firstName = String(data.first_name ?? current.first_name ?? current.name ?? "").trim();
   const lastName = personType === "pj" ? "" : String(data.last_name ?? current.last_name ?? "").trim();
   const municipality = String(data.municipality ?? data.city ?? current.municipality ?? current.city ?? "").trim();
+  const primaryDocument = String(data.document_primary ?? (personType === "pj" ? current.cnpj : current.rg) ?? "").trim();
+  const secondaryDocument = String(data.document_secondary ?? (personType === "pj" ? current.state_registration : current.cpf) ?? "").trim();
   const profile = {
     id: user.id,
     name: [firstName, lastName].filter(Boolean).join(" ").trim(),
@@ -2117,10 +2114,10 @@ async function saveProfileFromForm(form) {
     cep: String(data.cep ?? current.cep ?? "").trim(),
     complement: String(data.complement ?? current.complement ?? "").trim(),
     person_type: personType,
-    cpf: String(data.cpf ?? current.cpf ?? "").trim(),
-    rg: String(data.rg ?? current.rg ?? "").trim(),
-    cnpj: String(data.cnpj ?? current.cnpj ?? "").trim(),
-    state_registration: String(data.state_registration ?? current.state_registration ?? "").trim(),
+    cpf: personType === "pf" ? secondaryDocument : "",
+    rg: personType === "pf" ? primaryDocument : "",
+    cnpj: personType === "pj" ? primaryDocument : "",
+    state_registration: personType === "pj" ? secondaryDocument : "",
     responsible_name: String(data.responsible_name ?? current.responsible_name ?? "").trim(),
     responsible_cpf: String(data.responsible_cpf ?? current.responsible_cpf ?? "").trim(),
     updated_at: new Date().toISOString()
@@ -2233,6 +2230,11 @@ function updatePersonTypeFields(form) {
   const isLegal = personType === "pj";
   const nameLabel = form.querySelector("[data-person-name-label]");
   if (nameLabel) nameLabel.textContent = personNameLabel(personType);
+  const docLabels = personDocLabels(personType);
+  const primaryDocLabel = form.querySelector("[data-person-doc-primary-label]");
+  const secondaryDocLabel = form.querySelector("[data-person-doc-secondary-label]");
+  if (primaryDocLabel) primaryDocLabel.textContent = docLabels.primary;
+  if (secondaryDocLabel) secondaryDocLabel.textContent = docLabels.secondary;
 
   form.querySelectorAll("[data-last-name-field], [data-pf-field]").forEach((field) => {
     field.hidden = isLegal;
@@ -2280,7 +2282,7 @@ function fillDeliveryAddressFromProfile(form) {
 function downloadLastQuote() {
   const quote = state.lastQuote;
   if (!quote?.text || !quote?.filename) {
-    showToast("Nenhum TXT disponivel para baixar.");
+    showToast("Nenhum TXT disponível para baixar.");
     return;
   }
   const blob = new Blob([quote.text], { type: "text/plain;charset=utf-8" });
@@ -2315,13 +2317,13 @@ async function sendPasswordReset() {
   const form = document.querySelector("[data-login-form]");
   const email = String(form?.elements.email?.value || "").trim();
   if (!email) {
-    showToast("Informe o e-mail para receber o link de redefinicao.");
+    showToast("Informe o e-mail para receber o link de redefinição.");
     return;
   }
   const redirectTo = `${location.origin}${location.pathname}#/login`;
   const { error } = await state.supabase.auth.resetPasswordForEmail(email, { redirectTo });
   if (error) throw error;
-  state.authMessage = "Enviamos um link de redefinicao de senha para o e-mail informado.";
+  state.authMessage = "Enviamos um link de redefinição de senha para o e-mail informado.";
   renderLogin();
 }
 
@@ -2388,7 +2390,7 @@ async function submitRegister(form) {
 
   await saveProfileFromForm(form);
   await savePrefixFromForm(form);
-  state.authMessage = "Cadastro enviado para analise.";
+  state.authMessage = "Cadastro enviado para análise.";
   location.hash = "#/pending";
   render();
 }
@@ -2402,7 +2404,7 @@ async function submitProfile(form) {
 
 async function submitProfileAddress(form) {
   await saveProfileFromForm(form);
-  state.authMessage = "Endereco salvo com sucesso.";
+  state.authMessage = "Endereço salvo com sucesso.";
   await loadProfile();
   renderProfile("address");
 }
@@ -2415,14 +2417,14 @@ async function submitPrefix(form) {
 
 async function submitDeliveryAddress(form) {
   await saveDeliveryAddressFromForm(form);
-  state.authMessage = "Endereco de entrega adicionado com sucesso.";
+  state.authMessage = "Endereço de entrega adicionado com sucesso.";
   renderProfile("delivery");
 }
 
 async function refreshStaffPanel() {
   const view = routeParts()[0] === "master" ? "master" : "seller";
   const hasAccess = await ensureStaffPanelAccess(view);
-  if (!hasAccess) throw new Error(state.staffError || "Nao foi possivel validar o painel.");
+  if (!hasAccess) throw new Error(state.staffError || "Nao foi possível validar o painel.");
   state.staffLoaded = false;
   await loadStaffData();
   renderStaffPanel(view);
@@ -2464,14 +2466,24 @@ async function deleteStaffQuote(quoteId) {
   await refreshStaffPanel();
 }
 
+async function deleteStaffUser(userId) {
+  if (!userId) return;
+  const user = state.staffUsers.find((entry) => entry.id === userId);
+  const label = staffUserName(user || {}) || user?.email || "este cadastro";
+  if (!window.confirm(`Excluir definitivamente o cadastro de ${label}?`)) return;
+  await staffApi("deleteUser", { method: "POST", body: { userId } });
+  showToast("Cadastro excluido.");
+  await refreshStaffPanel();
+}
+
 async function copyActiveCodes() {
   const text = document.querySelector("[data-copy-codes]")?.textContent || "";
   if (!text.trim()) {
-    showToast("Nao ha codigos para copiar.");
+    showToast("Nao ha códigos para copiar.");
     return;
   }
   await navigator.clipboard.writeText(text);
-  showToast("Codigos copiados.");
+  showToast("Códigos copiados.");
 }
 
 async function logout() {
@@ -2491,7 +2503,7 @@ async function logout() {
   location.hash = "#/";
   render();
   if (authEnabled() && supabase) {
-    supabase.auth.signOut().catch((error) => showToast(error.message || "Nao foi possivel encerrar a sessao remota."));
+    supabase.auth.signOut().catch((error) => showToast(error.message || "Nao foi possível encerrar a sessao remota."));
   }
 }
 
@@ -2515,7 +2527,9 @@ function bindEvents() {
       const input = passwordToggle.closest(".password-control")?.querySelector("input");
       if (input) {
         input.type = input.type === "password" ? "text" : "password";
-        passwordToggle.textContent = input.type === "password" ? "Mostrar" : "Ocultar";
+        const label = input.type === "password" ? "Mostrar senha" : "Ocultar senha";
+        passwordToggle.setAttribute("aria-label", label);
+        passwordToggle.setAttribute("title", label);
       }
       return;
     }
@@ -2589,6 +2603,12 @@ function bindEvents() {
     const deleteQuote = event.target.closest("[data-delete-quote]");
     if (deleteQuote) {
       deleteStaffQuote(deleteQuote.dataset.deleteQuote).catch((error) => showToast(error.message));
+      return;
+    }
+
+    const deleteUser = event.target.closest("[data-delete-user]");
+    if (deleteUser) {
+      deleteStaffUser(deleteUser.dataset.deleteUser).catch((error) => showToast(error.message));
       return;
     }
 
@@ -2741,7 +2761,7 @@ function bindEvents() {
     if (event.target.matches("[data-login-form]")) {
       event.preventDefault();
       submitLogin(event.target).catch((error) => {
-        state.authMessage = error.message || "Nao foi possivel entrar.";
+        state.authMessage = error.message || "Nao foi possível entrar.";
         renderLogin();
         showToast(state.authMessage);
       });
@@ -2817,14 +2837,14 @@ async function init() {
     state.supabase = createClient(state.config.supabase.url, state.config.supabase.anonKey);
     const { data, error } = await state.supabase.auth.getSession();
     if (error) {
-      state.authMessage = "Nao foi possivel validar a sessao. Tente entrar novamente.";
+      state.authMessage = "Nao foi possível validar a sessao. Tente entrar novamente.";
     } else {
       state.session = data.session;
     }
     handleSupabaseAuthRedirect();
     if (state.passwordRecoveryIntent && state.session) {
       state.passwordRecovery = true;
-      state.authMessage = "Digite a nova senha para concluir a redefinicao.";
+      state.authMessage = "Digite a nova senha para concluir a redefinição.";
       location.hash = "#/login";
     } else if (state.session) {
       await prepareLoggedSession(state.session, { forceMaster: isFirstMasterEmail(state.session.user?.email) });
@@ -2835,7 +2855,7 @@ async function init() {
       if (event === "PASSWORD_RECOVERY" || (state.passwordRecoveryIntent && session)) {
         state.passwordRecovery = true;
         state.passwordRecoveryIntent = true;
-        state.authMessage = "Digite a nova senha para concluir a redefinicao.";
+        state.authMessage = "Digite a nova senha para concluir a redefinição.";
         location.hash = "#/login";
         render();
         return;
@@ -2844,7 +2864,7 @@ async function init() {
         refreshLoggedSessionSoft(session).then(() => {
           if (authUser()) render();
         }).catch((error) => {
-          state.authMessage = error.message || "Nao foi possivel atualizar a sessao.";
+          state.authMessage = error.message || "Nao foi possível atualizar a sessao.";
         });
         return;
       }

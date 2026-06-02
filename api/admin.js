@@ -179,6 +179,24 @@ async function deleteQuote(body) {
   return { id: body.quoteId };
 }
 
+async function deleteUser(body) {
+  const userId = String(body.userId || "").trim();
+  if (!userId) throw Object.assign(new Error("Cadastro nao informado."), { statusCode: 400 });
+
+  await supabaseFetch("/rest/v1/profiles", {
+    service: true,
+    method: "DELETE",
+    query: `?id=eq.${encodeURIComponent(userId)}`
+  });
+
+  await supabaseFetch(`/auth/v1/admin/users/${encodeURIComponent(userId)}`, {
+    service: true,
+    method: "DELETE"
+  }).catch(() => null);
+
+  return { id: userId };
+}
+
 export async function handleAdminRequest({ method, headers, url, body }) {
   const requestUrl = new URL(url, "http://local");
   const action = requestUrl.searchParams.get("action") || body?.action || "";
@@ -211,6 +229,11 @@ export async function handleAdminRequest({ method, headers, url, body }) {
   if (method === "POST" && action === "deleteQuote") {
     await requireStaff(headers, ["master"]);
     return { status: 200, body: { ok: true, quote: await deleteQuote(body) } };
+  }
+
+  if (method === "POST" && action === "deleteUser") {
+    await requireStaff(headers, ["master"]);
+    return { status: 200, body: { ok: true, user: await deleteUser(body) } };
   }
 
   return { status: 404, body: { ok: false, message: "Acao administrativa nao encontrada." } };
