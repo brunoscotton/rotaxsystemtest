@@ -1033,7 +1033,15 @@ function renderSection(engineId, sectionId) {
                       ${item.note ? `<span class="part-note">${escapeHtml(item.note)}</span>` : ""}
                     </td>
                     <td>${escapeHtml(item.qty[engineId])}</td>
-                    <td><button class="small-button add" type="button" data-add="${item.id}" data-engine="${engineId}">ADD</button></td>
+                    <td>
+                      <div class="table-add-controls">
+                        <label>
+                          <span>Qtd</span>
+                          <input type="number" min="1" max="999" value="1" data-add-qty="${item.id}">
+                        </label>
+                        <button class="small-button add" type="button" data-add="${item.id}" data-engine="${engineId}" data-qty-source="${item.id}">ADD</button>
+                      </div>
+                    </td>
                   </tr>
                 `).join("")}
               </tbody>
