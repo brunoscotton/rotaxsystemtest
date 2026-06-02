@@ -53347,6 +53347,440 @@
         "912uls": 4
       },
       "image": "/assets/accessories-sportlt.png"
+    },
+    {
+      "id": "kit-912uls-100h-01-825016",
+      "sectionId": "kit-revisao-912uls-100-horas",
+      "figure": "1",
+      "partNumber": "825016",
+      "description": "Oil filter",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-100h-02-250010",
+      "sectionId": "kit-revisao-912uls-100-horas",
+      "figure": "2",
+      "partNumber": "250010",
+      "description": "Gasket Ring C 12x18",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-100h-03-sportlt",
+      "sectionId": "kit-revisao-912uls-100-horas",
+      "figure": "3",
+      "partNumber": "SPORTLT",
+      "description": "Oleo Aeroshell Sport Plus 4",
+      "qty": {
+        "912uls": 4
+      },
+      "image": "/assets/accessories-sportlt.png"
+    },
+    {
+      "id": "kit-912uls-100h-04-297656",
+      "sectionId": "kit-revisao-912uls-100-horas",
+      "figure": "4",
+      "partNumber": "297656",
+      "description": "Spark Plug Rotax",
+      "qty": {
+        "912uls": 8
+      },
+      "image": "/assets/accessories-spark-plug.jpg"
+    },
+    {
+      "id": "kit-912uls-200h-01-825016",
+      "sectionId": "kit-revisao-912uls-200-horas",
+      "figure": "1",
+      "partNumber": "825016",
+      "description": "Oil filter",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-200h-02-250010",
+      "sectionId": "kit-revisao-912uls-200-horas",
+      "figure": "2",
+      "partNumber": "250010",
+      "description": "Gasket Ring C 12x18",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-200h-03-sportlt",
+      "sectionId": "kit-revisao-912uls-200-horas",
+      "figure": "3",
+      "partNumber": "SPORTLT",
+      "description": "Oleo Aeroshell Sport Plus 4",
+      "qty": {
+        "912uls": 4
+      },
+      "image": "/assets/accessories-sportlt.png"
+    },
+    {
+      "id": "kit-912uls-200h-04-dcpr8e",
+      "sectionId": "kit-revisao-912uls-200-horas",
+      "figure": "4",
+      "partNumber": "DCPR8E",
+      "description": "Spark Plug Rotax",
+      "qty": {
+        "912uls": 8
+      },
+      "image": "/assets/accessories-dcpr8e.jpg"
+    },
+    {
+      "id": "kit-912uls-200h-05-261708",
+      "sectionId": "kit-revisao-912uls-200-horas",
+      "figure": "5",
+      "partNumber": "261708",
+      "description": "Float Neddle Viton tip",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-200h-06-963010",
+      "sectionId": "kit-revisao-912uls-200-horas",
+      "figure": "6",
+      "partNumber": "963010",
+      "description": "Sleeve",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-200h-07-996946",
+      "sectionId": "kit-revisao-912uls-200-horas",
+      "figure": "7",
+      "partNumber": "996946",
+      "description": "Gasket set 912/14",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-600h-01-926035",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "1",
+      "partNumber": "926035",
+      "description": "Ring Half",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-600h-02-827992",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "2",
+      "partNumber": "827992",
+      "description": "Thrust Washer",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-600h-03-847787",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "3",
+      "partNumber": "847787",
+      "description": "Step Collar",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-600h-04-950470",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "4",
+      "partNumber": "950470",
+      "description": "Oil Seal",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-600h-05-838216",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "5",
+      "partNumber": "838216",
+      "description": "Disk Spring",
+      "qty": {
+        "912uls": 3
+      }
+    },
+    {
+      "id": "kit-912uls-600h-06-832587",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "6",
+      "partNumber": "832587",
+      "description": "Ball Bearing",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-600h-07-927401",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "7",
+      "partNumber": "927401",
+      "description": "Shim 0.2mm",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-600h-08-927402",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "8",
+      "partNumber": "927402",
+      "description": "Shim 0.5mm",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-600h-09-927403",
+      "sectionId": "kit-revisao-912uls-600-horas",
+      "figure": "9",
+      "partNumber": "927403",
+      "description": "Shim 1mm",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-01-267789",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "1",
+      "partNumber": "267789",
+      "description": "Carburetor Flange",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-02-893115",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "2",
+      "partNumber": "893115",
+      "description": "Fuel Pump Assy",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-03-861116",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "3",
+      "partNumber": "861116",
+      "description": "Diaphragm",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-04-860829",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "4",
+      "partNumber": "860829",
+      "description": "Rubber Plate",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-05-922250",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "5",
+      "partNumber": "922250",
+      "description": "Water hose",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-06-922192",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "6",
+      "partNumber": "922192",
+      "description": "90g Hose",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-07-956142",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "7",
+      "partNumber": "956142",
+      "description": "Tube",
+      "qty": {
+        "912uls": 0.2
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-08-840740",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "8",
+      "partNumber": "840740",
+      "description": "Niple 7/3.8",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-09-840745",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "9",
+      "partNumber": "840745",
+      "description": "Niple 9/5.7",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-10-250425",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "10",
+      "partNumber": "250425",
+      "description": "Gasket ring 10.2x15x1.5",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-11-922072",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "11",
+      "partNumber": "922072",
+      "description": "radiat. Cap W. gasket",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-5anos-12-230300",
+      "sectionId": "kit-revisao-912uls-5-anos",
+      "figure": "12",
+      "partNumber": "230300",
+      "description": "o-ring 47x2",
+      "qty": {
+        "912uls": 2
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-01-958856",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "1",
+      "partNumber": "958856",
+      "description": "ROLAMENTO",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-02-852402",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "2",
+      "partNumber": "852402",
+      "description": "CARCA?A EMBR.",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-03-845425",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "3",
+      "partNumber": "845425",
+      "description": "ANAL TRAVA",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-04-246571",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "4",
+      "partNumber": "246571",
+      "description": "CHAVETA",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-05-850981",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "5",
+      "partNumber": "850981",
+      "description": "JUNTA",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-06-230020",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "6",
+      "partNumber": "230020",
+      "description": "ANEL VED.",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-07-850965",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "7",
+      "partNumber": "850965",
+      "description": "RET. OLEO",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-08-250140",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "8",
+      "partNumber": "250140",
+      "description": "ANEL VED.",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-09-230415",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "9",
+      "partNumber": "230415",
+      "description": "GASKET RING",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-10-831929",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "10",
+      "partNumber": "831929",
+      "description": "O-RING 5X2",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-sprag-11-250140",
+      "sectionId": "kit-revisao-912uls-troca-sprag-clutch",
+      "figure": "11",
+      "partNumber": "250140",
+      "description": "O-RING 24.4x3.1",
+      "qty": {
+        "912uls": 1
+      }
     }
   ]
 }

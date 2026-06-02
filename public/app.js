@@ -742,10 +742,15 @@ function updateGlobalSearchDropdown() {
   panel.hidden = state.globalSearch.trim().length < 2;
 }
 
+function positiveQuantity(value, fallback = 1) {
+  const quantity = Number(value);
+  return Number.isFinite(quantity) && quantity > 0 ? quantity : fallback;
+}
+
 function addItem(itemId, engineId, quantityToAdd = 1) {
   const item = itemById(itemId);
   if (!item) return;
-  const quantity = Number(state.cart[itemId]?.quantity || 0) + Math.max(1, Number(quantityToAdd || 1));
+  const quantity = Number(state.cart[itemId]?.quantity || 0) + positiveQuantity(quantityToAdd);
   state.cart[itemId] = { quantity, engineId };
   saveCart();
   showToast(`${item.partNumber} adicionado a lista.`);
@@ -761,7 +766,7 @@ function addKitItems(sectionId, engineId) {
   for (const item of kitItems) {
     const input = Array.from(partsPanel?.querySelectorAll("[data-add-qty]") || [])
       .find((element) => element.dataset.addQty === item.id);
-    const quantityToAdd = Math.max(1, Number(input?.value || item.qty?.[engineId] || 1));
+    const quantityToAdd = positiveQuantity(input?.value, positiveQuantity(item.qty?.[engineId]));
     const quantity = Number(state.cart[item.id]?.quantity || 0) + quantityToAdd;
     state.cart[item.id] = { quantity, engineId };
   }
@@ -1064,7 +1069,7 @@ function renderSection(engineId, sectionId) {
                       <div class="table-add-controls">
                         <label>
                           <span>Qtd</span>
-                          <input type="number" min="1" max="999" value="${kitSection ? Number(item.qty[engineId] || 1) : 1}" data-add-qty="${item.id}">
+                          <input type="number" min="${kitSection ? "0.1" : "1"}" step="${kitSection ? "0.1" : "1"}" max="999" value="${kitSection ? Number(item.qty[engineId] || 1) : 1}" data-add-qty="${item.id}">
                         </label>
                         <button class="small-button add" type="button" data-add="${item.id}" data-engine="${engineId}" data-qty-source="${item.id}">ADD</button>
                       </div>
