@@ -820,7 +820,7 @@ function shell(content) {
           </span>
         </a>
         <div class="global-search">
-          <input type="search" placeholder="Buscar PN" value="${escapeHtml(state.globalSearch)}" data-global-search autocomplete="off">
+          <input type="search" placeholder="Buscar PN, Descrição, Categoria..." value="${escapeHtml(state.globalSearch)}" data-global-search autocomplete="off">
           <div class="global-search-menu" data-global-results ${state.globalSearch.trim().length < 2 ? "hidden" : ""}>
             ${renderGlobalSearchResults()}
           </div>
@@ -1000,6 +1000,7 @@ function renderSection(engineId, sectionId) {
   const hasItemImages = filtered.some((item) => item.image);
   const accessories = isAccessoriesCatalog(engineId);
   const kitSection = Boolean(section.kit);
+  const diagramImage = accessories ? "/assets/accessories-cover.png" : section.image;
 
   shell(`
     <main class="page">
@@ -1019,7 +1020,7 @@ function renderSection(engineId, sectionId) {
           </div>
           <div class="diagram-wrap">
             <div class="diagram-stage">
-              <img src="${section.image}" alt="${escapeHtml(section.title)}">
+              <img src="${diagramImage}" alt="${escapeHtml(accessories ? "Acessorios" : section.title)}">
               ${section.hotspots.map((spot) => {
                 const item = resolveHotspotItem(sectionId, engineId, spot.figure);
                 const selected = item && state.cart[item.id];
