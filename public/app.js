@@ -113,6 +113,7 @@ function primaryPrefix() {
 function profileToCustomer(selectedPrefix = "") {
   const profile = state.profile || {};
   const prefix = state.prefixes.find((entry) => entry.value === selectedPrefix) || primaryPrefix();
+  const municipality = profile.municipality || profile.city || "";
   return {
     name: fullName(profile),
     prefix: prefix?.value || profile.prefixo || "",
@@ -120,7 +121,8 @@ function profileToCustomer(selectedPrefix = "") {
     email: profile.email || authUser()?.email || "",
     state: profile.estado || "",
     address: profile.address || "",
-    city: profile.city || "",
+    city: municipality,
+    district: profile.district || "",
     cep: profile.cep || "",
     complement: profile.complement || ""
   };
@@ -150,6 +152,18 @@ function requiredProfileText(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+function personTypeLabel(personType) {
+  return personType === "pj" ? "Pessoa Juridica" : "Pessoa fisica";
+}
+
+function personNameLabel(personType) {
+  return personType === "pj" ? "Razao Social" : "Nome";
+}
+
+function normalizePersonType(value) {
+  return value === "pj" ? "pj" : "pf";
+}
+
 async function loadProfile() {
   if (!authEnabled() || !authUser()) {
     state.profile = null;
@@ -158,7 +172,7 @@ async function loadProfile() {
 
   const { data, error } = await state.supabase
     .from("profiles")
-    .select("name,first_name,last_name,prefixo,phone,email,estado,address,city,cep,complement,role,status")
+    .select("name,first_name,last_name,prefixo,phone,email,estado,address,city,municipality,district,cep,complement,person_type,cpf,rg,cnpj,state_registration,responsible_name,responsible_cpf,role,status")
     .eq("id", authUser().id)
     .maybeSingle();
 
@@ -1316,11 +1330,52 @@ function staffUserName(user) {
   return (user.name || `${user.first_name || ""} ${user.last_name || ""}`.trim()).trim();
 }
 
+function staffUserRegistrationText(user) {
+  const personType = normalizePersonType(user.person_type);
+  const lines = [
+    "CADASTRO DE CLIENTE",
+    "",
+    `Tipo de pessoa:\t${personTypeLabel(personType)}`,
+    `${personNameLabel(personType)}:\t${staffUserName(user)}`,
+    personType === "pf" ? `CPF:\t${user.cpf || ""}` : `CNPJ:\t${user.cnpj || ""}`,
+    personType === "pf" ? `RG:\t${user.rg || ""}` : `Inscricao estadual:\t${user.state_registration || ""}`,
+    `Nome Responsavel pelo cadastro:\t${user.responsible_name || ""}`,
+    `CPF Responsavel pelo cadastro:\t${user.responsible_cpf || ""}`,
+    "",
+    "CONTATO",
+    `E-mail:\t${user.email || ""}`,
+    `Telefone:\t${user.phone || ""}`,
+    `Prefixo/COM:\t${user.prefixo || ""}`,
+    "",
+    "ENDERECO",
+    `Endereco:\t${user.address || ""}`,
+    `Bairro:\t${user.district || ""}`,
+    `Municipio:\t${user.municipality || user.city || ""}`,
+    `Estado:\t${user.estado || ""}`,
+    `CEP:\t${user.cep || ""}`,
+    `Complemento:\t${user.complement || ""}`,
+    "",
+    "CONTROLE INTERNO",
+    `Status:\t${profileStatusLabel(user.status)}`,
+    `Perfil:\t${roleLabel(user.role)}`,
+    `Atualizado em:\t${user.updated_at ? new Date(user.updated_at).toLocaleString("pt-BR") : ""}`
+  ];
+  return lines.join("\n");
+}
+
+function staffUserRegistrationFilename(user) {
+  const base = normalizeSearch(staffUserName(user) || user.email || user.id || "cadastro")
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .slice(0, 48) || "cadastro";
+  return `cadastro-${base}.txt`;
+}
+
 function filterStaffUsers(users) {
   const query = normalizeSearch(state.staffUserSearch);
   return users.filter((user) => {
     const status = user.status || "pending";
-    const text = normalizeSearch(`${staffUserName(user)} ${user.email || ""} ${user.phone || ""}`);
+    const text = normalizeSearch(`${staffUserName(user)} ${user.email || ""} ${user.phone || ""} ${user.cpf || ""} ${user.cnpj || ""} ${user.responsible_name || ""}`);
     const matchesText = !query || text.includes(query);
     const matchesStatus = state.staffUserStatusFilter === "all" || status === state.staffUserStatusFilter;
     return matchesText && matchesStatus;
@@ -1516,6 +1571,7 @@ function renderStaffPanel(kind) {
                             <option value="approved" ${user.status === "approved" ? "selected" : ""}>Aprovado</option>
                             <option value="blocked" ${user.status === "blocked" ? "selected" : ""}>Bloqueado</option>
                           </select>
+                          <button class="small-button" type="button" data-download-registration="${user.id}">Baixar TXT</button>
                           <button class="small-button" type="button" data-save-user="${user.id}">${canMaster ? "Salvar" : "Atualizar cadastro"}</button>
                         </div>
                       </td>
@@ -1603,12 +1659,43 @@ function renderLogin() {
           <h2>Criar cadastro</h2>
           <div class="form-grid">
             <label class="field">
-              <span>Nome</span>
-              <input name="first_name" autocomplete="given-name" required>
+              <span>Tipo de pessoa</span>
+              <select name="person_type" data-person-type required>
+                <option value="pf" selected>Pessoa fisica</option>
+                <option value="pj">Pessoa Juridica</option>
+              </select>
             </label>
             <label class="field">
+              <span data-person-name-label>Nome</span>
+              <input name="first_name" autocomplete="given-name" required>
+            </label>
+            <label class="field" data-last-name-field>
               <span>Sobrenome</span>
               <input name="last_name" autocomplete="family-name" required>
+            </label>
+            <label class="field" data-pf-field>
+              <span>CPF</span>
+              <input name="cpf" inputmode="numeric" autocomplete="off" required>
+            </label>
+            <label class="field" data-pf-field>
+              <span>RG</span>
+              <input name="rg" autocomplete="off" required>
+            </label>
+            <label class="field" data-pj-field hidden>
+              <span>CNPJ</span>
+              <input name="cnpj" inputmode="numeric" autocomplete="off">
+            </label>
+            <label class="field" data-pj-field hidden>
+              <span>Inscricao estadual</span>
+              <input name="state_registration" autocomplete="off">
+            </label>
+            <label class="field">
+              <span>Nome Responsavel pelo cadastro</span>
+              <input name="responsible_name" autocomplete="name" required>
+            </label>
+            <label class="field">
+              <span>CPF Responsavel pelo cadastro</span>
+              <input name="responsible_cpf" inputmode="numeric" autocomplete="off" required>
             </label>
             <label class="field">
               <span>Tipo</span>
@@ -1647,8 +1734,12 @@ function renderLogin() {
               <input name="address" autocomplete="street-address" required>
             </label>
             <label class="field">
-              <span>Cidade</span>
-              <input name="city" autocomplete="address-level2" required>
+              <span>Bairro</span>
+              <input name="district" autocomplete="address-level3" required>
+            </label>
+            <label class="field">
+              <span>Municipio</span>
+              <input name="municipality" autocomplete="address-level2" required>
             </label>
             <label class="field">
               <span>CEP</span>
@@ -1704,17 +1795,50 @@ function renderProfile(tab = "account") {
     ["prefixes", "Prefixos"],
     ["history", "Acompanhar solicitacoes"]
   ];
+  const profilePersonType = normalizePersonType(profile.person_type);
+  const isLegalProfile = profilePersonType === "pj";
 
   const accountPanel = `
     <form class="form-panel auth-single" data-profile-form>
       <div class="form-grid">
         <label class="field">
-          <span>Nome</span>
-          <input name="first_name" value="${escapeHtml(profile.first_name || profile.name || "")}" autocomplete="given-name" required>
+          <span>Tipo de pessoa</span>
+          <select name="person_type" data-person-type required>
+            <option value="pf" ${profilePersonType === "pf" ? "selected" : ""}>Pessoa fisica</option>
+            <option value="pj" ${profilePersonType === "pj" ? "selected" : ""}>Pessoa Juridica</option>
+          </select>
         </label>
         <label class="field">
+          <span data-person-name-label>${personNameLabel(profilePersonType)}</span>
+          <input name="first_name" value="${escapeHtml(profile.first_name || profile.name || "")}" autocomplete="given-name" required>
+        </label>
+        <label class="field" data-last-name-field ${isLegalProfile ? "hidden" : ""}>
           <span>Sobrenome</span>
-          <input name="last_name" value="${escapeHtml(profile.last_name || "")}" autocomplete="family-name" required>
+          <input name="last_name" value="${escapeHtml(profile.last_name || "")}" autocomplete="family-name" ${isLegalProfile ? "" : "required"}>
+        </label>
+        <label class="field" data-pf-field ${isLegalProfile ? "hidden" : ""}>
+          <span>CPF</span>
+          <input name="cpf" value="${escapeHtml(profile.cpf || "")}" inputmode="numeric" autocomplete="off" ${isLegalProfile ? "" : "required"}>
+        </label>
+        <label class="field" data-pf-field ${isLegalProfile ? "hidden" : ""}>
+          <span>RG</span>
+          <input name="rg" value="${escapeHtml(profile.rg || "")}" autocomplete="off" ${isLegalProfile ? "" : "required"}>
+        </label>
+        <label class="field" data-pj-field ${isLegalProfile ? "" : "hidden"}>
+          <span>CNPJ</span>
+          <input name="cnpj" value="${escapeHtml(profile.cnpj || "")}" inputmode="numeric" autocomplete="off" ${isLegalProfile ? "required" : ""}>
+        </label>
+        <label class="field" data-pj-field ${isLegalProfile ? "" : "hidden"}>
+          <span>Inscricao estadual</span>
+          <input name="state_registration" value="${escapeHtml(profile.state_registration || "")}" autocomplete="off" ${isLegalProfile ? "required" : ""}>
+        </label>
+        <label class="field">
+          <span>Nome Responsavel pelo cadastro</span>
+          <input name="responsible_name" value="${escapeHtml(profile.responsible_name || "")}" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>CPF Responsavel pelo cadastro</span>
+          <input name="responsible_cpf" value="${escapeHtml(profile.responsible_cpf || "")}" inputmode="numeric" autocomplete="off" required>
         </label>
         <label class="field">
           <span>Telefone</span>
@@ -1746,8 +1870,12 @@ function renderProfile(tab = "account") {
           <input name="address" value="${escapeHtml(customer.address)}" autocomplete="street-address" required>
         </label>
         <label class="field">
-          <span>Cidade</span>
-          <input name="city" value="${escapeHtml(customer.city)}" autocomplete="address-level2" required>
+          <span>Bairro</span>
+          <input name="district" value="${escapeHtml(customer.district)}" autocomplete="address-level3" required>
+        </label>
+        <label class="field">
+          <span>Municipio</span>
+          <input name="municipality" value="${escapeHtml(customer.city)}" autocomplete="address-level2" required>
         </label>
         <label class="field">
           <span>CEP</span>
@@ -1969,8 +2097,10 @@ async function saveProfileFromForm(form) {
   if (!user) throw new Error("Faca login para salvar o cadastro.");
 
   const current = state.profile || {};
+  const personType = normalizePersonType(data.person_type ?? current.person_type);
   const firstName = String(data.first_name ?? current.first_name ?? current.name ?? "").trim();
-  const lastName = String(data.last_name ?? current.last_name ?? "").trim();
+  const lastName = personType === "pj" ? "" : String(data.last_name ?? current.last_name ?? "").trim();
+  const municipality = String(data.municipality ?? data.city ?? current.municipality ?? current.city ?? "").trim();
   const profile = {
     id: user.id,
     name: [firstName, lastName].filter(Boolean).join(" ").trim(),
@@ -1981,13 +2111,31 @@ async function saveProfileFromForm(form) {
     email: String(data.email ?? current.email ?? user.email ?? "").trim(),
     estado: String(data.estado ?? current.estado ?? "").trim(),
     address: String(data.address ?? current.address ?? "").trim(),
-    city: String(data.city ?? current.city ?? "").trim(),
+    city: municipality,
+    municipality,
+    district: String(data.district ?? current.district ?? "").trim(),
     cep: String(data.cep ?? current.cep ?? "").trim(),
     complement: String(data.complement ?? current.complement ?? "").trim(),
+    person_type: personType,
+    cpf: String(data.cpf ?? current.cpf ?? "").trim(),
+    rg: String(data.rg ?? current.rg ?? "").trim(),
+    cnpj: String(data.cnpj ?? current.cnpj ?? "").trim(),
+    state_registration: String(data.state_registration ?? current.state_registration ?? "").trim(),
+    responsible_name: String(data.responsible_name ?? current.responsible_name ?? "").trim(),
+    responsible_cpf: String(data.responsible_cpf ?? current.responsible_cpf ?? "").trim(),
     updated_at: new Date().toISOString()
   };
 
-  const missing = ["name", "phone", "email", "estado"].filter((field) => !requiredProfileText(profile[field]));
+  const requiredFields = ["name", "phone", "email", "estado"];
+  if (form.matches("[data-register-form], [data-profile-form]")) {
+    requiredFields.push("responsible_name", "responsible_cpf");
+    if (personType === "pj") requiredFields.push("cnpj", "state_registration");
+    else requiredFields.push("cpf", "rg");
+  }
+  if (form.matches("[data-register-form], [data-profile-address-form]")) {
+    requiredFields.push("address", "district", "municipality", "cep");
+  }
+  const missing = requiredFields.filter((field) => !requiredProfileText(profile[field]));
   if (missing.length) throw new Error("Preencha todos os campos do cadastro.");
 
   const { error } = await state.supabase.from("profiles").upsert(profile, { onConflict: "id" });
@@ -2078,6 +2226,29 @@ function updatePrefixLabel(form) {
   label.textContent = select.value === "COM" ? "COM" : "Prefixo";
 }
 
+function updatePersonTypeFields(form) {
+  const select = form?.querySelector("[data-person-type]");
+  if (!select) return;
+  const personType = normalizePersonType(select.value);
+  const isLegal = personType === "pj";
+  const nameLabel = form.querySelector("[data-person-name-label]");
+  if (nameLabel) nameLabel.textContent = personNameLabel(personType);
+
+  form.querySelectorAll("[data-last-name-field], [data-pf-field]").forEach((field) => {
+    field.hidden = isLegal;
+    field.querySelectorAll("input, select").forEach((input) => {
+      input.required = !isLegal;
+    });
+  });
+
+  form.querySelectorAll("[data-pj-field]").forEach((field) => {
+    field.hidden = !isLegal;
+    field.querySelectorAll("input, select").forEach((input) => {
+      input.required = isLegal;
+    });
+  });
+}
+
 function validateRegisterMatches(form) {
   const email = form?.elements.email;
   const confirmEmail = form?.elements.confirm_email;
@@ -2117,6 +2288,23 @@ function downloadLastQuote() {
   const link = document.createElement("a");
   link.href = url;
   link.download = quote.filename;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function downloadStaffRegistration(userId) {
+  const user = state.staffUsers.find((entry) => entry.id === userId);
+  if (!user) {
+    showToast("Cadastro nao encontrado.");
+    return;
+  }
+  const blob = new Blob([staffUserRegistrationText(user)], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = staffUserRegistrationFilename(user);
   document.body.append(link);
   link.click();
   link.remove();
@@ -2384,6 +2572,12 @@ function bindEvents() {
       return;
     }
 
+    const downloadRegistration = event.target.closest("[data-download-registration]");
+    if (downloadRegistration) {
+      downloadStaffRegistration(downloadRegistration.dataset.downloadRegistration);
+      return;
+    }
+
     const updateQuoteStatus = event.target.closest("[data-update-quote-status]");
     if (updateQuoteStatus) {
       const quoteId = updateQuoteStatus.dataset.updateQuoteStatus;
@@ -2502,6 +2696,11 @@ function bindEvents() {
   app.addEventListener("change", (event) => {
     if (event.target.matches("[data-prefix-type]")) {
       updatePrefixLabel(event.target.closest("form"));
+      return;
+    }
+
+    if (event.target.matches("[data-person-type]")) {
+      updatePersonTypeFields(event.target.closest("form"));
       return;
     }
 

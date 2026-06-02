@@ -80,8 +80,17 @@ async function ensureFirstMasterProfile(user) {
     estado: existing?.estado || "SP",
     address: existing?.address || "CDSAV",
     city: existing?.city || "Sao Paulo",
+    municipality: existing?.municipality || existing?.city || "Sao Paulo",
+    district: existing?.district || "CDSAV",
     cep: existing?.cep || "00000000",
     complement: existing?.complement || "",
+    person_type: existing?.person_type || "pf",
+    cpf: existing?.cpf || "",
+    rg: existing?.rg || "",
+    cnpj: existing?.cnpj || "",
+    state_registration: existing?.state_registration || "",
+    responsible_name: existing?.responsible_name || "Bruno Scotton",
+    responsible_cpf: existing?.responsible_cpf || "",
     role: "master",
     status: "approved",
     updated_at: new Date().toISOString()
@@ -113,7 +122,7 @@ async function requireStaff(headers, roles = ["master", "seller"]) {
 async function listUsers() {
   const rows = await supabaseFetch("/rest/v1/profiles", {
     service: true,
-    query: "?select=id,name,first_name,last_name,email,phone,estado,address,city,cep,complement,role,status,updated_at&order=updated_at.desc.nullslast"
+    query: "?select=id,name,first_name,last_name,email,prefixo,phone,estado,address,city,municipality,district,cep,complement,person_type,cpf,rg,cnpj,state_registration,responsible_name,responsible_cpf,role,status,updated_at&order=updated_at.desc.nullslast"
   });
   return Array.isArray(rows) ? rows : [];
 }
