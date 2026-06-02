@@ -442,6 +442,12 @@ function isAccessoriesCatalog(engineId) {
 
 const nestedCategories = [
   {
+    id: "kits-revisao-912uls",
+    label: "KITS DE REVISÃO",
+    title: "Kits de revisão",
+    thumb: "/assets/kit-revisao-cover.png"
+  },
+  {
     id: "exhaust",
     label: "Exhaust",
     title: "Sistema de escapamento",
@@ -575,6 +581,7 @@ function categoriesForEngine(engineId) {
 
   const legacyEngines = ["912uls", "912ul", "914ul"];
   const templates = [
+    { label: "KITS DE REVISÃO", categoryId: "kits-revisao-912uls", engineIds: ["912uls"] },
     { label: "Alternators" },
     { label: "Carburetors", engineIds: legacyEngines },
     { label: "Crankcase" },
@@ -742,6 +749,25 @@ function addItem(itemId, engineId, quantityToAdd = 1) {
   state.cart[itemId] = { quantity, engineId };
   saveCart();
   showToast(`${item.partNumber} adicionado a lista.`);
+  render();
+}
+
+function addKitItems(sectionId, engineId) {
+  const section = sectionById(sectionId);
+  const kitItems = itemsFor(engineId, sectionId);
+  if (!section?.kit || !kitItems.length) return;
+  const partsPanel = document.querySelector(".parts-panel");
+
+  for (const item of kitItems) {
+    const input = Array.from(partsPanel?.querySelectorAll("[data-add-qty]") || [])
+      .find((element) => element.dataset.addQty === item.id);
+    const quantityToAdd = Math.max(1, Number(input?.value || item.qty?.[engineId] || 1));
+    const quantity = Number(state.cart[item.id]?.quantity || 0) + quantityToAdd;
+    state.cart[item.id] = { quantity, engineId };
+  }
+
+  saveCart();
+  showToast(`${section.label} adicionado a lista.`);
   render();
 }
 
@@ -968,6 +994,7 @@ function renderSection(engineId, sectionId) {
     : parts;
   const hasItemImages = filtered.some((item) => item.image);
   const accessories = isAccessoriesCatalog(engineId);
+  const kitSection = Boolean(section.kit);
 
   shell(`
     <main class="page">
@@ -1037,7 +1064,7 @@ function renderSection(engineId, sectionId) {
                       <div class="table-add-controls">
                         <label>
                           <span>Qtd</span>
-                          <input type="number" min="1" max="999" value="1" data-add-qty="${item.id}">
+                          <input type="number" min="1" max="999" value="${kitSection ? Number(item.qty[engineId] || 1) : 1}" data-add-qty="${item.id}">
                         </label>
                         <button class="small-button add" type="button" data-add="${item.id}" data-engine="${engineId}" data-qty-source="${item.id}">ADD</button>
                       </div>
@@ -1047,6 +1074,11 @@ function renderSection(engineId, sectionId) {
               </tbody>
             </table>
           </div>
+          ${kitSection && parts.length ? `
+            <div class="kit-actions">
+              <button class="primary-button" type="button" data-add-kit="${section.id}" data-engine="${engineId}">Adicionar kit a lista</button>
+            </div>
+          ` : ""}
           ${renderSelectedStrip()}
         </aside>
       </section>
@@ -2367,6 +2399,12 @@ function bindEvents() {
       if (search) search.value = "";
       updateGlobalSearchDropdown();
       location.hash = route.dataset.route;
+      return;
+    }
+
+    const addKit = event.target.closest("[data-add-kit]");
+    if (addKit) {
+      addKitItems(addKit.dataset.addKit, addKit.dataset.engine);
       return;
     }
 

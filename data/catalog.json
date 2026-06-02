@@ -5543,6 +5543,132 @@
       "sectionOrder": 1
     },
     {
+      "categoryId": "kits-revisao-912uls",
+      "categoryLabel": "KITS DE REVIS?O",
+      "categoryTitle": "Kits de revis?o",
+      "categoryThumb": "/assets/kit-revisao-cover.png",
+      "engineIds": [
+        "912uls"
+      ],
+      "chapter": "Kits",
+      "source": "Cat?logo CDSAV",
+      "hotspots": [],
+      "categoryOrder": 0,
+      "kit": true,
+      "id": "kit-revisao-912uls-50-horas",
+      "label": "50 Horas",
+      "figure": "50 Horas",
+      "title": "Kit de revis?o 50 Horas",
+      "image": "/assets/kit-50-horas.png",
+      "thumb": "/assets/kit-50-horas.png",
+      "sectionOrder": 1
+    },
+    {
+      "categoryId": "kits-revisao-912uls",
+      "categoryLabel": "KITS DE REVIS?O",
+      "categoryTitle": "Kits de revis?o",
+      "categoryThumb": "/assets/kit-revisao-cover.png",
+      "engineIds": [
+        "912uls"
+      ],
+      "chapter": "Kits",
+      "source": "Cat?logo CDSAV",
+      "hotspots": [],
+      "categoryOrder": 0,
+      "kit": true,
+      "id": "kit-revisao-912uls-100-horas",
+      "label": "100 Horas",
+      "figure": "100 Horas",
+      "title": "Kit de revis?o 100 Horas",
+      "image": "/assets/kit-100-horas.png",
+      "thumb": "/assets/kit-100-horas.png",
+      "sectionOrder": 2
+    },
+    {
+      "categoryId": "kits-revisao-912uls",
+      "categoryLabel": "KITS DE REVIS?O",
+      "categoryTitle": "Kits de revis?o",
+      "categoryThumb": "/assets/kit-revisao-cover.png",
+      "engineIds": [
+        "912uls"
+      ],
+      "chapter": "Kits",
+      "source": "Cat?logo CDSAV",
+      "hotspots": [],
+      "categoryOrder": 0,
+      "kit": true,
+      "id": "kit-revisao-912uls-200-horas",
+      "label": "200 Horas",
+      "figure": "200 Horas",
+      "title": "Kit de revis?o 200 Horas",
+      "image": "/assets/kit-200-horas.png",
+      "thumb": "/assets/kit-200-horas.png",
+      "sectionOrder": 3
+    },
+    {
+      "categoryId": "kits-revisao-912uls",
+      "categoryLabel": "KITS DE REVIS?O",
+      "categoryTitle": "Kits de revis?o",
+      "categoryThumb": "/assets/kit-revisao-cover.png",
+      "engineIds": [
+        "912uls"
+      ],
+      "chapter": "Kits",
+      "source": "Cat?logo CDSAV",
+      "hotspots": [],
+      "categoryOrder": 0,
+      "kit": true,
+      "id": "kit-revisao-912uls-600-horas",
+      "label": "600 Horas",
+      "figure": "600 Horas",
+      "title": "Kit de revis?o 600 Horas",
+      "image": "/assets/kit-600-horas.png",
+      "thumb": "/assets/kit-600-horas.png",
+      "sectionOrder": 4
+    },
+    {
+      "categoryId": "kits-revisao-912uls",
+      "categoryLabel": "KITS DE REVIS?O",
+      "categoryTitle": "Kits de revis?o",
+      "categoryThumb": "/assets/kit-revisao-cover.png",
+      "engineIds": [
+        "912uls"
+      ],
+      "chapter": "Kits",
+      "source": "Cat?logo CDSAV",
+      "hotspots": [],
+      "categoryOrder": 0,
+      "kit": true,
+      "id": "kit-revisao-912uls-troca-sprag-clutch",
+      "label": "Troca Sprag Clutch",
+      "figure": "Troca Sprag Clutch",
+      "title": "Kit de troca Sprag Clutch",
+      "image": "/assets/kit-troca-sprag-clutch.png",
+      "thumb": "/assets/kit-troca-sprag-clutch.png",
+      "sectionOrder": 5
+    },
+    {
+      "categoryId": "kits-revisao-912uls",
+      "categoryLabel": "KITS DE REVIS?O",
+      "categoryTitle": "Kits de revis?o",
+      "categoryThumb": "/assets/kit-revisao-cover.png",
+      "engineIds": [
+        "912uls"
+      ],
+      "chapter": "Kits",
+      "source": "Cat?logo CDSAV",
+      "hotspots": [],
+      "categoryOrder": 0,
+      "kit": true,
+      "id": "kit-revisao-912uls-5-anos",
+      "label": "5 Anos",
+      "figure": "5 Anos",
+      "title": "Kit de revis?o 5 Anos",
+      "image": "/assets/kit-5-anos.png",
+      "thumb": "/assets/kit-5-anos.png",
+      "sectionOrder": 6
+    },
+    {
       "id": "accessories-spark-plugs",
       "engineIds": [
         "accessories"
@@ -53190,6 +53316,37 @@
         "accessories": 1
       },
       "image": "/assets/accessories-xps-5w50.jpg"
+    },
+    {
+      "id": "kit-912uls-50h-825016",
+      "sectionId": "kit-revisao-912uls-50-horas",
+      "figure": "1",
+      "partNumber": "825016",
+      "description": "Oil Filter",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-50h-250010",
+      "sectionId": "kit-revisao-912uls-50-horas",
+      "figure": "2",
+      "partNumber": "250010",
+      "description": "Gasket ring C 12x18",
+      "qty": {
+        "912uls": 1
+      }
+    },
+    {
+      "id": "kit-912uls-50h-sportlt",
+      "sectionId": "kit-revisao-912uls-50-horas",
+      "figure": "3",
+      "partNumber": "SPORTLT",
+      "description": "Oleo Aeroshell Sport Plus 4",
+      "qty": {
+        "912uls": 4
+      },
+      "image": "/assets/accessories-sportlt.png"
     }
   ]
 }

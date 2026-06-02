@@ -674,6 +674,14 @@ td {
   width: 150px;
 }
 
+.kit-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px;
+  border-top: 1px solid var(--line);
+  background: #fbfcfd;
+}
+
 .selected-strip {
   display: grid;
   gap: 12px;
