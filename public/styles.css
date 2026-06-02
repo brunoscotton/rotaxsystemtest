@@ -167,9 +167,11 @@ button:disabled {
 }
 
 .table-add-controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: 56px 70px;
   align-items: end;
   gap: 8px;
+  width: 134px;
 }
 
 .table-add-controls label {
@@ -181,11 +183,12 @@ button:disabled {
 }
 
 .table-add-controls input {
-  width: 58px;
+  width: 56px;
   min-height: 34px;
   padding: 6px 8px;
   border: 1px solid var(--line);
   border-radius: 6px;
+  text-align: center;
 }
 
 .global-result-main {
@@ -634,6 +637,7 @@ th {
 
 td {
   font-size: 14px;
+  vertical-align: middle;
 }
 
 .part-number {
@@ -663,6 +667,11 @@ td {
   min-height: 34px;
   padding: 7px 10px;
   font-weight: 700;
+}
+
+.parts-panel th:last-child,
+.parts-panel td:last-child {
+  width: 150px;
 }
 
 .selected-strip {
