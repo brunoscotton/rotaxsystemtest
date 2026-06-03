@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { enrichQuoteItemsWithPrices, formatBrl } from "./quote-pricing.js";
 
 function supabaseConfig() {
   return {
@@ -109,7 +110,7 @@ function formatPartNumberForCopy(partNumber) {
   return String(partNumber || "");
 }
 
-function buildQuoteText({ customer, items }) {
+function buildQuoteText({ customer, items, pricing }) {
   const createdAt = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
   const lines = [
     "SOLICITACAO DE COTACAO ROTAX",
@@ -126,13 +127,17 @@ function buildQuoteText({ customer, items }) {
     `CEP: ${customer.cep?.trim() || ""}`,
     `Complemento: ${customer.complement?.trim() || ""}`,
     "",
+    "VALORES",
+    `Dolar USD-BRL: ${pricing.exchangeRate ? pricing.exchangeRate.rate.toFixed(4) : "Nao exibido"}`,
+    `Total: ${pricing.totalBrl === null ? "Nao exibido" : formatBrl(pricing.totalBrl)}${pricing.hasConsult ? " (ha itens a consultar)" : ""}`,
+    "",
     "ITENS SOLICITADOS",
-    "Qtd | Item | PN | Descricao | Motor | Secao"
+    "Qtd | Item | PN | Descricao | Motor | Secao | Preco unitario | Subtotal"
   ];
 
   for (const item of items) {
     lines.push(
-      `${item.quantity || 1} | ${item.figure || ""} | ${item.partNumber || ""} | ${item.description || ""} | ${item.engine || ""} | ${item.section || ""}`
+      `${item.quantity || 1} | ${item.figure || ""} | ${item.partNumber || ""} | ${item.description || ""} | ${item.engine || ""} | ${item.section || ""} | ${formatBrl(item.unitPriceBrl)} | ${formatBrl(item.subtotalBrl)}`
     );
   }
 
@@ -218,7 +223,7 @@ export default async function handler(req, res) {
     return;
   }
   let customer = payload.customer || {};
-  const items = Array.isArray(payload.items) ? payload.items : [];
+  let items = Array.isArray(payload.items) ? payload.items : [];
 
   try {
     const authCustomer = await customerFromAuth(req, customer.prefix);
@@ -240,9 +245,18 @@ export default async function handler(req, res) {
     return;
   }
 
+  let pricing;
+  try {
+    pricing = await enrichQuoteItemsWithPrices(items, { includePrices: Boolean(bearerToken(req)) });
+    items = pricing.items;
+  } catch (error) {
+    res.status(503).json({ ok: false, message: error.message || "Nao foi possivel atualizar os valores." });
+    return;
+  }
+
   const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+/, "");
   const filename = `${stamp}-${sanitizeFilePart(customer.prefix)}-${sanitizeFilePart(customer.name)}.txt`;
-  const text = buildQuoteText({ customer, items });
+  const text = buildQuoteText({ customer, items, pricing });
   let email;
 
   try {
@@ -254,5 +268,5 @@ export default async function handler(req, res) {
 
   await saveQuoteHistory({ customer, filename, items });
 
-  res.status(201).json({ ok: true, filename, text, emailTo: email.to, emailId: email.id, emailSkipped: Boolean(email.skipped) });
+  res.status(201).json({ ok: true, filename, text, emailTo: email.to, emailId: email.id, emailSkipped: Boolean(email.skipped), pricing });
 }

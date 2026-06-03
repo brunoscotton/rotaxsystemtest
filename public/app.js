@@ -30,6 +30,9 @@ const state = {
   passwordRecoveryIntent: false,
   handlingLogin: false,
   guestCheckout: false,
+  exchangeRate: null,
+  exchangeRateLoading: false,
+  exchangeRateError: "",
   cart: loadCart(),
   lastQuote: null,
   search: "",
@@ -150,6 +153,89 @@ function isFirstMasterEmail(email) {
 
 function requiredProfileText(value) {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function canViewPrices() {
+  return authEnabled() && Boolean(authUser());
+}
+
+function itemPriceUsd(item) {
+  const price = Number(item?.priceUsd);
+  return Number.isFinite(price) && price >= 0 ? price : null;
+}
+
+function currentUsdBrlRate() {
+  const rate = Number(state.exchangeRate?.rate);
+  return Number.isFinite(rate) && rate > 0 ? rate : null;
+}
+
+function formatCurrency(value, currency = "BRL") {
+  if (!Number.isFinite(Number(value))) return "A consultar";
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(Number(value));
+}
+
+function priceBrl(item, rate = currentUsdBrlRate()) {
+  const usd = itemPriceUsd(item);
+  return usd !== null && rate ? usd * rate : null;
+}
+
+function priceLabel(item) {
+  if (!canViewPrices()) return "Faça Login para ver o preço";
+  const usd = itemPriceUsd(item);
+  if (usd === null) return "A consultar";
+  const rate = currentUsdBrlRate();
+  if (!rate) return state.exchangeRateError || "Atualizando dólar...";
+  return formatCurrency(usd * rate);
+}
+
+function selectedPricingSummary(rate = currentUsdBrlRate()) {
+  const selected = selectedItems();
+  let totalBrl = 0;
+  let hasConsult = false;
+  const priced = selected.map((entry) => {
+    const unitBrl = priceBrl(entry.item, rate);
+    const subtotalBrl = unitBrl === null ? null : unitBrl * Number(entry.entry.quantity || 1);
+    if (subtotalBrl === null) hasConsult = true;
+    else totalBrl += subtotalBrl;
+    return { ...entry, unitBrl, subtotalBrl };
+  });
+  return { priced, totalBrl, hasConsult };
+}
+
+function exchangeRateIsFresh() {
+  return state.exchangeRate && Date.now() - Number(state.exchangeRate.fetchedAt || 0) < Number(state.exchangeRate.ttlMs || 600000);
+}
+
+async function loadExchangeRate({ force = false, rerender = true } = {}) {
+  if (!canViewPrices() || state.exchangeRateLoading) return state.exchangeRate;
+  if (!force && exchangeRateIsFresh()) return state.exchangeRate;
+
+  state.exchangeRateLoading = true;
+  state.exchangeRateError = "";
+  try {
+    const response = await fetch(`/api/exchange-rate${force ? "?force=1" : ""}`);
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) throw new Error(result.message || "Nao foi possivel atualizar o dolar.");
+    state.exchangeRate = result;
+    return state.exchangeRate;
+  } catch (error) {
+    state.exchangeRateError = error.message || "Nao foi possivel atualizar o dolar.";
+    return state.exchangeRate;
+  } finally {
+    state.exchangeRateLoading = false;
+    if (rerender) render();
+  }
+}
+
+function requestExchangeRate() {
+  if (canViewPrices() && !exchangeRateIsFresh() && !state.exchangeRateLoading) {
+    loadExchangeRate({ rerender: true }).catch(() => null);
+  }
 }
 
 function personTypeLabel(personType) {
@@ -742,7 +828,7 @@ function renderGlobalSearchResults() {
       <button class="global-result-main" type="button" data-route="#/section/${engine.id}/${section.id}">
         <strong>${escapeHtml(item.partNumber)}</strong>
         <span>${escapeHtml(item.description)}</span>
-        <small>${escapeHtml(engine.name)} / ${escapeHtml(section.label)} / Item ${escapeHtml(item.figure)} / Qtd ${escapeHtml(item.qty[engine.id])}</small>
+        <small>${escapeHtml(engine.name)} / ${escapeHtml(section.label)} / Item ${escapeHtml(item.figure)} / Qtd ${escapeHtml(item.qty[engine.id])} / ${escapeHtml(priceLabel(item))}</small>
       </button>
       <div class="search-add-controls">
         <label>
@@ -828,6 +914,7 @@ function resolveHotspotItem(sectionId, engineId, figure) {
 }
 
 function shell(content) {
+  requestExchangeRate();
   const staffRole = effectiveStaffRole();
   app.innerHTML = `
     <div class="app-shell">
@@ -1005,6 +1092,7 @@ function renderSelectedStrip() {
 }
 
 function renderSection(engineId, sectionId) {
+  requestExchangeRate();
   const engine = engineById(engineId);
   const section = sectionById(sectionId);
   if (!engine || !section) {
@@ -1074,6 +1162,7 @@ function renderSection(engineId, sectionId) {
                   <th>Item</th>
                   <th>PN</th>
                   <th>Descrição</th>
+                  <th>Pre?o</th>
                   <th>Qtd ref.</th>
                   <th>ADD</th>
                 </tr>
@@ -1088,6 +1177,7 @@ function renderSection(engineId, sectionId) {
                       ${escapeHtml(item.description)}
                       ${item.note ? `<span class="part-note">${escapeHtml(item.note)}</span>` : ""}
                     </td>
+                    <td class="price-cell">${escapeHtml(priceLabel(item))}</td>
                     <td>${escapeHtml(item.qty[engineId])}</td>
                     <td>
                       <div class="table-add-controls">
@@ -1116,9 +1206,11 @@ function renderSection(engineId, sectionId) {
 }
 
 function renderProceed() {
+  requestExchangeRate();
   const selected = selectedItems();
   const useProfile = authEnabled() && authUser() && !state.guestCheckout;
   const customer = useProfile ? profileToCustomer() : {};
+  const pricing = selectedPricingSummary();
   const prefixField = useProfile && state.prefixes.length > 1 ? `
     <label class="field">
       <span>Prefixo</span>
@@ -1237,11 +1329,12 @@ function renderProceed() {
         <aside class="summary-panel">
           <h2>Itens selecionados</h2>
           <div class="quote-list">
-            ${selected.length ? selected.map(({ item, entry, engine, section }) => `
+            ${selected.length ? pricing.priced.map(({ item, entry, engine, section, unitBrl, subtotalBrl }) => `
               <div class="quote-item">
                 <span>
                   <strong>${escapeHtml(item.partNumber)}</strong>
                   <span class="selected-meta">${entry.quantity}x / Item ${escapeHtml(item.figure)} / ${escapeHtml(engine.name)} / ${escapeHtml(section.label)}</span>
+                  <span class="selected-meta">Unitário: ${escapeHtml(unitBrl === null ? priceLabel(item) : formatCurrency(unitBrl))} / Subtotal: ${escapeHtml(subtotalBrl === null ? "A consultar" : formatCurrency(subtotalBrl))}</span>
                 </span>
                 <span class="checkout-item-actions">
                   <span class="qty-controls">
@@ -1253,6 +1346,11 @@ function renderProceed() {
                 </span>
               </div>
             `).join("") : `<div class="empty-state">Sua lista ainda esta vazia.</div>`}
+          </div>
+          <div class="checkout-total">
+            <span>TOTAL:</span>
+            <strong>${canViewPrices() ? formatCurrency(pricing.totalBrl) : "Faça Login para ver o preço"}</strong>
+            ${canViewPrices() && pricing.hasConsult ? `<small>Existem itens com preço a consultar.</small>` : ""}
           </div>
         </aside>
       </section>
@@ -2048,13 +2146,28 @@ async function submitQuote(form) {
   const formCustomer = Object.fromEntries(data.entries());
   const useProfile = authEnabled() && authUser() && !state.guestCheckout;
   const customer = useProfile ? profileToCustomer(String(formCustomer.prefix || "")) : formCustomer;
+  const previousRate = currentUsdBrlRate();
+  const latestRate = useProfile ? await loadExchangeRate({ force: true, rerender: false }) : null;
+  const nextRate = Number(latestRate?.rate || 0);
+
+  if (useProfile && previousRate && nextRate && Math.abs(previousRate - nextRate) > 0.0001) {
+    window.alert("Tivemos alteração do rate do dolar, os valores serão atualizados.");
+    renderProceed();
+    return;
+  }
+
   const items = selected.map(({ item, entry, engine, section }) => ({
     quantity: entry.quantity,
     figure: item.figure,
     partNumber: item.partNumber,
     description: item.description,
     engine: engine.name,
-    section: section.label
+    section: section.label,
+    priceUsd: itemPriceUsd(item),
+    exchangeRate: nextRate || null,
+    unitPriceBrl: priceBrl(item, nextRate) || null,
+    subtotalBrl: priceBrl(item, nextRate) === null ? null : priceBrl(item, nextRate) * Number(entry.quantity || 1),
+    priceStatus: itemPriceUsd(item) === null ? "consult" : "available"
   }));
 
   const headers = { "Content-Type": "application/json" };
@@ -2885,6 +2998,9 @@ async function init() {
   }
 
   bindEvents();
+  window.setInterval(() => {
+    if (canViewPrices()) loadExchangeRate({ force: true, rerender: true }).catch(() => null);
+  }, 10 * 60 * 1000);
   window.addEventListener("hashchange", render);
   render();
 }

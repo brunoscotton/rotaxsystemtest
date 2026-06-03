@@ -5,6 +5,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 import { handleAdminRequest } from "./api/admin.js";
+import { getUsdBrlRate } from "./api/exchange-rate.js";
+import { enrichQuoteItemsWithPrices, formatBrl } from "./api/quote-pricing.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -139,7 +141,7 @@ function formatPartNumberForCopy(partNumber) {
   return String(partNumber || "");
 }
 
-function buildQuoteText({ customer, items }) {
+function buildQuoteText({ customer, items, pricing }) {
   const createdAt = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
   const lines = [
     "SOLICITACAO DE COTACAO ROTAX",
@@ -156,13 +158,17 @@ function buildQuoteText({ customer, items }) {
     `CEP: ${customer.cep?.trim() || ""}`,
     `Complemento: ${customer.complement?.trim() || ""}`,
     "",
+    "VALORES",
+    `Dolar USD-BRL: ${pricing.exchangeRate ? pricing.exchangeRate.rate.toFixed(4) : "Nao exibido"}`,
+    `Total: ${pricing.totalBrl === null ? "Nao exibido" : formatBrl(pricing.totalBrl)}${pricing.hasConsult ? " (ha itens a consultar)" : ""}`,
+    "",
     "ITENS SOLICITADOS",
-    "Qtd | Item | PN | Descricao | Motor | Secao"
+    "Qtd | Item | PN | Descricao | Motor | Secao | Preco unitario | Subtotal"
   ];
 
   for (const item of items) {
     lines.push(
-      `${item.quantity || 1} | ${item.figure || ""} | ${item.partNumber || ""} | ${item.description || ""} | ${item.engine || ""} | ${item.section || ""}`
+      `${item.quantity || 1} | ${item.figure || ""} | ${item.partNumber || ""} | ${item.description || ""} | ${item.engine || ""} | ${item.section || ""} | ${formatBrl(item.unitPriceBrl)} | ${formatBrl(item.subtotalBrl)}`
     );
   }
 
@@ -293,6 +299,16 @@ const server = createServer(async (req, res) => {
       return;
     }
 
+    if (req.method === "GET" && url.pathname === "/api/exchange-rate") {
+      try {
+        const rate = await getUsdBrlRate({ force: url.searchParams.get("force") === "1" });
+        sendJson(res, 200, { ok: true, ...rate });
+      } catch (error) {
+        sendJson(res, 503, { ok: false, message: error.message || "Nao foi possivel atualizar o dolar." });
+      }
+      return;
+    }
+
     if (req.method === "GET" && url.pathname === "/api/catalog") {
       const data = await readFile(dataFile, "utf8");
       res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
@@ -325,7 +341,7 @@ const server = createServer(async (req, res) => {
         return;
       }
       let customer = payload.customer || {};
-      const items = Array.isArray(payload.items) ? payload.items : [];
+      let items = Array.isArray(payload.items) ? payload.items : [];
 
       try {
         const authCustomer = await customerFromAuth(req, customer.prefix);
@@ -346,10 +362,19 @@ const server = createServer(async (req, res) => {
         return;
       }
 
+      let pricing;
+      try {
+        pricing = await enrichQuoteItemsWithPrices(items, { includePrices: Boolean(bearerToken(req)) });
+        items = pricing.items;
+      } catch (error) {
+        sendJson(res, 503, { ok: false, message: error.message || "Nao foi possivel atualizar os valores." });
+        return;
+      }
+
       const now = new Date();
       const stamp = now.toISOString().replace(/[-:]/g, "").replace(/\..+/, "");
       const filename = `${stamp}-${sanitizeFilePart(customer.prefix)}-${sanitizeFilePart(customer.name)}.txt`;
-      const text = buildQuoteText({ customer, items });
+      const text = buildQuoteText({ customer, items, pricing });
       const email = await sendQuoteEmail({ customer, filename, text });
       await saveQuoteHistory({ customer, filename, items });
 
@@ -359,7 +384,8 @@ const server = createServer(async (req, res) => {
         text,
         emailTo: email.to,
         emailId: email.id,
-        emailSkipped: Boolean(email.skipped)
+        emailSkipped: Boolean(email.skipped),
+        pricing
       });
       return;
     }

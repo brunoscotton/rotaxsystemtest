@@ -664,6 +664,12 @@ td {
   font-size: 12px;
 }
 
+.price-cell {
+  min-width: 132px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .small-button {
   min-width: 70px;
   min-height: 34px;
@@ -717,8 +723,35 @@ td {
 }
 
 .selected-meta {
+  display: block;
   color: var(--muted);
   font-size: 12px;
+}
+
+.checkout-total {
+  display: grid;
+  gap: 4px;
+  margin-top: 14px;
+  padding: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-align: right;
+}
+
+.checkout-total span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.checkout-total strong {
+  font-size: 24px;
+}
+
+.checkout-total small {
+  color: var(--muted);
 }
 
 .qty-controls {
