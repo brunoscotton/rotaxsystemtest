@@ -1,7 +1,42 @@
 const CACHE_TTL_MS = 10 * 60 * 1000;
-const DEFAULT_PROVIDER_URL = "https://economia.awesomeapi.com.br/json/last/USD-BRL";
+const DEFAULT_PROVIDER_URLS = [
+  "https://economia.awesomeapi.com.br/json/last/USD-BRL",
+  "https://open.er-api.com/v6/latest/USD",
+  "https://api.frankfurter.app/latest?from=USD&to=BRL"
+];
 
 let cachedRate = null;
+
+function providerUrls() {
+  const custom = process.env.EXCHANGE_RATE_URL;
+  return [...new Set([custom, ...DEFAULT_PROVIDER_URLS].filter(Boolean))];
+}
+
+function parseUsdBrlRate(data) {
+  const quote = data?.USDBRL || data?.["USD-BRL"] || data;
+  const rate = Number(
+    quote?.bid ||
+    quote?.ask ||
+    quote?.high ||
+    quote?.rate ||
+    data?.rates?.BRL
+  );
+
+  if (!Number.isFinite(rate) || rate <= 0) return null;
+
+  return {
+    rate,
+    providerTimestamp: quote?.timestamp || data?.time_last_update_unix || "",
+    providerDate: quote?.create_date || data?.time_last_update_utc || data?.date || ""
+  };
+}
+
+function providerName(providerUrl) {
+  if (providerUrl.includes("awesomeapi.com.br")) return "AwesomeAPI";
+  if (providerUrl.includes("open.er-api.com")) return "ExchangeRate-API";
+  if (providerUrl.includes("frankfurter.app")) return "Frankfurter";
+  return "Custom";
+}
 
 export async function getUsdBrlRate({ force = false } = {}) {
   const now = Date.now();
@@ -9,35 +44,46 @@ export async function getUsdBrlRate({ force = false } = {}) {
     return cachedRate;
   }
 
-  const providerUrl = process.env.EXCHANGE_RATE_URL || DEFAULT_PROVIDER_URL;
-  const response = await fetch(providerUrl, {
-    headers: { Accept: "application/json" }
-  });
+  const errors = [];
+  for (const providerUrl of providerUrls()) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 8000);
+      const response = await fetch(providerUrl, {
+        headers: { Accept: "application/json" },
+        signal: controller.signal
+      }).finally(() => clearTimeout(timeout));
 
-  if (!response.ok) {
-    throw new Error("Nao foi possivel atualizar o dolar.");
+      if (!response.ok) {
+        errors.push(`${providerName(providerUrl)} HTTP ${response.status}`);
+        continue;
+      }
+
+      const data = await response.json();
+      const parsed = parseUsdBrlRate(data);
+      if (!parsed) {
+        errors.push(`${providerName(providerUrl)} sem cotacao USD-BRL`);
+        continue;
+      }
+
+      cachedRate = {
+        pair: "USD-BRL",
+        rate: parsed.rate,
+        provider: providerName(providerUrl),
+        source: providerUrl,
+        providerTimestamp: parsed.providerTimestamp,
+        providerDate: parsed.providerDate,
+        fetchedAt: now,
+        ttlMs: CACHE_TTL_MS
+      };
+
+      return cachedRate;
+    } catch (error) {
+      errors.push(`${providerName(providerUrl)} ${error.name === "AbortError" ? "timeout" : error.message}`);
+    }
   }
 
-  const data = await response.json();
-  const quote = data?.USDBRL || data?.["USD-BRL"] || data;
-  const rate = Number(quote?.bid || quote?.ask || quote?.high || quote?.rate);
-
-  if (!Number.isFinite(rate) || rate <= 0) {
-    throw new Error("Cotacao do dolar invalida.");
-  }
-
-  cachedRate = {
-    pair: "USD-BRL",
-    rate,
-    provider: "AwesomeAPI",
-    source: providerUrl,
-    providerTimestamp: quote?.timestamp || "",
-    providerDate: quote?.create_date || "",
-    fetchedAt: now,
-    ttlMs: CACHE_TTL_MS
-  };
-
-  return cachedRate;
+  throw new Error(`Nao foi possivel atualizar o dolar. ${errors.join(" | ")}`);
 }
 
 export default async function handler(req, res) {
