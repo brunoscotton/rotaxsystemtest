@@ -1,32 +1,26 @@
-import { readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
-import path from "node:path";
 import { getUsdBrlRate } from "./exchange-rate.js";
+import { loadPricesData } from "./prices.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const catalogPath = path.join(__dirname, "..", "data", "catalog.json");
-
-let cachedCatalogPrices = null;
+let cachedPriceMap = null;
 
 function normalizePartNumber(partNumber) {
   return String(partNumber || "").replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
 }
 
 async function catalogPrices() {
-  if (cachedCatalogPrices) return cachedCatalogPrices;
-  const catalog = JSON.parse(await readFile(catalogPath, "utf8"));
+  if (cachedPriceMap) return cachedPriceMap;
+
+  const data = await loadPricesData();
   const prices = new Map();
 
-  for (const item of catalog.items || []) {
-    const key = normalizePartNumber(item.partNumber);
-    if (!key || prices.has(key)) continue;
-    const price = Number(item.priceUsd);
-    prices.set(key, Number.isFinite(price) && price >= 0 ? price : null);
+  for (const [partNumber, priceUsd] of Object.entries(data.prices || {})) {
+    const key = normalizePartNumber(partNumber);
+    const price = Number(priceUsd);
+    if (key && Number.isFinite(price) && price >= 0) prices.set(key, price);
   }
 
-  cachedCatalogPrices = prices;
-  return cachedCatalogPrices;
+  cachedPriceMap = prices;
+  return cachedPriceMap;
 }
 
 export function formatBrl(value) {

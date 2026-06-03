@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import nodemailer from "nodemailer";
 import { handleAdminRequest } from "./api/admin.js";
 import { getUsdBrlRate } from "./api/exchange-rate.js";
+import { pricesPayload } from "./api/prices.js";
 import { enrichQuoteItemsWithPrices, formatBrl } from "./api/quote-pricing.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -305,6 +306,20 @@ const server = createServer(async (req, res) => {
         sendJson(res, 200, { ok: true, ...rate });
       } catch (error) {
         sendJson(res, 503, { ok: false, message: error.message || "Nao foi possivel atualizar o dolar." });
+      }
+      return;
+    }
+
+    if (req.method === "GET" && url.pathname === "/api/prices") {
+      if (authIsConfigured() && !bearerToken(req)) {
+        sendJson(res, 401, { ok: false, message: "Login necessario para consultar precos." });
+        return;
+      }
+
+      try {
+        sendJson(res, 200, await pricesPayload());
+      } catch (error) {
+        sendJson(res, 503, { ok: false, message: error.message || "Nao foi possivel carregar precos." });
       }
       return;
     }

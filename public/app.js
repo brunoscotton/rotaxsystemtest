@@ -30,9 +30,14 @@ const state = {
   passwordRecoveryIntent: false,
   handlingLogin: false,
   guestCheckout: false,
+  prices: null,
+  pricesLoading: false,
+  pricesError: "",
+  pricesLastAttempt: 0,
   exchangeRate: null,
   exchangeRateLoading: false,
   exchangeRateError: "",
+  exchangeRateLastAttempt: 0,
   cart: loadCart(),
   lastQuote: null,
   search: "",
@@ -159,8 +164,13 @@ function canViewPrices() {
   return authEnabled() && Boolean(authUser());
 }
 
+function normalizePartNumber(partNumber) {
+  return String(partNumber || "").replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+}
+
 function itemPriceUsd(item) {
-  const price = Number(item?.priceUsd);
+  if (!state.prices) return null;
+  const price = Number(state.prices[normalizePartNumber(item?.partNumber)]);
   return Number.isFinite(price) && price >= 0 ? price : null;
 }
 
@@ -186,11 +196,19 @@ function priceBrl(item, rate = currentUsdBrlRate()) {
 
 function priceLabel(item) {
   if (!canViewPrices()) return "Faça Login para ver o preço";
+  if (!state.prices) return state.pricesError || "Atualizando preços...";
   const usd = itemPriceUsd(item);
   if (usd === null) return "A consultar";
   const rate = currentUsdBrlRate();
   if (!rate) return state.exchangeRateError || "Atualizando dólar...";
   return formatCurrency(usd * rate);
+}
+
+function totalPriceLabel(totalBrl) {
+  if (!canViewPrices()) return "Faça Login para ver o preço";
+  if (!state.prices) return state.pricesError || "Atualizando preços...";
+  if (!currentUsdBrlRate()) return state.exchangeRateError || "Atualizando dólar...";
+  return formatCurrency(totalBrl);
 }
 
 function selectedPricingSummary(rate = currentUsdBrlRate()) {
@@ -211,12 +229,44 @@ function exchangeRateIsFresh() {
   return state.exchangeRate && Date.now() - Number(state.exchangeRate.fetchedAt || 0) < Number(state.exchangeRate.ttlMs || 600000);
 }
 
+async function loadPrices({ rerender = true } = {}) {
+  if (!canViewPrices()) {
+    state.prices = null;
+    return null;
+  }
+  if (state.pricesLoading) return state.prices;
+  if (state.prices) return state.prices;
+
+  state.pricesLoading = true;
+  state.pricesError = "";
+  state.pricesLastAttempt = Date.now();
+  try {
+    const headers = {};
+    if (authEnabled()) {
+      const token = await currentAccessToken();
+      if (token) headers.Authorization = `Bearer ${token}`;
+    }
+    const response = await fetch("/api/prices", { headers });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) throw new Error(result.message || "Nao foi possivel carregar precos.");
+    state.prices = result.prices || {};
+    return state.prices;
+  } catch (error) {
+    state.pricesError = error.message || "Nao foi possivel carregar precos.";
+    return state.prices;
+  } finally {
+    state.pricesLoading = false;
+    if (rerender) render();
+  }
+}
+
 async function loadExchangeRate({ force = false, rerender = true } = {}) {
   if (!canViewPrices() || state.exchangeRateLoading) return state.exchangeRate;
   if (!force && exchangeRateIsFresh()) return state.exchangeRate;
 
   state.exchangeRateLoading = true;
   state.exchangeRateError = "";
+  state.exchangeRateLastAttempt = Date.now();
   try {
     const response = await fetch(`/api/exchange-rate${force ? "?force=1" : ""}`);
     const result = await response.json().catch(() => ({}));
@@ -232,10 +282,13 @@ async function loadExchangeRate({ force = false, rerender = true } = {}) {
   }
 }
 
-function requestExchangeRate() {
-  if (canViewPrices() && !exchangeRateIsFresh() && !state.exchangeRateLoading) {
-    loadExchangeRate({ rerender: true }).catch(() => null);
-  }
+function requestPricingData() {
+  if (!canViewPrices()) return;
+  const now = Date.now();
+  const canRetryPrices = !state.pricesError || now - state.pricesLastAttempt > 30000;
+  const canRetryRate = !state.exchangeRateError || now - state.exchangeRateLastAttempt > 30000;
+  if (!state.prices && !state.pricesLoading && canRetryPrices) loadPrices({ rerender: true }).catch(() => null);
+  if (!exchangeRateIsFresh() && !state.exchangeRateLoading && canRetryRate) loadExchangeRate({ rerender: true }).catch(() => null);
 }
 
 function personTypeLabel(personType) {
@@ -914,7 +967,7 @@ function resolveHotspotItem(sectionId, engineId, figure) {
 }
 
 function shell(content) {
-  requestExchangeRate();
+  requestPricingData();
   const staffRole = effectiveStaffRole();
   app.innerHTML = `
     <div class="app-shell">
@@ -1092,7 +1145,7 @@ function renderSelectedStrip() {
 }
 
 function renderSection(engineId, sectionId) {
-  requestExchangeRate();
+  requestPricingData();
   const engine = engineById(engineId);
   const section = sectionById(sectionId);
   if (!engine || !section) {
@@ -1206,7 +1259,7 @@ function renderSection(engineId, sectionId) {
 }
 
 function renderProceed() {
-  requestExchangeRate();
+  requestPricingData();
   const selected = selectedItems();
   const useProfile = authEnabled() && authUser() && !state.guestCheckout;
   const customer = useProfile ? profileToCustomer() : {};
@@ -1349,7 +1402,7 @@ function renderProceed() {
           </div>
           <div class="checkout-total">
             <span>TOTAL:</span>
-            <strong>${canViewPrices() ? formatCurrency(pricing.totalBrl) : "Faça Login para ver o preço"}</strong>
+            <strong>${escapeHtml(totalPriceLabel(pricing.totalBrl))}</strong>
             ${canViewPrices() && pricing.hasConsult ? `<small>Existem itens com preço a consultar.</small>` : ""}
           </div>
         </aside>
@@ -2147,6 +2200,7 @@ async function submitQuote(form) {
   const useProfile = authEnabled() && authUser() && !state.guestCheckout;
   const customer = useProfile ? profileToCustomer(String(formCustomer.prefix || "")) : formCustomer;
   const previousRate = currentUsdBrlRate();
+  if (useProfile) await loadPrices({ rerender: false });
   const latestRate = useProfile ? await loadExchangeRate({ force: true, rerender: false }) : null;
   const nextRate = Number(latestRate?.rate || 0);
 
@@ -2156,19 +2210,25 @@ async function submitQuote(form) {
     return;
   }
 
-  const items = selected.map(({ item, entry, engine, section }) => ({
-    quantity: entry.quantity,
-    figure: item.figure,
-    partNumber: item.partNumber,
-    description: item.description,
-    engine: engine.name,
-    section: section.label,
-    priceUsd: itemPriceUsd(item),
-    exchangeRate: nextRate || null,
-    unitPriceBrl: priceBrl(item, nextRate) || null,
-    subtotalBrl: priceBrl(item, nextRate) === null ? null : priceBrl(item, nextRate) * Number(entry.quantity || 1),
-    priceStatus: itemPriceUsd(item) === null ? "consult" : "available"
-  }));
+  const items = selected.map(({ item, entry, engine, section }) => {
+    const priceUsd = itemPriceUsd(item);
+    const unitPriceBrl = priceUsd === null || !nextRate ? null : priceUsd * nextRate;
+    const subtotalBrl = unitPriceBrl === null ? null : unitPriceBrl * Number(entry.quantity || 1);
+
+    return {
+      quantity: entry.quantity,
+      figure: item.figure,
+      partNumber: item.partNumber,
+      description: item.description,
+      engine: engine.name,
+      section: section.label,
+      priceUsd,
+      exchangeRate: nextRate || null,
+      unitPriceBrl,
+      subtotalBrl,
+      priceStatus: priceUsd === null ? "consult" : "available"
+    };
+  });
 
   const headers = { "Content-Type": "application/json" };
   if (useProfile) {
@@ -2606,6 +2666,12 @@ async function logout() {
   state.prefixes = [];
   state.addresses = [];
   state.history = [];
+  state.prices = null;
+  state.pricesError = "";
+  state.pricesLastAttempt = 0;
+  state.exchangeRate = null;
+  state.exchangeRateError = "";
+  state.exchangeRateLastAttempt = 0;
   resetStaffData();
   state.authMessage = "";
   state.passwordRecovery = false;
@@ -2991,6 +3057,12 @@ async function init() {
         state.prefixes = [];
         state.addresses = [];
         state.history = [];
+        state.prices = null;
+        state.pricesError = "";
+        state.pricesLastAttempt = 0;
+        state.exchangeRate = null;
+        state.exchangeRateError = "";
+        state.exchangeRateLastAttempt = 0;
         resetStaffData();
       }
       render();
