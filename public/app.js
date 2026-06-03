@@ -161,7 +161,13 @@ function requiredProfileText(value) {
 }
 
 function canViewPrices() {
-  return authEnabled() && Boolean(authUser());
+  return authEnabled() && Boolean(authUser()) && profileIsApproved();
+}
+
+function priceAccessLabel() {
+  if (!authEnabled() || !authUser()) return "Faça Login para ver o preço";
+  if (!profileIsApproved()) return "Cadastro em análise para ver o preço";
+  return "";
 }
 
 function normalizePartNumber(partNumber) {
@@ -195,7 +201,7 @@ function priceBrl(item, rate = currentUsdBrlRate()) {
 }
 
 function priceLabel(item) {
-  if (!canViewPrices()) return "Faça Login para ver o preço";
+  if (!canViewPrices()) return priceAccessLabel();
   if (!state.prices) return state.pricesError || "Atualizando preços...";
   const usd = itemPriceUsd(item);
   if (usd === null) return "A consultar";
@@ -205,7 +211,7 @@ function priceLabel(item) {
 }
 
 function totalPriceLabel(totalBrl) {
-  if (!canViewPrices()) return "Faça Login para ver o preço";
+  if (!canViewPrices()) return priceAccessLabel();
   if (!state.prices) return state.pricesError || "Atualizando preços...";
   if (!currentUsdBrlRate()) return state.exchangeRateError || "Atualizando dólar...";
   return formatCurrency(totalBrl);
@@ -471,7 +477,7 @@ async function prepareLoggedSession(session, { forceMaster = false } = {}) {
     state.authMessage = "Seu cadastro esta bloqueado. Entre em contato com a CDSAV.";
     return "#/pending";
   }
-  return profileIsComplete() ? "#/proceed" : "#/profile/account";
+  return profileIsComplete() ? "#/" : "#/profile/account";
 }
 
 async function loadStaffData() {

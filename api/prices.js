@@ -5,6 +5,7 @@ import path from "node:path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const pricesPath = path.join(__dirname, "..", "data", "prices.json");
+const FIRST_MASTER_EMAIL = "bruno.scotton@cdsav.com.br";
 
 let cachedPrices = null;
 
@@ -26,22 +27,48 @@ function bearerToken(req) {
   return match ? match[1] : "";
 }
 
-async function validateAuth(req) {
+async function supabaseFetch(pathname, { token, query = "" } = {}) {
+  const config = supabaseConfig();
+  const response = await fetch(`${config.url}${pathname}${query}`, {
+    headers: {
+      apikey: config.anonKey,
+      Authorization: `Bearer ${token || config.anonKey}`,
+      "Content-Type": "application/json"
+    }
+  });
+
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(message || "Falha ao validar cadastro.");
+  }
+
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
+}
+
+export async function userCanAccessPrices(req) {
   if (!authIsConfigured()) return true;
 
   const token = bearerToken(req);
   if (!token) return false;
 
-  const config = supabaseConfig();
-  const response = await fetch(`${config.url}/auth/v1/user`, {
-    headers: {
-      apikey: config.anonKey,
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json"
-    }
-  });
+  try {
+    const user = await supabaseFetch("/auth/v1/user", { token });
+    const email = String(user?.email || "").trim().toLowerCase();
+    if (email === FIRST_MASTER_EMAIL) return true;
 
-  return response.ok;
+    const profiles = await supabaseFetch("/rest/v1/profiles", {
+      token,
+      query: `?id=eq.${encodeURIComponent(user.id)}&select=status,role`
+    });
+    const profile = Array.isArray(profiles) ? profiles[0] : null;
+    const role = String(profile?.role || "").toLowerCase();
+    const status = String(profile?.status || "").toLowerCase();
+
+    return status === "approved" || role === "master" || role === "seller";
+  } catch {
+    return false;
+  }
 }
 
 export async function loadPricesData() {
@@ -75,8 +102,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    if (!(await validateAuth(req))) {
-      res.status(401).json({ ok: false, message: "Login necessario para consultar precos." });
+    if (!(await userCanAccessPrices(req))) {
+      res.status(403).json({ ok: false, message: "Cadastro em analise para consultar precos." });
       return;
     }
 

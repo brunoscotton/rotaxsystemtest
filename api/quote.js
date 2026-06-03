@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { userCanAccessPrices } from "./prices.js";
 import { enrichQuoteItemsWithPrices, formatBrl } from "./quote-pricing.js";
 
 function supabaseConfig() {
@@ -247,7 +248,8 @@ export default async function handler(req, res) {
 
   let pricing;
   try {
-    pricing = await enrichQuoteItemsWithPrices(items, { includePrices: Boolean(bearerToken(req)) });
+    const includePrices = Boolean(bearerToken(req)) && await userCanAccessPrices(req);
+    pricing = await enrichQuoteItemsWithPrices(items, { includePrices });
     items = pricing.items;
   } catch (error) {
     res.status(503).json({ ok: false, message: error.message || "Nao foi possivel atualizar os valores." });
