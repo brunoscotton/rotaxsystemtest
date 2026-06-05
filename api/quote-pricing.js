@@ -1,16 +1,17 @@
 import { getUsdBrlRate } from "./exchange-rate.js";
-import { loadPricesData } from "./prices.js";
+import { effectivePricesData } from "./prices.js";
 
-let cachedPriceMap = null;
+let cachedFilePriceMap = null;
 
 function normalizePartNumber(partNumber) {
   return String(partNumber || "").replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
 }
 
 async function catalogPrices() {
-  if (cachedPriceMap) return cachedPriceMap;
+  const data = await effectivePricesData();
+  const fileOnly = !data.overrideCount;
+  if (fileOnly && cachedFilePriceMap) return cachedFilePriceMap;
 
-  const data = await loadPricesData();
   const prices = new Map();
 
   for (const [partNumber, priceUsd] of Object.entries(data.prices || {})) {
@@ -19,8 +20,8 @@ async function catalogPrices() {
     if (key && Number.isFinite(price) && price >= 0) prices.set(key, price);
   }
 
-  cachedPriceMap = prices;
-  return cachedPriceMap;
+  if (fileOnly) cachedFilePriceMap = prices;
+  return prices;
 }
 
 export function formatBrl(value) {

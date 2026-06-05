@@ -1,4 +1,8 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
 const FIRST_MASTER_EMAIL = "bruno.scotton@cdsav.com.br";
+const catalogPath = path.join(process.cwd(), "data", "catalog.json");
 
 function supabaseConfig() {
   return {
@@ -197,6 +201,126 @@ async function deleteUser(body) {
   return { id: userId };
 }
 
+function normalizePartNumber(partNumber) {
+  return String(partNumber || "").replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+}
+
+function normalizedPrice(value) {
+  if (typeof value === "number") return Number.isFinite(value) && value >= 0 ? Number(value.toFixed(4)) : null;
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  const cleaned = raw
+    .replace(/[^\d,.-]/g, "")
+    .replace(/\.(?=\d{3}(?:\D|$))/g, "")
+    .replace(",", ".");
+  const price = Number(cleaned);
+  return Number.isFinite(price) && price >= 0 ? Number(price.toFixed(4)) : null;
+}
+
+async function catalogPartNumbers() {
+  const catalog = JSON.parse(await readFile(catalogPath, "utf8"));
+  return new Set(
+    (catalog.items || [])
+      .map((item) => normalizePartNumber(item.partNumber))
+      .filter(Boolean)
+  );
+}
+
+function supabaseInValues(values) {
+  return `(${values.map((value) => `"${String(value).replace(/"/g, '\\"')}"`).join(",")})`;
+}
+
+async function existingPrices(partNumbers) {
+  const result = new Map();
+  const chunkSize = 150;
+  for (let index = 0; index < partNumbers.length; index += chunkSize) {
+    const chunk = partNumbers.slice(index, index + chunkSize);
+    const rows = await supabaseFetch("/rest/v1/part_prices", {
+      service: true,
+      query: `?part_number=in.${encodeURIComponent(supabaseInValues(chunk))}&select=part_number,price_usd`
+    }).catch(() => []);
+    if (Array.isArray(rows)) {
+      for (const row of rows) result.set(normalizePartNumber(row.part_number), Number(row.price_usd));
+    }
+  }
+  return result;
+}
+
+async function upsertPrices(rows) {
+  const chunkSize = 500;
+  for (let index = 0; index < rows.length; index += chunkSize) {
+    await supabaseFetch("/rest/v1/part_prices", {
+      service: true,
+      method: "POST",
+      query: "?on_conflict=part_number",
+      body: rows.slice(index, index + chunkSize)
+    });
+  }
+}
+
+async function updatePrices(body, staff) {
+  const incoming = Array.isArray(body.rows) ? body.rows : [];
+  if (!incoming.length) throw Object.assign(new Error("Nenhum preco encontrado na planilha."), { statusCode: 400 });
+
+  const catalogPns = await catalogPartNumbers();
+  const parsed = new Map();
+  let ignoredNotInCatalog = 0;
+  let invalidRows = 0;
+
+  for (const row of incoming) {
+    const partNumber = normalizePartNumber(row.partNumber || row.pn || row.PN);
+    const priceUsd = normalizedPrice(row.priceUsd ?? row.price ?? row.preco ?? row.valor);
+    if (!partNumber || priceUsd === null) {
+      invalidRows += 1;
+      continue;
+    }
+    if (!catalogPns.has(partNumber)) {
+      ignoredNotInCatalog += 1;
+      continue;
+    }
+    parsed.set(partNumber, {
+      part_number: partNumber,
+      price_usd: priceUsd,
+      updated_by: staff.user.id,
+      updated_at: new Date().toISOString()
+    });
+  }
+
+  const rowsToCompare = [...parsed.values()];
+  const current = await existingPrices(rowsToCompare.map((row) => row.part_number));
+  const rowsToSave = [];
+  let unchanged = 0;
+  let inserted = 0;
+  let updated = 0;
+
+  for (const row of rowsToCompare) {
+    if (!current.has(row.part_number)) {
+      inserted += 1;
+      rowsToSave.push(row);
+      continue;
+    }
+    if (Number(current.get(row.part_number)) === Number(row.price_usd)) {
+      unchanged += 1;
+      continue;
+    }
+    updated += 1;
+    rowsToSave.push(row);
+  }
+
+  if (rowsToSave.length) await upsertPrices(rowsToSave);
+
+  return {
+    received: incoming.length,
+    matched: rowsToCompare.length,
+    inserted,
+    updated,
+    unchanged,
+    ignoredNotInCatalog,
+    invalidRows,
+    saved: rowsToSave.length
+  };
+}
+
 export async function handleAdminRequest({ method, headers, url, body }) {
   const requestUrl = new URL(url, "http://local");
   const action = requestUrl.searchParams.get("action") || body?.action || "";
@@ -234,6 +358,11 @@ export async function handleAdminRequest({ method, headers, url, body }) {
   if (method === "POST" && action === "deleteUser") {
     await requireStaff(headers, ["master"]);
     return { status: 200, body: { ok: true, user: await deleteUser(body) } };
+  }
+
+  if (method === "POST" && action === "updatePrices") {
+    const staff = await requireStaff(headers, ["master"]);
+    return { status: 200, body: { ok: true, result: await updatePrices(body, staff) } };
   }
 
   return { status: 404, body: { ok: false, message: "Acao administrativa nao encontrada." } };

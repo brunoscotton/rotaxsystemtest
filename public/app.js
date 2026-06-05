@@ -20,6 +20,8 @@ const state = {
   staffVerifying: false,
   staffVerifyPromise: null,
   staffActionBusy: false,
+  staffPriceBusy: false,
+  staffPriceResult: null,
   staffError: "",
   activeQuoteId: "",
   staffQuoteFilter: "new",
@@ -505,6 +507,8 @@ function resetStaffData() {
   state.staffVerifying = false;
   state.staffVerifyPromise = null;
   state.staffActionBusy = false;
+  state.staffPriceBusy = false;
+  state.staffPriceResult = null;
   state.staffError = "";
   state.activeQuoteId = "";
   state.staffQuoteFilter = "new";
@@ -1639,6 +1643,32 @@ function renderStaffPanel(kind) {
         </div>
         <button class="secondary-button" type="button" data-refresh-staff ${actionBusy ? "disabled" : ""}>Atualizar</button>
       </section>
+      ${canMaster ? `
+        <section class="form-panel price-upload-panel">
+          <div>
+            <p class="eyebrow">Tabela de preços</p>
+            <h2>Atualizar preços por Excel</h2>
+            <p class="selected-meta">Envie uma planilha com as colunas PN e preço em USD. PNs que não existem no catálogo serão ignorados.</p>
+          </div>
+          <form class="price-upload-form" data-price-upload-form>
+            <label class="field">
+              <span>Arquivo Excel</span>
+              <input type="file" accept=".xlsx,.xls,.csv" data-price-file required>
+            </label>
+            <button class="primary-button" type="submit" ${state.staffPriceBusy ? "disabled" : ""}>${state.staffPriceBusy ? "Atualizando..." : "Enviar tabela"}</button>
+          </form>
+          ${state.staffPriceResult ? `
+            <div class="price-upload-summary">
+              <span><strong>${state.staffPriceResult.saved}</strong> preços salvos</span>
+              <span><strong>${state.staffPriceResult.inserted}</strong> novos</span>
+              <span><strong>${state.staffPriceResult.updated}</strong> atualizados</span>
+              <span><strong>${state.staffPriceResult.unchanged}</strong> sem alteração</span>
+              <span><strong>${state.staffPriceResult.ignoredNotInCatalog}</strong> ignorados fora do catálogo</span>
+              <span><strong>${state.staffPriceResult.invalidRows}</strong> linhas inválidas</span>
+            </div>
+          ` : ""}
+        </section>
+      ` : ""}
       <section class="staff-layout">
         <aside class="form-panel">
           <h2>Solicitações</h2>
@@ -2655,6 +2685,98 @@ async function deleteStaffUser(userId) {
   await refreshStaffPanel();
 }
 
+let xlsxModulePromise = null;
+
+async function loadXlsxModule() {
+  if (!xlsxModulePromise) {
+    xlsxModulePromise = import("https://cdn.jsdelivr.net/npm/xlsx@0.18.5/+esm")
+      .then((module) => module.default || module);
+  }
+  return xlsxModulePromise;
+}
+
+function normalizeSpreadsheetHeader(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "");
+}
+
+function spreadsheetPrice(value) {
+  if (typeof value === "number") return Number.isFinite(value) && value >= 0 ? value : null;
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  const cleaned = raw
+    .replace(/[^\d,.-]/g, "")
+    .replace(/\.(?=\d{3}(?:\D|$))/g, "")
+    .replace(",", ".");
+  const price = Number(cleaned);
+  return Number.isFinite(price) && price >= 0 ? price : null;
+}
+
+function columnIndex(headers, candidates) {
+  return headers.findIndex((header) => candidates.some((candidate) => header === candidate || header.includes(candidate)));
+}
+
+async function priceRowsFromSpreadsheet(file) {
+  const XLSX = await loadXlsxModule();
+  const workbook = XLSX.read(await file.arrayBuffer(), { type: "array" });
+  const sheetName = workbook.SheetNames[0];
+  if (!sheetName) throw new Error("A planilha nao possui abas.");
+
+  const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, raw: false, defval: "" });
+  const headerIndex = rows.findIndex((row) => row.some((cell) => String(cell || "").trim()));
+  if (headerIndex < 0) throw new Error("A planilha esta vazia.");
+
+  const headers = rows[headerIndex].map(normalizeSpreadsheetHeader);
+  let pnIndex = columnIndex(headers, ["pn", "partnumber", "partno", "codigopn", "codigo"]);
+  let priceIndex = columnIndex(headers, ["precousd", "preco", "priceusd", "price", "valorusd", "valor", "usd"]);
+  let startIndex = headerIndex + 1;
+
+  if (pnIndex < 0 || priceIndex < 0) {
+    pnIndex = 0;
+    priceIndex = 1;
+    startIndex = headerIndex;
+  }
+
+  const mapped = new Map();
+  for (const row of rows.slice(startIndex)) {
+    const partNumber = normalizePartNumber(row[pnIndex]);
+    const priceUsd = spreadsheetPrice(row[priceIndex]);
+    if (partNumber && priceUsd !== null) mapped.set(partNumber, { partNumber, priceUsd });
+  }
+
+  const parsed = [...mapped.values()];
+  if (!parsed.length) throw new Error("Nao encontrei linhas validas com PN e preco.");
+  return parsed;
+}
+
+async function submitPriceUpload(form) {
+  const file = form.querySelector("[data-price-file]")?.files?.[0];
+  if (!file) throw new Error("Selecione um arquivo Excel.");
+
+  state.staffPriceBusy = true;
+  state.staffPriceResult = null;
+  renderStaffPanel("master");
+
+  try {
+    const rows = await priceRowsFromSpreadsheet(file);
+    const result = await staffApi("updatePrices", {
+      method: "POST",
+      timeout: 60000,
+      body: { rows }
+    });
+    state.staffPriceResult = result.result;
+    state.prices = null;
+    state.pricesError = "";
+    showToast("Tabela de precos atualizada.");
+  } finally {
+    state.staffPriceBusy = false;
+    renderStaffPanel("master");
+  }
+}
+
 async function copyActiveCodes() {
   const text = document.querySelector("[data-copy-codes]")?.textContent || "";
   if (!text.trim()) {
@@ -2962,6 +3084,16 @@ function bindEvents() {
     if (event.target.matches("[data-reset-password-form]")) {
       event.preventDefault();
       submitResetPassword(event.target).catch((error) => showToast(error.message));
+      return;
+    }
+
+    if (event.target.matches("[data-price-upload-form]")) {
+      event.preventDefault();
+      submitPriceUpload(event.target).catch((error) => {
+        state.staffPriceBusy = false;
+        renderStaffPanel("master");
+        showToast(error.message);
+      });
       return;
     }
 
