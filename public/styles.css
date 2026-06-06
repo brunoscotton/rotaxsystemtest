@@ -108,6 +108,22 @@ button:disabled {
   box-shadow: 0 0 0 3px rgba(0, 153, 216, 0.14);
 }
 
+.exchange-rate-pill {
+  flex: 0 0 auto;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border: 1px solid #cfe8f4;
+  border-radius: 999px;
+  background: #f2fbff;
+  color: #14516c;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .global-search-menu {
   position: absolute;
   top: calc(100% + 8px);
@@ -1233,6 +1249,11 @@ td {
     order: 3;
     flex-basis: 100%;
     max-width: none;
+  }
+
+  .exchange-rate-pill {
+    order: 2;
+    min-height: 34px;
   }
 
   .auth-actions {

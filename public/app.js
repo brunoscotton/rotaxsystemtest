@@ -219,6 +219,13 @@ function totalPriceLabel(totalBrl) {
   return formatCurrency(totalBrl);
 }
 
+function exchangeRateLabel() {
+  const rate = currentUsdBrlRate();
+  if (rate) return `Dólar: ${formatCurrency(rate)}`;
+  if (state.exchangeRateError) return "Dólar indisponível";
+  return state.exchangeRateLoading ? "Atualizando dólar..." : "Dólar: --";
+}
+
 function selectedPricingSummary(rate = currentUsdBrlRate()) {
   const selected = selectedItems();
   let totalBrl = 0;
@@ -269,7 +276,7 @@ async function loadPrices({ rerender = true } = {}) {
 }
 
 async function loadExchangeRate({ force = false, rerender = true } = {}) {
-  if (!canViewPrices() || state.exchangeRateLoading) return state.exchangeRate;
+  if (state.exchangeRateLoading) return state.exchangeRate;
   if (!force && exchangeRateIsFresh()) return state.exchangeRate;
 
   state.exchangeRateLoading = true;
@@ -291,11 +298,10 @@ async function loadExchangeRate({ force = false, rerender = true } = {}) {
 }
 
 function requestPricingData() {
-  if (!canViewPrices()) return;
   const now = Date.now();
   const canRetryPrices = !state.pricesError || now - state.pricesLastAttempt > 30000;
   const canRetryRate = !state.exchangeRateError || now - state.exchangeRateLastAttempt > 30000;
-  if (!state.prices && !state.pricesLoading && canRetryPrices) loadPrices({ rerender: true }).catch(() => null);
+  if (canViewPrices() && !state.prices && !state.pricesLoading && canRetryPrices) loadPrices({ rerender: true }).catch(() => null);
   if (!exchangeRateIsFresh() && !state.exchangeRateLoading && canRetryRate) loadExchangeRate({ rerender: true }).catch(() => null);
 }
 
@@ -911,6 +917,26 @@ function updateGlobalSearchDropdown() {
   panel.hidden = state.globalSearch.trim().length < 2;
 }
 
+function renderWithScrollRestore(selectors = [".parts-panel .table-wrap", ".diagram-wrap"]) {
+  const positions = selectors
+    .map((selector) => {
+      const element = document.querySelector(selector);
+      return element ? { selector, top: element.scrollTop, left: element.scrollLeft } : null;
+    })
+    .filter(Boolean);
+
+  render();
+
+  window.requestAnimationFrame(() => {
+    for (const position of positions) {
+      const element = document.querySelector(position.selector);
+      if (!element) continue;
+      element.scrollTop = position.top;
+      element.scrollLeft = position.left;
+    }
+  });
+}
+
 function positiveQuantity(value, fallback = 1) {
   const quantity = Number(value);
   return Number.isFinite(quantity) && quantity > 0 ? quantity : fallback;
@@ -923,7 +949,7 @@ function addItem(itemId, engineId, quantityToAdd = 1) {
   state.cart[itemId] = { quantity, engineId };
   saveCart();
   showToast(`${item.partNumber} adicionado a lista.`);
-  render();
+  renderWithScrollRestore();
 }
 
 function addKitItems(sectionId, engineId) {
@@ -942,13 +968,13 @@ function addKitItems(sectionId, engineId) {
 
   saveCart();
   showToast(`${section.label} adicionado a lista.`);
-  render();
+  renderWithScrollRestore();
 }
 
 function removeItem(itemId) {
   delete state.cart[itemId];
   saveCart();
-  render();
+  renderWithScrollRestore();
 }
 
 function changeQty(itemId, delta) {
@@ -958,7 +984,7 @@ function changeQty(itemId, delta) {
   else {
     state.cart[itemId].quantity = next;
     saveCart();
-    render();
+    renderWithScrollRestore();
   }
 }
 
@@ -968,7 +994,7 @@ function setQty(itemId, quantity) {
   else if (state.cart[itemId]) {
     state.cart[itemId].quantity = next;
     saveCart();
-    render();
+    renderWithScrollRestore();
   }
 }
 
@@ -994,6 +1020,9 @@ function shell(content) {
           <div class="global-search-menu" data-global-results ${state.globalSearch.trim().length < 2 ? "hidden" : ""}>
             ${renderGlobalSearchResults()}
           </div>
+        </div>
+        <div class="exchange-rate-pill" title="${escapeHtml(state.exchangeRate?.provider || "")}">
+          ${escapeHtml(exchangeRateLabel())}
         </div>
         ${authEnabled() ? `
           <div class="auth-actions">
@@ -3209,7 +3238,7 @@ async function init() {
 
   bindEvents();
   window.setInterval(() => {
-    if (canViewPrices()) loadExchangeRate({ force: true, rerender: true }).catch(() => null);
+    loadExchangeRate({ force: true, rerender: true }).catch(() => null);
   }, 10 * 60 * 1000);
   window.addEventListener("hashchange", render);
   render();
