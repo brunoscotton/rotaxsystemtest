@@ -1,6 +1,8 @@
 const CACHE_TTL_MS = 10 * 60 * 1000;
 const DEFAULT_PROVIDER_URLS = [
+  "https://economia.awesomeapi.com.br/last/USD-BRL",
   "https://economia.awesomeapi.com.br/json/last/USD-BRL",
+  "https://query1.finance.yahoo.com/v8/finance/chart/BRL=X?interval=1m&range=1d",
   "https://open.er-api.com/v6/latest/USD",
   "https://api.frankfurter.app/latest?from=USD&to=BRL"
 ];
@@ -13,12 +15,14 @@ function providerUrls() {
 }
 
 function parseUsdBrlRate(data) {
+  const yahooMeta = data?.chart?.result?.[0]?.meta;
   const quote = data?.USDBRL || data?.["USD-BRL"] || data;
   const rate = Number(
     quote?.bid ||
     quote?.ask ||
     quote?.high ||
     quote?.rate ||
+    yahooMeta?.regularMarketPrice ||
     data?.rates?.BRL
   );
 
@@ -26,13 +30,14 @@ function parseUsdBrlRate(data) {
 
   return {
     rate,
-    providerTimestamp: quote?.timestamp || data?.time_last_update_unix || "",
+    providerTimestamp: quote?.timestamp || yahooMeta?.regularMarketTime || data?.time_last_update_unix || "",
     providerDate: quote?.create_date || data?.time_last_update_utc || data?.date || ""
   };
 }
 
 function providerName(providerUrl) {
   if (providerUrl.includes("awesomeapi.com.br")) return "AwesomeAPI";
+  if (providerUrl.includes("finance.yahoo.com")) return "Yahoo Finance";
   if (providerUrl.includes("open.er-api.com")) return "ExchangeRate-API";
   if (providerUrl.includes("frankfurter.app")) return "Frankfurter";
   return "Custom";

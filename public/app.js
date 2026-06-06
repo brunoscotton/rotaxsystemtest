@@ -219,9 +219,19 @@ function totalPriceLabel(totalBrl) {
   return formatCurrency(totalBrl);
 }
 
+function formatExchangeRate(value) {
+  if (!Number.isFinite(Number(value))) return "--";
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 4,
+    maximumFractionDigits: 4
+  }).format(Number(value));
+}
+
 function exchangeRateLabel() {
   const rate = currentUsdBrlRate();
-  if (rate) return `Dólar: ${formatCurrency(rate)}`;
+  if (rate) return `Dólar: ${formatExchangeRate(rate)}`;
   if (state.exchangeRateError) return "Dólar indisponível";
   return state.exchangeRateLoading ? "Atualizando dólar..." : "Dólar: --";
 }
