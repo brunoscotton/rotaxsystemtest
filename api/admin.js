@@ -254,6 +254,21 @@ async function existingPrices(partNumbers) {
   return result;
 }
 
+async function allExistingPricePartNumbers() {
+  const partNumbers = [];
+  const pageSize = 1000;
+  for (let offset = 0; ; offset += pageSize) {
+    const rows = await supabaseFetch("/rest/v1/part_prices", {
+      service: true,
+      query: `?select=part_number&order=part_number.asc&limit=${pageSize}&offset=${offset}`
+    });
+    if (!Array.isArray(rows) || !rows.length) break;
+    partNumbers.push(...rows.map((row) => normalizePartNumber(row.part_number)).filter(Boolean));
+    if (rows.length < pageSize) break;
+  }
+  return partNumbers;
+}
+
 async function upsertPrices(rows) {
   const chunkSize = 500;
   for (let index = 0; index < rows.length; index += chunkSize) {
@@ -262,6 +277,18 @@ async function upsertPrices(rows) {
       method: "POST",
       query: "?on_conflict=part_number",
       body: rows.slice(index, index + chunkSize)
+    });
+  }
+}
+
+async function deletePrices(partNumbers) {
+  const chunkSize = 500;
+  for (let index = 0; index < partNumbers.length; index += chunkSize) {
+    const chunk = partNumbers.slice(index, index + chunkSize);
+    await supabaseFetch("/rest/v1/part_prices", {
+      service: true,
+      method: "DELETE",
+      query: `?part_number=in.${encodeURIComponent(supabaseInValues(chunk))}`
     });
   }
 }
@@ -295,6 +322,10 @@ async function updatePrices(body, staff) {
   }
 
   const rowsToCompare = [...parsed.values()];
+  if (!rowsToCompare.length) {
+    throw Object.assign(new Error("Nenhum PN da planilha existe no catalogo."), { statusCode: 400 });
+  }
+
   const current = await existingPrices(rowsToCompare.map((row) => row.part_number));
   const rowsToSave = [];
   let unchanged = 0;
@@ -316,6 +347,8 @@ async function updatePrices(body, staff) {
   }
 
   if (rowsToSave.length) await upsertPrices(rowsToSave);
+  const stalePartNumbers = (await allExistingPricePartNumbers()).filter((partNumber) => !parsed.has(partNumber));
+  if (stalePartNumbers.length) await deletePrices(stalePartNumbers);
 
   return {
     received: incoming.length,
@@ -325,6 +358,7 @@ async function updatePrices(body, staff) {
     unchanged,
     ignoredNotInCatalog,
     invalidRows,
+    removedMissingFromSpreadsheet: stalePartNumbers.length,
     saved: rowsToSave.length
   };
 }

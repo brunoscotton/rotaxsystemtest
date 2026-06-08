@@ -87,19 +87,25 @@ export async function loadPricesData() {
 
 async function supabasePrices() {
   const config = supabaseConfig();
-  if (!config.url || !config.serviceRoleKey) return {};
+  if (!config.url || !config.serviceRoleKey) return null;
 
-  const rows = await supabaseFetch("/rest/v1/part_prices", {
-    service: true,
-    query: "?select=part_number,price_usd"
-  }).catch(() => []);
+  const prices = {};
+  const pageSize = 1000;
+  for (let offset = 0; ; offset += pageSize) {
+    const rows = await supabaseFetch("/rest/v1/part_prices", {
+      service: true,
+      query: `?select=part_number,price_usd&order=part_number.asc&limit=${pageSize}&offset=${offset}`
+    });
 
-  if (!Array.isArray(rows)) return {};
-  return Object.fromEntries(
-    rows
-      .map((row) => [String(row.part_number || "").toUpperCase(), Number(row.price_usd)])
-      .filter(([partNumber, price]) => partNumber && Number.isFinite(price) && price >= 0)
-  );
+    if (!Array.isArray(rows) || !rows.length) break;
+    for (const row of rows) {
+      const partNumber = String(row.part_number || "").toUpperCase();
+      const price = Number(row.price_usd);
+      if (partNumber && Number.isFinite(price) && price >= 0) prices[partNumber] = price;
+    }
+    if (rows.length < pageSize) break;
+  }
+  return prices;
 }
 
 export async function pricesPayload() {
@@ -114,12 +120,14 @@ export async function pricesPayload() {
 export async function effectivePricesData() {
   const data = await loadPricesData();
   const updatedPrices = await supabasePrices();
-  const prices = { ...data.prices, ...updatedPrices };
+  const usingSupabasePrices = updatedPrices !== null;
+  const prices = usingSupabasePrices ? updatedPrices : data.prices;
   return {
     currency: data.currency,
-    source: data.source,
+    source: usingSupabasePrices ? "Supabase part_prices" : data.source,
     updatedAt: data.updatedAt,
-    overrideCount: Object.keys(updatedPrices).length,
+    overrideCount: usingSupabasePrices ? Object.keys(updatedPrices).length : 0,
+    priceSource: usingSupabasePrices ? "supabase" : "file",
     prices
   };
 }

@@ -1702,6 +1702,7 @@ function renderStaffPanel(kind) {
               <span><strong>${state.staffPriceResult.inserted}</strong> novos</span>
               <span><strong>${state.staffPriceResult.updated}</strong> atualizados</span>
               <span><strong>${state.staffPriceResult.unchanged}</strong> sem alteração</span>
+              <span><strong>${state.staffPriceResult.removedMissingFromSpreadsheet || 0}</strong> removidos da tabela anterior</span>
               <span><strong>${state.staffPriceResult.ignoredNotInCatalog}</strong> ignorados fora do catálogo</span>
               <span><strong>${state.staffPriceResult.invalidRows}</strong> linhas inválidas</span>
             </div>
