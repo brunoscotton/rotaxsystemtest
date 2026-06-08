@@ -2746,10 +2746,18 @@ function spreadsheetPrice(value) {
   if (typeof value === "number") return Number.isFinite(value) && value >= 0 ? value : null;
   const raw = String(value || "").trim();
   if (!raw) return null;
-  const cleaned = raw
-    .replace(/[^\d,.-]/g, "")
-    .replace(/\.(?=\d{3}(?:\D|$))/g, "")
-    .replace(",", ".");
+  let cleaned = raw.replace(/[^\d,.-]/g, "");
+  const lastComma = cleaned.lastIndexOf(",");
+  const lastDot = cleaned.lastIndexOf(".");
+
+  if (lastComma >= 0 && lastDot >= 0) {
+    cleaned = lastComma > lastDot
+      ? cleaned.replace(/\./g, "").replace(",", ".")
+      : cleaned.replace(/,/g, "");
+  } else if (lastComma >= 0) {
+    cleaned = cleaned.replace(",", ".");
+  }
+
   const price = Number(cleaned);
   return Number.isFinite(price) && price >= 0 ? price : null;
 }
@@ -2764,7 +2772,7 @@ async function priceRowsFromSpreadsheet(file) {
   const sheetName = workbook.SheetNames[0];
   if (!sheetName) throw new Error("A planilha nao possui abas.");
 
-  const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, raw: false, defval: "" });
+  const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, raw: true, defval: "" });
   const headerIndex = rows.findIndex((row) => row.some((cell) => String(cell || "").trim()));
   if (headerIndex < 0) throw new Error("A planilha esta vazia.");
 

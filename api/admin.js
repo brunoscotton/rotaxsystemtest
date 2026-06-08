@@ -209,10 +209,18 @@ function normalizedPrice(value) {
   if (typeof value === "number") return Number.isFinite(value) && value >= 0 ? Number(value.toFixed(4)) : null;
   const raw = String(value || "").trim();
   if (!raw) return null;
-  const cleaned = raw
-    .replace(/[^\d,.-]/g, "")
-    .replace(/\.(?=\d{3}(?:\D|$))/g, "")
-    .replace(",", ".");
+  let cleaned = raw.replace(/[^\d,.-]/g, "");
+  const lastComma = cleaned.lastIndexOf(",");
+  const lastDot = cleaned.lastIndexOf(".");
+
+  if (lastComma >= 0 && lastDot >= 0) {
+    cleaned = lastComma > lastDot
+      ? cleaned.replace(/\./g, "").replace(",", ".")
+      : cleaned.replace(/,/g, "");
+  } else if (lastComma >= 0) {
+    cleaned = cleaned.replace(",", ".");
+  }
+
   const price = Number(cleaned);
   return Number.isFinite(price) && price >= 0 ? Number(price.toFixed(4)) : null;
 }
